@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Food</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+
+  </head>
+  <body >
+     <style media="screen">
+       .carousel-container{
+          width: 700px;
+          overflow: hidden;
+          margin-left: 100px;
+          margin-top: 75px;
+          
+       }
+
+       img {
+         height: 400px;
+         width: 700px;
+         
+       }
+       .carousel-slide {
+         display: flex;
+       }
+       #prev {
+         position: absolute;
+         top: 63%;
+         z-index: 10;
+         left: 8%;
+         font-size: 30px;
+         color: white;
+         opacity: 0.7;
+         cursor: pointer;
+       }
+
+       #next {
+         position: absolute;
+         top: 63%;
+         z-index: 10;
+         right: 52%;
+         font-size: 30px;
+         color: white;
+         opacity: 0.7;
+         cursor: pointer;
+       }
+       .form-control {
+         width: 200px;
+         align : center;
+       }
+
+
+       body {
+         background-image: url("https://libbyhealth.com/wp-content/uploads/2017/02/OH71GZ01-1024x541.jpg");
+         background-repeat: no-repeat;
+         background-size: 100%;
+
+
+        }
+        .container {
+          color: "white";
+        }
+        fieldset{
+          margin-left: 50px;
+          margin-top: 50px;
+        }
+        h4 {
+          color: white;
+        }
+        #scroll {
+          margin-left: 50px;
+          margin-top: 100px;
+          margin-right: 200px;
+          margin-bottom:100px;
+        } 
+        
+      
+     </style>
+    <!-- NAVBAR  -->
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button> -->
+      <a class="navbar-brand" href="Welcome Page.html">Smart Food</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="">Home</a></li> -->
+      <li><a href="#">Find Restaurant</a></li>
+      <li><a href="#">Order Food</a></li>
+      <li> <a href="Login.html"> LogIn </a> </li>
+    </ul>
+
+    </div>
+    </nav>
+
+
+   <fieldset>
+     <span class="jumbotron">
+       <h1 >Welcome to Smart Food </h1>
+       <h4> At smart food our aim is to provide healthy and delicious food based on your diet and cuisine preference </h4>
+    </span> 
+   </fieldset> 
+   <div class="carousel-container">
+      <i class="fa fa-arrow-left" id="prev" aria-hidden="true"></i>
+      <i class="fa fa-arrow-right" id="next" aria-hidden="true"></i>
+     <div class="carousel-slide">
+        <img src="food3.jpg" id="lastClone" alt="">
+       <img src="food1.jpg" id="" alt="">
+       <img src="food2.jpg" id="" alt="">
+       <img src="food3.jpg" id="" alt="">
+       <img src="food1.jpg" id="firstClone"alt="">
+     </div>
+   </div> 
+   
+   
+
+ 
+
+
+
+</body>
+<script>
+  const carouselSlide = document.querySelector('.carousel-slide')
+  console.log(carouselSlide)
+  const carouselImage = document.querySelectorAll('.carousel-slide img')
+  const preBtn = document.querySelector('#prev')
+  const nxtBtn = document.querySelector('#next') 
+  let counter = 1;
+  const size = carouselImage[0].clientWidth;
+  carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+  // button listenrs 
+  nxtBtn.addEventListener('click',()=>{
+    
+    carouselSlide.style.transition = "transform 0.4s ease-in-out";
+    counter++;
+    console.log(counter)
+    carouselSlide.style.transform= 'translateX(' + (-size * counter) + 'px)';
+  })
+  preBtn.addEventListener('click',()=>{
+   
+    carouselSlide.style.transition = "transform 0.4s ease-in-out";
+    counter--;
+    console.log(counter)
+    carouselSlide.style.transform= 'translateX(' + (-size * counter) + 'px)';
+  })
+  carouselSlide.addEventListener('transitionend',()=>{
+    console.log(carouselImage[counter].id)
+    if(carouselImage[counter].id=="lastClone") {
+      carouselSlide.style.transition='none';
+      counter=carouselImage.length-2;
+      carouselSlide.style.transform= 'translateX(' + (-size * counter) + 'px)';
+
+    }
+    if(carouselImage[counter].id=="firstClone") {
+      carouselSlide.style.transition='none';
+      counter=carouselImage.length-counter;
+      carouselSlide.style.transform= 'translateX(' + (-size * counter) + 'px)';
+
+    }
+  })
+</script>
+</html>
