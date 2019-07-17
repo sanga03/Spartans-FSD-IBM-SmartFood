@@ -9,23 +9,16 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    
-    <script
-    src="http://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
     <script> 
-       
-        $(document).ready(()=> 
-        { 
-        $('#log-in').hide();
-        console.log("inside ready function ")
-        $('#logIn-btn a').click(()=>{
-        // $('#log-in').show()
-        $('#log-in').slideToggle(2000)
-     })
-    });
-    </script>
+      $(document).ready(()=> { 
+      console.log("inside ready function ")
+      $('#log-in').hide();
+      $('#logIn-btn').click(()=>{
+      $('#log-in').slideDown(2000);
+      $('#log-in').show(); })
+  });
+  </script>
+
   </head>
   <body >
      <style media="screen">
@@ -38,7 +31,6 @@
           margin-left: 100px;
           margin-top: 75px;
           box-shadow: 0 0 10px black;
-          float: left;
           
        }
 
@@ -75,12 +67,14 @@
          width: 200px;
          align : center;
        }
-
+       #restSearch {
+         background-color: aqua;
+       }
 
        body {
         /* https://libbyhealth.com/wp-content/uploads/2017/02/OH71GZ01-1024x541.jpg */
          background-image: url("https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg");
-         /* background-repeat: no-repeat; */
+         background-repeat: no-repeat;
          background-size: 100%;
 
 
@@ -102,18 +96,8 @@
           margin-bottom:100px;
         } 
         #log-in{
-          margin-right: 15%;
-          float:right;
+          margin-left: 500px;
         } 
-        #Restaurant { 
-          margin-top: 40%;
-          margin-left: 40%;
-          float: center;
-        } 
-        #search-icon {
-          color: black;
-          background-color: black;
-        }
         
       
      </style>
@@ -132,9 +116,9 @@
     </div>
     <ul class="nav navbar-nav">
       <!-- <li class="active"><a href="">Home</a></li> -->
-      <li><a href="#Restaurant">Find Restaurant</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <li id="logIn-btn"> <a href="#">Log In</a> </li>
+      <li><a href="#">Find Restaurant</a></li>
+      <li><a href="#">Order Food</a></li>
+      <li> <a href="" id="logIn-btn"> LogIn </a> </li>
     </ul>
 
     </div>
@@ -147,7 +131,6 @@
        <h4> At smart food our aim is to provide healthy and delicious food based on your diet and cuisine preference </h4>
     </span> 
    </fieldset> 
-   <i class="fas fa-search-location" id="search-icon"></i> 
    <div class="carousel-container">
       <i class="fa fa-arrow-left" id="prev" aria-hidden="true"></i>
       <i class="fa fa-arrow-right" id="next" aria-hidden="true"></i>
@@ -159,7 +142,8 @@
        <img src="food1.jpg" id="firstClone"alt="">
      </div>
    </div > 
-    <fieldset id="log-in">
+   <div id="log-in">
+    <fieldset id="">
       <h2 >Log In</h2>
     <form class="frm" method="post" >
         <div class="form-group">
@@ -177,18 +161,20 @@
  
  
     </fieldset>
+
+   </div>
    <div id="Restaurant">
-      <fieldset id="">
+      <fieldset id="restSearch">
         <h2 >Search Restaurant</h2>
       <form class="frm" method="post" >
           <div class="form-group">
-            <input type="text" class="form-control" id="RestaurantName" placeholder="Search Nearby Restaurant" value=""> 
-            <i class="fas fa-search-location"></i>
+            <input type="text" class="form-control" id="RestaurantName" placeholder="Search Nearby Restaurant" value="">
           </div>
           <!-- <div class="form-group">
             <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
           </div> -->
-          <button type="submit" class="btn btn-default" id="sub" onclick="#" >Search  </button>
+   
+          <button type="submit" class="btn btn-default" id="search" onclick="#" >Search </button>
       </form>
       </fieldset>
   
