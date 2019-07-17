@@ -191,13 +191,15 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
         </div>
+<<<<<<< HEAD
  
         <button type="submit" class="btn btn-default" id="sub" >Submit</button>
         <button type="button" class="btn btn-default" id="reg-btn" onclick="callReg()" >Register</button>
-
-
+=======
+        <button type="submit" class="btn btn-default" id="sub" onclick="#" >Submit</button>
+>>>>>>> a47263db852235018e1315a6bb14068c131a8beb
     </form>
-       <!-- <a href="index.html"> New User? Register Now</a> -->
+       <a href="index.html"> New User? Register Now</a>
  
  
     </fieldset>
@@ -217,22 +219,10 @@
             <label for="exampleInputEmail1">email</label>
             <input type="text" class="form-control" id="reg-email" placeholder="Enter email" value="">
           </div>
-          
-          
-          <div class="form-group">
-              <label for="exampleInputEmail1">date</label>
-              <input type="date"  class="form-control" name="dob" placeholder="Enter date of birth" >
-            </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="reg-password" placeholder=" Enter Password" value="">  
+            <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">  
           </div>
-          <div class="form-group">
-              <label for="exampleInputPassword1">Re-enter Password</label>
-              <input type="password" class="form-control" id="reg=repassword" placeholder=" Re-enter Password" value="">  
-            </div>
-            <button type="submit" class="btn btn-default" id="re-sub" >Register</button>
-       
         </form>
     </fieldset>
    <div id="Restaurant">
