@@ -110,6 +110,9 @@
           text-align: center;
           float: center;
           background-image: url('RestImage.png');
+          height: 400px;
+          padding-top: 9%;
+
         } 
         #search-icon {
           color: black;
@@ -137,7 +140,7 @@
     <ul class="nav navbar-nav">
       <!-- <li class="active"><a href="">Home</a></li> -->
       <li><a href="#Restaurant">Find Restaurant</a></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="#Contact">Contact Us</a></li>
       <li id="logIn-btn"> <a href="#">Log In</a> </li>
     </ul>
 
@@ -174,7 +177,6 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
         </div>
- 
         <button type="submit" class="btn btn-default" id="sub" onclick="#" >Submit</button>
     </form>
        <a href="index.html"> New User? Register Now</a>
@@ -184,6 +186,22 @@
    <div id="Restaurant">
       <fieldset id="">
         <h2 >Search Restaurant</h2>
+      <form class="frm" method="post" >
+          <div class="form-group">
+            <input type="text" class="form-control" id="RestaurantName" placeholder="Search Nearby Restaurant" value=""> 
+            
+          </div>
+          <!-- <div class="form-group">
+            <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
+          </div> -->
+          <button type="submit" class="btn btn-default" id="sub" onclick="#" >Search  </button>
+      </form>
+      </fieldset>
+  
+     </div> 
+     <div id="Contact">
+      <fieldset id="">
+        <h2 >Countact Us</h2>
       <form class="frm" method="post" >
           <div class="form-group">
             <input type="text" class="form-control" id="RestaurantName" placeholder="Search Nearby Restaurant" value=""> 
