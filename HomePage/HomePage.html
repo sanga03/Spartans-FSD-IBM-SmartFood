@@ -14,11 +14,15 @@
   </head>
   <body >
      <style media="screen">
+       html {
+         scroll-behavior: smooth;
+       }
        .carousel-container{
           width: 700px;
           overflow: hidden;
           margin-left: 100px;
           margin-top: 75px;
+          box-shadow: 0 0 10px black;
           
        }
 
@@ -58,7 +62,8 @@
 
 
        body {
-         background-image: url("https://libbyhealth.com/wp-content/uploads/2017/02/OH71GZ01-1024x541.jpg");
+        /* https://libbyhealth.com/wp-content/uploads/2017/02/OH71GZ01-1024x541.jpg */
+         background-image: url("https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg");
          background-repeat: no-repeat;
          background-size: 100%;
 
@@ -67,18 +72,21 @@
         .container {
           color: "white";
         }
-        fieldset{
+        #jumbo{
           margin-left: 50px;
           margin-top: 50px;
         }
-        h4 {
+        /* h4 {
           color: white;
-        }
+        } */
         #scroll {
           margin-left: 50px;
           margin-top: 100px;
           margin-right: 200px;
           margin-bottom:100px;
+        } 
+        #log-in{
+          margin-left: 500px;
         } 
         
       
@@ -100,14 +108,14 @@
       <!-- <li class="active"><a href="">Home</a></li> -->
       <li><a href="#">Find Restaurant</a></li>
       <li><a href="#">Order Food</a></li>
-      <li> <a href="Login.html"> LogIn </a> </li>
+      <li> <a href="#log-in"> LogIn </a> </li>
     </ul>
 
     </div>
     </nav>
 
 
-   <fieldset>
+   <fieldset id="jumbo">
      <span class="jumbotron">
        <h1 >Welcome to Smart Food </h1>
        <h4> At smart food our aim is to provide healthy and delicious food based on your diet and cuisine preference </h4>
@@ -123,14 +131,47 @@
        <img src="food3.jpg" id="" alt="">
        <img src="food1.jpg" id="firstClone"alt="">
      </div>
-   </div> 
-   
-   
-
+   </div > 
+   <div id="log-in">
+    <fieldset id="">
+      <h2 >Log In</h2>
+    <form class="frm" method="post" >
+        <div class="form-group">
+          <label for="exampleInputEmail1">Username </label>
+          <input type="text" class="form-control" id="username" placeholder="Enter username" value="">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
+        </div>
  
+        <button type="submit" class="btn btn-default" id="sub" onclick="#" >Submit</button>
+    </form>
+       <a href="index.html"> New User? Register Now</a>
+ 
+ 
+    </fieldset>
 
-
-
+   </div>
+   <div id="Restaurant">
+      <fieldset id="">
+        <h2 >Search Restaurant</h2>
+      <form class="frm" method="post" >
+          <div class="form-group">
+            <input type="text" class="form-control" id="RestaurantName" placeholder="Search Nearby Restaurant" value="">
+          </div>
+          <!-- <div class="form-group">
+            <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
+          </div> -->
+   
+          <button type="submit" class="btn btn-default" id="sub" onclick="#" >Submit</button>
+      </form>
+         <a href="index.html"> New User? Register Now</a>
+   
+   
+      </fieldset>
+  
+     </div>
 </body>
 <script>
   const carouselSlide = document.querySelector('.carousel-slide')
