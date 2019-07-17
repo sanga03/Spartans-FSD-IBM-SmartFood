@@ -121,12 +121,19 @@
         }
         #Restaurant { 
           margin-top: 40%;
-          margin-left: 40%;
+          text-align: center;
           float: center;
+          background-image: url('RestImage.png');
+          height: 400px;
+          padding-top: 9%;
+
         } 
         #search-icon {
           color: black;
           background-color: black;
+        }
+        #RestaurantName {
+          margin-left: 43%;
         }
         
       
@@ -147,7 +154,7 @@
     <ul class="nav navbar-nav">
       <!-- <li class="active"><a href="">Home</a></li> -->
       <li><a href="#Restaurant">Find Restaurant</a></li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="#Contact">Contact Us</a></li>
       <li id="logIn-btn"> <a href="#">Log In</a> </li>
     </ul>
 
@@ -184,9 +191,13 @@
           <label for="exampleInputPassword1">Password</label>
           <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
         </div>
+<<<<<<< HEAD
  
         <button type="submit" class="btn btn-default" id="sub" >Submit</button>
         <button type="button" class="btn btn-default" id="reg-btn" onclick="callReg()" >Register</button>
+=======
+        <button type="submit" class="btn btn-default" id="sub" onclick="#" >Submit</button>
+>>>>>>> a47263db852235018e1315a6bb14068c131a8beb
     </form>
        <a href="index.html"> New User? Register Now</a>
  
@@ -220,7 +231,23 @@
       <form class="frm" method="post" >
           <div class="form-group">
             <input type="text" class="form-control" id="RestaurantName" placeholder="Search Nearby Restaurant" value=""> 
-            <i class="fas fa-search-location"></i>
+            
+          </div>
+          <!-- <div class="form-group">
+            <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
+          </div> -->
+          <button type="submit" class="btn btn-default" id="sub" onclick="#" >Search  </button>
+      </form>
+      </fieldset>
+  
+     </div> 
+     <div id="Contact">
+      <fieldset id="">
+        <h2 >Countact Us</h2>
+      <form class="frm" method="post" >
+          <div class="form-group">
+            <input type="text" class="form-control" id="RestaurantName" placeholder="Search Nearby Restaurant" value=""> 
+            
           </div>
           <!-- <div class="form-group">
             <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
