@@ -14,16 +14,26 @@
     src="http://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
+    <script src="src.js"></script>
     <script> 
+    
        
         $(document).ready(()=> 
         { 
         $('#log-in').hide();
+        $('#reg-field').hide();
         console.log("inside ready function ")
         $('#logIn-btn a').click(()=>{
         // $('#log-in').show()
         $('#log-in').slideToggle(2000)
-     })
+     });
+  
+       $('#reg-btn').click(()=>{
+        // alert('hello');
+        $('#log-in').fadeOut(500);
+         $('#reg-field').fadeIn(2000);
+       })
+
     });
     </script>
   </head>
@@ -105,6 +115,10 @@
           margin-right: 15%;
           float:right;
         } 
+        #reg-field{
+          margin-right: 15%;
+          float:right;
+        }
         #Restaurant { 
           margin-top: 40%;
           margin-left: 40%;
@@ -171,11 +185,34 @@
           <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">
         </div>
  
-        <button type="submit" class="btn btn-default" id="sub" onclick="#" >Submit</button>
+        <button type="submit" class="btn btn-default" id="sub" >Submit</button>
+        <button type="button" class="btn btn-default" id="reg-btn" onclick="callReg()" >Register</button>
     </form>
        <a href="index.html"> New User? Register Now</a>
  
  
+    </fieldset>
+    <fieldset id="reg-field">
+        <h2>Register</h2>
+        <form class="frm" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" id="reg-name" placeholder="Enter Name" value="">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Last Name</label>
+                  <input type="text" class="form-control" id="reg-lname" placeholder="Enter Last Name" value="">
+                </div>
+              
+          <div class="form-group">
+            <label for="exampleInputEmail1">email</label>
+            <input type="text" class="form-control" id="reg-email" placeholder="Enter email" value="">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" placeholder=" Enter Password" value="">  
+          </div>
+        </form>
     </fieldset>
    <div id="Restaurant">
       <fieldset id="">
