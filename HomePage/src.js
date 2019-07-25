@@ -20,10 +20,12 @@ $(document).ready(()=>
            let reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
            return reg.test(val);
         })
-        $.validator.addMethod('repassValidator',(val)=>{
-            console.log("in recheck",lastpass);
+        $.validator.addMethod('repassValidator',(val,element)=>{
             if(lastpass==val){
+                $(`#${element.id}`).removeClass('is-invalid')
+                $(`#${element.id}`).addClass('is-valid');
                 return true;
+              
             }
         })
         $('#logIn-btn a').click(()=>{
@@ -39,6 +41,7 @@ $(document).ready(()=>
 
 
        $('#re-sub').click(()=>{
+        $(`#reg_repassword`).addClass('is-invalid');
            $('#reg_form').validate({
                rules:{
                 reg_name:'required',
