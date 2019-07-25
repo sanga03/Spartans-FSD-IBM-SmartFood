@@ -41,6 +41,7 @@ $(document).ready(()=>
 
 
        $('#re-sub').click(()=>{
+        $('label').removeAttr("style")
         $(`#reg_repassword`).addClass('is-invalid');
            $('#reg_form').validate({
                rules:{
@@ -70,6 +71,8 @@ $(document).ready(()=>
                    reg_phone:'please enter a valid phone'
                }
            })
+
+           $('label').removeAttr("style")
        })
 
     });
