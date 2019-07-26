@@ -12,18 +12,14 @@
         <!-- Popper JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
         <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> 
-
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="restaurantPage.js" type="text/javascript"></script> 
     </head>
     <body>
         <div class="container-fluid">
             <div class="row"><!-- FIRST row :- Header -->
                 <div class="col-12">
-                    <!--<a href="#" class="navbar-left">
-                        <img src="SmartFoodlogo.png">
-                    </a>
-                </div>
-                <div class="col-10">-->
+            
                     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
                         <a class="navbar-brand" href="#">Smart Food</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,16 +92,44 @@
                         gfdcjfhgcvkhgvb
                     </div> 
                     <div class="row">
-                        <div>
-                            <div class="card">
+                        <div class="card-deck">
+                            <div class="card m-3" style="width: 15rem;">
+                                <div class="card-header">
+                                    <div>
+                                        <h5 class="card-text">Food Title</h5>
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <div>
                                         <img src="sample_food_pic_forCards.jpg" class="card-img-top" alt="Card image cap">
                                     </div>
-                                    <b>Food Title</b>
-                                    <br/>
-                                    <div class="text-muted">
-                                        Sample food description
+                                    <div>
+                                        <p class="card-text">
+                                            <small class="text-muted">Sample food description</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="card-text">
+                                        <a class="btn">Calories: 1200</a>
+                                        <a href="#" class="btn btn-primary" style="float:right;">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card m-3" style="width: 15rem;" onmouseover="description1()" onmouseout="description2()">
+                                <div class="card-header">
+                                    <div>
+                                        <h5 class="card-text">Food Title</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <img src="SmartFoodlogo.png" class="card-img-top" alt="Card image cap">
+                                    </div>
+                                    <div>
+                                        <p id="test" hidden class="card-text">
+                                            <small class="text-muted">Sample food description</small>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -115,16 +139,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card m-3" style="width: 15rem;">
+                                <div class="card-header">
+                                    <div>
+                                        <h5 class="card-text">Food Title</h5>
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <div>
-                                        <img src="SmartFoodlogo.png" class="card-img-top" alt="Card image cap">
+                                        <img src="big.jpg" class="card-img-top" alt="Card image cap">
                                     </div>
-                                    <b>Food Title</b>
-                                    <br/>
-                                    <div class="text-muted">
-                                        Sample food description
-                                    </div>    
+                                    <div>
+                                        <p class="card-text">
+                                            <small class="text-muted">Sample food description</small>
+                                        </p>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <div>
