@@ -1,0 +1,174 @@
+<html>
+    <head>
+        <title>Restaurants</title>
+        <meta charset="utf-8">
+        <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">-->
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="restaurantPage.js" type="text/javascript"></script> 
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row"><!-- FIRST row :- Header -->
+                <div class="col-12">
+            
+                    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+                        <a class="navbar-brand" href="#">Smart Food</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            </li>
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <div class="row"><!-- BODY -->
+                <div class="col-2"><!-- Filters and menus-->
+                    <div class="container sticky-left">
+                        <div>Filters</div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Veg
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Non-Veg
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Healthy
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Fast Food
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10"><!--Cards of food/restaurants-->
+                    <div class="row"><!-- prev orders/ progress button-->
+                        gfdcjfhgcvkhgvb
+                    </div> 
+                    <div class="row">
+                        <div class="card-deck">
+                            <div class="card m-3" style="width: 15rem;">
+                                <div class="card-header">
+                                    <div>
+                                        <h5 class="card-text">Food Title</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <img src="sample_food_pic_forCards.jpg" class="card-img-top" alt="Card image cap">
+                                    </div>
+                                    <div>
+                                        <p class="card-text">
+                                            <small class="text-muted">Sample food description</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="card-text">
+                                        <a class="btn">Calories: 1200</a>
+                                        <a href="#" class="btn btn-primary" style="float:right;">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card m-3" style="width: 15rem;" onmouseover="description1()" onmouseout="description2()">
+                                <div class="card-header">
+                                    <div>
+                                        <h5 class="card-text">Food Title</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <img src="SmartFoodlogo.png" class="card-img-top" alt="Card image cap">
+                                    </div>
+                                    <div>
+                                        <p id="test" hidden class="card-text">
+                                            <small class="text-muted">Sample food description</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div>
+                                        <a class="btn">Calories: 1200</a>
+                                        <a href="#" class="btn btn-primary" style="float:right;">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card m-3" style="width: 15rem;">
+                                <div class="card-header">
+                                    <div>
+                                        <h5 class="card-text">Food Title</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <img src="big.jpg" class="card-img-top" alt="Card image cap">
+                                    </div>
+                                    <div>
+                                        <p class="card-text">
+                                            <small class="text-muted">Sample food description</small>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div>
+                                        <a class="btn">Calories: 1200</a>
+                                        <a href="#" class="btn btn-primary" style="float:right;">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>       
+                </div>
+            </div>
+            <div class="row"><!-- FOOTER ROW -->
+
+            </div>
+        </div>   
+    </body>
+</html>
