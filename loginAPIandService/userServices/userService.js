@@ -28,6 +28,19 @@ class userService  {
             })
         })
     }
+    serachFood(queryFood,callback)
+    {  
+        mongoClient.connect('mongodb://localhost:27017',(err,connectionObj)=>{
+            connectionObj.db('SpartansFood').collection('users').find({ $text: { $search: "Boiled" } }).toArray((error,response)=>{
+                callback(error,response)
+            })
+        })
+
+    }
+    searchRestaurant(queryString,callback)
+    {
+        
+    }
 
 
 }
