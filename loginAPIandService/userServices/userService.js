@@ -39,7 +39,19 @@ class userService  {
     }
     searchRestaurant(queryString,callback)
     {
-        
+        mongoClient.connect('mongodb://localhost:27017',(err,connectionObj)=>{
+            connectionObj.db('SpartansFood').collection('restaurant').find({$text: {$search: queryString}}).toArray((error,response)=>{
+                callback(error,response)
+            })
+        })
+    }
+    searchMenu(callback)
+    {
+        mongoClient.connect('mongodb://localhost:27017',(err,connectionObj)=>{
+            connectionObj.db('SpartansFood').collection('restaurant').aggregate([{$lookup: {from: "food", localField: "menu", foreignField: "_id", as:"food"} }]).toArray((error,response)=>{
+                callback(error,response)
+            })
+        })
     }
 
 

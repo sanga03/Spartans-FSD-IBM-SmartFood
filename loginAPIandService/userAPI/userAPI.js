@@ -69,4 +69,22 @@ server.post('/login',(req,res)=>{
     })
 })
 
+server.get('/restaurantMenu',(req,res)=>{
+    userObj.searchMenu((errorSearchMenu,responseSearchMen)=>{
+        if(errorSearchMenu)
+        {
+            res.status(200).json({
+                message:"Error"
+            })
+        }
+        else
+        {  
+            res.status(200).json({
+                message:responseSearchMen
+            })
+
+        }
+    })
+})
+
 module.exports.userAPI = server 
