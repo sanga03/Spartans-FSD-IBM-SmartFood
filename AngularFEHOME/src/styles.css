@@ -67,6 +67,10 @@ font-family: monospace;
     .container {
       color: "white";
     }
+    .keepBlack{
+        color: #169131;
+
+    }
     #jumbo{
       margin-left: 50px;
       margin-top: 50px;
