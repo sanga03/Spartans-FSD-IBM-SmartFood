@@ -9,6 +9,7 @@ Restaurant - independent, strong
 
 Food - requires restaurant , weak
 	-id
+	-r_uuid
 	-f_uuid
 	-basic -image link 
 	-name

@@ -1,0 +1,24 @@
+Customer
+	-CRUD on Customer Account (basic) (required) -- Neeraja
+	-CRUD on Customer Physical (takes ua_uuid) (can be empty) -- Vivek
+	-CRUD on Customer Pref (takes same) (can be empty) -- sanga
+	-CRUD on Customer Orders (takes same) (can be empty) -- Monisha 
+	-CRUD on Customer Tracking (takes same) (can be empty) -- vivek
+
+Restaurant
+	-CRUD on Restaurant (basic) (required) -- Aishwarya
+	-CRUD on Food( takes resaurant id and Food object) (can be empty) -- Poorvik
+	-CRUD on CustomFoodDetails( takes food id , restaurant id) (req) -- shadow
+	-CRUD on CustomIngredient( takes cfd id) (req) -- shadow
+	-CRUD on Basic Ingredient (takes ci id) - (only admin) (req) -- sanga
+
+Common servers
+	-eureka
+	-zuul
+	-feign client
+
+
+
+
+	
+	
