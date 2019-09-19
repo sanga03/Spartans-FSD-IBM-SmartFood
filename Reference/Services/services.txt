@@ -1,22 +1,49 @@
-Customer
-	-CRUD on Customer Account (basic) (required) -- Neeraja
-	-CRUD on Customer Physical (takes ua_uuid) (can be empty) -- Vivek
-	-CRUD on Customer Pref (takes same) (can be empty) -- sanga
-	-CRUD on Customer Orders (takes same) (can be empty) -- Monisha 
-	-CRUD on Customer Tracking (takes same) (can be empty) -- vivek
+Customer :
 
-Restaurant
-	-CRUD on Restaurant (basic) (required) -- Aishwarya
-	-CRUD on Food( takes resaurant id and Food object) (can be empty) -- Poorvik
-	-CRUD on CustomFoodDetails( takes food id , restaurant id) (req) -- shadow
-	-CRUD on CustomIngredient( takes cfd id) (req) -- shadow
-	-CRUD on Basic Ingredient (takes ci id) - (only admin) (req) -- sanga
+	(C1)-CRUD on Customer Account (basic) (required) -- Neeraja
+		(C2)-CRUD on Customer Physical (takes ca_uuid) (can be empty) -- Vivek
+		(C3)-CRUD on Customer Pref (takes ca_uuid) (can be empty) -- Sangamesh
+		(C4)-CRUD on Customer Orders (takes ca_uuid) (can be empty) -- Monisha 
+		(C5)-CRUD on Customer Tracking (takes ca_uuid) (can be empty) -- vivek
 
-Common servers
-	-eureka
-	-zuul
-	-feign client
+Restaurant:
 
+	(R1)-CRUD on Restaurant (basic) (required) -- Aishwarya
+		(R2)-CRUD on Food( takes r_uuid and Food object) (can be empty) -- Poorvik
+			(R3)-CRUD on CustomFoodDetails( takes f_uuid , r_uuid from food) (req) -- Chirag
+				(R4)-CRUD on CustomIngredient( takes cfd_uuid) (req) -- Chirag
+					(R5)-CRUD on BasicIngredient (takes ci_uuid) - (only admin) (req) -- Sangamesh
+
+Payment:
+
+	(P1)-CRUD on PaymentRecords [id,p_uuid,r_uuid,ua_uuid,money] -- Vivek
+
+Common servers :
+	
+	(E)-eureka : all the above services are discoverable clients
+	(Z)-zuul : routes all of the above with appropriate names, uses eureka(E)
+	(F)-feign client : uses zuul(Z) to access microservices, either from within or outside discovery
+
+
+MAIN SERVICES
+
+M0) Admin Page
+	-consumes C1,C2,C3,C4 and C5 for maintenance
+	-consumes R1,R2,R3,R4 and R5 to add food and for maintenance
+M1) Customer Login Page:
+	-the page Consumes C1 through F.
+M2) Customer Registration Page:
+	-the page Consumes C1 through F
+M3) Customer Preferences page:
+	-the page consumes C1, which consumes C2 and C3
+M4) Customer Restaurants page:
+	-the page consumes R1
+M5) Customer Progress Page: (main algorithm logic)
+	-the page consumes C2,C3,C4 and C5
+M6) Customer Cart Summary Page:
+	-the page consumes P1, C1 and R1
+M7) Customer Payments Page :
+	-the page consumes P1
 
 
 
