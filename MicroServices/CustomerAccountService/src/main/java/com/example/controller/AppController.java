@@ -1,5 +1,8 @@
 package com.example.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.entity.CustomerAccount;
+import com.example.entity.CustomerPhysical;
+import com.example.entity.CustomerPhysicalRepo;
 import com.example.model.RequestModel;
 import com.example.service.CustomerAccountServiceImpl;
 import com.example.shared.CustomerAccountDto;
@@ -19,11 +25,12 @@ import com.example.shared.CustomerAccountDto;
 @RequestMapping("/")
 public class AppController {
 	private CustomerAccountServiceImpl service;
-	
+	private CustomerPhysicalRepo pr;
 	@Autowired
-	public AppController(CustomerAccountServiceImpl service) {
+	public AppController(CustomerAccountServiceImpl service,CustomerPhysicalRepo pr) {
 		super();
 		this.service = service;
+		this.pr=pr;
 	}
 	
 	@GetMapping("/test")
@@ -31,7 +38,17 @@ public class AppController {
 		return "All ok!";
 	}
 
-
+	@PostMapping("/add")
+	public ResponseEntity<?> test(){
+		CustomerPhysical cp = new CustomerPhysical(145,40,"23/01/1998", 5600);
+		CustomerAccount c = new CustomerAccount(cp, "test", "test", "test", "9067564534");
+		pr.save(cp);
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		CustomerAccountDto dto = mapper.map(c,CustomerAccountDto.class);
+		service.createCustomer(dto);
+		return ResponseEntity.status(HttpStatus.CREATED).body(dto);
+	}
 
 
 	@PostMapping("/addCustomer")
