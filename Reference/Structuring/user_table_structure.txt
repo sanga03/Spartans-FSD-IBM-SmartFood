@@ -1,0 +1,45 @@
+User Account
+	-id
+	-u_uuid
+	-username
+	-email
+	-password
+	-phone
+	-UserPhysical - optional
+	-UserPref - optional
+	-UserOrders - starts as empty
+	-UserTrack- starts as empty
+
+User Physical , weak - dependendent on  user acc
+	-id
+	-upy_uuid
+	-height
+	-weight
+	-DOB
+	-bmi
+	-bmr
+	-physical - calories burnt/week
+
+User Pref, weak - depends on user acc
+	-id
+	-upr_uuid	
+	-category
+	-target_weight
+	-time_period
+
+User Orders, 
+	-id
+	-ut_uuid
+	-date
+	-restaurant_id
+	-List<Food-f_uuid>
+
+User Track
+	-id
+	-ut_uuid
+	-date (sortby)
+	-time
+	-calories
+
+	
+	

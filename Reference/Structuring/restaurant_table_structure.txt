@@ -1,0 +1,40 @@
+Restaurant - independent, strong
+	-id
+	-r_uuid
+	-name
+	-contact
+	-location_coordinates
+	-List<Food>
+	-rating
+
+Food - requires restaurant , weak
+	-id
+	-f_uuid
+	-basic -image link 
+	-name
+	-category
+	-CustomFoodDetail
+
+CustomFoodDetail , weak
+	-cfd_uuid
+	-r_uuid
+	-quantity(optional)
+	-image link
+	-List<CustomIngredient>
+	-price	
+	-rating
+
+CustomIngredient 
+	-id
+	-ci_uuid
+	-BasicIngredient id
+	-amount
+
+BasicIngredient - strong , admin enters this stuff
+	-id
+	-bi_uuid
+	-name
+	-calorie/gram
+	
+	
+
