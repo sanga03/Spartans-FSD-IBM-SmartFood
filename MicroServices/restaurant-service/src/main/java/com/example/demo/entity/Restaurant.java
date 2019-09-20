@@ -28,6 +28,13 @@ public class Restaurant {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Restaurant(String name, int contact, int rating) {
+		super();
+		this.name = name;
+		this.contact = contact;
+		this.rating = rating;
+	}
+
 	public Restaurant(String name, int contact, int rating, Set<Food> foods) {
 		super();
 		this.name = name;
