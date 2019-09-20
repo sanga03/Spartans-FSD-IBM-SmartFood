@@ -1,6 +1,8 @@
 package com.example.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -11,13 +13,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.entity.CustomerAccount;
 import com.example.entity.CustomerAccountRepository;
-import com.example.model.RequestModel;
-import com.example.model.ResponseModel;
 import com.example.shared.CustomerAccountDto;
 
 @Service
-public class CustomerAccountServiceImpl implements CustomerAccountService
-{
+public class CustomerAccountServiceImpl implements CustomerAccountService {
 
 	private Environment env;
 	private CustomerAccountRepository car;
@@ -38,37 +37,67 @@ public class CustomerAccountServiceImpl implements CustomerAccountService
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
 		dto.setPasswordBcrypt(bCryptPasswordEncoder.encode(dto.getPassword()));
-		CustomerAccount c = mapper.map(dto,CustomerAccount.class);
+		CustomerAccount c = mapper.map(dto, CustomerAccount.class);
 		c.setPassword(dto.getPasswordBcrypt());
-		c.setUid("U"+dto.getName().substring(0, 4)+dto.getPhone().substring(4, 5)+dto.getPasswordBcrypt().substring(3, 7));
+		c.setUid("U" + dto.getName().substring(0, 4) + dto.getPhone().substring(4, 5)
+				+ dto.getPasswordBcrypt().substring(3, 7));
 		car.save(c);
-		CustomerAccountDto Dto = mapper.map(c,CustomerAccountDto.class);
+		CustomerAccountDto Dto = mapper.map(c, CustomerAccountDto.class);
 		return Dto;
 	}
 
 	@Override
-	public CustomerAccountDto updateCustomer(CustomerAccountDto dto) {
-		// TODO Auto-generated method stub
-		return null;
+	public CustomerAccountDto updateCustomer(CustomerAccountDto dto,String uid) {
+		Optional<CustomerAccount> op = car.findByUid(uid);
+		CustomerAccount ca1 = null;
+		if (op.isPresent())
+			ca1 = op.get();
+		ca1.setName(dto.getName());
+		ca1.setEmail(dto.getEmail());
+		ca1.setPassword(dto.getPassword());
+		ca1.setPhone(dto.getPhone());
+		car.save(ca1);
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		CustomerAccountDto dto1 = mapper.map(ca1,CustomerAccountDto.class);
+		return dto1;
 	}
 
 	@Override
 	public List<CustomerAccountDto> findAllCustomers() {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<CustomerAccount> list = car.findAll();
+		List<CustomerAccountDto> dto = new ArrayList<CustomerAccountDto>();
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		for (CustomerAccount l : list)
+			dto.add(mapper.map(l, CustomerAccountDto.class));
+		return dto;
 	}
 
 	@Override
-	public CustomerAccountDto findByUu_id(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public CustomerAccountDto findByUid(String id) {
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		CustomerAccountDto dto = mapper.map(car.findByUid(id), CustomerAccountDto.class);
+		return dto;
 	}
 
 	@Override
 	public CustomerAccountDto findByEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		CustomerAccountDto dto = mapper.map(car.findByEmail(email), CustomerAccountDto.class);
+		return dto;
 	}
-	
+
+	@Override
+	public void deleteCustomer(String uid) {
+		Optional<CustomerAccount> op = car.findByUid(uid);
+		CustomerAccount ca = null;
+		if (op.isPresent())
+			ca = op.get();
+		car.delete(ca);
+	}
 
 }

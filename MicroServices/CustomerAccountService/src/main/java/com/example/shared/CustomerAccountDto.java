@@ -1,12 +1,6 @@
 package com.example.shared;
 
-import java.util.List;
-
 import com.example.entity.CustomerPhysical;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 public class CustomerAccountDto {
 
@@ -15,24 +9,25 @@ public class CustomerAccountDto {
 	private String phone;
 	private String password;
 	private String passwordBcrypt;
-	private List<CustomerPhysical> list;
-	
-	public CustomerAccountDto(List<CustomerPhysical> list,String passwordBcrypt,String password,String name, String email, String phone) {
+	private CustomerPhysical cp;
+
+	public CustomerAccountDto(CustomerPhysical cp, String passwordBcrypt, String password, String name, String email,
+			String phone) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
 		this.passwordBcrypt = passwordBcrypt;
-		this.list = list;
+		this.cp = cp;
 	}
 
-	public List<CustomerPhysical> getList() {
-		return list;
+	public CustomerPhysical getCp() {
+		return cp;
 	}
 
-	public void setList(List<CustomerPhysical> list) {
-		this.list = list;
+	public void setCp(CustomerPhysical cp) {
+		this.cp = cp;
 	}
 
 	public CustomerAccountDto() {
@@ -78,7 +73,5 @@ public class CustomerAccountDto {
 	public void setPasswordBcrypt(String passwordBcrypt) {
 		this.passwordBcrypt = passwordBcrypt;
 	}
-	
-	
-	
+
 }
