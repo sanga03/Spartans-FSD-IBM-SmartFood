@@ -1,22 +1,23 @@
 Customer :
 
 	(C1)-CRUD on Customer Account (basic) (required) -- Neeraja
-		(C2)-CRUD on Customer Physical (takes ca_uuid) (can be empty) -- Vivek
-		(C3)-CRUD on Customer Pref (takes ca_uuid) (can be empty) -- Sangamesh
-		(C4)-CRUD on Customer Orders (takes ca_uuid) (can be empty) -- Monisha 
-		(C5)-CRUD on Customer Tracking (takes ca_uuid) (can be empty) -- vivek
+		(C2)-CRUD on Customer Physical (takes ca_uuid) [OneToOne CustomerAccount] -- Vivek
+		(C3)-CRUD on Customer Pref (takes ca_uuid) [OneToOne CustomerAccount] -- Sangamesh
+		(C4)-CRUD on Customer Orders (takes ca_uuid) [OneToOne CustomerAccount,OneToOne Restaurant] -- Monisha 
+		(C5)-CRUD on Customer Tracking (takes ca_uuid) [OneToOne CustomerAccount] -- Vivek
 
 Restaurant:
 
-	(R1)-CRUD on Restaurant (basic) (required) -- Aishwarya
-		(R2)-CRUD on Food( takes r_uuid and Food object) (can be empty) -- Poorvik
-			(R3)-CRUD on CustomFoodDetails( takes f_uuid , r_uuid from food) (req) -- Chirag
-				(R4)-CRUD on CustomIngredient( takes cfd_uuid) (req) -- Chirag
-					(R5)-CRUD on BasicIngredient (takes ci_uuid) - (only admin) (req) -- Sangamesh
+	(R1)-CRUD on Restaurant (basic) (required) [] -- Aishwarya
+		(R2)-CRUD on Food( takes r_uuid and Food object) [@ManyToMany Restaurant] -- Poorvik
+			(R3)-CRUD on CustomFoodDetails( takes f_uuid , r_uuid from food) [@OneToOne Food, @OneToOne Restaurant] -- Chirag
+				(R4)-CRUD on CustomIngredient( takes cfd_uuid) [@ManyToOne CustomFoodDetails,@OneToOne BasicIngredient] -- Chirag
+	
+	(R5)-CRUD on BasicIngredient (takes ci_uuid) - [] (only admin) (req) -- Sangamesh
 
 Payment:
 
-	(P1)-CRUD on PaymentRecords [id,p_uuid,r_uuid,ua_uuid,money] -- Vivek
+	(P1)-CRUD on PaymentRecords [id,p_uuid,r_uuid,ca_uuid,money] -- Vivek
 
 Common servers :
 	
