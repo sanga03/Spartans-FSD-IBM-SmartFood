@@ -9,9 +9,10 @@ import com.example.shared.CustomerAccountDto;
 public interface CustomerAccountService {
 
 	public CustomerAccountDto createCustomer(CustomerAccountDto dto);
-	public CustomerAccountDto updateCustomer(CustomerAccountDto dto);
+	public CustomerAccountDto updateCustomer(CustomerAccountDto dto,String uid);
+	public void deleteCustomer(String uid);
 	public List<CustomerAccountDto> findAllCustomers();
-	public CustomerAccountDto findByUu_id(String id);
+	public CustomerAccountDto findByUid(String id);
 	public CustomerAccountDto findByEmail(String email);
 	
 }

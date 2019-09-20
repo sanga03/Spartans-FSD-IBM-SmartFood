@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +24,8 @@ public class CustomerPhysical {
 	private double bmi;
 	private double bmr;
 	private double calories_burnt;
+	@OneToOne(mappedBy="cp")
+	private CustomerAccount ca;
 	public CustomerPhysical(double height, double weight, String DOB, double calories_burnt) {
 		super();
 		this.height = height;
@@ -34,7 +39,15 @@ public class CustomerPhysical {
 	public CustomerPhysical() {
 		super();
 	}
-	public Integer getId() {
+	
+	@JsonIgnore
+public CustomerAccount getCa() {
+		return ca;
+	}
+	public void setCa(CustomerAccount ca) {
+		this.ca = ca;
+	}
+public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {

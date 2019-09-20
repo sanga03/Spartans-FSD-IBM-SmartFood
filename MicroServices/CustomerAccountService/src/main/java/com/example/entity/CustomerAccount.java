@@ -1,6 +1,7 @@
 package com.example.entity;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,14 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+
 public class CustomerAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,21 +27,29 @@ public class CustomerAccount {
 	private String email;
 	private String password;
 	private String phone;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="phy_id")
 	private CustomerPhysical cp;
 	
-	public CustomerAccount(CustomerPhysical cp,String name, String email, String password, String phone) {
+	
+	public CustomerAccount(String name, String email, String password, String phone) {
 		super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.phone = phone;
-		this.cp=cp;
 	}
 
 	public CustomerAccount() {
 		super();
+	}
+	@JsonIgnore
+	public CustomerPhysical getCp() {
+		return cp;
+	}
+
+	public void setCp(CustomerPhysical cp) {
+		this.cp = cp;
 	}
 
 	public Integer getId() {

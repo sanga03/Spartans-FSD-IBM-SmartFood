@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
+
 public class CustomerTrack {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
