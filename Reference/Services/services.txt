@@ -1,14 +1,14 @@
 Customer :
 
-	(C1)-CRUD on Customer Account (basic) (required) -- Neeraja
+	(C1)-CRUD on Customer Account [] -- Neeraja
 		(C2)-CRUD on Customer Physical (takes ca_uuid) [OneToOne CustomerAccount] -- Vivek
 		(C3)-CRUD on Customer Pref (takes ca_uuid) [OneToOne CustomerAccount] -- Sangamesh
-		(C4)-CRUD on Customer Orders (takes ca_uuid) [OneToOne CustomerAccount,OneToOne Restaurant] -- Monisha 
+		(C4)-CRUD on Customer Orders (takes ca_uuid) [ManyToOne CustomerAccount,OneToOne Restaurant] -- Monisha 
 		(C5)-CRUD on Customer Tracking (takes ca_uuid) [OneToOne CustomerAccount] -- Vivek
 
 Restaurant:
 
-	(R1)-CRUD on Restaurant (basic) (required) [] -- Aishwarya
+	(R1)-CRUD on Restaurant  [] -- Aishwarya
 		(R2)-CRUD on Food( takes r_uuid and Food object) [@ManyToMany Restaurant] -- Poorvik
 			(R3)-CRUD on CustomFoodDetails( takes f_uuid , r_uuid from food) [@OneToOne Food, @OneToOne Restaurant] -- Chirag
 				(R4)-CRUD on CustomIngredient( takes cfd_uuid) [@ManyToOne CustomFoodDetails,@OneToOne BasicIngredient] -- Chirag
