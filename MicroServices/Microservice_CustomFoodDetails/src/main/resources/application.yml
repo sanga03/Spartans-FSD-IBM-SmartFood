@@ -1,4 +1,7 @@
 spring:
+  cloud:
+    config:
+      uri: http://172.18.3.44:8762
   application:
     name: custom-food-details-service
   h2:
