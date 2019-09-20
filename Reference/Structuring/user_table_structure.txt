@@ -5,12 +5,12 @@ User Account
 	-email
 	-password
 	-phone
-	-UserPhysical - optional
-	-UserPref - optional
-	-UserOrders - starts as empty
-	-UserTrack- starts as empty
+	//-UserPhysical - optional
+	//-UserPref - optional
+	//-UserOrders - starts as empty
+	//-UserTrack- starts as empty
 
-User Physical , weak - dependendent on  user acc
+User Physical , weak - dependent on  user acc
 	-id
 	-upy_uuid
 	-height

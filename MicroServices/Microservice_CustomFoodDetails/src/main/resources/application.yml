@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: custom-food-details-service
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: null
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+server:
+  port: 9000
