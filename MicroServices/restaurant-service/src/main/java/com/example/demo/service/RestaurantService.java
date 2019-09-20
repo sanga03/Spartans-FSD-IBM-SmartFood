@@ -13,10 +13,11 @@ import com.example.demo.repository.RestaurantRepository;
 
 @Service
 public class RestaurantService {
-
+	
+	@Autowired
 	private RestaurantRepository restaurantRepository;
 
-	@Autowired
+	
 	public RestaurantService(RestaurantRepository restaurantRepository) {
 		super();
 		this.restaurantRepository = restaurantRepository;
