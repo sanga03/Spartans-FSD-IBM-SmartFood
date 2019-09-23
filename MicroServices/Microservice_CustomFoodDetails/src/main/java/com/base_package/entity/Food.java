@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,7 @@ public class Food {
 	private String uuid;
 	private String name;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "food_restaurant", joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns = @JoinColumn(name = "restaurant_id"))
 	private List<Restaurant> restaurants = new ArrayList<Restaurant>();

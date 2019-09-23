@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.base_package.DTO.CustomFoodDetailDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,6 +41,13 @@ public class CustomFoodDetail {
 		this.price = price;
 		this.rating = rating;
 		this.setUuid("CFD_"+UUID.randomUUID().toString());
+	}
+
+	public void setDetails(CustomFoodDetailDTO customFoodDetailDTO) {
+		this.setQuantity(customFoodDetailDTO.getQuantity());
+		this.setImageLink(customFoodDetailDTO.getImageLink());
+		this.setPrice(customFoodDetailDTO.getPrice());
+		this.setRating(customFoodDetailDTO.getRating());
 	}
 	
 }
