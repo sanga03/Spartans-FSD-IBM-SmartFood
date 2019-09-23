@@ -1,9 +1,11 @@
 package com.example.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,8 +26,10 @@ public class CustomerPhysical {
 	private double bmi;
 	private double bmr;
 	private double calories_burnt;
-	@OneToOne(mappedBy="cp")
+	
+	@OneToOne(mappedBy="c_phy",cascade = CascadeType.ALL)
 	private CustomerAccount ca;
+	
 	public CustomerPhysical(double height, double weight, String DOB, double calories_burnt) {
 		super();
 		this.height = height;

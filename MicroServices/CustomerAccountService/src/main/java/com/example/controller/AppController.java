@@ -20,6 +20,8 @@ import com.example.entity.CustomerPhysical;
 import com.example.entity.CustomerPhysicalRepo;
 import com.example.model.RequestModel;
 import com.example.service.CustomerAccountServiceImpl;
+import com.example.service.EmailServiceImpl;
+import com.example.service.PasswordServiceImpl;
 import com.example.shared.CustomerAccountDto;
 
 @RestController
@@ -28,19 +30,28 @@ public class AppController {
 	
 	private CustomerAccountServiceImpl service;
 	private CustomerPhysicalRepo pr;
-	private CustomerAccountRepository  cr;
+	private EmailServiceImpl email;
+	private PasswordServiceImpl pass;
 	@Autowired
-	public AppController(CustomerAccountServiceImpl service,CustomerPhysicalRepo pr) {
+	public AppController(PasswordServiceImpl pass,CustomerAccountServiceImpl service,CustomerPhysicalRepo pr,CustomerAccountRepository  cr,EmailServiceImpl email) {
 		super();
 		this.service = service;
 		this.pr=pr;
+		this.email = email;
+		this.pass = pass;
 	}
-
+	
+	@PostMapping("/email")
+	public String sendEmail(@RequestParam String em) throws Exception {
+		email.sendEmail(em);
+		return "email sent!";
+		
+	}
 	@PostMapping("/add")
 	public CustomerAccountDto test(){
 		CustomerPhysical cp = new CustomerPhysical(145,40,"23/01/1998", 5600);
-		CustomerAccount c = new CustomerAccount("test", "test", "test", "9067564534");
-		c.setCp(cp);
+		CustomerAccount c = new CustomerAccount("test","test","test","9067564534");
+		c.setC_phy(cp);
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		CustomerAccountDto dto = mapper.map(c,CustomerAccountDto.class);
@@ -73,9 +84,18 @@ public class AppController {
 		List<CustomerAccountDto> list = service.findAllCustomers();
 		return list;
 	}
+	@GetMapping("/find")
+	public List<CustomerPhysical> find(String uid){
+		List<CustomerPhysical> list = pr.findAll();
+		for(CustomerPhysical l:list)
+		{
+		
+		}
+		return null;
+	}
 	
 	@PostMapping("/update")
-	public CustomerAccountDto updateCustomer(@RequestBody RequestModel req,String uid) {
+	public CustomerAccountDto updateCustomer(@RequestBody RequestModel req,@RequestParam String uid) {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		CustomerAccountDto dto = mapper.map(req,CustomerAccountDto.class);
@@ -91,6 +111,12 @@ public class AppController {
 	@GetMapping("/findEmail")
 	public CustomerAccountDto findByEmail(@RequestParam String email) {
 		return service.findByUid(email);
+	}
+	
+	@PostMapping("/changePassword")
+	public String changePassword(@RequestParam String uid,@RequestParam String password) {
+		pass.updatePassword(password, uid);
+		return "Password changed!";
 	}
 }
 
