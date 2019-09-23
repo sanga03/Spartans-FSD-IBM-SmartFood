@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import com.example.demo.entity.Food;
 
@@ -9,6 +10,7 @@ public class ResponseModel {
 	private String name;
 	private int contact;
 	private int rating;
+	private String resId;
 	private Set<Food> foods = new HashSet<>();
 	
 	public ResponseModel() {
@@ -16,13 +18,31 @@ public class ResponseModel {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ResponseModel(String name, int contact, int rating, Set<Food> foods) {
+	 
+
+	public String getResId() {
+		return resId;
+	}
+
+
+
+	public void setResId(String resId) {
+		this.resId = resId;
+	}
+
+
+
+	public ResponseModel(String name, int contact, int rating, String resId, Set<Food> foods) {
 		super();
 		this.name = name;
 		this.contact = contact;
 		this.rating = rating;
+		this.resId=resId;
+		//this.resId = UUID.randomUUID().toString();
 		this.foods = foods;
 	}
+
+
 
 	public String getName() {
 		return name;

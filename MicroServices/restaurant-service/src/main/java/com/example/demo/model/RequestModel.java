@@ -1,6 +1,6 @@
 package com.example.demo.model;
 
-import java.util.HashSet;
+//import java.util.HashSet;
 import java.util.Set;
 
 import com.example.demo.entity.Food;
@@ -10,7 +10,7 @@ public class RequestModel {
 	private String name;
 	private int contact;
 	private int rating;
-	private Set<Food> foods = new HashSet<>();
+	//private Set<Food> foods = new HashSet<>();
 	
 	public RequestModel() {
 		super();
@@ -22,7 +22,7 @@ public class RequestModel {
 		this.name = name;
 		this.contact = contact;
 		this.rating = rating;
-		this.foods = foods;
+		//this.foods = foods;
 	}
 
 	public String getName() {
@@ -49,11 +49,13 @@ public class RequestModel {
 		this.rating = rating;
 	}
 
-	public Set<Food> getFoods() {
-		return foods;
-	}
-
-	public void setFoods(Set<Food> foods) {
-		this.foods = foods;
-	}
+//	public Set<Food> getFoods() {
+//		return foods;
+//	}
+//
+//	public void setFoods(Set<Food> foods) {
+//		this.foods = foods;
+//	}
+	
+	
 }
