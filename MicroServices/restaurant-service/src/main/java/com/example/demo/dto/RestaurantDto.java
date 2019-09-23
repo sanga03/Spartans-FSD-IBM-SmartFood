@@ -8,7 +8,7 @@ public class RestaurantDto {
 	private String name;
 	private int contact;
 	private int rating;
-	private String ruid;
+	private String resId;
 	private Set<Food> foods = new HashSet<>();
 	
 	public RestaurantDto() {
@@ -16,12 +16,12 @@ public class RestaurantDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RestaurantDto(String name, int contact, int rating, String ruid, Set<Food> foods) {
+	public RestaurantDto(String name, int contact, int rating, String resId, Set<Food> foods) {
 		super();
 		this.name = name;
 		this.contact = contact;
 		this.rating = rating;
-		this.ruid = ruid;
+		this.resId = resId;
 		this.foods = foods;
 	}
 
@@ -49,12 +49,14 @@ public class RestaurantDto {
 		this.rating = rating;
 	}
 
-	public String getRuid() {
-		return ruid;
+	
+
+	public String getResId() {
+		return resId;
 	}
 
-	public void setRuid(String ruid) {
-		this.ruid = ruid;
+	public void setResId(String resId) {
+		this.resId = resId;
 	}
 
 	public Set<Food> getFoods() {

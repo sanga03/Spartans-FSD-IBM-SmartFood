@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.RestaurantDto;
+import com.example.demo.entity.Food;
 import com.example.demo.entity.Restaurant;
 import com.example.demo.model.RequestModel;
 import com.example.demo.model.ResponseModel;
@@ -32,7 +33,9 @@ public class RestaurantController {
 	@PostMapping("/restaurants")
 	public ResponseEntity<ResponseModel> createRestaurant(@RequestBody RequestModel restaurantDetail){
 		ModelMapper mapper = new ModelMapper();
+		Food food = new Food(23l,"jsi");
 		RestaurantDto dto = mapper.map(restaurantDetail, RestaurantDto.class);
+		dto.getFoods().add(food);
 		RestaurantDto dto1 = service.createRestaurant(dto);
 		ResponseModel restaurant = mapper.map(dto1, ResponseModel.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(restaurant);
@@ -52,27 +55,27 @@ public class RestaurantController {
 	}
 	
 	@GetMapping("/restaurants/{id}")
-	public ResponseEntity<ResponseModel> findRestaurant(@PathVariable("id") String restaurantID){
+	public ResponseEntity<ResponseModel> findRestaurant(@PathVariable("id") String resID){
 		ModelMapper mapper = new ModelMapper();
-		Restaurant restaurant = service.findRestaurant(restaurantID);
+		Restaurant restaurant = service.findRestaurant(resID);
 		ResponseModel model = mapper.map(restaurant, ResponseModel.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(model);
 		
 	}
 	
 	@DeleteMapping("/restaurants/{id}")
-	public ResponseEntity<ResponseModel> deleteRestaurant(@PathVariable("id") String restaurantID){
+	public ResponseEntity<ResponseModel> deleteRestaurant(@PathVariable("id") String resID){
 		ModelMapper mapper = new ModelMapper();
-		Restaurant restaurant = service.deleteRestaurant(restaurantID);
+		Restaurant restaurant = service.deleteRestaurant(resID);
 		ResponseModel model = mapper.map(restaurant, ResponseModel.class);
 		return ResponseEntity.ok(model);	
 	} 
 	
-	@PutMapping("/restaurants/{id}")
-	public ResponseEntity<ResponseModel> updateRestaurant(@RequestBody RequestModel restaurantDetail,@PathVariable("id") String restaurantID){
+	@PostMapping("/restaurants/{id}")
+	public ResponseEntity<ResponseModel> updateRestaurant(@RequestBody RequestModel restaurantDetail,@PathVariable("id") String resID){
 		ModelMapper mapper = new ModelMapper();
 		RestaurantDto dto = mapper.map(restaurantDetail, RestaurantDto.class);
-		RestaurantDto dto1 = service.updateRestaurant(dto, restaurantID);
+		RestaurantDto dto1 = service.updateRestaurant(dto, resID);
 		ResponseModel restaurant = mapper.map(dto1, ResponseModel.class);
 		return ResponseEntity.status(HttpStatus.CREATED).body(restaurant);
 	

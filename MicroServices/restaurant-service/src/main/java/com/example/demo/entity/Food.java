@@ -10,16 +10,33 @@ import javax.persistence.*;
 public class Food {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 	private String name;
 	
-	public Food(String name) {
+	public Food(long id, String name) {
 		super();
+		this.id = id;
 		this.name = name;
 	}
 
+	
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
 	@ManyToMany
-	@JoinTable(name = "restaurant_food", joinColumns = @JoinColumn(name = "food_id"), inverseJoinColumns = @JoinColumn(name = "id"))
+	@JoinTable(name = "restaurant_food", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "res_id"))
 	private Set<Restaurant> restaurants = new HashSet<>();
 	
 	public Food() {
@@ -34,7 +51,7 @@ public class Food {
 		this.restaurants = restaurants;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

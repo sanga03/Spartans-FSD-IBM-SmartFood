@@ -2,12 +2,16 @@ package com.example.demo.entity;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Restaurant {
@@ -33,6 +37,7 @@ public class Restaurant {
 		this.name = name;
 		this.contact = contact;
 		this.rating = rating;
+		this.resId=UUID.randomUUID().toString();
 	}
 
 	public Restaurant(String name, int contact, int rating, Set<Food> foods) {
@@ -43,6 +48,7 @@ public class Restaurant {
 		this.foods = foods;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -51,6 +57,7 @@ public class Restaurant {
 		this.id = id;
 	}
 
+	
 	public String getName() {
 		return name;
 	}
@@ -59,6 +66,7 @@ public class Restaurant {
 		this.name = name;
 	}
 
+	
 	public int getContact() {
 		return contact;
 	}
@@ -67,6 +75,7 @@ public class Restaurant {
 		this.contact = contact;
 	}
 
+	
 	public int getRating() {
 		return rating;
 	}
@@ -75,6 +84,7 @@ public class Restaurant {
 		this.rating = rating;
 	}
 
+	
 	public String getResId() {
 		return resId;
 	}
@@ -83,6 +93,7 @@ public class Restaurant {
 		this.resId = resId;
 	}
 
+	@JsonIgnore
 	public Set<Food> getFoods() {
 		return foods;
 	}
@@ -90,5 +101,7 @@ public class Restaurant {
 	public void setFoods(Set<Food> foods) {
 		this.foods = foods;
 	}
-
+	
+	
+	
 }
