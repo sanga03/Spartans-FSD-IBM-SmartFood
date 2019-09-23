@@ -1,16 +1,21 @@
 package com.example.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-
+@Table(name="customer_track")
 public class CustomerTrack {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +23,8 @@ public class CustomerTrack {
 	private String date;
 	private String time;
 	private double calories;
+	@OneToOne(cascade = CascadeType.ALL)
+	private CustomerAccount ca;
 	public CustomerTrack(String date, String time, double calories) {
 		super();
 		this.date = date;
@@ -26,6 +33,13 @@ public class CustomerTrack {
 	}
 	public CustomerTrack() {
 		super();
+	}
+	 @JsonIgnore
+	public CustomerAccount getCa() {
+		return ca;
+	}
+	public void setCa(CustomerAccount ca) {
+		this.ca = ca;
 	}
 	public Integer getId() {
 		return id;

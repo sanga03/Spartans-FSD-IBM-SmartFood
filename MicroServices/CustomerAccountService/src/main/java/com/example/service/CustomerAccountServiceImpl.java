@@ -54,7 +54,6 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 			ca1 = op.get();
 		ca1.setName(dto.getName());
 		ca1.setEmail(dto.getEmail());
-		ca1.setPassword(dto.getPassword());
 		ca1.setPhone(dto.getPhone());
 		car.save(ca1);
 		ModelMapper mapper = new ModelMapper();
@@ -77,17 +76,25 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 
 	@Override
 	public CustomerAccountDto findByUid(String id) {
+		Optional<CustomerAccount> op = car.findByUid(id);
+		CustomerAccount ca = null;
+		if (op.isPresent())
+			ca = op.get();
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		CustomerAccountDto dto = mapper.map(car.findByUid(id), CustomerAccountDto.class);
+		CustomerAccountDto dto = mapper.map(ca, CustomerAccountDto.class);
 		return dto;
 	}
 
 	@Override
 	public CustomerAccountDto findByEmail(String email) {
+		Optional<CustomerAccount> op = car.findByEmail(email);
+		CustomerAccount ca = null;
+		if (op.isPresent())
+			ca = op.get();
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		CustomerAccountDto dto = mapper.map(car.findByEmail(email), CustomerAccountDto.class);
+		CustomerAccountDto dto = mapper.map(ca, CustomerAccountDto.class);
 		return dto;
 	}
 
