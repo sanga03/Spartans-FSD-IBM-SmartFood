@@ -6,6 +6,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
  
 
@@ -15,9 +16,9 @@ public class EmailServiceImpl {
 	    @Autowired
 	    private JavaMailSender sender;
 //	    @ResponseBody
-	    public void sendEmail(String email,String otp) throws Exception{
-	    	System.out.println("s == "+otp);
-	    	String body="<html><body>Dear user, <br/> This email is a verifictaion step to register with our application. Kindly enter this otp in registration page to complete successful registration! <br/><b>"+otp+"</b><br/><br/>With love,<br/>SmartFood Team :)</body></html>";
+	    public String sendEmail(@RequestParam String email) throws Exception{
+	    	String str=String.valueOf(Math.round(Math.random()*1000000));
+	    	String body="<html><body>Dear user, <br/> This email is a verifictaion step to register with our application. Kindly enter this otp in registration page to complete successful registration! <br/><b>"+str+"</b><br/><br/>With love,<br/>SmartFood Team :)</body></html>";
 	    	MimeMessage message = sender.createMimeMessage();
 	        message.setText(body,"UTF-8", "html");
 	        MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -25,5 +26,6 @@ public class EmailServiceImpl {
 	        helper.setSubject("Account verification - SmartFood");
 	         
 	        sender.send(message);
+	        return str;
 	    }
 }
