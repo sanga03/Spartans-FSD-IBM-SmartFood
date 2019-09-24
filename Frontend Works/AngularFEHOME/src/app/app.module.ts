@@ -8,6 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AnimSliderComponent } from './anim-slider/anim-slider.component';
 import { SignComponent } from './sign/sign.component';
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
+ 
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { SignComponent } from './sign/sign.component';
   imports: [
     BrowserModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
