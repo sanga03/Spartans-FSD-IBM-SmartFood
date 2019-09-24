@@ -2,14 +2,14 @@ Customer :
 
 	(C1)-CRUD on Customer Account [] -- Neeraja
 		(C2)-CRUD on Customer Physical (takes ca_uuid) [OneToOne CustomerAccount] -- Vivek
-		(C3)-CRUD on Customer Pref (takes ca_uuid) [OneToOne CustomerAccount] -- Sangamesh
+		(C3)-CRUD on Customer Preference (takes ca_uuid) [OneToOne CustomerAccount] -- Sangamesh
 		(C4)-CRUD on Customer Orders (takes ca_uuid) [ManyToOne CustomerAccount,OneToOne Restaurant] -- Monisha 
 		(C5)-CRUD on Customer Tracking (takes ca_uuid) [OneToOne CustomerAccount] -- Vivek
 
 Restaurant:
 
 	(R1)-CRUD on Restaurant  [] -- Aishwarya
-		(R2)-CRUD on Food( takes r_uuid and Food object) [@ManyToMany Restaurant] -- Poorvik
+		(R2)-CRUD on Food (takes r_uuid and Food object) [@ManyToMany Restaurant] -- Poorvik
 			(R3)-CRUD on CustomFoodDetails( takes f_uuid , r_uuid from food) [@OneToOne Food, @OneToOne Restaurant] -- Chirag
 				(R4)-CRUD on CustomIngredient( takes cfd_uuid) [@ManyToOne CustomFoodDetails,@OneToOne BasicIngredient] -- Chirag
 	
@@ -46,7 +46,14 @@ M6) Customer Cart Summary Page:
 M7) Customer Payments Page :
 	-the page consumes P1
 
+FEIGN SERVERS
+(the url is not used. the service name is used from zuul)
 
-
-	
-	
+1) Customer feign server
+	- One controller,multiple mappings, has access to all the customer related microservices as clients
+2) Restaurant feign server	
+	- One controller,multiple mappings, has access to all restaurant and food related microservices as clients
+3) Admin feign server
+	- One controller , multiple mappings, can access all microservices as clients
+4) Main Feign server
+	- One controller, multiple mappings, can access the above 3 servers as clients
