@@ -9,5 +9,7 @@ import com.project.demo.entity.Food;
 public interface FoodRepository extends JpaRepository<Food,Long> {
 	
 	Food findByFUid(String foodId);
-
+	Food findByCuisine(String cuisine);
+	Food findAllByCategory(Boolean category);
+	Food findAllByName(String name);
 }

@@ -1,22 +1,23 @@
 package com.project.demo.model;
 
-import java.util.List;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class FoodRequestModel {
 	
    private String image;//stores link of the image
 	
-	private String name;
-	
-	private List<String> category;
-	
-	private String rUid;//dummy restaurant id	
+   private String name;
 
+   private Boolean category;
+   
+   private String cuisine;
+   
 }

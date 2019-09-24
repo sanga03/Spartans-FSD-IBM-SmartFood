@@ -1,14 +1,12 @@
 package com.project.demo.model;
 
-import java.util.List;
-
-import com.project.demo.entity.Cuisine;
-
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class FoodResponseModel {
@@ -23,7 +21,7 @@ private int id;
 	
 	private Boolean category;
 	
-	private List<Cuisine> cuisine;
+	private String cuisine;
 	
 	private String RUid;//dummy restaurant id	
 
