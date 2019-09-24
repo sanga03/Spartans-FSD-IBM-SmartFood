@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AnimSliderComponent } from './anim-slider/anim-slider.component';
 import { SignComponent } from './sign/sign.component';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
+import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
  
 
 @NgModule({
@@ -18,7 +19,8 @@ import {FormsModule,ReactiveFormsModule} from "@angular/forms";
     HeaderComponent,
     FooterComponent,
     AnimSliderComponent,
-    SignComponent
+    SignComponent,
+    CustomerProfileComponent
   ],
   imports: [
     BrowserModule,

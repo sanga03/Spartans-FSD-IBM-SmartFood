@@ -21,11 +21,11 @@ font-family: monospace;
       
    }
 
-   img {
+   /* img {
      height: 400px;
      width: 700px;
      
-   }
+   } */
    .carousel-slide {
      display: flex;
    }
@@ -58,7 +58,9 @@ font-family: monospace;
 
    body {
     /* https://libbyhealth.com/wp-content/uploads/2017/02/OH71GZ01-1024x541.jpg */
-     background-image: url("https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg");
+    /* https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg */
+     background-image: url("https://burst.shopifycdn.com/photos/breakfast-from-above.jpg?width=1200&format=pjpg&exif=0&iptc=0");
+     
      /* background-repeat: no-repeat; */
      background-size: 100%;
 
@@ -126,6 +128,18 @@ font-family: monospace;
     }
     #RestaurantName {
       margin-left: 43%;
+    }
+
+    .jumbotrons
+    {
+      width: 200px;
+      height: 15px;
+      margin-bottom: 2rem;
+    border-radius: .3rem;
+    font-style: italic;
+    width: 200px;
+    height: 5px;
+
     }
     
   
