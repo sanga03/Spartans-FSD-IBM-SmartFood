@@ -15,8 +15,9 @@ public class EmailServiceImpl {
 	    @Autowired
 	    private JavaMailSender sender;
 //	    @ResponseBody
-	    public void sendEmail(String email) throws Exception{
-	    	String body="<html><body>Dear user, <br/> This email is a verifictaion step to register with our application. Kindly click on this link here to complete successful registration! <br/> <a href=''>Click here.</a><br/>With love,<br/>SmartFood Team :)</body></html>";
+	    public void sendEmail(String email,String otp) throws Exception{
+	    	System.out.println("s == "+otp);
+	    	String body="<html><body>Dear user, <br/> This email is a verifictaion step to register with our application. Kindly enter this otp in registration page to complete successful registration! <br/><b>"+otp+"</b><br/><br/>With love,<br/>SmartFood Team :)</body></html>";
 	    	MimeMessage message = sender.createMimeMessage();
 	        message.setText(body,"UTF-8", "html");
 	        MimeMessageHelper helper = new MimeMessageHelper(message);
