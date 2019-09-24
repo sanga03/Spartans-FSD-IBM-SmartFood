@@ -1,1 +1,22 @@
-<p>sign works!</p>
+<fieldset id="log-in">
+        <h2 >Log In</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="validate()" class="frm" method="post" >
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email </label>
+            <input type="email" class="form-control"   formControlName="email" placeholder="Enter Email" value="">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" formControlName="password" placeholder=" Enter Password" value="">
+          </div>
+   
+          <button type="submit" class="btn btn-primary"  >Submit</button>
+          <button type="button" class="btn btn-info" id="reg-btn" onclick="callReg()" >Register</button>
+  
+  
+      </form>
+         <!-- <a href="index.html"> New User? Register Now</a> -->
+   
+</fieldset>
+
+
