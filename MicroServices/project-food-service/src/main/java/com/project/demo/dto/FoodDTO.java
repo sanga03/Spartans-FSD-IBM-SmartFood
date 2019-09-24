@@ -1,12 +1,14 @@
 package com.project.demo.dto;
 
-import java.util.Set;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class FoodDTO {
@@ -18,7 +20,9 @@ public class FoodDTO {
 	
 	private String name;
 	
-	private Set<String> category;
+	private Boolean category;
+	
+	private String cuisine; 
 	
 	private String rUid;//dummy restaurant id
 }
