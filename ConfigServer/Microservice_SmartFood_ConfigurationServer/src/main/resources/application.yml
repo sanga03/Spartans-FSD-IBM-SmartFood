@@ -6,4 +6,4 @@ spring:
           uri: https://github.com/chiragmoorthy18/configuration-data-for-spring-microservices
           search-paths: SmartFood
 server:
-  port: 8762
+  port: 9005

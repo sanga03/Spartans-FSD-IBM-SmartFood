@@ -11,13 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = " userpreferences")
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserPreferences {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,8 +42,17 @@ public class UserPreferences {
 	//if he wants to reduce weight
 	@Column(name="target_weight")
 	Float targetWeight;
+	@SuppressWarnings("deprecation")
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "userPreferences")
+	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+//	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	Set<Cuisines> cuisines;
+	@Override
+	public String toString() {
+		return "UserPreferences [id=" + id + ", uUuid=" + uUuid + ", uprUuid=" + uprUuid + ", category=" + category
+				+ ", targetWeight=" + targetWeight + ", cuisines=" + cuisines + "]";
+	}
+	
 	
 }
