@@ -41,10 +41,8 @@ public class AppController {
 	}
 	
 	@PostMapping("/email")
-	public String sendEmail(String em,String otp) throws Exception {
-		email.sendEmail(em,otp);
-		System.out.println("c == "+otp);
-		return "email sent!";
+	public String sendEmail(@RequestParam String em) throws Exception {
+		return email.sendEmail(em);
 		
 	}
 	@PostMapping("/add")
