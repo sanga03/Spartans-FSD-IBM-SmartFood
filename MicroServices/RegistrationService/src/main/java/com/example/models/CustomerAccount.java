@@ -1,33 +1,17 @@
-package com.example.entity;
+package com.example.models;
 
-import com.example.entity.*;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-@Entity
-@Table(name="customer_account")
 public class CustomerAccount {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
 	private Integer id;
 	private String uid;
 	private String name;
 	private String email;
 	private String password;
 	private String phone;
-	@OneToMany(cascade = CascadeType.PERSIST)
-	@JoinColumn(name="cust_id")
+	
 	private List<CustomerOrders> orders;
 	
 	
@@ -43,7 +27,6 @@ public class CustomerAccount {
 	public CustomerAccount() {
 		super();
 	}
-	@JsonIgnore
 	public List<CustomerOrders> getOrders() {
 		return orders;
 	}

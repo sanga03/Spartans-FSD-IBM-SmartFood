@@ -1,4 +1,4 @@
-package com.example.shared;
+package com.example.models;
 
 
 public class CustomerAccountDto {
@@ -8,8 +8,9 @@ public class CustomerAccountDto {
 	private String phone;
 	private String password;
 	private String passwordBcrypt;
+	private CustomerPhysical cp;
 
-	public CustomerAccountDto(String passwordBcrypt, String password, String name, String email,
+	public CustomerAccountDto(CustomerPhysical cp, String passwordBcrypt, String password, String name, String email,
 			String phone) {
 		super();
 		this.name = name;
@@ -17,9 +18,17 @@ public class CustomerAccountDto {
 		this.phone = phone;
 		this.password = password;
 		this.passwordBcrypt = passwordBcrypt;
+		this.cp = cp;
 	}
 
-	
+	public CustomerPhysical getCp() {
+		return cp;
+	}
+
+	public void setCp(CustomerPhysical cp) {
+		this.cp = cp;
+	}
+
 	public CustomerAccountDto() {
 		super();
 	}

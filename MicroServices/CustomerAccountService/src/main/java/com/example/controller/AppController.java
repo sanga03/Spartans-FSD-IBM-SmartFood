@@ -7,6 +7,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.entity.CustomerAccount;
 import com.example.entity.CustomerAccountRepository;
-import com.example.entity.CustomerPhysical;
-import com.example.entity.CustomerPhysicalRepo;
 import com.example.model.RequestModel;
 import com.example.service.CustomerAccountServiceImpl;
 import com.example.service.EmailServiceImpl;
@@ -29,47 +28,46 @@ import com.example.shared.CustomerAccountDto;
 public class AppController {
 	
 	private CustomerAccountServiceImpl service;
-	private CustomerPhysicalRepo pr;
 	private EmailServiceImpl email;
 	private PasswordServiceImpl pass;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
-	public AppController(PasswordServiceImpl pass,CustomerAccountServiceImpl service,CustomerPhysicalRepo pr,CustomerAccountRepository  cr,EmailServiceImpl email) {
+	public AppController(BCryptPasswordEncoder bCryptPasswordEncoder,PasswordServiceImpl pass,CustomerAccountServiceImpl service,CustomerAccountRepository  cr,EmailServiceImpl email) {
 		super();
 		this.service = service;
-		this.pr=pr;
 		this.email = email;
 		this.pass = pass;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 	
 	@PostMapping("/email")
-	public String sendEmail(@RequestParam String em) throws Exception {
-		email.sendEmail(em);
+	public String sendEmail(String em,String otp) throws Exception {
+		email.sendEmail(em,otp);
+		System.out.println("c == "+otp);
 		return "email sent!";
 		
 	}
 	@PostMapping("/add")
 	public CustomerAccountDto test(){
-		CustomerPhysical cp = new CustomerPhysical(145,40,"23/01/1998", 5600);
+		System.out.println("check");
 		CustomerAccount c = new CustomerAccount("test","test","test","9067564534");
-		c.setC_phy(cp);
+		c.setPassword(bCryptPasswordEncoder.encode(c.getPassword()));
+		
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		CustomerAccountDto dto = mapper.map(c,CustomerAccountDto.class);
 		service.createCustomer(dto);
-		pr.save(cp);
 		return dto;
 	}
 
 
 	@PostMapping("/addCustomer")
 	public CustomerAccountDto addCustomer(@RequestBody RequestModel req){
-		System.out.println("check");
-		System.out.println(req.getEmail());
+
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		CustomerAccountDto dto = mapper.map(req,CustomerAccountDto.class);
-		System.out.println("testtest "+dto.getEmail());
-		
+		dto.setPasswordBcrypt(bCryptPasswordEncoder.encode(req.getPassword()));
 		CustomerAccountDto dt = service.createCustomer(dto);
 		return dt;
 	}
@@ -83,15 +81,6 @@ public class AppController {
 	public List<CustomerAccountDto> findAll(){
 		List<CustomerAccountDto> list = service.findAllCustomers();
 		return list;
-	}
-	@GetMapping("/find")
-	public List<CustomerPhysical> find(String uid){
-		List<CustomerPhysical> list = pr.findAll();
-		for(CustomerPhysical l:list)
-		{
-		
-		}
-		return null;
 	}
 	
 	@PostMapping("/update")
@@ -110,7 +99,7 @@ public class AppController {
 	
 	@GetMapping("/findEmail")
 	public CustomerAccountDto findByEmail(@RequestParam String email) {
-		return service.findByUid(email);
+		return service.findByEmail(email);
 	}
 	
 	@PostMapping("/changePassword")

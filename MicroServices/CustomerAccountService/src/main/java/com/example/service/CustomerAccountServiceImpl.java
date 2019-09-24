@@ -89,12 +89,18 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 	@Override
 	public CustomerAccountDto findByEmail(String email) {
 		Optional<CustomerAccount> op = car.findByEmail(email);
+		CustomerAccountDto dto = null;
 		CustomerAccount ca = null;
 		if (op.isPresent())
-			ca = op.get();
+		{	ca = op.get();
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		CustomerAccountDto dto = mapper.map(ca, CustomerAccountDto.class);
+		dto = mapper.map(ca, CustomerAccountDto.class);
+		}
+		else
+		{
+			dto=null;
+		}
 		return dto;
 	}
 
