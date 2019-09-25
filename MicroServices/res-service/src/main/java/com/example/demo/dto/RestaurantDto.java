@@ -5,19 +5,48 @@ public class RestaurantDto {
 	private int contact;
 	private int rating;
 	private String resId;
+	private String location;
+	private String co_ordinates;
+	
 
 	public RestaurantDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public RestaurantDto(String name, int contact, int rating, String resId) {
+	public RestaurantDto(String name, int contact, int rating, String resId,String location,String co_ordinates) {
 		super();
 		this.name = name;
 		this.contact = contact;
 		this.rating = rating;
 		this.resId = resId;
+		this.location=location;
+		this.co_ordinates=co_ordinates;
 
+	}
+
+	public String getResId() {
+		return resId;
+	}
+
+	public void setResId(String resId) {
+		this.resId = resId;
+	}
+
+	public String getCo_ordinates() {
+		return co_ordinates;
+	}
+
+	public void setCo_ordinates(String co_ordinates) {
+		this.co_ordinates = co_ordinates;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getName() {
