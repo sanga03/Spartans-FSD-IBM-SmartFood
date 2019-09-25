@@ -40,12 +40,7 @@ font-weight: normal;
     <!-- </form>  -->
 
     <form [formGroup]="regForm" (ngSubmit)="validate()" class="frm" method="post" >
-        <div
-        *ngIf="regForm.get('name').errors &&
-              regForm.get('name').dirty &&
-              regForm.get('name').errors.validUrl">
-          Oops,
-        </div>
+       
         <div class="form-group">
             <!-- <label for="exampleInputEmail1">Name</label> -->
             <input type="text" class=" form-control form-controlz" formControlName="name" placeholder="Enter Name" value="">
@@ -83,10 +78,19 @@ font-weight: normal;
             regForm.get('repassword').dirty &&
             regForm.get('repassword').errors.validRepass">
        </div>
+       <div class="err-msg">
+         {{errMsg}}
+       </div>
       <div class="form-group">
           <!-- <label for="exampleInputPassword1">Re-enter Password</label> -->
           <input type="password" class="form-control form-controlz" formControlName="repassword" id="reg_repassword" placeholder=" Re-enter Password" value="">  
         </div>
+        <div *ngIf="optSentSuccess">
+        <div class="form-group">
+          <!-- <label for="exampleInputPassword1">Re-enter Password</label> -->
+          <input type="text" class="form-control form-controlz" formControlName="otp" id="otpz" placeholder=" Enter otp" value="">  
+        </div>
+      </div>
         <button type="submit" class="btn btn-primary" id="re-sub" >Register</button>
    
     </form>
