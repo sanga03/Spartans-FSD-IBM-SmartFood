@@ -1,94 +1,109 @@
 package com.mycompany.entity;
 
-
-import java.util.UUID;
-
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-
+import javax.persistence.Table;
+import lombok.Data;
 
 @Entity 
+@Data
+@Table(name = "food")
 public class Food {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long f_id;
-	private Long r_id;
-	private String f_name;
-	UUID f_uuid = UUID.randomUUID();
+	@Column(name = "id")
+	private Long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn
-	private UserOrder order;
+	@Column(name = "fuid")
+	private String fUid;
 	
-	public Long getF_id() {
-		return f_id;
-	}
-	public void setF_id(Long f_id) {
-		this.f_id = f_id;
-	}
-	public Long getR_id() {
-		return r_id;
-	}
-	public void setR_id(Long r_id) {
-		this.r_id = r_id;
-	}
-	public String getF_name() {
-		return f_name;
-	}
-	public void setF_name(String f_name) {
-		this.f_name = f_name;
-	}
-	public UUID getF_uuid() {
-		return f_uuid;
-	}
-	public void setF_uuid(UUID f_uuid) {
-		this.f_uuid = f_uuid;
-	}
+	@Column(name = "imageLink")
+	private String image;//stores link of the image
 	
-	public void setOrder(UserOrder order) {
-		this.order = order;
+	@Column(name = "name")
+	private String name;
+
+	@Column(name = "category")
+	private Boolean category;
+	
+	@Column(name = "cuisine")
+	private String cuisine;
+	
+	@Column(name = "rUid")
+	private String rUid;//dummy restaurant id	
+
+	public Food(String fUid, String image, String name, Boolean category, String cuisine) {
+		super();
+		this.fUid = fUid;
+		this.image = image;
+		this.name = name;
+		this.category = category;
+		this.cuisine = cuisine;
 	}
+
 	public Food() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Food(Long r_id, String f_name) {
-		super();
-		this.r_id = r_id;
-		this.f_name = f_name;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getfUid() {
+		return fUid;
+	}
+
+	public void setfUid(String fUid) {
+		this.fUid = fUid;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Boolean getCategory() {
+		return category;
+	}
+
+	public void setCategory(Boolean category) {
+		this.category = category;
+	}
+
+	public String getCuisine() {
+		return cuisine;
+	}
+
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
+	}
+
+	public String getrUid() {
+		return rUid;
+	}
+
+	public void setrUid(String rUid) {
+		this.rUid = rUid;
 	}
 	
-	public Food(Long r_id, String f_name, UserOrder order) {
-		super();
-		this.r_id = r_id;
-		this.f_name = f_name;
-		this.order = order;
-	}
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return f_id != null ? f_id.hashCode() : 0;
-	}
-	@Override
-	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Food food = (Food) o;
-
-        return f_id != null ? f_id.equals(food.f_id) : food.f_id == null;
-	}
-	@Override
-	public String toString() {
-		return "Food [f_id=" + f_id + ", r_id=" + r_id + ", f_name=" + f_name + ", f_uuid=" + f_uuid + "]";
-	}
 	
 }
+
