@@ -42,6 +42,7 @@ export class SignComponent implements OnInit {
                 {
                      this.status=0; 
                      this.openModal.nativeElement.click();
+                     sessionStorage.setItem("email",email);
                      this.router.navigate(['customerProfile']);
 
                 }else if(data==1)
