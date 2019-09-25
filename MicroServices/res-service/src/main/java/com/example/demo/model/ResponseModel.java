@@ -5,6 +5,8 @@ public class ResponseModel {
 	private int contact;
 	private int rating;
 	private String resId;
+	private String location;
+	private String co_ordinates;
 
 	public ResponseModel() {
 		super();
@@ -19,13 +21,31 @@ public class ResponseModel {
 		this.resId = resId;
 	}
 
-	public ResponseModel(String name, int contact, int rating, String resId) {
+	public ResponseModel(String name, int contact, int rating, String resId,String location,String co_ordinates) {
 		super();
 		this.name = name;
 		this.contact = contact;
 		this.rating = rating;
 		this.resId = resId;
+		this.location=location;
+		this.co_ordinates=co_ordinates;
 
+	}
+
+	public String getCo_ordinates() {
+		return co_ordinates;
+	}
+
+	public void setCo_ordinates(String co_ordinates) {
+		this.co_ordinates = co_ordinates;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public String getName() {
