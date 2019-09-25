@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  loginStatus:any;hgfhy
+  loginStatus:any;
 
 
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
