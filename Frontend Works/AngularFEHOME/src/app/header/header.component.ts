@@ -20,7 +20,9 @@ export class HeaderComponent implements OnInit {
       if(routeTo=='login')
      {
       this.router.navigate(['login'])
-     } 
+     } else if(routeTo=='register'){
+       this.router.navigate(["register"])
+     }
      else if(routeTo=='home')
      {
       this.router.navigate(['home'])

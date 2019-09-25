@@ -11,6 +11,7 @@ import { SignComponent } from './sign/sign.component';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { RegisterComponent } from './register/register.component';
  
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     AnimSliderComponent,
     SignComponent,
     CustomerProfileComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

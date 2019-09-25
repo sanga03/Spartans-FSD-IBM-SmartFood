@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { SignComponent } from './sign/sign.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,9 @@ const routes: Routes = [
     {
       path:"login",
       component: SignComponent
+    },{
+      path:"register",
+      component:RegisterComponent
     },
     {
       path:"home",
