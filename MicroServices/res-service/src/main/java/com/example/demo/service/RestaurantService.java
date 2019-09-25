@@ -35,7 +35,7 @@ public class RestaurantService {
 
 	// Display all
 	public List<Restaurant> getAllRestaurants() {
-		List<Restaurant> restaurants = (List<Restaurant>) restaurantRepository.findAll();
+		List<Restaurant> restaurants = restaurantRepository.findAll();
 		return restaurants;
 
 	}
@@ -48,6 +48,26 @@ public class RestaurantService {
 		}
 		return null;
 	}
+	
+	// Display by name
+		public Restaurant findResByName(String name) {
+			Optional<Restaurant> restaurant = restaurantRepository.findByName(name);
+			if (restaurant.isPresent()) {
+				return restaurant.get();
+			}
+			return null;
+		}
+		
+	// Display all by location
+	public List<Restaurant> findResByLocation(String location) {
+		//Optional<Restaurant> restaurant = restaurantRepository.findByLocation(location);
+		List<Restaurant> restaurants = (List<Restaurant>)restaurantRepository.findAllByLocation(location);
+//		if (restaurants.isPresent()) {
+//			return restaurants.get();
+//		}
+		return restaurants;
+	}
+		
 
 	// Delete by ID
 	public Restaurant deleteRestaurant(String resId) {
@@ -74,5 +94,17 @@ public class RestaurantService {
 
 		return null;
 
+	}
+	
+	//find all by name
+	public List<Restaurant> findAllResByName(String name) {
+		List<Restaurant> restaurants = (List<Restaurant>)restaurantRepository.findAllByName(name);
+		return restaurants;
+	}
+	
+	//find all by rating
+	public List<Restaurant> findAllResByRating(double rating) {
+		List<Restaurant> restaurants = (List<Restaurant>)restaurantRepository.findAllByRating(rating);
+		return restaurants;
 	}
 }
