@@ -7,6 +7,7 @@ import {NgbdCarouselBasic} from 'bootstrap'
 })
 export class AnimSliderComponent implements OnInit {
 images=[ 
+  
   'http://www.theivanhoepub.com/wp-content/uploads/2010/09/colddish.jpg',
   'https://www.camelliabrand.com/static/wp-content/uploads/2017/07/BBB_2-1000x400.jpg',
   'https://enfntsterribles.com/wp-content/uploads/2016/09/EnfntsTerribles-stop-counting-calories-1000x400.jpg',

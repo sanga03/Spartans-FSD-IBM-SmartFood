@@ -10,6 +10,7 @@ import { AnimSliderComponent } from './anim-slider/anim-slider.component';
 import { SignComponent } from './sign/sign.component';
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { AboutUsComponent } from './about-us/about-us.component';
  
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
     FooterComponent,
     AnimSliderComponent,
     SignComponent,
-    CustomerProfileComponent
+    CustomerProfileComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

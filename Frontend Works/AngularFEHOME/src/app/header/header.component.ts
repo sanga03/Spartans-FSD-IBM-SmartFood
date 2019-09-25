@@ -7,7 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  loginStatus:any;
+  loginStatus:any;hgfhy
+
+
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 
   ngOnInit() { 
@@ -22,6 +24,10 @@ export class HeaderComponent implements OnInit {
      else if(routeTo=='home')
      {
       this.router.navigate(['home'])
+     }
+     else if(routeTo=='aboutUs')
+     {
+       this.router.navigate(['aboutUs'])
      }
      else
      {
