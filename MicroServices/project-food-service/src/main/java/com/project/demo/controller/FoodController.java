@@ -33,15 +33,15 @@ public class FoodController {
 	private ModelMapper mapper;
 
 	@PostMapping("/newFood")
-	public ResponseEntity<FoodResponseModel> createNewFood(@RequestBody FoodRequestModel foodRequestModel) {
+	public FoodResponseModel createNewFood(@RequestBody FoodRequestModel foodRequestModel) {
 		FoodDTO dto = mapper.map(foodRequestModel, FoodDTO.class);
 		dto = foodService.createFood(dto);
 		FoodResponseModel foodResponseModel = mapper.map(dto, FoodResponseModel.class);
-		return ResponseEntity.status(HttpStatus.CREATED).body(foodResponseModel);
+		return foodResponseModel;
 	}
 
 	@GetMapping("/allFoods")
-	public ResponseEntity<List<FoodResponseModel>> getAllFoods() {
+	public List<FoodResponseModel> getAllFoods() {
 		List<Food> foods = foodService.getAllFoods();
 		List<FoodResponseModel> response = new ArrayList<FoodResponseModel>();
 		FoodResponseModel foodResponseModel = new FoodResponseModel();
@@ -49,18 +49,18 @@ public class FoodController {
 			foodResponseModel = mapper.map(food, FoodResponseModel.class);
 			response.add(foodResponseModel);
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+		return response;
 	}
 
 	@GetMapping("/id/{fUid}")
-	public ResponseEntity<FoodResponseModel> getFoodById(@PathVariable("fUid") String fUid) {
+	public FoodResponseModel getFoodById(@PathVariable("fUid") String fUid) {
 		Food food = foodService.findFoodById(fUid);
 		FoodResponseModel foodResponseModel = mapper.map(food, FoodResponseModel.class);
-		return ResponseEntity.status(HttpStatus.OK).body(foodResponseModel);
+		return foodResponseModel;
 	}
 
 	@PutMapping("/update/{fUid}")
-	public ResponseEntity<FoodResponseModel> updateFoodById(@RequestBody FoodRequestModel foodRequestModel,
+	public FoodResponseModel updateFoodById(@RequestBody FoodRequestModel foodRequestModel,
 			@PathVariable("fUid") String fUid) {
 		Food food = mapper.map(foodRequestModel, Food.class);
 		food = foodService.findFoodById(fUid);
@@ -69,25 +69,30 @@ public class FoodController {
 		food.setImage(foodRequestModel.getImage());
 		food.setCuisine(foodRequestModel.getCuisine());
 		FoodResponseModel foodResponseModel = mapper.map(food, FoodResponseModel.class);
-		return ResponseEntity.status(HttpStatus.CREATED).body(foodResponseModel);
+		return foodResponseModel;
 	}
 
 	@DeleteMapping("/delete/{fUid}")
-	public ResponseEntity<FoodResponseModel> deleteFoodById(@PathVariable("fUid") String fUid) {
+	public FoodResponseModel deleteFoodById(@PathVariable("fUid") String fUid) {
 		Food food = foodService.deleteFoodByFUid(fUid);
 		FoodResponseModel foodResponseModel = mapper.map(food, FoodResponseModel.class);
-		return ResponseEntity.status(HttpStatus.GONE).body(foodResponseModel);
+		return foodResponseModel;
 	}
 
 	@GetMapping("/cuisine/{cuisine}")
-	public ResponseEntity<FoodResponseModel> findFoodByCuisine(@PathVariable("cuisine") String cuisine) {
-		Food food = foodService.findFoodByCuisine(cuisine);
-		FoodResponseModel foodResponseModel = mapper.map(food, FoodResponseModel.class);
-		return ResponseEntity.status(HttpStatus.OK).body(foodResponseModel);
+	public List<FoodResponseModel> findFoodByCuisine(@PathVariable("cuisine") String cuisine) {
+		List<Food> foods = foodService.findFoodByCuisine(cuisine);
+		List<FoodResponseModel> response = new ArrayList<FoodResponseModel>();
+		FoodResponseModel foodResponseModel = new FoodResponseModel();
+		for (Food food : foods) {
+			foodResponseModel = mapper.map(food, FoodResponseModel.class);
+			response.add(foodResponseModel);
+		}
+		return response;
 	}
 
 	@GetMapping("/category/{category}")
-	public ResponseEntity<List<FoodResponseModel>> findFoodByCategory(@PathVariable("category") Boolean category) {
+	public List<FoodResponseModel> findFoodByCategory(@PathVariable("category") Boolean category) {
 		List<Food> foods = foodService.findFoodByCategory(category);
 		List<FoodResponseModel> response = new ArrayList<FoodResponseModel>();
 		FoodResponseModel foodResponseModel = new FoodResponseModel();
@@ -95,11 +100,11 @@ public class FoodController {
 			foodResponseModel = mapper.map(food, FoodResponseModel.class);
 			response.add(foodResponseModel);
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+		return response;
 	}
 
 	@GetMapping("/name/{name}")
-	public ResponseEntity<List<FoodResponseModel>> findFoodByName(@PathVariable("name") String name) {
+	public List<FoodResponseModel> findFoodByName(@PathVariable("name") String name) {
 		List<Food> foods = foodService.findFoodByName(name);
 		List<FoodResponseModel> response = new ArrayList<FoodResponseModel>();
 		FoodResponseModel foodResponseModel = new FoodResponseModel();
@@ -107,6 +112,6 @@ public class FoodController {
 			foodResponseModel = mapper.map(food, FoodResponseModel.class);
 			response.add(foodResponseModel);
 		}
-		return ResponseEntity.status(HttpStatus.OK).body(response);
+		return response;
 	}
 }

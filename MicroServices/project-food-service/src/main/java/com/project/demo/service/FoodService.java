@@ -48,10 +48,19 @@ public class FoodService {
 		return foodDTO;
 	}
 	
-	public Food findFoodByCuisine(String cuisine)
+	public List<Food> findFoodByCuisine(String cuisine)
 	{
-		return foodRepository.findByCuisine(cuisine);
+		List<Food> foods = foodRepository.findAll();
+		List<Food> selectedFoods = new ArrayList<Food>();
+		for(Food food:foods)
+		{
+			if(food.getCuisine() == cuisine)
+				selectedFoods.add(food);
+		}
+		
+		return selectedFoods;
 	}
+	
 	
 	public List<Food> findFoodByCategory(Boolean category)
 	{
