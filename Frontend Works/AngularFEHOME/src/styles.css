@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+.form-controlz{
+  border: transparent;
+
+color: white;
+
+font-size: large;
+
+font-style: unset;
+
+font-weight: normal;
+}
+
 label.error{
     color: red;
 size: 5px;
