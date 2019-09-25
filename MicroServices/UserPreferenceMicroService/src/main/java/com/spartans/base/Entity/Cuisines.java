@@ -28,7 +28,6 @@ public class Cuisines {
 	String uUuid;
 	@Column(name = "cuisine")
 	String cuisine;
-
 	@Override
 	public String toString() {
 		return "Cuisines [id=" + id + ", uUuid=" + uUuid + ", cuisine=" + cuisine + "]";
