@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, Validators, ValidatorFn } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+// import { url } from 'inspector'
 
 @Component({
   selector: 'app-register',
@@ -8,32 +10,31 @@ import { FormGroup, FormControl, AbstractControl, Validators, ValidatorFn } from
 })
 export class RegisterComponent implements OnInit {
   regForm:FormGroup;
+
 errMsg:String;
 emailExists:boolean=false;
 optSentSuccess:boolean=false;
-  constructor() { }
+
+  constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 
   ngOnInit() {
+   
    this.regForm = new FormGroup({
       name: new FormControl('name'),
       phone:new FormControl('phone'),
-      email:new FormControl("email",[
+      email:new FormControl("spamme017@yandex.com",[
         Validators.required,
         Validators.email,
         
       ]),
-    password: new FormControl('password',[
+    password: new FormControl('Sa@123',[
       Validators.required,
       this.ValidatePass
     ]),
-  repassword:new FormControl('repassword',[
+  repassword:new FormControl('Sa@123',[
     Validators.required,
   this.validateRepass
-  ])  ,
-  otp:new FormControl('otp'),
-      
-
-});
+  ]) });
   }
   validate(){
     console.log("hey");
@@ -46,33 +47,35 @@ this.errMsg="Not Same Password";
   let email=this.regForm.get('email').value;
   let phone:String=this.regForm.get('phone').value;
   let password=this.regForm.get('password').value;
-  this.optSentSuccess=true;
+  // this.optSentSuccess=true;
 
-//   fetch('http://b4ibm26.iiht.tech:1020/registerUser',{
-//                  method: 'POST',
-//                  headers:{
-//                      'content-type':'application/json'
-//                  },
-//                  body: JSON.stringify( {
-//                    "name":name,
-//                           "email":email,
-//                           "password":password   ,
-//                           "phone":phone
-//                   })
-//              })
-//              .then(res=>res.json())
-//              .then(data=>{
-//                console.log(data);
-//                if(data == 0){
-// this.optSentSuccess=true;
-//                }else{
-// this.emailExists=true;
-//                }
-//              })
+  fetch('http://b4ibm26.iiht.tech:1020/registerUser',{
+                 method: 'POST',
+                 headers:{
+                     'content-type':'application/json'
+                 },
+                 body: JSON.stringify( {
+                   "name":name,
+                          "email":email,
+                          "password":password,
+                          "phone":phone
+                  })
+             })
+             .then(res=>res.json())
+             .then(data=>{
+               console.log(data);
+               if(data == 0){
+this.optSentSuccess=true;
+this.router.navigate(["optVerify"])
+               }else{
+this.emailExists=true;
+               }
+             })
 }
 
 
   }
+
    ValidateUrl(control: AbstractControl) {
     if (!control.value.startsWith('https') || !control.value.includes('.io')) {
       return { validUrl: true };

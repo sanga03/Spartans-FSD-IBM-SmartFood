@@ -12,6 +12,7 @@ import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterComponent } from './register/register.component';
+import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
  
 
 @NgModule({
@@ -24,7 +25,8 @@ import { RegisterComponent } from './register/register.component';
     SignComponent,
     CustomerProfileComponent,
     AboutUsComponent,
-    RegisterComponent
+    RegisterComponent,
+    VerifyOtpComponent
   ],
   imports: [
     BrowserModule,

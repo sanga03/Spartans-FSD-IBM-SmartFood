@@ -6,6 +6,7 @@ import { SignComponent } from './sign/sign.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterComponent } from './register/register.component';
+import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,9 @@ const routes: Routes = [
     },{
       path:"register",
       component:RegisterComponent
+    },{
+      path:"optVerify",
+      component:VerifyOtpComponent
     },
     {
       path:"home",
