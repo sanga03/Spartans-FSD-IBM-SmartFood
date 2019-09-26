@@ -1,14 +1,16 @@
 package com.example.demo.repo;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.CustomerAccount;
-import com.example.demo.entity.PhysicalDetail;
 
+@Repository
 public interface CustomerRepository extends JpaRepository<CustomerAccount,Integer> {
     
-	public Optional<CustomerAccount> findByUid(String uId);
+	@Query("from CustomerAccount where uid=:uid")
+	public CustomerAccount findByUid(@Param("uid") String uid);
+	
 }

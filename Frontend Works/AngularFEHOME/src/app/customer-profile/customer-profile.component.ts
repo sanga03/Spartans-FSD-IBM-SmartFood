@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-profile',
@@ -10,6 +11,8 @@ export class CustomerProfileComponent implements OnInit {
    userName:string;
    email:string;
    customerObj:any
+   customerPhysicalDetail:any
+   physicalDetailForm:any
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 
   ngOnInit() { 
@@ -28,11 +31,43 @@ export class CustomerProfileComponent implements OnInit {
           this.userName=data.name;
           
         })
+      this.physicalDetailForm =  new FormGroup({
+          height: new FormControl(),
+          weight: new FormControl(),
+          gender: new FormControl(),
+          dob: new FormControl() })
   }
 
   redirectToHome()
   {  sessionStorage.removeItem('email');
     this.router.navigate(['home']);
+  }
+
+  setPhysicalDetail()
+  {   var d:Date = this.physicalDetailForm.get('dob').value;
+      var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+this.customerObj.uid;
+      console.log(this.physicalDetailForm.get('weight').value);
+      console.log(url);
+      console.log(d.getTime);
+      fetch(
+        url,
+        {
+          method: 'POST',
+          headers:{
+              'content-type':'application/json'
+          },
+          body: JSON.stringify( {
+            "height": this.physicalDetailForm.get('height').value,
+            "weight": this.physicalDetailForm.get('weight').value,
+           "dob": d.getTime ,
+           "caloriesBurn": 13,
+           "gender":  this.physicalDetailForm.get('gender').value
+          
+          })
+      }).then(res=>res.json())
+      .then(data=>{
+        console.log(data);
+      })
   }
 
 }

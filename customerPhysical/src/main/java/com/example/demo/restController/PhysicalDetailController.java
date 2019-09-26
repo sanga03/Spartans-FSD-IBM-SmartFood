@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,7 @@ import com.example.demo.repo.PhysicalDetailRepository;
 import com.example.demo.requestAndResponseModel.RequestModel;
 import com.example.demo.requestAndResponseModel.ResponseModel;
 import com.example.demo.service.PhysicalDetailService;
-
+@CrossOrigin
 @RestController
 public class PhysicalDetailController {
 	@Autowired
@@ -44,10 +45,12 @@ public class PhysicalDetailController {
    
    @PostMapping("/physicalDetails/{cUuid}")
    public ResponseEntity<ResponseModel> insertPhysicalDetail(@RequestBody RequestModel requestModel,@PathVariable("cUuid") String cUuid)
-   {   
-       Optional<CustomerAccount> customerAccount = customerRepository.findByUid(cUuid);
+   {  
+	   System.out.println(cUuid);
+       CustomerAccount customerAccount = customerRepository.findByUid(cUuid);
+       System.out.println(customerAccount);
 	   PhysicalDetailsDto physicalDetailsDto = new PhysicalDetailsDto(requestModel.getHeight(), requestModel.getWeight(),requestModel.getDob() ,requestModel.getCaloriesBurn(), requestModel.getGender());
-	   physicalDetailsDto.setCustomerAccount(customerAccount.get());
+	   physicalDetailsDto.setCustomerAccount(customerAccount);
 	   physicalDetailsDto=physicalDetailService.insertPhysicalDto(physicalDetailsDto);
 	   ResponseModel responseModel = mapper.map(physicalDetailsDto, ResponseModel.class);
 	   
