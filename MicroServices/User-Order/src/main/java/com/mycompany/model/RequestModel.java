@@ -10,8 +10,8 @@ import lombok.Setter;
 public class RequestModel {
 
 	private String cust;
-	private int restId;
-	private long date;
+	private String restId;
+	private String date;
 	private String uorderId;
 	
 	
@@ -21,7 +21,7 @@ public class RequestModel {
 	}
 
 
-	public RequestModel(String cust, int restId, long date, String uorderId) {
+	public RequestModel(String cust, String restId,String date, String uorderId) {
 		super();
 		this.cust = cust;
 		this.restId = restId;
@@ -30,32 +30,32 @@ public class RequestModel {
 	}
 
 
-	public String getcust() {
+	public String getCust() {
 		return cust;
 	}
 
 
-	public void setcust(String cust) {
+	public void setCust(String cust) {
 		this.cust = cust;
 	}
 
 
-	public int getRestId() {
+	public String getRestId() {
 		return restId;
 	}
 
 
-	public void setRestId(int restId) {
+	public void setRestId(String restId) {
 		this.restId = restId;
 	}
 
 
-	public long getDate() {
+	public String getDate() {
 		return date;
 	}
 
 
-	public void setDate(long date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -68,5 +68,12 @@ public class RequestModel {
 	public void setUorderId(String uorderId) {
 		this.uorderId = uorderId;
 	}
+
+
+	@Override
+	public String toString() {
+		return "RequestModel [cust=" + cust + ", restId=" + restId + ", date=" + date + ", uorderId=" + uorderId + "]";
+	}
+
 	
 }
