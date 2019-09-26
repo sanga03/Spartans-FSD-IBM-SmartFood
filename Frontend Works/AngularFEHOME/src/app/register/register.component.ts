@@ -66,6 +66,7 @@ this.errMsg="Not Same Password";
                console.log(data);
                if(data == 0){
 this.optSentSuccess=true;
+sessionStorage.setItem("demail",email);
 this.router.navigate(["optVerify"])
                }else{
 this.emailExists=true;

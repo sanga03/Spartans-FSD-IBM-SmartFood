@@ -44,11 +44,11 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   setPhysicalDetail()
-  {   var d:Date = this.physicalDetailForm.get('dob').value;
+  {   var d:Date = new Date(this.physicalDetailForm.get('dob').value);
       var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+this.customerObj.uid;
       console.log(this.physicalDetailForm.get('weight').value);
       console.log(url);
-      console.log(d.getTime);
+      console.log(d.getTime());
       fetch(
         url,
         {
@@ -59,7 +59,7 @@ export class CustomerProfileComponent implements OnInit {
           body: JSON.stringify( {
             "height": this.physicalDetailForm.get('height').value,
             "weight": this.physicalDetailForm.get('weight').value,
-           "dob": d.getTime ,
+           "dob": d.getTime() ,
            "caloriesBurn": 13,
            "gender":  this.physicalDetailForm.get('gender').value
           

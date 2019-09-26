@@ -1,5 +1,6 @@
 package com.spartans.base.Controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spartans.base.Entity.Cuisines;
 import com.spartans.base.Entity.UserPreferences;
+import com.spartans.base.Model.FinalResponceModel;
 import com.spartans.base.Model.RespCusine;
 import com.spartans.base.Model.ResponceModelPrefCus;
 import com.spartans.base.Service.UserPrefService;
@@ -23,7 +25,7 @@ public class UserPrefController {
 	@Autowired
 	private UserPrefService userPrefService;
 @GetMapping("/list")
-public List<UserPreferences> getAll(){
+public List<FinalResponceModel> getAll(){
 	return userPrefService.getAlluserPrefs();
 }
 @GetMapping("/cus/{uUuid}")
@@ -31,7 +33,9 @@ public List<Cuisines> getByCus(@PathVariable("uUuid") String uUuid){
 	return userPrefService.getAlluserPrefsbyCus(uUuid);
 }
 @GetMapping("/pref/{uUuid}")
-public ResponceModelPrefCus getBypref(@PathVariable("uUuid") String uUuid){
+public FinalResponceModel getBypref(@PathVariable("uUuid") String uUuid){
+	
+	FinalResponceModel model = new FinalResponceModel();
 	UserPreferences userPreferences= userPrefService.getuserPrefsbyCus(uUuid);
 	ResponceModelPrefCus responceModelPrefCus = new ResponceModelPrefCus();
 	responceModelPrefCus.setUserPreferences(userPreferences);
@@ -42,7 +46,21 @@ cuisines.add(mapper.map(cuisines2, RespCusine.class));
 	}
 
 	responceModelPrefCus.setCuisines(cuisines);
-	return responceModelPrefCus;
+	
+	model.setUUuid(userPreferences.getUUuid());
+	model.setUprUuid(userPreferences.getUprUuid());
+	model.setTargetWeight(userPreferences.getTargetWeight());
+	model.setCategory(userPreferences.getCategory());
+//	List<Cuisines> cusines = userPreferences.findAllByUserPreferencesId(userPrefRepo.findId(preference.getUUuid()));
+	List<String> list= new ArrayList<String>();
+	for(Cuisines cuisines1:userPrefService.getAlluserPrefsbyCus(uUuid)) {
+		list.add(cuisines1.getCuisine());
+	}
+	model.setCusines(list);
+	
+	
+	
+	return model;
 }
 
 

@@ -73,8 +73,8 @@ font-family: monospace;
     /* https://libbyhealth.com/wp-content/uploads/2017/02/OH71GZ01-1024x541.jpg */
     /* https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg */
     /* https://burst.shopifycdn.com/photos/breakfast-from-above.jpg?width=1200&format=pjpg&exif=0&iptc=0 */
-    /* https://backgrounddownload.com/wp-content/uploads/2018/09/background-for-food-website-3.jpg */
-     background-image: url("https://burst.shopifycdn.com/photos/breakfast-from-above.jpg?width=1200&format=pjpg&exif=0&iptc=0");
+    background-image: url( https://backgrounddownload.com/wp-content/uploads/2018/09/background-for-food-website-3.jpg);
+     /* background-image: url("https://burst.shopifycdn.com/photos/breakfast-from-above.jpg?width=1200&format=pjpg&exif=0&iptc=0"); */
      
      /* background-repeat: no-repeat; */
      background-size: 100%;
@@ -106,7 +106,7 @@ font-family: monospace;
       float:right;
     } 
     #reg-field{
-      margin-right: 15%;
+      margin-right: 40%;
       float:right;
     }
     #Restaurant { 

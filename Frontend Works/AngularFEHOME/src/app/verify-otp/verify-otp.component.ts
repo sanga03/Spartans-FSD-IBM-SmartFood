@@ -8,8 +8,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./verify-otp.component.css']
 })
 export class VerifyOtpComponent implements OnInit {
+  [x: string]: any;
   otpForm:FormGroup;
   otpVarified:number=-1;
+  customerObj: any;
   constructor( private previousRoute: ActivatedRoute ,private router: Router) { }
 
   ngOnInit() {
@@ -29,7 +31,23 @@ export class VerifyOtpComponent implements OnInit {
     console.log(data);
     if(data == true){
       this.otpVarified=0;
+let email = sessionStorage.getItem("demail");
+      var url = "http://b4ibm02.iiht.tech:8762/account/findEmail?email="+email;
+      console.log(url);
+      fetch(url).then(res=>res.json())
+        .then(data=>
+          {  
+            this.customerObj=data;
+            console.log(this.customerObj.uid)
+            this.setPhysicalDetail(this.customerObj.uid)
+            this.userName=data.name;
+            
+          })
+
+
 this.router.navigate(["login"])
+
+
     }else{
       this.otpVarified=1;
       this.router.navigate(["register"])
@@ -37,4 +55,29 @@ this.router.navigate(["login"])
   })
   }
 
+
+  setPhysicalDetail(uid)
+  {   var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+uid;
+     console.log(url);
+    let date = new Date().getTime();
+      fetch(
+        url,
+        {
+          method: 'POST',
+          headers:{
+              'content-type':'application/json'
+          },
+          body: JSON.stringify( {
+            "height":150,
+            "weight":0,
+           "dob":date,
+           "caloriesBurn": 0,
+           "gender": 0
+          
+          })
+      }).then(res=>res.json())
+      .then(data=>{
+        console.log(data);
+      })
+  }
 }

@@ -1,5 +1,6 @@
 package com.spartans.base.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.spartans.base.Entity.Cuisines;
 import com.spartans.base.Entity.UserPreferences;
+import com.spartans.base.Model.FinalResponceModel;
 import com.spartans.base.Model.RespCusine;
 import com.spartans.base.Model.ResponceModelPrefCus;
 import com.spartans.base.Repo.CuisineRepo;
@@ -21,8 +23,28 @@ public class UserPrefService {
 	@Autowired
 	CuisineRepo cuisineRepo;
 
-	public List<UserPreferences> getAlluserPrefs() {
-		return userPrefRepo.findAll();
+	public List<FinalResponceModel> getAlluserPrefs() {
+	List<FinalResponceModel> models = new ArrayList<FinalResponceModel>();
+		
+	List<UserPreferences> preferences=	userPrefRepo.findAll();
+	for(UserPreferences preference:preferences) {
+		FinalResponceModel model = new FinalResponceModel();
+		model.setUUuid(preference.getUUuid());
+		model.setUprUuid(preference.getUprUuid());
+		model.setTargetWeight(preference.getTargetWeight());
+		model.setCategory(preference.getCategory());
+		List<Cuisines> cusines = cuisineRepo.findAllByUserPreferencesId(userPrefRepo.findId(preference.getUUuid()));
+		List<String> list= new ArrayList<String>();
+		for(Cuisines cuisines:cusines) {
+			list.add(cuisines.getCuisine());
+		}
+		model.setCusines(list);
+	models.add(model);
+	}
+	
+	return models;
+	
+	
 	}
 
 	public List<Cuisines> getAlluserPrefsbyCus(String id) {
