@@ -7,7 +7,7 @@
                        <b> {{ userName }} <i class="fa fa-user" aria-hidden="true"></i>  </b>   
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">Physical Detail</a>
+                          <a class="dropdown-item" data-toggle="modal" data-target="#login-modal">Physical Detail</a>
                           <a class="dropdown-item" href="#"> Track</a>
                           <a class="dropdown-item" href="#"> Preference </a>
                           <div class="dropdown-divider"></div>
@@ -17,9 +17,48 @@
                       
            
           </ul>
-          <!-- <form class="form-inline my-2 my-lg-0"> -->
-            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search Food..." aria-label="Search"> -->
-            <!-- <button class="btn btn-outline-success my-2 my-sm-0" (click)="redirect('login')" type="submit">LogIn</button>
-          </form> -->
         </div>
   </nav>
+
+  <div class="modal" id="login-modal" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header"> 
+         <h2> Physical Detail </h2>
+        </div>  
+        <div class="modal-body">
+          <!-- <fieldset id="log-in">  -->
+        
+            <form [formGroup]="physicalDetailForm" (ngSubmit)="setPhysicalDetail()" class="frm" method="post" >
+              <div class="form-group">
+                <label for="height">Height </label>
+                <input type="number" class="form-control"   formControlName="height" placeholder="In CMs" value="">
+              </div>
+              <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="number" class="form-control" formControlName="weight" placeholder="In Kgs" value="">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="gender">Gender</label>
+                <select formControlName="gender" id="gender" class="form-control">
+                  <option selected value="0" >Male</option>
+                  <option value="1">Female</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="">Date of Birth</label>
+                <input type="datetime" class="form-control" formControlName="dob"  >
+              </div>
+              <div class="modal-footer">
+              <button type="submit" class="btn btn-primary btn-md"  >Set Physical Detail <i class="fas fa-running"></i> </button>
+            
+              </div>
+      
+          </form>
+      
+          </div>
+          </div>
+          </div>
+     <a href="index.html"> New User? Register Now</a>  
+    </div>  
+
