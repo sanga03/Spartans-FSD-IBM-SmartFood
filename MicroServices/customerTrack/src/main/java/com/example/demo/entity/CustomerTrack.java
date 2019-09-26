@@ -2,11 +2,18 @@ package com.example.demo.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +31,7 @@ public class CustomerTrack {
 	private Date tackingDate;
 	private MealTime mealTime;
 	private int calories;
-	@OneToOne
-	private Customer customer;
+	 @OneToOne
+	 @JoinColumn(name = "customer_account_id",unique = true)
+	private CustomerAccount customerAccount;
 }
