@@ -24,6 +24,7 @@ public class OrderContoller {
 	@Autowired 
 	private UserOrderService userOrder;
 	
+	
 	public OrderContoller(UserOrderService userOrder) {
 		super();
 		this.userOrder = userOrder;
@@ -35,6 +36,7 @@ public class OrderContoller {
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		UserOrder uo = userOrder.createOrder(mapper.map(req,UserOrder.class));
 		return mapper.map(uo,ResponseModel.class);
+	
 	}
 	
 	@GetMapping("/list")
@@ -47,12 +49,12 @@ public class OrderContoller {
 			listnew.add(mapper.map(l,ResponseModel.class));
 		return listnew;
 	}
-	@PostMapping("/deleteOrder/{uorderId}")
+	@GetMapping("/deleteOrder/{uorderId}")
 	public void deleteOrder(@PathVariable String uorderId) {
 		userOrder.deleteOrderByUorderId(uorderId);
 	}
 	
-	@PostMapping("/deleteFood/{foodId}")
+	@GetMapping("/deleteFood/{foodId}")
 	public void deleteFood(@PathVariable String foodId) {
 		userOrder.deleteByFoodId(foodId);
 	}
@@ -98,7 +100,7 @@ public class OrderContoller {
 	}
 	
 	@GetMapping("/allRest/{custId}")
-	public List<ResponseModel> findAllRest(@PathVariable int custId){
+	public List<ResponseModel> findAllRest(@PathVariable String custId){
 		List<UserOrder> list = userOrder.findAllByRes(custId);
 		List<ResponseModel> listnew = new ArrayList<ResponseModel>();
 		ModelMapper mapper = new ModelMapper();

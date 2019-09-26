@@ -1,11 +1,5 @@
 package com.mycompany.model;
 
-import java.util.List;
-
-import javax.persistence.Column;
-
-import com.mycompany.entity.Food;
-import com.mycompany.entity.UserOrder;
 
 import lombok.Data;
 import lombok.Getter;
@@ -18,11 +12,11 @@ import lombok.Setter;
 @Data
 public class ResponseModel {
 
-	private int restId;
+	private String restId;
 	private String date;
 	private String uorderId ;
 	private String cust;
-	public ResponseModel(int restId, String date, String uorderId, String cust) {
+	public ResponseModel(String restId, String date, String uorderId, String cust) {
 		super();
 		this.restId = restId;
 		this.date = date;
@@ -32,10 +26,10 @@ public class ResponseModel {
 	public ResponseModel() {
 		super();
 	}
-	public int getRestId() {
+	public String getRestId() {
 		return restId;
 	}
-	public void setRestId(int restId) {
+	public void setRestId(String restId) {
 		this.restId = restId;
 	}
 	public String getDate() {
@@ -50,11 +44,15 @@ public class ResponseModel {
 	public void setUorderId(String uorderId) {
 		this.uorderId = uorderId;
 	}
-	public String getcust() {
+	public String getCust() {
 		return cust;
 	}
-	public void setcust(String cust) {
+	public void setCust(String cust) {
 		this.cust = cust;
+	}
+	@Override
+	public String toString() {
+		return "ResponseModel [restId=" + restId + ", date=" + date + ", uorderId=" + uorderId + ", cust=" + cust + "]";
 	}
 	
 }

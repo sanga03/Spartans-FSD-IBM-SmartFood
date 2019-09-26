@@ -15,5 +15,5 @@ public interface OrderRepository extends JpaRepository <UserOrder, Integer>{
 	public Optional<UserOrder> findByDate(String date);
 	public List<UserOrder> findAllByDate(String date);
 	public List<UserOrder> findAllByCust(String custId);
-	public List<UserOrder> findAllByRestId(int restId);
+	public List<UserOrder> findAllByRestId(String cust);
 }
