@@ -1,6 +1,9 @@
 package com.mycompany.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +15,17 @@ import lombok.Setter;
 @Data
 public class ResponseModel {
 
+	public List<String> getFoodorderid() {
+		return foodorderid;
+	}
+	public void setFoodorderid(List<String> foodorderid) {
+		this.foodorderid = foodorderid;
+	}
 	private String restId;
 	private String date;
 	private String uorderId ;
 	private String cust;
+	private List<String> foodorderid;
 	public ResponseModel(String restId, String date, String uorderId, String cust) {
 		super();
 		this.restId = restId;
@@ -25,6 +35,7 @@ public class ResponseModel {
 	}
 	public ResponseModel() {
 		super();
+		foodorderid=new ArrayList<String>();
 	}
 	public String getRestId() {
 		return restId;
