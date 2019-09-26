@@ -17,7 +17,7 @@ public class Populator implements ApplicationListener<ContextRefreshedEvent>{
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		populate();
+		//populate();
 	}
 
 	private void populate() {

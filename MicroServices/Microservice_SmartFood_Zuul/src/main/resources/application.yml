@@ -1,0 +1,39 @@
+server:
+  port: 8762
+spring:
+  application:
+    name: smartfood-zuul-server
+eureka:
+  client:
+    service-url:
+      default-zone: http://172.18.3.44:8761/eureka/
+zuul:
+  ignored-services: '*'
+  routes:
+    customer-physical:
+      path: /physical/**
+      service-id: customer-physical
+    customer-track:
+      path: /track/**
+      service-id: customer-track
+    customer-account:
+      path: /account/**
+      service-id: customer-account
+    custom-food-details-service:
+      path: /CFD/**
+      service-id: custom-food-details-service
+    basic-ingredient:
+      path: /BI/**
+      service-id: basic-ingredient
+    custom-ingredient-service:
+      path: /CIS/**
+      service-id: custom-ingredient-service
+    restaurant-ws:
+      path: /restaurant/**
+      service-id: restaurant-ws
+    customer-preference:
+      path: /preference/**
+      service-id: customer-preference
+    feign-register:
+      path: /register/**
+      service-id: feign-register

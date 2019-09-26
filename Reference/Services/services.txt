@@ -6,7 +6,7 @@ Customer :
 		(C4)-CRUD on Customer Orders (takes ca_uuid) [ManyToOne CustomerAccount,OneToOne Restaurant] -- Monisha 
 		(C5)-CRUD on Customer Tracking (takes ca_uuid) [OneToOne CustomerAccount] -- Vivek
 
-Restaurant:
+Restaurant:-
 
 	(R1)-CRUD on Restaurant  [] -- Aishwarya
 		(R2)-CRUD on Food (takes r_uuid and Food object) [@ManyToMany Restaurant] -- Poorvik
@@ -37,11 +37,9 @@ M2) Customer Registration Page: -- Neeraja
 	-the page Consumes C1 through F
 M3) Customer Preferences page: -- Sangamesh
 	-the page consumes C1, which consumes C2 and C3
-M4) Customer Restaurants page: --Neeraja
-	-the page consumes R1,C2,C3
+M4) Customer Restaurants/Food page: --Neeraja
+	-the page consumes R1,R2,R3
 M5) Customer Progress Page: (main algorithm logic) -- Chirag
-	-the page consumes C2,C3,C4 and C5
-M6) Customer Cart Summary Page & Payments Page:
+	-the page consumes R1,R2,R3,R4,C2,C3,C4 and C5
+M6) Customer Cart Summary Page & Payments Page: -- Aishwarya
 	-the page consumes C1 and R1, P1
-
- 

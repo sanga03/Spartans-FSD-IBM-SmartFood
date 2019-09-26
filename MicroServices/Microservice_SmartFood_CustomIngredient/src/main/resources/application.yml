@@ -5,9 +5,9 @@ spring:
     url: jdbc:mysql://172.18.4.177:3306/spartans
     username: chirag
     password: root
-  jpa:
-    hibernate:
-      ddl-auto: update
+  #jpa:
+    #hibernate:
+      #ddl-auto: update
 server:
   port: 9001
 eureka:
