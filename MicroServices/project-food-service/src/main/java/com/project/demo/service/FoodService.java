@@ -88,4 +88,17 @@ public class FoodService {
 		return selectedFoods;
 		
 	}
+	public List<Food> findFoodByRuid(String rUid)
+	{
+		List<Food> foods = foodRepository.findAll();
+		List<Food> selectedFoods = new ArrayList<Food>();
+		for(Food food:foods)
+		{
+			if(food.getRUid().equals(rUid))
+				selectedFoods.add(food);
+		}
+		
+		return selectedFoods;
+		
+	}
 }
