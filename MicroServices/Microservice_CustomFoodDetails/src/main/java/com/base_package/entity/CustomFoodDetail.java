@@ -29,10 +29,8 @@ public class CustomFoodDetail {
 	private Double price;
 	private Integer rating;
 	
-	@OneToOne
-	private Food food;
-	@OneToOne
-	private Restaurant restaurant;
+	private String foodUuid;
+	private String restaurantUuid;
 	
 	public CustomFoodDetail(String quantity, String imageLink, Double price, Integer rating) {
 		super();

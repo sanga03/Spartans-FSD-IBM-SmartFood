@@ -32,15 +32,13 @@ public class CustomFoodDetailController {
 	@PostMapping("/customFoodDetails")
 	public ResponseEntity<CustomFoodDetailResponseModel> create(
 			@RequestBody CustomFoodDetailRequestModel customFoodDetailRequestModel) {
+
 		modelMapper.getConfiguration().setAmbiguityIgnored(true);
 		CustomFoodDetailDTO customFoodDetailDTO = modelMapper.map(customFoodDetailRequestModel,
 				CustomFoodDetailDTO.class);
-		customFoodDetailDTO = customFoodDetailService.createCustomFoodDetail(customFoodDetailDTO,
-				customFoodDetailRequestModel.getFoodUuid(), customFoodDetailRequestModel.getRestaurantUuid());
+		customFoodDetailDTO = customFoodDetailService.createCustomFoodDetail(customFoodDetailDTO);
 		CustomFoodDetailResponseModel customFoodDetailResponseModel = modelMapper.map(customFoodDetailDTO,
 				CustomFoodDetailResponseModel.class);
-		customFoodDetailResponseModel.setFoodUuid(customFoodDetailDTO.getFood().getUuid());
-		customFoodDetailResponseModel.setRestaurantUuid(customFoodDetailDTO.getRestaurant().getUuid());
 		return ResponseEntity.status(HttpStatus.CREATED).body(customFoodDetailResponseModel);
 	}
 
@@ -58,6 +56,7 @@ public class CustomFoodDetailController {
 
 	@GetMapping("/customFoodDetails/{uuid}")
 	public ResponseEntity<CustomFoodDetailResponseModel> readByUuid(@PathVariable("uuid") String uuid) {
+
 		CustomFoodDetailDTO customFoodDetailDTO = customFoodDetailService.readByUuid(uuid);
 		CustomFoodDetailResponseModel customFoodDetailResponseModel = modelMapper.map(customFoodDetailDTO,
 				CustomFoodDetailResponseModel.class);
@@ -67,6 +66,7 @@ public class CustomFoodDetailController {
 	@PutMapping("/customFoodDetails/{uuid}")
 	public ResponseEntity<CustomFoodDetailResponseModel> update(
 			@RequestBody CustomFoodDetailRequestModel customFoodDetailRequestModel, @PathVariable("uuid") String uuid) {
+
 		CustomFoodDetailDTO customFoodDetailDTO = modelMapper.map(customFoodDetailRequestModel,
 				CustomFoodDetailDTO.class);
 		customFoodDetailDTO = customFoodDetailService.update(uuid, customFoodDetailDTO);
@@ -77,6 +77,7 @@ public class CustomFoodDetailController {
 
 	@DeleteMapping("/customFoodDetails/{uuid}")
 	public ResponseEntity<CustomFoodDetailResponseModel> delete(@PathVariable("uuid") String uuid) {
+
 		CustomFoodDetailDTO customFoodDetailDTO = customFoodDetailService.delete(uuid);
 		CustomFoodDetailResponseModel customFoodDetailResponseModel = modelMapper.map(customFoodDetailDTO,
 				CustomFoodDetailResponseModel.class);

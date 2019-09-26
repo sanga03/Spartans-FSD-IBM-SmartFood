@@ -10,11 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.base_package.DTO.CustomFoodDetailDTO;
 import com.base_package.entity.CustomFoodDetail;
-import com.base_package.entity.Food;
-import com.base_package.entity.Restaurant;
 import com.base_package.repository.CustomFoodDetailRepository;
-import com.base_package.repository.FoodRepository;
-import com.base_package.repository.RestaurantRepository;
 
 @Service
 public class CustomFoodDetailService {
@@ -22,20 +18,11 @@ public class CustomFoodDetailService {
 	@Autowired
 	private CustomFoodDetailRepository customFoodDetailRepository;
 	@Autowired
-	private FoodRepository foodRepository;
-	@Autowired
-	private RestaurantRepository restaurantRepository;
-	@Autowired
-	ModelMapper modelMapper;
+	private ModelMapper modelMapper;
 	
-	public CustomFoodDetailDTO createCustomFoodDetail(CustomFoodDetailDTO customFoodDetailDTO,String foodUuid,String restaurantUuid) {
+	public CustomFoodDetailDTO createCustomFoodDetail(CustomFoodDetailDTO customFoodDetailDTO) {
 		CustomFoodDetail customFoodDetail = modelMapper.map(customFoodDetailDTO, CustomFoodDetail.class);
 		customFoodDetail.setUuid("CFD_"+UUID.randomUUID().toString());
-		Food food = foodRepository.findById(foodRepository.customGetIdFromUuid(foodUuid)).get();
-		Restaurant restaurant = restaurantRepository.findById(restaurantRepository.customGetIdFromUuid(restaurantUuid)).get();
-		System.out.println(food+","+restaurant);
-		customFoodDetail.setFood(food);
-		customFoodDetail.setRestaurant(restaurant);
 		customFoodDetailRepository.save(customFoodDetail);
 		customFoodDetailDTO = modelMapper.map(customFoodDetail, CustomFoodDetailDTO.class);
 		return customFoodDetailDTO;
