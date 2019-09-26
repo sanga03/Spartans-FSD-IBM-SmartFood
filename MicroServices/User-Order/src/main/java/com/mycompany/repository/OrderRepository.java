@@ -9,11 +9,11 @@ import com.mycompany.entity.UserOrder;
 @Repository
 public interface OrderRepository extends JpaRepository <UserOrder, Integer>{
 
-	public Optional<UserOrder> findByUorderId(String uorderId);
-	public void deleteByUorderId(String uorderId);
-	public Optional<UserOrder> findByCust(String custId);
-	public Optional<UserOrder> findByDate(String date);
-	public List<UserOrder> findAllByDate(String date);
-	public List<UserOrder> findAllByCust(String custId);
-	public List<UserOrder> findAllByRestId(String cust);
+	public List<UserOrder> findByUorderId(String uorderId);
+//	public void deleteByUorderId(String uorderId);
+//	public Optional<UserOrder> findByCust(String custId);
+//	public Optional<UserOrder> findByDate(String date);
+//	public List<UserOrder> findAllByDate(String date);
+//	public List<UserOrder> findAllByCust(String custId);
+//	public List<UserOrder> findAllByRestId(String cust);
 }

@@ -1,52 +1,37 @@
 package com.mycompany.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import lombok.Data;
 
-@Entity 
+@Entity
 @Data
-@Table(name = "food")
+@Table(name = "Customer_order_food")
 public class Food {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Long id;
-	
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "userorderid")
+	private UserOrder UserOrder;
 	@Column(name = "fuid")
 	private String fUid;
-	
-	@Column(name = "imageLink")
-	private String image;//stores link of the image
-	
-	@Column(name = "name")
-	private String name;
 
-	@Column(name = "category")
-	private Boolean category;
-	
-	@Column(name = "cuisine")
-	private String cuisine;
-	
-	@Column(name = "rUid")
-	private String rUid;//dummy restaurant id	
+	@Column(name = "uorder_id")
+	private String uorderId;
 
-	public Food(String fUid, String image, String name, Boolean category, String cuisine) {
-		super();
-		this.fUid = fUid;
-		this.image = image;
-		this.name = name;
-		this.category = category;
-		this.cuisine = cuisine;
-	}
-
-	public Food() {
-		super();
-	}
+	@Column(name = "custfoodid")
+	private String custFoodId;
 
 	public Long getId() {
 		return id;
@@ -54,6 +39,14 @@ public class Food {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public UserOrder getUserOrder() {
+		return UserOrder;
+	}
+
+	public void setUserOrder(UserOrder userOrder) {
+		UserOrder = userOrder;
 	}
 
 	public String getfUid() {
@@ -64,46 +57,26 @@ public class Food {
 		this.fUid = fUid;
 	}
 
-	public String getImage() {
-		return image;
+	public String getUorderId() {
+		return uorderId;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setUorderId(String uorderId) {
+		this.uorderId = uorderId;
 	}
 
-	public String getName() {
-		return name;
+	public String getCustFoodId() {
+		return custFoodId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCustFoodId(String custFoodId) {
+		this.custFoodId = custFoodId;
 	}
 
-	public Boolean getCategory() {
-		return category;
+	@Override
+	public String toString() {
+		return "Food [UserOrder=" + UserOrder + ", fUid=" + fUid + ", uorderId=" + uorderId + ", custFoodId="
+				+ custFoodId + "]";
 	}
-
-	public void setCategory(Boolean category) {
-		this.category = category;
-	}
-
-	public String getCuisine() {
-		return cuisine;
-	}
-
-	public void setCuisine(String cuisine) {
-		this.cuisine = cuisine;
-	}
-
-	public String getrUid() {
-		return rUid;
-	}
-
-	public void setrUid(String rUid) {
-		this.rUid = rUid;
-	}
-	
 	
 }
-
