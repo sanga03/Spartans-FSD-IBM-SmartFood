@@ -17,7 +17,7 @@ public class CustomerTrackDto {
 	private Date tackingDate;
 	private MealTime mealTime;
 	private int calories;
-	private Customer customer;
+	private CustomerAccount customerAccount;
 	public CustomerTrackDto(Date tackingDate, int mealTime, int calories) {
 		super();
 		this.tackingDate = tackingDate;

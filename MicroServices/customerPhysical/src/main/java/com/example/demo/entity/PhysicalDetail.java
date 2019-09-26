@@ -5,10 +5,12 @@ import java.time.Period;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -32,8 +34,17 @@ public class PhysicalDetail {
      private float bmr;
      private int caloriesBurn;
      @OneToOne
-     private Customer customer;
+     private CustomerAccount customerAccount;
+	 public PhysicalDetail(int id, String uPuuid, Gender gender, int caloriesBurn) {
+		super();
+		this.id = id;
+		this.uPuuid = uPuuid;
+		this.gender = gender;
+		this.caloriesBurn = caloriesBurn;
+	}
 	
+     
+
       
    
 }

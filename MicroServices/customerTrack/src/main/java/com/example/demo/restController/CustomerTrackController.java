@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Customer;
+
+import com.example.demo.entity.CustomerAccount;
 import com.example.demo.entity.CustomerTrack;
 import com.example.demo.entity.CustomerTrackDto;
 import com.example.demo.repository.CustomerRepository;
@@ -41,13 +42,13 @@ public class CustomerTrackController {
 			
 		}
 	   
-	   @PostMapping("/customerTrack")
-	   public ResponseEntity<ResponseModel> insertPhysicalDetail(@RequestBody RequestModel requestModel)
-	   {    Customer cust = new Customer(4,"cHIRAG");
-	       customerRepository.save(cust);
+	   @PostMapping("/customerTrack/{cUuid}")
+	   public ResponseEntity<ResponseModel> insertPhysicalDetail(@RequestBody RequestModel requestModel,@PathVariable("cUuid") String cuuid)
+	   {    
+		   Optional<CustomerAccount> customerAccount = customerRepository.findByUid(cuuid);
 		   CustomerTrackDto customerTrackDto = new CustomerTrackDto(requestModel.getTackingDate(), requestModel.getMealTime(),requestModel.getCalories());
-		   customerTrackDto.setCustomer(cust);
-		   customerTrackDto=customerTrackService.insertcustomeTrackDto(customerTrackDto);
+		      customerTrackDto.setCustomerAccount(customerAccount.get());
+		      customerTrackDto = customerTrackService.insertcustomeTrackDto(customerTrackDto);
 		   ResponseModel responseModel = mapper.map(customerTrackDto, ResponseModel.class);
 		   
 		   return ResponseEntity.ok(responseModel);
@@ -66,12 +67,12 @@ public class CustomerTrackController {
 			   return ResponseEntity.ok(responseModel);
 		   }
 	   }
-	   @GetMapping("/customerTrack/byCustomer/{cId}")
-	   public ResponseEntity<ResponseModel> findCustomerTrackByCustomer(@PathVariable("cId") String s)
+	   @GetMapping("/customerTrack/byCustomer/{cuuid}")
+	   public ResponseEntity<ResponseModel> findCustomerTrackByCustomer(@PathVariable("cuuid") String s)
 	   {
-		   int cId = Integer.parseInt(s);
-		   Optional<Customer> tempCustomer = customerRepository.findById(cId);
-		   Optional<CustomerTrack> cDetail = customerTrackRepository.findByCustomer(tempCustomer.get());
+		   
+		   Optional<CustomerAccount> tempCustomer = customerRepository.findByUid(s);
+		   Optional<CustomerTrack> cDetail = customerTrackRepository.findByCustomerAccount(tempCustomer.get());
 		   ResponseModel responseModel = mapper.map(cDetail.get(), ResponseModel.class);
 		   return ResponseEntity.ok(responseModel);
 		   
