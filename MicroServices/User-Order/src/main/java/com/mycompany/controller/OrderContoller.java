@@ -57,17 +57,18 @@ public class OrderContoller {
 	}catch (Exception e) {
 		e.printStackTrace();
 		return false;
-	}
-	
-	
-	
-	
-	
+	}	
 		
 //		UserOrder uo = userOrder.createOrder(mapper.map(req,UserOrder.class));
 		
 	
 	}
+	
+	@GetMapping("listId/{custId}")
+	public List<ResponseModel> getAllOrdersbyId(@PathVariable String custId){
+		return userOrder.getAllById(custId);
+	}
+	
 	
 	
 	@GetMapping("list")
@@ -77,7 +78,7 @@ public class OrderContoller {
 	
 	
 	@GetMapping("findByUid/{uorderId}")
-	public ResponseModel getAllOrdersbyId(@PathVariable String uorderId){
+	public ResponseModel getOrderbyId(@PathVariable String uorderId){
 	return userOrder.getById(uorderId);	
 	}
 //	
