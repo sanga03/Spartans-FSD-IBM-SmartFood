@@ -33,6 +33,8 @@ public class UserOrderService {
 		order.setUorderId(UUID.randomUUID().toString());
 		System.out.println(order.getUorderId());
 		orderRepo.save(order);
+//		System.out.println(order.getCust());
+//		System.out.println(order.getRestId());
 		return order;
 	}
 	
@@ -97,9 +99,9 @@ public class UserOrderService {
 	}
 	
 	//find all by restId
-	public List<UserOrder> findAllByRes(int rest)
+	public List<UserOrder> findAllByRes(String cust)
 	{
-		return orderRepo.findAllByRestId(rest);
+		return orderRepo.findAllByRestId(cust);
 	}
 	
 	//find all y custId

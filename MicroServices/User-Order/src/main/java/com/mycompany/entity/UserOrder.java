@@ -25,7 +25,7 @@ public class UserOrder {
 	@Column(name = "id")
 	private int id;
 	@Column(name = "rest_id")
-	private int restId;
+	private String restId;
 	@Column(name = "date")
 	private String date;
 	@Column(name = "uorder_id")
@@ -37,12 +37,12 @@ public class UserOrder {
 	private List<Food> foodId;
 	
 		
-	public UserOrder(int restId, String date) {
+	public UserOrder(String restId, String date) {
 		super();
 		this.restId = restId;
 		this.date = date;
 	}
-	public UserOrder(int restId, String date, List<Food> foodId, String cust) {
+	public UserOrder(String restId, String date, List<Food> foodId, String cust) {
 		super();
 		this.restId = restId;
 		this.date = date;
@@ -55,10 +55,10 @@ public class UserOrder {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getRestId() {
+	public String getRestId() {
 		return restId;
 	}
-	public void setRestId(int restId) {
+	public void setRestId(String restId) {
 		this.restId = restId;
 	}
 	public String getDate() {
@@ -83,10 +83,10 @@ public class UserOrder {
 	}
 	
 	
-	public String getcust() {
+	public String getCust() {
 		return cust;
 	}
-	public void setcust(String cust) {
+	public void setCust(String cust) {
 		this.cust = cust;
 	}
 	public UserOrder() {
