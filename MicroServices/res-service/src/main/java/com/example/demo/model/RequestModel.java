@@ -6,13 +6,23 @@ public class RequestModel {
 	private Long contact;
 	private double rating;
 	private String location;
+	private String co_ordinates;
 
-	public RequestModel(String name, Long contact, double rating, String location) {
+	public RequestModel(String name, Long contact, double rating, String location, String co_ordinates) {
 		super();
 		this.name = name;
 		this.contact = contact;
 		this.rating = rating;
 		this.location = location;
+		this.co_ordinates = co_ordinates;
+	}
+
+	public String getCo_ordinates() {
+		return co_ordinates;
+	}
+
+	public void setCo_ordinates(String co_ordinates) {
+		this.co_ordinates = co_ordinates;
 	}
 
 	public RequestModel() {
@@ -50,6 +60,5 @@ public class RequestModel {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
 
-	}
+}

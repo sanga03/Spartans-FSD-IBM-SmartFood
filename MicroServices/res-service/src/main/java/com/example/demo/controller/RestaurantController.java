@@ -39,49 +39,6 @@ public class RestaurantController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(restaurant);
 	}
 
-	// Display all
-	@GetMapping("/restaurants")
-	public List<ResponseModel> getRestaurants() {
-		List<Restaurant> restaurant = service.getAllRestaurants();
-		ModelMapper mapper = new ModelMapper();
-		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		List<ResponseModel> restaurants = new ArrayList<ResponseModel>();
-		for(Restaurant r:restaurant)
-			restaurants.add(mapper.map(r,ResponseModel.class));
-		return restaurants;
-	}
-
-	// Display by ID
-	@GetMapping("/restaurantid/{id}")
-	public ResponseModel findRestaurant(@PathVariable("id") String resID) {
-		ModelMapper mapper = new ModelMapper();
-		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		Restaurant restaurant = service.findRestaurant(resID);
-		ResponseModel model = mapper.map(restaurant, ResponseModel.class);
-		return (model);
-
-	}
-	
-	// Display by name
-	@GetMapping("restaurantname/{name}")
-	public ResponseModel findResByName(@PathVariable("name") String name) {
-		ModelMapper mapper = new ModelMapper();
-		Restaurant restaurant = service.findResByName(name);
-		ResponseModel model = mapper.map(restaurant, ResponseModel.class);
-		return (model);
-	}
-	
-	
-	
-	// Delete by ID
-	@DeleteMapping("/restaurants/{id}")
-	public ResponseEntity<ResponseModel> deleteRestaurant(@PathVariable("id") String resID) {
-		ModelMapper mapper = new ModelMapper();
-		Restaurant restaurant = service.deleteRestaurant(resID);
-		ResponseModel model = mapper.map(restaurant, ResponseModel.class);
-		return ResponseEntity.ok(model);
-	}
-
 	// Update by ID
 	@PutMapping("/restaurants/{id}")
 	public ResponseEntity<ResponseModel> updateRestaurant(@RequestBody RequestModel restaurantDetail,
@@ -93,41 +50,82 @@ public class RestaurantController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(restaurant);
 
 	}
-	
-	//Display all by location
-		@GetMapping("alllocation/{location}")
-		public List<ResponseModel> findResByLocation(@PathVariable("location") String location) {
-			ModelMapper mapper = new ModelMapper();
-			List<Restaurant> restaurant = service.findResByLocation(location);
-			List<ResponseModel> res = new ArrayList<ResponseModel>();
-			for(Restaurant r:restaurant)
-				res.add(mapper.map(r, ResponseModel.class));
-				
-			return res;
-		}
-	
-	//find all by name
+
+	// Display all restaurants
+	@GetMapping("/restaurants")
+	public List<ResponseModel> getRestaurants() {
+		List<Restaurant> restaurant = service.getAllRestaurants();
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		List<ResponseModel> restaurants = new ArrayList<ResponseModel>();
+		for (Restaurant r : restaurant)
+			restaurants.add(mapper.map(r, ResponseModel.class));
+		return restaurants;
+	}
+
+	// Find by ID
+	@GetMapping("/restaurantid/{id}")
+	public ResponseModel findRestaurant(@PathVariable("id") String resID) {
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		Restaurant restaurant = service.findRestaurant(resID);
+		ResponseModel model = mapper.map(restaurant, ResponseModel.class);
+		return (model);
+
+	}
+
+	// Delete by ID
+	@DeleteMapping("/restaurants/{id}")
+	public ResponseEntity<ResponseModel> deleteRestaurant(@PathVariable("id") String resID) {
+		ModelMapper mapper = new ModelMapper();
+		Restaurant restaurant = service.deleteRestaurant(resID);
+		ResponseModel model = mapper.map(restaurant, ResponseModel.class);
+		return ResponseEntity.ok(model);
+	}
+
+	// find all by name
 	@GetMapping("allname/{name}")
 	public List<ResponseModel> findAllByName(@PathVariable("name") String name) {
 		ModelMapper mapper = new ModelMapper();
 		List<Restaurant> restaurant = service.findAllResByName(name);
 		List<ResponseModel> res = new ArrayList<ResponseModel>();
-		for(Restaurant r:restaurant)
+		for (Restaurant r : restaurant)
 			res.add(mapper.map(r, ResponseModel.class));
-			
+
 		return res;
 	}
-	
-	//find all by rating
+
+	// Display all by location
+	@GetMapping("alllocation/{location}")
+	public List<ResponseModel> findResByLocation(@PathVariable("location") String location) {
+		ModelMapper mapper = new ModelMapper();
+		List<Restaurant> restaurant = service.findResByLocation(location);
+		List<ResponseModel> res = new ArrayList<ResponseModel>();
+		for (Restaurant r : restaurant)
+			res.add(mapper.map(r, ResponseModel.class));
+
+		return res;
+	}
+
+	// find all by rating
 	@GetMapping("allrating/{rating}")
-	public List<ResponseModel> findAllResByRating(@PathVariable("rating") double rating)
-	{
+	public List<ResponseModel> findAllResByRating(@PathVariable("rating") double rating) {
 		ModelMapper mapper = new ModelMapper();
 		List<Restaurant> restaurant = service.findAllResByRating(rating);
 		List<ResponseModel> res = new ArrayList<ResponseModel>();
-		for(Restaurant r:restaurant)
+		for (Restaurant r : restaurant)
 			res.add(mapper.map(r, ResponseModel.class));
-			
+
 		return res;
 	}
+
+	// Display by name
+	@GetMapping("restaurantname/{name}")
+	public ResponseModel findResByName(@PathVariable("name") String name) {
+		ModelMapper mapper = new ModelMapper();
+		Restaurant restaurant = service.findResByName(name);
+		ResponseModel model = mapper.map(restaurant, ResponseModel.class);
+		return (model);
+	}
+
 }

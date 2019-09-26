@@ -10,24 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="restaurant_service")
+@Table(name = "restaurant_service")
 public class Restaurant {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name = "id")
 	private Long id;
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
-	@Column(name="contact")
+	@Column(name = "contact")
 	private Long contact;
-	@Column(name="rating")
+	@Column(name = "rating")
 	private double rating;
-	@Column(name="res_id")
+	@Column(name = "res_id")
 	private String resId;
-	@Column(name="location")
+	@Column(name = "location")
 	private String location;
-	@Column(name="co_ordinates")
+	@Column(name = "co_ordinates")
 	private String co_ordinates;
 
 	public Restaurant() {
@@ -99,7 +99,5 @@ public class Restaurant {
 	public void setCo_ordinates(String co_ordinates) {
 		this.co_ordinates = co_ordinates;
 	}
-	
 
-	
 }
