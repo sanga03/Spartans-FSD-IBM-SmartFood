@@ -8,7 +8,7 @@ import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
   styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
-  @ViewChild(SelectAutocompleteComponent) multiselect:SelectAutocompleteComponent;
+ // @ViewChild(SelectAutocompleteComponent) multiselect:SelectAutocompleteComponent;
   
   options = [
     {
@@ -31,7 +31,8 @@ export class CustomerProfileComponent implements OnInit {
       value: '6'
     }
   ];
-   
+   oops=["dasd",
+  "sdada","asdadad"]
   
   //  myControl = new FormControl();
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
@@ -105,14 +106,14 @@ export class CustomerProfileComponent implements OnInit {
     
      
  }
- onToggleDropdown() {
-  this.multiselect.toggleDropdown();
-}
+
  redirectToHome()
  {  sessionStorage.removeItem('email');
    this.router.navigate(['home']);
  }
-
+ setPreferenceDetail(){
+   
+ }
  setPhysicalDetail()
  {   var d:Date = this.physicalDetailForm.get('dob').value;
  let upuuid=sessionStorage.getItem("upuuid");
