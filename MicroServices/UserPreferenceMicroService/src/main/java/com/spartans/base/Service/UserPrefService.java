@@ -1,6 +1,7 @@
 package com.spartans.base.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,6 +33,8 @@ public class UserPrefService {
 	for(UserPreferences preference:preferences) {
 		FinalResponceModel model = new FinalResponceModel();
 		model.setUUuid(preference.getUUuid());
+		Date date = new Date(finalReqModel.getTargetDate());
+		model.setTargetDate(date);
 		model.setUprUuid(preference.getUprUuid());
 		model.setTargetWeight(preference.getTargetWeight());
 		model.setCategory(preference.getCategory());
@@ -98,6 +101,7 @@ public class UserPrefService {
 			userPreferences.setCategory(finalReqModel.getCategory());
 			userPreferences.setUprUuid(finalReqModel.getUprUuid());
 			userPreferences.setUUuid(finalReqModel.getUUuid());
+			userPreferences.setTargetDate(finalReqModel.getTargetDate());
 			int id = userPrefRepo.findId(uUuid);
 //			userPreferences.setId(id);
 		userPrefRepo.deleteById(id);

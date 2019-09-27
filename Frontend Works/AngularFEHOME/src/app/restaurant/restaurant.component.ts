@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantComponent implements OnInit {
   restaurantList: restaurantResponse[]
+  criteria:string;
   constructor() { }
 
-  ngOnInit() {  
-
+  ngOnInit() {   
+    this.criteria = sessionStorage.getItem("criteria");
+    let url = "http://b4ibm23.iiht.tech:8010/restaurant/findBy/"+this.criteria;
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>{
+      this.restaurantList = data;
+    })
     this.restaurantList = [
       {  
         name: "Dominos",

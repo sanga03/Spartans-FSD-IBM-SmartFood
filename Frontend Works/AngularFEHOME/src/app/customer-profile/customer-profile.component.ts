@@ -8,7 +8,7 @@ import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
   styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
-  @ViewChild(SelectAutocompleteComponent) multiselect:SelectAutocompleteComponent;
+ // @ViewChild(SelectAutocompleteComponent) multiselect:SelectAutocompleteComponent;
   
   options = [
     {
