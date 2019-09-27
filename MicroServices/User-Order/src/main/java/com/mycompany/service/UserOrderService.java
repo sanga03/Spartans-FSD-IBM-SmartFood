@@ -48,7 +48,8 @@ public class UserOrderService {
 	public List<ResponseModel> getAll(){
 		List<UserOrder> orders = orderRepo.findAll();
 		List<ResponseModel> models =new ArrayList<ResponseModel>();
-		for(UserOrder order:orders) {
+		for(UserOrder order:orders) 
+		{
 			ResponseModel model = new ResponseModel();
 			model.setCust(order.getCustomerId());
 			model.setDate(order.getDate());
@@ -93,28 +94,31 @@ public class UserOrderService {
 	}
 	
 	public List<ResponseModel> getAllById(String custId) {
-		List<UserOrder> list = orderRepo.findAllByCustomerId(custId);
-		List<ResponseModel> modelList = new ArrayList<ResponseModel>();
-		for(UserOrder l:list)
+		List<UserOrder> orders = orderRepo.findAllByCustomerId(custId);
+		List<ResponseModel> models =new ArrayList<ResponseModel>();
+		for(UserOrder order:orders) 
 		{
-			for(ResponseModel m:modelList)
-			{
-				List<Food> foodObj = foodRepo.findAllByUorderId(l.getUorderId());
-				List<String> foods = new ArrayList<String>();
-				m.setCust(l.getCustomerId());
-				m.setDate(l.getDate());
-				m.setRestId(l.getRestId());
-				m.setUorderId(l.getUorderId());
-				for(Food f:foodObj)
-					foods.add(f.getCustFoodId());
-				m.setFoodorderid(foods);
-				
-			}
-			
-		}
-		return modelList;
-	}
+			ResponseModel model = new ResponseModel();
+			model.setCust(order.getCustomerId());
+			model.setDate(order.getDate());
+			model.setRestId(order.getRestId());
+			model.setUorderId(order.getUorderId());
+			List<String> list = new ArrayList<String>();
+			System.out.println(order.getUorderId());
 	
+			List<Food> foods = foodRepo.findAllByUorderId(order.getUorderId());
+			for(Food food:foods)
+			{
+				System.out.println(food);
+				list.add(food.getCustFoodId());
+			}
+			System.out.println(list);
+			model.setFoodorderid(list);
+			models.add(model);
+		}
+		
+			return models;
+	}
 //	
 //	//get all orders
 //	public List<UserOrder> getAllOrders() {
