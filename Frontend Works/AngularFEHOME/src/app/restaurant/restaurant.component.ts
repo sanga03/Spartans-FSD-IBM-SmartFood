@@ -29,7 +29,7 @@ export class RestaurantComponent implements OnInit {
        location: "White Field",
        co_ordinates: "1,2",
        resId: "12567",
-       imageUrl: "https://cms.groupeditors.com/img/3057b75c-eb10-4e4e-a973-cde552d10a42.jpg",
+       imageUrl: "https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/customFoodImages/chickenBiryani.jpg",
  
         },
       {
