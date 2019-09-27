@@ -12,8 +12,8 @@ export class SignComponent implements OnInit {
   @ViewChild('openModal',undefined) openModal:ElementRef;
   status:number = 0
   loginForm = new FormGroup({
-    email: new FormControl('vivek@gg.com'),
-    password: new FormControl('shukla'),
+    email: new FormControl('spamme017@yandex.com'),
+    password: new FormControl('Sa@123'),
   });
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 

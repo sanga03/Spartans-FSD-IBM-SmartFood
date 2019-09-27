@@ -9,11 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class CustomerProfileComponent implements OnInit {
 
-   userName:string;
-   email:string;
-   customerObj:any
-   customerPhysicalDetail:any
-   physicalDetailForm:any
+   
    options: string[] = ['One', 'Two', 'Three'];
     allStates:['One', 'Two', 'Three'];
     title = 'materialApp';
@@ -22,14 +18,20 @@ export class CustomerProfileComponent implements OnInit {
   userName:string;
   email:string;
   customerObj:any
-  customerPhysicalDetail:physicalModel
+  customerPhysicalDetail:physicalModel = {
+    height:0,
+    weight:0,
+    dob:new Date(),
+    gender:"male",
+    caloriesBurn:134,
+    uPuuid:"0" 
+  }
   physicalDetailForm =  new FormGroup({
-   height: new FormControl(),
+   height: new FormControl(Number(sessionStorage.getItem("height"))),
    weight: new FormControl( ),
    gender: new FormControl( ),
    dob: new FormControl() })
- constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
-
+ 
  ngOnInit() { 
    this.email = sessionStorage.getItem('email');
    console.log(this.email);
@@ -57,6 +59,10 @@ export class CustomerProfileComponent implements OnInit {
            this.customerPhysicalDetail.caloriesBurn=data.caloriesBurn;
            this.customerPhysicalDetail.dob=data.dob
            this.customerPhysicalDetail.gender=data.gender
+           this.customerPhysicalDetail.upuuid=data.upuuid;
+           sessionStorage.setItem("height",String(this.customerPhysicalDetail.height));
+           sessionStorage.setItem("upuuid",this.customerPhysicalDetail.upuuid);
+           console.log(data);
            this.physicalDetailForm =  new FormGroup({
              height: new FormControl(this.customerPhysicalDetail.height),
              weight: new FormControl( this.customerPhysicalDetail.weight),
@@ -77,14 +83,16 @@ export class CustomerProfileComponent implements OnInit {
 
  setPhysicalDetail()
  {   var d:Date = this.physicalDetailForm.get('dob').value;
-     var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+this.customerObj.uid;
+ let upuuid=sessionStorage.getItem("upuuid");
+    console.log(upuuid);
+     var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+upuuid;
      console.log(this.physicalDetailForm.get('weight').value);
      console.log(url);
      console.log(d.getTime);
      fetch(
        url,
        {
-         method: 'POST',
+         method: 'PUT',
          headers:{
              'content-type':'application/json'
          },
@@ -116,5 +124,6 @@ export interface physicalModel
  dob:Date;
  gender:string
  caloriesBurn:number;
+ upuuid:string;
 }
 
