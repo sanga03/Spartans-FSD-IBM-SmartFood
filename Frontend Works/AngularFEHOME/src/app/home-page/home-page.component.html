@@ -29,15 +29,15 @@
 
               </div>
                     
-              
-                <div>
-
-                </div> 
-                <form>
-                    <input type="text" placeholder="Search Restaurant...">
-                    <div class="search"></div>
-                </form>
+              <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
+            
+                <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
+                <div (click)="redirectToRestaurant()"  class="search"> </div>
+              </form>
                 
+                <!-- <input type="text" placeholder="Search Restaurant...">
+                <div class="search"></div> -->
+
                 
         </div>      
 

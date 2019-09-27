@@ -1,6 +1,7 @@
 package com.spartans.base.Controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -55,6 +56,7 @@ public class UserPrefController {
 		model.setUprUuid(userPreferences.getUprUuid());
 		model.setTargetWeight(userPreferences.getTargetWeight());
 		model.setCategory(userPreferences.getCategory());
+		model.setTargetDate(userPreferences.getTargetDate());
 //	List<Cuisines> cusines = userPreferences.findAllByUserPreferencesId(userPrefRepo.findId(preference.getUUuid()));
 		List<String> list = new ArrayList<String>();
 		for (Cuisines cuisines1 : userPrefService.getAlluserPrefsbyCus(uUuid)) {
@@ -73,6 +75,8 @@ public class UserPrefController {
 			userPreferences.setCategory(finalReqModel.getCategory());
 			userPreferences.setTargetWeight(finalReqModel.getTargetWeight());
 			userPreferences.setUUuid(finalReqModel.getUUuid());
+			Date date = new Date(finalReqModel.getTargetDate());
+			userPreferences.setTargetDate(date);
 			userPreferences.setUprUuid("UP" + Math.random() * 10000);
 System.out.println(finalReqModel.getUUuid());
 System.out.println(userPreferences.getUUuid());
