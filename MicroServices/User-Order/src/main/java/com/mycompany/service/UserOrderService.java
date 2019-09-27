@@ -92,6 +92,29 @@ public class UserOrderService {
 		
 	}
 	
+	public List<ResponseModel> getAllById(String custId) {
+		List<UserOrder> list = orderRepo.findAllByCustomerId(custId);
+		List<ResponseModel> modelList = new ArrayList<ResponseModel>();
+		for(UserOrder l:list)
+		{
+			for(ResponseModel m:modelList)
+			{
+				List<Food> foodObj = foodRepo.findAllByUorderId(l.getUorderId());
+				List<String> foods = new ArrayList<String>();
+				m.setCust(l.getCustomerId());
+				m.setDate(l.getDate());
+				m.setRestId(l.getRestId());
+				m.setUorderId(l.getUorderId());
+				for(Food f:foodObj)
+					foods.add(f.getCustFoodId());
+				m.setFoodorderid(foods);
+				
+			}
+			
+		}
+		return modelList;
+	}
+	
 //	
 //	//get all orders
 //	public List<UserOrder> getAllOrders() {

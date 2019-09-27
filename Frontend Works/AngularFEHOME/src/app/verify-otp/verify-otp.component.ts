@@ -41,7 +41,6 @@ let email = sessionStorage.getItem("demail");
             this.customerObj=data;
             console.log(this.customerObj.uid)
             this.setPhysicalDetail(this.customerObj.uid)
-            this.userName=data.name;
             
           })
 
@@ -74,7 +73,7 @@ this.router.navigate(["login"])
            "dob":date,
            "caloriesBurn": 0,
            "gender": 0
-          
+
           })
       }).then(res=>res.json())
       .then(data=>{

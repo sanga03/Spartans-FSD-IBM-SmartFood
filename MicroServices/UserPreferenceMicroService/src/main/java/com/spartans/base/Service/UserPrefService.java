@@ -1,15 +1,17 @@
 package com.spartans.base.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import com.spartans.base.Entity.Cuisines;
 import com.spartans.base.Entity.UserPreferences;
+import com.spartans.base.Model.FinalReqModel;
 import com.spartans.base.Model.FinalResponceModel;
 import com.spartans.base.Model.RespCusine;
 import com.spartans.base.Model.ResponceModelPrefCus;
@@ -61,27 +63,26 @@ public class UserPrefService {
 		}
 	}
 
-	public boolean addUserCus(Set<RespCusine> set, String uUuid) {
+	public boolean addUserCus(Set<Cuisines> cuisinesl, String uUuid) {
 		int counter = 1;
 		try {
 			counter = cuisineRepo.findTopByOrderByIdDesc().getId();
 		} catch (Exception e) {
 			counter = 1;
 		}
-		ModelMapper mapper = new ModelMapper();
+//		ModelMapper mapper = new ModelMapper();
 		try {
-			for (RespCusine cuisineR : set) {
-				Cuisines cuisine = mapper.map(cuisineR, Cuisines.class);
-				Integer id = userPrefRepo.findId(uUuid);
-				cuisine.setUUuid(uUuid);
-				System.out.println(id);
+			for (Cuisines cuisine : cuisinesl) {
+//				Cuisines cuisine = mapper.map(cuisineR, Cuisines.class);
+//				Integer id = userPrefRepo.findId(uUuid);
+//				cuisine.setUUuid(uUuid);
+//				System.out.println(id);
 				cuisine.setId(++counter);
-				cuisine.setUserPreferences(userPrefRepo.findById(id).get());
-				System.out.println(cuisine);
+//				cuisine.setUserPreferences(userPrefRepo.findById(id).get());
+//				System.out.println(cuisine);
 				cuisineRepo.saveAndFlush(cuisine);
 				System.out.println(cuisineRepo.findTopByOrderByIdDesc());
 				counter = cuisineRepo.findTopByOrderByIdDesc().getId();
-
 			}
 			return true;
 		} catch (Exception e) {
@@ -90,13 +91,42 @@ public class UserPrefService {
 		}
 	}
 
-	public boolean updatepref(UserPreferences userPreferences, String uUuid) {
+	public boolean updatepref(FinalReqModel finalReqModel, String uUuid) {
 		try {
+			UserPreferences userPreferences = new UserPreferences();
+			userPreferences.setTargetWeight(finalReqModel.getTargetWeight());
+			userPreferences.setCategory(finalReqModel.getCategory());
+			userPreferences.setUprUuid(finalReqModel.getUprUuid());
+			userPreferences.setUUuid(finalReqModel.getUUuid());
 			int id = userPrefRepo.findId(uUuid);
-			userPreferences.setId(id);
+//			userPreferences.setId(id);
+		userPrefRepo.deleteById(id);
 			System.out.println(id);
+			System.out.println(userPreferences);
+			
+//			cuisineRepo.deleteAllByUUuid(uUuid);
+					
+			Set<Cuisines> cuisinesl = new HashSet<Cuisines>();
+			List<String> list = finalReqModel.getCusines();
+			for (String lis : list) {
+				Cuisines cuisines=new Cuisines();
+				cuisines.setUUuid(userPreferences.getUUuid());
+				System.out.println(cuisines.getUUuid());
+				cuisines.setUserPreferences(userPreferences);
+				cuisines.setCuisine(lis);
+				cuisinesl.add(cuisines);
+				
+			}
 			userPrefRepo.save(userPreferences);
+			addUserCus(cuisinesl, uUuid);
+			userPreferences.setCuisines(cuisinesl);
+			
+			
+//		
+			
 			return true;
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -132,20 +162,21 @@ public class UserPrefService {
 		return userPrefRepo.findById(userPrefRepo.findId(uUuid)).get();
 	}
 
-	public boolean updatepref(ResponceModelPrefCus responceModelPrefCus, String uUuid) {
-		try {
-			UserPreferences userPreferences = responceModelPrefCus.getUserPreferences();
-			int id = userPrefRepo.findId(uUuid);
-			userPreferences.setId(id);
-			System.out.println(id);
-			System.out.println(userPreferences);
-			userPrefRepo.save(userPreferences);
-//			updateUserCus(responceModelPrefCus.getCuisines(), userPreferences.getUUuid());
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-			// TODO: handle exception
-		}
-	}
+//	public boolean updatepref(ResponceModelPrefCus responceModelPrefCus, String uUuid) {
+//		try {
+//			UserPreferences userPreferences = new UserPreferences();
+//			int id = userPrefRepo.findId(uUuid);
+//	     	System.out.println(id);
+//			userPreferences.setId(id);
+//			System.out.println(id);
+//			System.out.println(userPreferences);
+//			userPrefRepo.save(userPreferences);
+////			updateUserCus(responceModelPrefCus.getCuisines(), userPreferences.getUUuid());
+//			return true;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return false;
+//			// TODO: handle exception
+//		}
+//	}
 }
