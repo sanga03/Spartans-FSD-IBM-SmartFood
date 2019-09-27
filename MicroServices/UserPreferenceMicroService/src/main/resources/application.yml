@@ -19,6 +19,10 @@ spring:
     password: mysql
     username: root
     url: jdbc:mysql://localhost:3306/spartans
+  jpa:
+    hibernate:
+      ddl-auto: update
+
 #spring.datasource.url=jdbc:h2:mem:testdb
 #spring.datasource.username=sa
 #spring.datasource.password=sa
@@ -28,7 +32,6 @@ server:
 #spring.datasource.url=jdbc:mysql://remotemysql.com:3306/NfKf9WG8tS
 #spring.datasource.username=NfKf9WG8tS
 #spring.datasource.password=EjmCvI170M
-
 
 #user= NfKf9WG8tS
 #db =NfKf9WG8tS

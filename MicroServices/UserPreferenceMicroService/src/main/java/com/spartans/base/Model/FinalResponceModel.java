@@ -1,6 +1,7 @@
 package com.spartans.base.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import lombok.Data;
@@ -11,6 +12,7 @@ public class FinalResponceModel {
 	String uprUuid;
 	int category;
 	Float targetWeight;
+	Long targetDate;
 	List<String> cusines;
 	public FinalResponceModel() {
 		super();
