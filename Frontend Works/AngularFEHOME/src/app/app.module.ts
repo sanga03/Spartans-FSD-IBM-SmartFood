@@ -13,7 +13,8 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
- 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatAutocompleteModule,MatInputModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,14 +27,20 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
     CustomerProfileComponent,
     AboutUsComponent,
     RegisterComponent,
-    VerifyOtpComponent
+    VerifyOtpComponent,
+   
+
   ],
   imports: [
     BrowserModule,
     NgbModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatInputModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

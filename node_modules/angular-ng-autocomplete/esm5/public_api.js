@@ -1,0 +1,14 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,uselessCode} checked by tsc
+ */
+/*
+ * Public API Surface of autocomplete-lib
+ */
+export { AutocompleteLibService } from './lib/autocomplete-lib.service';
+export { AutocompleteLibComponent } from './lib/autocomplete-lib.component';
+export { AutocompleteLibModule } from './lib/autocomplete-lib.module';
+export { AutocompleteComponent } from './lib/autocomplete/autocomplete.component';
+export { HighlightPipe } from './lib/autocomplete/highlight.pipe';
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2FuZ3VsYXItbmctYXV0b2NvbXBsZXRlLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsdUNBQWMsZ0NBQWdDLENBQUM7QUFDL0MseUNBQWMsa0NBQWtDLENBQUM7QUFDakQsc0NBQWMsK0JBQStCLENBQUM7QUFDOUMsc0NBQWMsMkNBQTJDLENBQUM7QUFDMUQsOEJBQWMsbUNBQW1DLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIGF1dG9jb21wbGV0ZS1saWJcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9hdXRvY29tcGxldGUtbGliLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0b2NvbXBsZXRlLWxpYi5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0b2NvbXBsZXRlLWxpYi5tb2R1bGUnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0b2NvbXBsZXRlL2F1dG9jb21wbGV0ZS5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvYXV0b2NvbXBsZXRlL2hpZ2hsaWdodC5waXBlJztcblxuIl19

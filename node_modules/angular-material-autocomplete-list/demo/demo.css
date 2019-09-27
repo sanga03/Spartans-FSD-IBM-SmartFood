@@ -1,0 +1,25 @@
+body, md-content {
+  background-color: #EEE;
+}
+
+md-card h2 {
+  padding-left: 15px;
+}
+
+pre {
+  margin-left: 30px;
+  word-wrap: break-word;
+}
+
+input[type=number] {
+  width: 100px;
+}
+
+.last-name {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.first-name {
+  font-style: italic;
+}

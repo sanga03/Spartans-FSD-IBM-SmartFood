@@ -13,6 +13,10 @@ export class CustomerProfileComponent implements OnInit {
    customerObj:any
    customerPhysicalDetail:any
    physicalDetailForm:any
+   options: string[] = ['One', 'Two', 'Three'];
+    allStates:['One', 'Two', 'Three'];
+    title = 'materialApp';
+  //  myControl = new FormControl();
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 
   ngOnInit() { 
