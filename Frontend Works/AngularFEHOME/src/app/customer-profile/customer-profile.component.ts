@@ -8,6 +8,17 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
+
+   userName:string;
+   email:string;
+   customerObj:any
+   customerPhysicalDetail:any
+   physicalDetailForm:any
+   options: string[] = ['One', 'Two', 'Three'];
+    allStates:['One', 'Two', 'Three'];
+    title = 'materialApp';
+  //  myControl = new FormControl();
+  constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
   userName:string;
   email:string;
   customerObj:any

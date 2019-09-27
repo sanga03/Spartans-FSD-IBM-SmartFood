@@ -1,0 +1,127 @@
+<!doctype html>
+<html ng-app="autocompleteList.demo">
+  <head>
+    <meta charset="utf-8">
+    <title>AngularJS autocomplete-list demo</title>
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="../node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="../node_modules/angular-material/angular-material.min.js"></script>
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">
+
+    <link rel="stylesheet" href="demo.css">
+  </head>
+  <body layout="column">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2 class="md-flex">Angular Material Autocomplete List</h2>
+      </div>
+    </md-toolbar>
+    <md-content ng-controller="demoCtrl as ctrl">
+      <md-card>
+        <h2 class="headline">Basic Usage</h2>
+        <md-card-content>
+          <p>
+            This is the most basic usage of the autocomplete-list directive.
+          </p>
+          <pre>
+&lt;autocomplete-list
+  ng-model  ="ctrl.selectedPeople"
+  items     ="ctrl.allPeople"
+  item-text ="item.firstName + ' ' + item.lastName"
+  item-id   ="item.age"&gt;
+&lt;/autocomplete-list&gt;
+          </pre>
+
+          <h3 class="md-title">Result:</h3>
+          <div>
+            <autocomplete-list ng-model="ctrl.selectedPeople[0]" items="ctrl.allPeople" item-text="item.firstName + ' ' + item.lastName"></autocomplete-list>
+          </div>
+
+          <pre>ctrl.selectedPeople = {{ ctrl.selectedPeople }}</pre>
+        </md-card-content>
+      </md-card>
+
+      <md-card>
+        <h2 class="headline">Custom list item</h2>
+        <md-card-content>
+          <p>
+            By adding markup inside the directive you can customize the appearence of each list item. Note for the moment you have to include the additional buttons for them to be rendered.
+          </p>
+          <pre ng-non-bindable>
+&lt;autocomplete-list
+  ng-model  ="ctrl.selectedPeople"
+  items     ="ctrl.allPeople"
+  item-id   ="item.age"&gt;
+  &lt;p&gt;{{ item.lastName }}, {{ item.firstName }}&lt;/p&gt;
+
+  &lt;md-button type="button" class="md-exclude multi-select-secondary-button" ng-click="aclCtrl.deselectItem(item)" aria-label="remove"&gt;
+    &lt;md-icon ng-include="'autocompleteListClear.svg'"&gt;&lt;/md-icon&gt;
+  &lt;/md-button&gt;
+&lt;/autocomplete-list&gt;
+          </pre>
+
+          <h3 class="md-title">Result:</h3>
+          <p>
+            Here, we have simply changed the display format of the name.
+            This could easily be accomplished with <code>item-text</code> property but this is just for demonstration
+          </p>
+          <div>
+            <autocomplete-list ng-model="ctrl.selectedPeople[1]" items="ctrl.allPeople" item-text="item.firstName + ' ' + item.lastName">
+              <p>{{ item.lastName }}, {{ item.firstName }}</p>
+                <!-- <span class="last-name">{{ item.lastName }}</span>, -->
+                <!-- <span class="first-name">{{ item.firstName }}</span> -->
+              <!-- </p> -->
+
+              <md-button type="button" class="md-exclude multi-select-secondary-button" ng-click="aclCtrl.deselectItem(item)" aria-label="remove">
+                <md-icon ng-include="'autocompleteListClear.svg'"></md-icon>
+              </md-button>
+            </autocomplete-list>
+          </div>
+
+          <pre>ctrl.selectedPeople = {{ ctrl.selectedPeople }}</pre>
+        </md-card-content>
+      </md-card>
+
+      <md-card>
+        <h2 class="headline">Custom list controls</h2>
+        <md-card-content>
+          <p>
+            You can even add additional controls to the list to edit other properties of your items.
+          </p>
+          <pre ng-non-bindable>
+&lt;autocomplete-list
+  ng-model  ="ctrl.selectedPeople"
+  items     ="ctrl.allPeople"
+  item-id   ="item.age"&gt;
+  &lt;p&gt;{{ item.firstName + ' ' + item.lastName }}&lt;/p&gt;
+  &lt;input type="number" ng-model="item.age"&gt;
+
+  &lt;md-button type="button" class="md-exclude multi-select-secondary-button" ng-click="aclCtrl.deselectItem(item)" aria-label="remove"&gt;
+    &lt;md-icon ng-include="'autocompleteListClear.svg'"&gt;&lt;/md-icon&gt;
+  &lt;/md-button&gt;
+&lt;/autocomplete-list&gt;
+          </pre>
+
+          <h3 class="md-title">Result:</h3>
+          <div>
+            <autocomplete-list ng-model="ctrl.selectedPeople[2]" items="ctrl.allPeople" item-text="item.firstName + ' ' + item.lastName">
+              <p>{{ item.firstName + ' ' + item.lastName }}</p>
+              <input type="number" ng-model="item.age">
+
+              <md-button type="button" class="md-exclude multi-select-secondary-button" ng-click="aclCtrl.deselectItem(item)" aria-label="remove">
+                <md-icon ng-include="'autocompleteListClear.svg'"></md-icon>
+              </md-button>
+            </autocomplete-list>
+          </div>
+
+          <pre>ctrl.selectedPeople = {{ ctrl.selectedPeople }}</pre>
+        </md-card-content>
+      </md-card>
+    </md-content>
+
+    <script src="../dist/autocompleteList.min.js"></script>
+    <script src="demo.js"></script>
+  </body>
+</html>
