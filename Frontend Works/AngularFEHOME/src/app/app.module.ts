@@ -13,6 +13,8 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
  
 
 @NgModule({
@@ -26,7 +28,9 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
     CustomerProfileComponent,
     AboutUsComponent,
     RegisterComponent,
-    VerifyOtpComponent
+    VerifyOtpComponent,
+    RestaurantComponent,
+    SortCriteriaComponent
   ],
   imports: [
     BrowserModule,

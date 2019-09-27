@@ -12,6 +12,7 @@ export class VerifyOtpComponent implements OnInit {
   otpForm:FormGroup;
   otpVarified:number=-1;
   customerObj: any;
+  userName:any;
   constructor( private previousRoute: ActivatedRoute ,private router: Router) { }
 
   ngOnInit() {
