@@ -13,8 +13,14 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule,MatInputModule} from '@angular/material';
+
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
+ 
+
 
 @NgModule({
   declarations: [
@@ -28,7 +34,9 @@ import {MatAutocompleteModule,MatInputModule} from '@angular/material';
     AboutUsComponent,
     RegisterComponent,
     VerifyOtpComponent,
-   
+
+    RestaurantComponent,
+    SortCriteriaComponent
 
   ],
   imports: [
