@@ -15,10 +15,11 @@ import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule,MatInputModule} from '@angular/material';
+import {MatAutocompleteModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule} from '@angular/material';
 
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
+import { SelectAutocompleteModule } from 'mat-select-autocomplete';
  
 
 
@@ -47,7 +48,13 @@ import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatIconModule,
+    SelectAutocompleteModule
     
   ],
   providers: [],
