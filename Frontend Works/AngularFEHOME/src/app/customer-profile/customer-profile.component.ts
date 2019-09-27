@@ -1,18 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-
+import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 @Component({
   selector: 'app-customer-profile',
   templateUrl: './customer-profile.component.html',
   styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
-
+  @ViewChild(SelectAutocompleteComponent) multiselect:SelectAutocompleteComponent;
+  
+  options = [
+    {
+      display: 'One',
+      value: '1'
+    }, {
+      display: 'Two',
+      value: '2'
+    }, {
+      display: 'Three',
+      value: '3'
+    }, {
+      display: 'Four',
+      value: '4'
+    }, {
+      display: 'Five',
+      value: '5'
+    }, {
+      display: 'Six',
+      value: '6'
+    }
+  ];
    
-   options: string[] = ['One', 'Two', 'Three'];
-    allStates:['One', 'Two', 'Three'];
-    title = 'materialApp';
+  
   //  myControl = new FormControl();
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
   userName:string;
@@ -25,6 +45,7 @@ export class CustomerProfileComponent implements OnInit {
     gender:"male",
     caloriesBurn:134,
     upuuid:"0" 
+
   }
   physicalDetailForm =  new FormGroup({
    height: new FormControl(Number(sessionStorage.getItem("height"))),
@@ -32,6 +53,12 @@ export class CustomerProfileComponent implements OnInit {
    gender: new FormControl(sessionStorage.getItem("gender")),
    dob: new FormControl(new Date(sessionStorage.getItem("dob"))) })
  
+   preferenceModel=new FormGroup({
+    selected: new FormControl(['1', '2', '3']),
+    targetW:new FormControl(),
+    category:new FormControl()
+
+   })
  ngOnInit() { 
    this.email = sessionStorage.getItem('email');
    console.log(this.email);
@@ -78,7 +105,9 @@ export class CustomerProfileComponent implements OnInit {
     
      
  }
-
+ onToggleDropdown() {
+  this.multiselect.toggleDropdown();
+}
  redirectToHome()
  {  sessionStorage.removeItem('email');
    this.router.navigate(['home']);

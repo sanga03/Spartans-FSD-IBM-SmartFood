@@ -27,6 +27,8 @@
     "jquery": "^3.4.1",
     "popper": "^1.0.1",
     "rxjs": "~6.4.0",
+    "select-autocomplete": "0.0.1",
+    "mat-select-autocomplete": "^1.2.5",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
