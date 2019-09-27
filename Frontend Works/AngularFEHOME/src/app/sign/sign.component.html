@@ -5,8 +5,8 @@ data-toggle="modal" data-target="#login-modal"></button>
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header"> 
-      <div *ngIf="status==1; else elseBlock"> <div class="jumbotrons"><h4 style="color: red">Invalid Credendial</h4> </div></div>
-      <div *ngIf="status==2; else elseBlock"> <div class="jumbotrons"><h4 style="color: red">Not yet registered</h4></div></div>
+      <div *ngIf="status==1"> <div class="jumbotrons"><h4 style="color: red">Invalid Credendial</h4> </div></div>
+      <div *ngIf="status==2"> <div class="jumbotrons"><h4 style="color: red">Not yet registered</h4></div></div>
     <h2 >Log In</h2>
         </div>  
         <div class="modal-body">

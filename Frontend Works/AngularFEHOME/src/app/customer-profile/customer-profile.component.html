@@ -1,6 +1,8 @@
 
 <style>
-
+.field{
+  float:left;
+}
 </style>
 
 
@@ -84,39 +86,38 @@
 
 
     <!---  work from here -->
-    
-  <div class="modal" id="pref-modal" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header"> 
-         <h2> Preference Detail </h2>
-        </div>  
-        <div class="modal-body">
+
+         <fieldset class="field">
+        <div class="card">
+          <div class="card-header">
+            UsrePreference Model
+          </div>
         
-        
+        <div class="card-body">
             <form [formGroup]="preferenceModel" (ngSubmit)="setPreferenceDetail()" class="frm" method="post" >
               <div class="form-group">
                 <label for="height">Target Weight </label>
                 <input type="number" class="form-control"   formControlName="targetW" placeholder="In Kgs" value="">
               </div>
               <div class="form-group">
-              <!-- <mat-select-autocomplete
-    [placeholder]="'Select Options'"
-    [options]="options"
-    [multiple]='true'
-    name="optionsSelector"
-    ngDefaultControl
-    [formControl]="preferenceModel.controls['selected']">
-     </mat-select-autocomplete> -->
-
+               <mat-select-autocomplete
+                          [placeholder]="'Select Options'"
+                          [options]="options"
+                          [multiple]='true'
+                          name="optionsSelector"
+                          ngDefaultControl
+                          [formControl]="preferenceModel.controls['selected']">
+              </mat-select-autocomplete> 
+<!-- 
      <mat-form-field class="example-full-width">
-      <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="preferenceModel" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{option}}
+        <mat-option *ngFor="let option of oops | async" [value]="oops">
+          {{oops}}
+
         </mat-option>
       </mat-autocomplete>
-    </mat-form-field>
+    </mat-form-field>  -->
      <!-- <mat-select-autocomplete class="grid-7-11"
      [placeholder]="'Options Selection'"
      [errorMsg]="errorMessage"
@@ -129,21 +130,16 @@
      [selectedOptions]="selectedOptions"
      (selectionChange)="getSelectedOptions($event)">
    </mat-select-autocomplete>
-    -->
+   -->
 </div>
-  <select>  <option value="as">asdas</option> <option value="fas">dadas</option> <option value="asa">asd</option></select>
-
-              <div class="form-group col-md-4">
+             <div class="form-group col-md-4">
                 <label for="gender">Category</label>
-                <select formControlName="category" id="category" class="form-control">
+                <select formControlName="category" id="category"  class="form-control">
                   <option selected value="0" >Veg</option>
                   <option value="1">Non Veg</option>
                 </select>
               </div>
-              <!-- <div class="form-group">
-                <label for="height">Cuisines </label>
-                <input type="text" class="form-control"   formControlName="targetW" placeholder="In Kgs" value="">
-              </div> -->
+            
               <div class="modal-footer">
               <button type="submit" class="btn btn-primary btn-md"  >Set Preference Detail <i class="fas fa-running"></i> </button>
               </div>
@@ -151,7 +147,7 @@
       
           </div>
           </div>
-          </div>
-     <a href="index.html"> New User? Register Now</a>  
-    </div>  
-
+          <!-- </div>
+    
+    </div>   -->
+  </fieldset>
