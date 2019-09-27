@@ -156,7 +156,10 @@ font-family: monospace;
     height: 5px;
 
     }
+    .bg-img{
+      background-image: url(https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg);
     
+    }
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

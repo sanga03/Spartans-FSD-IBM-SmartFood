@@ -96,8 +96,18 @@
         <div class="card-body">
             <form [formGroup]="preferenceModel" (ngSubmit)="setPreferenceDetail()" class="frm" method="post" >
               <div class="form-group">
-                <label for="height">Target Weight </label>
-                <input type="number" class="form-control"   formControlName="targetW" placeholder="In Kgs" value="">
+                <mat-form-field>
+                <input type="number" matInput  placeholder="Target Weight"   formControlName="targetW" >
+                </mat-form-field>
+              </div>
+
+              <div class="form-group">
+                  <mat-form-field>
+                      <input matInput [matDatepicker]="picker" formControlName="targetD" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+            
               </div>
               <div class="form-group">
                <mat-select-autocomplete
@@ -133,12 +143,15 @@
    -->
 </div>
              <div class="form-group col-md-4">
-                <label for="gender">Category</label>
-                <select formControlName="category" id="category"  class="form-control">
-                  <option selected value="0" >Veg</option>
-                  <option value="1">Non Veg</option>
-                </select>
-              </div>
+                <mat-form-field>
+                    <mat-label>Category</mat-label>
+                    <select matNativeControl required>
+                      <option value="Veg">Veg</option>
+                      <option value="NonVeg">Non Veg</option>
+                   </select>
+                  </mat-form-field>   
+            
+            </div>
             
               <div class="modal-footer">
               <button type="submit" class="btn btn-primary btn-md"  >Set Preference Detail <i class="fas fa-running"></i> </button>
