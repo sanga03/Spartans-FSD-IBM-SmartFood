@@ -44,13 +44,14 @@ export class CustomerProfileComponent implements OnInit {
     dob:new Date(),
     gender:"male",
     caloriesBurn:134,
-    upuuid:"0"
+    upuuid:"0" 
+
   }
   physicalDetailForm =  new FormGroup({
    height: new FormControl(Number(sessionStorage.getItem("height"))),
-   weight: new FormControl( ),
-   gender: new FormControl( ),
-   dob: new FormControl() })
+   weight: new FormControl(Number(sessionStorage.getItem("weight")) ),
+   gender: new FormControl(sessionStorage.getItem("gender")),
+   dob: new FormControl(new Date(sessionStorage.getItem("dob"))) })
  
    preferenceModel=new FormGroup({
     selected: new FormControl(['1', '2', '3']),
@@ -88,6 +89,9 @@ export class CustomerProfileComponent implements OnInit {
            this.customerPhysicalDetail.upuuid=data.upuuid;
            sessionStorage.setItem("height",String(this.customerPhysicalDetail.height));
            sessionStorage.setItem("upuuid",this.customerPhysicalDetail.upuuid);
+           sessionStorage.setItem("weight",String(this.customerPhysicalDetail.weight));
+           sessionStorage.setItem("gender",this.customerPhysicalDetail.gender);
+           sessionStorage.setItem("dob",String(this.customerPhysicalDetail.dob));
            console.log(data);
            this.physicalDetailForm =  new FormGroup({
              height: new FormControl(this.customerPhysicalDetail.height),
