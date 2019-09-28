@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Router } from '@angular/router';
+import { MapsService, location } from '../maps.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,14 +11,24 @@ import { Router } from '@angular/router';
 })
 export class HomePageComponent implements OnInit {
   searchRestaurantForm:FormGroup;
-  constructor(private router:Router) { }
+  lat:number;
+  long:number;
+  location:location;
+  constructor(private router:Router,private map:MapsService) { }
 
   ngOnInit() { 
     this.searchRestaurantForm= new FormGroup(
       {
         searchCriteria: new FormControl()
+      
       }
     )
+    this.map.getLocation().subscribe(data=>{
+      console.log(data);
+      this.location = data;
+      this.lat = data.latitude;
+      this.long = data.longitude;
+    })
   }
   redirectToRestaurant()
   {

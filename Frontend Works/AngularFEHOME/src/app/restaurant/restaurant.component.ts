@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 export class RestaurantComponent implements OnInit {
   restaurantList: restaurantResponse[][]=new Array();
   criteria:string;
+  resList:restaurantResponse[]=new Array();
   constructor(private router:Router) { }
 
   ngOnInit() {   
+    document.location.reload
     this.criteria = sessionStorage.getItem("criteria");
     if(this.criteria===null || this.criteria===undefined)
     {
@@ -22,11 +24,38 @@ export class RestaurantComponent implements OnInit {
     .then(res=>res.json())
     .then(data=>{ 
       console.log(data)
-      if(sessionStorage.getItem("filterByRating")==null)
-      {
-        
-      }
       let resList = data;
+      let tempResList=[];
+      if(sessionStorage.getItem("filterByRating")==null || sessionStorage.getItem("filterByRating")==undefined )
+      {
+           console.log("do nothing");
+      }
+      else
+      {   console.log("inside res"); 
+      console.log(sessionStorage.getItem("filterByRating"))
+          let tempList:restaurantResponse[]=new Array();
+          let k=0;
+          for(let i=0;i<resList.length;i++)
+          {
+            if(resList[i].rating>= Number(sessionStorage.getItem("filterByRating")))
+            {
+                tempList[k++]=resList[i]
+                console.log(tempList[k-1]);
+            }
+            else
+            {
+              resList.splice(i,1)
+            }
+          }
+          resList=tempList;
+        //   resList.filter(function(res,i) { 
+        //   console.log("inside filrter")
+        //   return res.rating >= Number(sessionStorage.getItem("filterByRating"));
+        // });
+        console.log(resList)
+      }
+       
+      
       
       let tempRestaurantList:restaurantResponse[]=new Array();
       for(let i=0;i<Math.ceil(resList.length/4);i++)

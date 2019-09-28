@@ -108,14 +108,12 @@ export class CustomerProfileComponent implements OnInit {
          })
        }
            )
-    
-     
+      } 
+  redirectToHome() 
  {  sessionStorage.removeItem('email');
    this.router.navigate(['home']);
  }
- setPreferenceDetail(){
-   
- }
+
  setPhysicalDetail()
  {   var d:Date = this.physicalDetailForm.get('dob').value;
  let upuuid=sessionStorage.getItem("upuuid");
