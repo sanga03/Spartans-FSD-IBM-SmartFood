@@ -22,6 +22,10 @@ export class RestaurantComponent implements OnInit {
     .then(res=>res.json())
     .then(data=>{ 
       console.log(data)
+      if(sessionStorage.getItem("filterByRating")==null)
+      {
+        
+      }
       let resList = data;
       
       let tempRestaurantList:restaurantResponse[]=new Array();
@@ -105,15 +109,3 @@ export interface restaurantResponse
 
 // console.log(restaurantList);
 
-let a = [0,1,]
-let b = new Array();
-let temp = new Array()
-for(let i=0;i<Math.ceil(a.length/4);i++)
-{
-  for(let k=0;k<4 && k<a.length-(i*4);k++)
-  {
-    temp[k]=a[(i*4)+k];
-  }
-  b[i]=temp;
-  temp=[];
-}
