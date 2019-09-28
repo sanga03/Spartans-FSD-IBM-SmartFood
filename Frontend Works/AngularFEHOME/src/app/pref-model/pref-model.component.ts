@@ -4,13 +4,35 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ObjectUnsubscribedError } from 'rxjs';
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
-// import {default as _rollupMoment} from 'moment';
-
+// import { default as _rollupMoment} from 'moment';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+// const moment = _rollupMoment || _moment;
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 @Component({
   selector: 'app-pref-model',
   templateUrl: './pref-model.component.html',
   styleUrls: ['./pref-model.component.css']
+  // ,
+  // providers: [
+  //   // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+  //   // application's root module. We provide it at the component level here, due to limitations of
+  //   // our example generation script.
+  //   {provide: DateAdapter, useClass: PrefModelComponent, deps: [MAT_DATE_LOCALE]},
+
+  //   {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  // ]
 })
+
 export class PrefModelComponent implements OnInit {
   email:String;
   customerObj:any;
@@ -49,7 +71,7 @@ export class PrefModelComponent implements OnInit {
     preferenceModel=new FormGroup({
       selected: new FormControl(JSON.parse(sessionStorage.getItem("prcusines"))),
       targetW:new FormControl(sessionStorage.getItem("prtargetWeight")),
-      targetD:new FormControl(new Date(sessionStorage.getItem("prtargetDate"))),
+      targetD:new FormControl((new Date(Number(sessionStorage.getItem("prtargetDate"))))),
       category:new FormControl(Number(sessionStorage.getItem("prcategory")))
      })
   ngOnInit() {

@@ -15,21 +15,24 @@
     
                   <div class="form-group">
                       <mat-form-field>
-                          <input matInput [matDatepicker]="picker" formControlName="targetD" placeholder="Choose a date">
+                          <input matInput [matDatepicker]="picker" formControlName="targetD" placeholder="By Date:">
                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                           <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                 
                   </div>
                   <div class="form-group">
+                        
                    <mat-select-autocomplete
-                              [placeholder]="'Select Options'"
+                              [placeholder]="cuisines"
                               [options]="options"
                               [multiple]='true'
                               name="optionsSelector"
-                              ngDefaultControl
+                               ngDefaultControl
                               [formControl]="preferenceModel.controls['selected']">
                   </mat-select-autocomplete> 
+                        
+                        </div>
     <!-- 
          <mat-form-field class="example-full-width">
           <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="preferenceModel" [matAutocomplete]="auto">
@@ -53,7 +56,7 @@
          (selectionChange)="getSelectedOptions($event)">
        </mat-select-autocomplete>
        -->
-    </div>
+
                  <div class="form-group col-md-4">
                     <mat-form-field>
                         <mat-label>Category</mat-label>
