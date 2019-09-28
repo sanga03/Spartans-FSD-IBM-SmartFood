@@ -22,6 +22,10 @@ export class HomePageComponent implements OnInit {
   redirectToRestaurant()
   {
     console.log(this.searchRestaurantForm.get("searchCriteria").value);
+    if(this.searchRestaurantForm.get("searchCriteria").value===null)
+    {
+      return;
+    }
     console.log("inside redirect function");
     sessionStorage.setItem("criteria",this.searchRestaurantForm.get("searchCriteria").value);
     this.router.navigate(['restaurant']);

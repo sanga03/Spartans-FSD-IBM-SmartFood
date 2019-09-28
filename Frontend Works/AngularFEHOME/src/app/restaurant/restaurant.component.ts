@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-restaurant',
@@ -6,50 +7,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant.component.css']
 })
 export class RestaurantComponent implements OnInit {
-  restaurantList: restaurantResponse[]
+  restaurantList: restaurantResponse[][]=new Array();
   criteria:string;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {   
     this.criteria = sessionStorage.getItem("criteria");
+    if(this.criteria===null || this.criteria===undefined)
+    {
+      this.router.navigate(['home']);
+    }
     let url = "http://b4ibm23.iiht.tech:8010/restaurant/findBy/"+this.criteria;
     fetch(url)
     .then(res=>res.json())
-    .then(data=>{
-      this.restaurantList = data;
+    .then(data=>{ 
+      console.log(data)
+      let resList = data;
+      
+      let tempRestaurantList:restaurantResponse[]=new Array();
+      for(let i=0;i<Math.ceil(resList.length/4);i++)
+        {
+          for(let k=0;k<4 && k<resList.length-(i*4);k++)
+              {
+                tempRestaurantList[k]=resList[(i*4)+k];
+              }
+          this.restaurantList[i]=tempRestaurantList;
+          tempRestaurantList=[];
+        }
+     
+      
+      console.log(this.restaurantList);
     })
-    this.restaurantList = [
-      {  
-        name: "Dominos",
-	     contact: 9424326751,
-     	rating: 4.9,
-    	location: "Nagawara",
-      co_ordinates: "1,2",
-      resId: "1234567",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Domino%27s_pizza_logo.svg/1200px-Domino%27s_pizza_logo.svg.png",
-
-      },
-      {
-        name: "Pizza Hut",
-        contact: 9424326751,
-        rating: 4,
-       location: "White Field",
-       co_ordinates: "1,2",
-       resId: "12567",
-       imageUrl: "https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/customFoodImages/chickenBiryani.jpg",
- 
-        },
-      {
-        name: "Truffles",
-        contact: 7415548497,
-        rating: 2,
-       location: "Yehlanka",
-       co_ordinates: "1,2",
-       resId: "12567",
-       imageUrl: "https://pbs.twimg.com/profile_images/967052158876160001/lo66hJ12_400x400.jpg",
-   }
-    ]
-  }
+  
+  }  
 
 }
 
@@ -70,6 +60,60 @@ export interface restaurantResponse
 	location: string;
   co_ordinates: string;
   resId: string;
-  imageUrl: string; 
+  image: string; 
 
+}
+
+
+// let foodList = [0,1,2,3,4,5,6,7,8,9,10]
+// let restaurantList:number[][];
+// let tempRestaurantList:number[];
+
+// function pushToList(list,item)
+// {
+//    if(list==null || list==undefined)
+//    {
+//       list = [item]
+//    }
+//    else{
+//      list.push(item)
+//    }
+//    return list
+// }
+
+// for(let i=0;i<foodList.length;i++)
+// {
+//    if((i+4)>foodList.length)
+//    {
+//      for(i;i<foodList.length;i++)
+//      {
+//        tempRestaurantList=pushToList(tempRestaurantList,foodList[i]);
+       
+//      }
+//     //  console.log(tempRestaurantList);
+//      restaurantList[i/4]=pushToList(restaurantList,tempRestaurantList)
+//      break;
+//    }
+//    tempRestaurantList=pushToList(tempRestaurantList,foodList[i])
+//   //  console.log(tempRestaurantList);
+//    if((i+1)%4==0)
+//    {
+//        restaurantList=pushToList(restaurantList,tempRestaurantList)
+//        tempRestaurantList=[];
+//    }
+// }
+
+// console.log(restaurantList);
+
+let a = [0,1,]
+let b = new Array();
+let temp = new Array()
+for(let i=0;i<Math.ceil(a.length/4);i++)
+{
+  for(let k=0;k<4 && k<a.length-(i*4);k++)
+  {
+    temp[k]=a[(i*4)+k];
+  }
+  b[i]=temp;
+  temp=[];
 }

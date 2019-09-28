@@ -1,46 +1,59 @@
 <style>
 .containerz {
-    padding-top: 100px;
-    padding-left: 320px;
+    padding-top: 80px;
+    padding-left: 370px;
 }
 .display-4 {
     
     
     opacity: 20%;
 }
+#jum 
+{
+    margin-top: 70px;
+}
 .jumbotron {
+    align-self: center;
     opacity: 0.6;
     text-align: center;
     font-weight: 500;
     border-radius: 2%
 }
+#foot
+{
+    margin-top: 450px;
+    opacity: 0.7;
+}
 </style>
 
-<app-header></app-header>
+
+        <app-header></app-header>
+
+
         <div class="row">
-        <div class="containerz"> 
-              <div class="jumbotron">
-                    <h1 class="display-4">Welcome to Smart Food</h1>
-                    <hr class="my-4">
-                    <h5 class="display-5" >At Smart Food we provide meal of your diet and cuisine preference</h5>
-                    <hr class="my-4">
-                    <h1 class="display-4"></h1>
-                    <hr class="my-4">
+            <div class="container" id="jum"> 
+                <div class="jumbotron">
+                        <h1 class="display-4">Welcome to Smart Food</h1>
+                        <hr class="my-4">
+                        <h5 class="display-5" >At Smart Food we provide meal of your diet and cuisine preference</h5>
+                        <hr class="my-4">
+                        <h1 class="display-4"></h1>
+                        <hr class="my-4">
 
-              </div>
-                    
-              <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
+                </div>
+            </div> 
+        </div>  
+       
+                <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
             
-                <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
-                <div (click)="redirectToRestaurant()"  class="search"> </div>
-              </form>
+                        <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
+                        <div (click)="redirectToRestaurant()"  class="search"> </div>
+                </form>  
+          
+          
                 
-                <!-- <input type="text" placeholder="Search Restaurant...">
-                <div class="search"></div> -->
-                
-        </div>      
-
-
-    </div>
-      <!-- <div class="row">    <app-anim-slider></app-anim-slider>
-      </div> -->
+        <div id="foot">
+            <app-footer></app-footer>
+        </div>
+   
+     

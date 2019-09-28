@@ -105,9 +105,7 @@ export class CustomerProfileComponent implements OnInit {
     
      
  }
- onToggleDropdown() {
-  this.multiselect.toggleDropdown();
-}
+ 
  redirectToHome()
  {  sessionStorage.removeItem('email');
    this.router.navigate(['home']);
