@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,10 +13,14 @@ export class SortCriteriaComponent implements OnInit {
   ngOnInit() {
   }
   
-  sortRestaurantByRating(num)
-  {
-    sessionStorage.setItem("filterByRating",num);
-    this.router.navigate(['restaurant']);
-
-  }
+ sortRestaurantByRating(num)
+{ 
+  
+  console.log("sort function called")
+  sessionStorage.setItem("filterByRating",num);
+  this.router.navigate(['home'])
+    .then(()=>{this.router.navigate(['restaurant'])})
+ 
+}
+ 
 }

@@ -79,6 +79,7 @@ export class CustomerProfileComponent implements OnInit {
          })
        }
            )
+
           }
     
 redirectToHome()   

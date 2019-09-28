@@ -20,9 +20,15 @@ import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModul
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
+
+import { HttpClientModule } from '@angular/common/http';
+import {AgmCoreModule} from '@agm/core';
+import { MapsService } from './maps.service';
+
 import { PrefModelComponent } from './pref-model/pref-model.component';
 import { FoodHomeComponent } from './food-home/food-home.component';
 import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
+
  
 
 
@@ -38,6 +44,7 @@ import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
     AboutUsComponent,
     RegisterComponent,
     VerifyOtpComponent,
+   
 
     RestaurantComponent,
     SortCriteriaComponent,
@@ -62,7 +69,12 @@ import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
-    SelectAutocompleteModule
+    SelectAutocompleteModule,
+    HttpClientModule,
+   
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyBpF7XNgiejLB4qxKJOnMKUNQEVtK6ke0Q'
+    })
     
   ],
   providers: [],

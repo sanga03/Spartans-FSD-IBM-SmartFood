@@ -14,14 +14,14 @@
 }
 .jumbotron {
     align-self: center;
-    opacity: 0.6;
+    opacity: 0.8;
     text-align: center;
     font-weight: 500;
     border-radius: 2%
 }
 #foot
 {
-    margin-top: 450px;
+    margin-top: 480px;
     opacity: 0.7;
 }
 </style>
@@ -46,12 +46,16 @@
         </div>  
        
                 <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
-            
+                     <agm-map [latitude]="lat" [longitude]="lang">
+                         <agm-marker [latitude]="lat" [longitude]="lang"></agm-marker>
+                     </agm-map>
                         <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
                         <div (click)="redirectToRestaurant()"  class="search"> </div>
                 </form>  
+
    <div id="foot">       
             <app-footer></app-footer>
         </div>
+
    
      
