@@ -33,8 +33,8 @@ public class UserPrefService {
 	for(UserPreferences preference:preferences) {
 		FinalResponceModel model = new FinalResponceModel();
 		model.setUUuid(preference.getUUuid());
-		Date date = new Date(finalReqModel.getTargetDate());
-		model.setTargetDate(date);
+		
+		model.setTargetDate(preference.getTargetDate().getTime());
 		model.setUprUuid(preference.getUprUuid());
 		model.setTargetWeight(preference.getTargetWeight());
 		model.setCategory(preference.getCategory());
@@ -101,7 +101,8 @@ public class UserPrefService {
 			userPreferences.setCategory(finalReqModel.getCategory());
 			userPreferences.setUprUuid(finalReqModel.getUprUuid());
 			userPreferences.setUUuid(finalReqModel.getUUuid());
-			userPreferences.setTargetDate(finalReqModel.getTargetDate());
+			Date date = new Date(finalReqModel.getTargetDate());
+			userPreferences.setTargetDate(date);
 			int id = userPrefRepo.findId(uUuid);
 //			userPreferences.setId(id);
 		userPrefRepo.deleteById(id);
