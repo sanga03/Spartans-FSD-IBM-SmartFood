@@ -20,6 +20,8 @@ import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModul
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
+import { PrefModelComponent } from './pref-model/pref-model.component';
+import { FoodHomeComponent } from './food-home/food-home.component';
  
 
 
@@ -37,7 +39,9 @@ import { SelectAutocompleteModule } from 'mat-select-autocomplete';
     VerifyOtpComponent,
 
     RestaurantComponent,
-    SortCriteriaComponent
+    SortCriteriaComponent,
+    PrefModelComponent,
+    FoodHomeComponent
 
   ],
   imports: [

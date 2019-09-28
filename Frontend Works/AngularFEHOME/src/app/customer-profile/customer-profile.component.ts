@@ -13,29 +13,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 export class CustomerProfileComponent implements OnInit {
  // @ViewChild(SelectAutocompleteComponent) multiselect:SelectAutocompleteComponent;
   
-  options = [
-    {
-      display: 'One',
-      value: '1'
-    }, {
-      display: 'Two',
-      value: '2'
-    }, {
-      display: 'Three',
-      value: '3'
-    }, {
-      display: 'Four',
-      value: '4'
-    }, {
-      display: 'Five',
-      value: '5'
-    }, {
-      display: 'Six',
-      value: '6'
-    }
-  ];
-   oops=["dasd",
-  "sdada","asdadad"]
   
   //  myControl = new FormControl();
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
@@ -49,21 +26,15 @@ export class CustomerProfileComponent implements OnInit {
     gender:"male",
     caloriesBurn:134,
     upuuid:"0" 
-
   }
+
+
   physicalDetailForm =  new FormGroup({
    height: new FormControl(Number(sessionStorage.getItem("height"))),
    weight: new FormControl(Number(sessionStorage.getItem("weight")) ),
    gender: new FormControl(sessionStorage.getItem("gender")),
    dob: new FormControl(new Date(sessionStorage.getItem("dob"))) })
- 
-   preferenceModel=new FormGroup({
-    selected: new FormControl(['1', '2', '3']),
-    targetW:new FormControl(),
-    targetD:new FormControl(),
-    category:new FormControl()
-
-   })
+  
  ngOnInit() { 
    document.body.classList.add('bg-img');
    this.email = sessionStorage.getItem('email');
@@ -108,14 +79,15 @@ export class CustomerProfileComponent implements OnInit {
          })
        }
            )
+          }
     
-     
- {  sessionStorage.removeItem('email');
-   this.router.navigate(['home']);
+redirectToHome()   
+ { 
+    sessionStorage.removeItem('email');
+    this.router.navigate(['home']);
  }
- setPreferenceDetail(){
-   
- }
+
+
  setPhysicalDetail()
  {   var d:Date = this.physicalDetailForm.get('dob').value;
  let upuuid=sessionStorage.getItem("upuuid");

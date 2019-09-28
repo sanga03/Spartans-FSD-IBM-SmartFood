@@ -41,6 +41,7 @@ let email = sessionStorage.getItem("demail");
             this.customerObj=data;
             console.log(this.customerObj.uid)
             this.setPhysicalDetail(this.customerObj.uid)
+            this.setPrefDetail(this.customerObj)
             
           })
 
@@ -55,6 +56,24 @@ this.router.navigate(["login"])
   })
   }
 
+
+  setPrefDetail(objs){
+    var url = "http://localhost:8041/pushPref";
+    fetch(url,{method:'POST',headers:{
+      'content-type':'application/json'
+    },
+body:JSON.stringify({
+  
+	"uuuid":objs.uid,
+  "category": 0,
+  "targetWeight": 1,
+  "startDate":new Date().getTime(),
+  "targetDate":new Date().getTime(),
+
+"cusines": []
+})
+  })
+  }
 
   setPhysicalDetail(uid)
   {   var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+uid;

@@ -111,10 +111,6 @@ export class CustomerProfileComponent implements OnInit {
     
      
  }
-<<<<<<< HEAD
-
-=======
->>>>>>> 1578bd67bfc2e26f9be1e42e676b3b0df1fa7acf
  redirectToHome()
  {  sessionStorage.removeItem('email');
    this.router.navigate(['home']);
