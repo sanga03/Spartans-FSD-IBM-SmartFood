@@ -23,6 +23,7 @@ import { SelectAutocompleteModule } from 'mat-select-autocomplete';
 import { PrefModelComponent } from './pref-model/pref-model.component';
 import { FoodHomeComponent } from './food-home/food-home.component';
 import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
+import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.component';
  
 
 
@@ -43,7 +44,8 @@ import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
     SortCriteriaComponent,
     PrefModelComponent,
     FoodHomeComponent,
-    FoodRecomendComponent
+    FoodRecomendComponent,
+    ReccoMendFoodComponent
 
   ],
   imports: [

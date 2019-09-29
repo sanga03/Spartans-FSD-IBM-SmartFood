@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./food-home.component.css']
 })
 export class FoodHomeComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit() {
-  }
+
+}
 
 }
