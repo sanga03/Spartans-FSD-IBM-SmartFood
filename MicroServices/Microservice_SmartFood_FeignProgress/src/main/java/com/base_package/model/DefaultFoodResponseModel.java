@@ -7,9 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class PersonalFoodResponseModel {
+@AllArgsConstructor
+public class DefaultFoodResponseModel {
 	
 	private String customFoodImageLink;
 	private Double price;
@@ -19,6 +19,4 @@ public class PersonalFoodResponseModel {
 	private String foodName;
 	private String cuisine;
 	private boolean category;
-	private Integer priority;
-	private Float distance;
 }

@@ -12,8 +12,13 @@ import lombok.Setter;
 public class FoodResponseModel {
 	private String image;
 	private String name;
-	private String category;
+	private boolean category;
 	private String cuisine;
 	private String fuid;
 	private String ruid;
+	
+	public boolean getCategory() {
+		return category;
+	}
+
 }

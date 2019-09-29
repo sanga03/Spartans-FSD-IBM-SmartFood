@@ -13,6 +13,8 @@ public class CustomerPreferencesResponseModel {
 	private String uprUuid;
 	private Integer category;
 	private Float targetWeight;
+	private Long startDate;
+	private Long targetDate;
 	private String [] cusines;
 	private String uuuid;
 }
