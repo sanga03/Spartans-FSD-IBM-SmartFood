@@ -10,7 +10,7 @@ import com.base_package.model.CustomerPhysicalResponseModel;
 @FeignClient(name = "customer-physical")
 public interface CustomerPhysicalFeignClient {
 
-	@RequestMapping(value = "/physicalDetails/{uuid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/physicalDetails/byCustomer/{uuid}", method = RequestMethod.GET)
 	public CustomerPhysicalResponseModel readCustomerPhysicalByUuid(@PathVariable("uuid") String uuid);
 
 }

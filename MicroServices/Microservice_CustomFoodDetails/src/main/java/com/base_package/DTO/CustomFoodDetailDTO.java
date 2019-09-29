@@ -1,7 +1,6 @@
 package com.base_package.DTO;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +13,7 @@ public class CustomFoodDetailDTO {
 	private String quantity;
 	private String imageLink;
 	private Double price;
-	private Integer rating;
+	private Float rating;
 	private String foodUuid;
 	private String restaurantUuid;
 }

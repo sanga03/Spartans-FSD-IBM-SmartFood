@@ -24,12 +24,12 @@ public class Populator implements ApplicationListener<ContextRefreshedEvent>{
 
 	private void populate() {
 		
-		customFoodDetail = new CustomFoodDetail("quantity gms","imageLink",123.45,10);
+		customFoodDetail = new CustomFoodDetail("quantity gms","imageLink",123.45,10f);
 		customFoodDetail.setFoodUuid("F_EWADSVAEGADSVC");
 		customFoodDetail.setRestaurantUuid("R_AFDSGAFBVAFE");
 		customFoodDetailRepository.save(customFoodDetail);
 		
-		customFoodDetail = new CustomFoodDetail("quantit","imageL",123.5,5);
+		customFoodDetail = new CustomFoodDetail("quantit","imageL",123.5,5f);
 		customFoodDetail.setFoodUuid("F_EWADSVAEGA");
 		customFoodDetail.setRestaurantUuid("R_AFDSGAF");
 		customFoodDetailRepository.save(customFoodDetail);
