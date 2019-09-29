@@ -8,6 +8,13 @@ input[type=checkbox]
 {
     margin-left: 10px;
 }
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 0px;
+    text-align: center;
+    text-decoration: none;
+} 
 </style>
 <div class="card" style="width: 12rem;">
         <div class="card-header bg-light btn-outline-info">
@@ -16,28 +23,20 @@ input[type=checkbox]
         <ul class="list-group list-group-flush">
           <li class="list-group-item"> <b>Rating Above </b>
                   <div class="form-check">
-                    <input class="form-check-input" (click)="sortRestaurantByRating(4)" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
-                      4
-                    </label>
+                    <button class="btn-sm btn-info" (click)="sortRestaurantByRating(4)" type="radio" name="exampleRadios" id="rating" > 4 <i class="fa fa-star" aria-hidden="true"></i> </button>
+            
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" (click)="sortRestaurantByRating(3)"  type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
-                     3
-                    </label>
+                      <button class="btn-sm btn-info" (click)="sortRestaurantByRating(3)" type="radio" name="exampleRadios" id="rating" > 3 <i class="fa fa-star" aria-hidden="true"></i></button>
+              
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" (click)="sortRestaurantByRating(2)" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
-                    <label class="form-check-label" for="exampleRadios3">
-                      2
-                     </label>
+                      <button class="btn-sm btn-info" (click)="sortRestaurantByRating(2)" type="radio" name="exampleRadios" id="rating" > 2 <i class="fa fa-star" aria-hidden="true"></i></button>
+            
                   </div>
                   <div class="form-check">
-                        <input class="form-check-input" (click)="sortRestaurantByRating(1)"  type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
-                        <label class="form-check-label" for="exampleRadios3">
-                          1
-                         </label>
+                      <button class="btn-sm btn-info" (click)="sortRestaurantByRating(1)" type="radio" name="exampleRadios" id="rating" > 1 <i class="fa fa-star" aria-hidden="true"></i></button>
+            
                  </div>
         </li>
           <li class="list-group-item"> <b> Cuisine </b> 
@@ -53,7 +52,10 @@ input[type=checkbox]
                     <input class="form-check-input position-static" type="checkbox" id="Indian" value="option1" aria-label="...">
                     <label for="Indian"> Indian </label>
               </div>
+        </li> 
+        <!-- <li class="list-group-item">
+              <button class="btn btn-info" (click)="sortRestaurantByRating()">Apply Filter</button>
         </li>
-          
-        </ul>
+      -->
+      </ul>
  </div>

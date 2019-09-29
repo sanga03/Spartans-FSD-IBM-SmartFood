@@ -124,12 +124,12 @@ font-family: monospace;
       text-align: center;
       font: normal 13px/15px proxima-nova,sans-serif;
     }
-    #subEmail { 
+    /* #subEmail { 
       margin-left: 44%;
       align-self: center;
       align-content: center;
 
-    }
+    } */
 
     .fa {
       padding: 20px;
