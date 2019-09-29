@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { NgModel } from '@angular/forms';
+
 
 @Component({
   selector: 'app-restaurant',
@@ -10,7 +14,8 @@ export class RestaurantComponent implements OnInit {
   restaurantList: restaurantResponse[][]=new Array();
   criteria:string;
   resList:restaurantResponse[]=new Array();
-  constructor(private router:Router) { }
+  customFoodList:customFoodResponse[]=new Array();
+  constructor(private router:Router,public dialog: MatDialog) { }
 
   ngOnInit() {   
     document.location.reload
@@ -72,10 +77,61 @@ export class RestaurantComponent implements OnInit {
       console.log(this.restaurantList);
     })
   
-  }  
+  }
+
+  openDialog() {
+    
+  }
+  
+  showRestauratMenu(resUuid)
+  {
+    console.log(resUuid);
+    var url = "http://b4ibm02.iiht.tech:8762/CFD/customFoodDetails"
+    fetch(url)
+    .then(res=>res.json())
+    .then(data => 
+      {  console.log(data)
+          let tempCustomFoodList:customFoodResponse[];
+          tempCustomFoodList = data;
+          let i = 0;
+          tempCustomFoodList.forEach(customFood=>
+            {
+              if(resUuid==customFood.restaurantUuid)
+              {
+                this.customFoodList[i]=customFood;
+                i++;
+              }
+
+              // let tempRestaurantList:restaurantResponse[]=new Array();
+              // for(let i=0;i<Math.ceil(resList.length/4);i++)
+              //   {
+              //     for(let k=0;k<4 && k<resList.length-(i*4);k++)
+              //         {
+              //           tempRestaurantList[k]=resList[(i*4)+k];
+              //         }
+              //     this.restaurantList[i]=tempRestaurantList;
+              //     tempRestaurantList=[];
+              //   }
+            })
+          console.log(this.customFoodList);
+          this.dialog.open(DialogDataExampleDialog, {
+            data: 
+             this.customFoodList
+            
+          });
+      })
+  }
 
 }
 
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'dialog-data-example-dialog.html',
+})
+export class DialogDataExampleDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: customFoodResponse) {}
+}
 export interface restauratRequest
 {
   name: string;
@@ -97,6 +153,18 @@ export interface restaurantResponse
 
 }
 
+export interface customFoodResponse
+{
+  
+    uuid: String,
+    quantity: String,
+    imageLink: String,
+    price:number,
+    rating: number,
+    foodUuid: string,
+    restaurantUuid: string
+
+}
 
 // let foodList = [0,1,2,3,4,5,6,7,8,9,10]
 // let restaurantList:number[][];

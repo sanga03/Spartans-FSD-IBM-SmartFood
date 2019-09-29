@@ -56,7 +56,7 @@ div
                                  <div class="card-body text-right">
                                  <h5 class="card-title"> {{restaurant.name.toUpperCase()}} </h5>
                                  <p class="card-text">Location: {{restaurant.location.toUpperCase()}}<i class="fa fa-map-marker" aria-hidden="true"></i>  <br> Rating: {{restaurant.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
-                                  <a href="https://letterboxd.com/film/pulp-fiction/" class="btn btn-dark">See Menu</a>
+                                  <button (click)="showRestauratMenu(restaurant.resId)" class="btn-md btn-dark">See Menu</button>
                                 </div>
                         </div>   
                

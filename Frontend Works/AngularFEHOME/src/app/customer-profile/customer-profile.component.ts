@@ -121,7 +121,8 @@ export class CustomerProfileComponent implements OnInit {
      var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+upuuid;
      console.log(this.physicalDetailForm.get('weight').value);
      console.log(url);
-     console.log(d.getTime);
+     
+     console.log(d.getMilliseconds());
      fetch(
        url,
        {
@@ -132,7 +133,7 @@ export class CustomerProfileComponent implements OnInit {
          body: JSON.stringify( {
            "height": this.physicalDetailForm.get('height').value,
            "weight": this.physicalDetailForm.get('weight').value,
-          "dob": d.getTime ,
+          "dob": d.getMilliseconds() ,
           "caloriesBurn": 13,
           "gender":  this.physicalDetailForm.get('gender').value
    
