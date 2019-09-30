@@ -17,7 +17,7 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker} from '@angular/material';
 
-import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
 
@@ -49,10 +49,14 @@ import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.compon
 
     RestaurantComponent,
     SortCriteriaComponent,
+
+    DialogDataExampleDialog
+
     PrefModelComponent,
     FoodHomeComponent,
     FoodRecomendComponent,
     ReccoMendFoodComponent
+
 
   ],
   imports: [
@@ -79,7 +83,13 @@ import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.compon
     })
     
   ],
+ 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,DialogDataExampleDialog],
+  // entryComponents:
+  // [
+  //   RestaurantComponent,
+  //   DialogDataExampleDialog,
+  // ]
 })
 export class AppModule { }
