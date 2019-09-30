@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonalFoodResponseModel {
-	
+	private String customFoodId;
 	private String customFoodImageLink;
 	private Double price;
 	private String quantity;

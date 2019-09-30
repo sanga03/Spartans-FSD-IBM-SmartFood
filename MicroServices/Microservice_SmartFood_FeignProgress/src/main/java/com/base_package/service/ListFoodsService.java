@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.base_package.comparator.DefaultFoodComparator;
+import com.base_package.comparator.PersonalFoodComparator;
 import com.base_package.model.BasicIngredientResponseModel;
 import com.base_package.model.CustomFoodDetailsResponseModel;
 import com.base_package.model.CustomIngredientResponseModel;
@@ -91,6 +92,7 @@ public class ListFoodsService {
 		Long startDate = customerPreferencesResponseModel.getStartDate();
 		Long currentDate = new Date().getTime();
 		Long targetDate = customerPreferencesResponseModel.getTargetDate();
+		System.out.println("targetDate-startDate "+((targetDate-startDate)/86400000));
 		
 		Float targetWeight = customerPreferencesResponseModel.getTargetWeight();
 		Float currentWeight = customerPhysicalResponseModel.getWeight();
@@ -98,14 +100,9 @@ public class ListFoodsService {
 		
 		Float personalCaloriesPerDay = calculatePersonalCalories(startDate,targetDate,currentWeight,targetWeight,currentBMR);
 		Integer timeOfDay = 3;
-		boolean weightLoss = false;
 		Float caloriesToConsumeNow = personalCaloriesPerDay/timeOfDay;
-		if(caloriesToConsumeNow < 0) {
-			weightLoss = true;
-			caloriesToConsumeNow *= -1;
-		}
 
-		// take care of orders and track using currenttime, change the caloriesToConsumeNow , consider gender
+		// take care of orders and track using current-time, change the caloriesToConsumeNow
 		
 		PersonalFoodResponseModel personalFoodResponseModel;
 		List<PersonalFoodResponseModel> list = new ArrayList<PersonalFoodResponseModel>();
@@ -135,12 +132,13 @@ public class ListFoodsService {
 					personalFoodResponseModel.setPrice(customFoodDetailsResponseModel.getPrice());
 					personalFoodResponseModel.setQuantity(customFoodDetailsResponseModel.getQuantity()); //calculate?
 					personalFoodResponseModel.setRating(customFoodDetailsResponseModel.getRating());
+					personalFoodResponseModel.setCustomFoodId(customFoodDetailsResponseModel.getUuid());
 					
-					if(weightLoss) {
+					if((currentBMR - personalCaloriesPerDay) > 0) {
 						if(calories < (caloriesToConsumeNow - 100)) {
 							personalFoodResponseModel.setPriority(1);
 						}
-						else if (caloriesToConsumeNow <= caloriesToConsumeNow) {
+						else if (calories <= caloriesToConsumeNow) {
 							personalFoodResponseModel.setPriority(0);
 						}
 						else {
@@ -152,7 +150,7 @@ public class ListFoodsService {
 						if(calories > (caloriesToConsumeNow + 100)) {
 							personalFoodResponseModel.setPriority(1);
 						}
-						else if (caloriesToConsumeNow >= caloriesToConsumeNow) {
+						else if (calories >= caloriesToConsumeNow) {
 							personalFoodResponseModel.setPriority(0);
 						}
 						else {
@@ -164,26 +162,67 @@ public class ListFoodsService {
 			}
 		}
 		
-		
-		//calculate location
-		//sort by calories,then cuisine, then location, then rating
+		Collections.sort(list,new PersonalFoodComparator());
 		return list;
 	}
 
 	private Float calculateDistance(List<RestaurantResponseModel> restaurantList, String restaurantUuid,
 			String coordinates) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Float distanceInKms = 0f;
+		String restaurantLocation = null;
+		
+		for(RestaurantResponseModel restaurantResponseModel:restaurantList) {
+			if(restaurantUuid.equals(restaurantResponseModel.getResId())) {
+				restaurantLocation = restaurantResponseModel.getCo_ordinates();
+			}
+		}
+		if(restaurantLocation == null) {
+			return 0f;
+		}
+		
+		String [] customerLattitudeLongitude = coordinates.split(",");
+		String [] restaurantLattitudeLongitude = restaurantLocation.split(",");
+		if(customerLattitudeLongitude.length < 2 || restaurantLattitudeLongitude.length < 2) {
+			return 0f;
+		}
+		
+		Float customerLattitude = Float.parseFloat(customerLattitudeLongitude[0]);
+		Float customerLongitude = Float.parseFloat(customerLattitudeLongitude[1]);
+		Float restaurantLattitude = Float.parseFloat(restaurantLattitudeLongitude[0]);
+		Float restaurantLongitude = Float.parseFloat(restaurantLattitudeLongitude[1]);
+		
+		distanceInKms = calculateDistanceInKilometer(customerLattitude, customerLongitude, restaurantLattitude, restaurantLongitude);
+		//distanceInKms = (float) Math.sqrt(Math.pow((restaurantLattitude-customerLattitude), 2)+Math.pow((restaurantLongitude-customerLongitude), 2));
+
+		return distanceInKms;
 	}
 
+	public final static double AVERAGE_RADIUS_OF_EARTH_KM = 6371;
+	public float calculateDistanceInKilometer(double userLat, double userLng,
+	  double venueLat, double venueLng) {
+
+	    double latDistance = Math.toRadians(userLat - venueLat);
+	    double lngDistance = Math.toRadians(userLng - venueLng);
+
+	    double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+	      + Math.cos(Math.toRadians(userLat)) * Math.cos(Math.toRadians(venueLat))
+	      * Math.sin(lngDistance / 2) * Math.sin(lngDistance / 2);
+
+	    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+	    return (float) (AVERAGE_RADIUS_OF_EARTH_KM * c);
+	}
+	
 	private Float calculatePersonalCalories(Long startDate, Long targetDate, Float currentWeight, Float targetWeight,
 			Float currentBMR) {
 		
 		Float numberOfDays =  (float) ((targetDate - startDate)/86400000);
 		System.out.println("Number of days: "+numberOfDays);
-		Float weightChange = targetWeight - currentWeight ;
+		Float weightChange = currentWeight - targetWeight;
 		Float totalCaloriesToConsume = weightChange * 7700;
 		Float caloriesToConsumePerDay = currentBMR - (totalCaloriesToConsume/numberOfDays);
+		System.out.println("CaloriesToConsumePerDay "+caloriesToConsumePerDay);
 		return caloriesToConsumePerDay;
 		
 	}
