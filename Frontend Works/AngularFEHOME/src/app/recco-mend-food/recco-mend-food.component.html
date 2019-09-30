@@ -4,6 +4,14 @@
     font-family:'myFont';
     src: url("/assets/font/Tahu.ttf") format("truetype");
 }
+
+@font-face{
+    font-family:'myFont1';
+    src: url("/assets/font/Sweet.ttf") format("truetype");
+}
+section{
+  margin: 10px;
+}
 .contrain:hover .image {
   opacity: 0.3;
 }
@@ -19,13 +27,31 @@
 .contrain:hover .middle {
   opacity: 1;
 }
+h5{
+  font-family: 'myFont1';
+  font-size: 40px;
+  font-weight: bolder;
+}
+.pref{
+  font-family: 'myFont';
+  color: green;
+}
+.okpref{
+  font-family: 'myFont';
+  color: yellow;
+}
+.notpref{
+  font-family: 'myFont';
+  color: red;
+}
 .text {
-  
-  color: rgb(151, 107, 107);
+  font-size: 40px;
+  font-weight: bolder;
+  color: rgb(68, 58, 58);
     font-weight: bolder;
-  font-size: 20px;
-  padding: 16px 32px;
- 
+
+  /* padding: 16px 32px; */
+  font-family: 'myFont';
 }
 .middle {
   transition: .5s ease;
@@ -36,7 +62,7 @@
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
-  font-family: 'myFont';
+  
   
 }
 
@@ -44,7 +70,9 @@
 
 
 <ul>
-        <div *ngFor="let hero of dFoodDetails">
+  <table>
+    <tr *ngFor="let ooFoodDetails of arrayFoodDetail">
+        <td *ngFor="let hero of ooFoodDetails">
                
               
 <section>
@@ -53,23 +81,52 @@
                 <div class="contrain">
             <img [src]= "hero.customFoodImageLink" class="image" alt="Doggo" />  
             <div class="middle">
-                    <h4> {{ hero.foodName }}</h4>
-                    <div class="text">{{hero.rating}}</div>
+                    <h5> {{ hero.foodName }}</h5>
+                    <div class="text">{{hero.calories}} cals</div>
+                   <table>
+                     <tr>
+                    <td *ngFor="let start of hero.favRating">
+                    <span class="fa fa-star"></span>
+                    </td>
+                    </tr>
+                   </table>
                     <div class="text">{{hero.cuisine}}</div>
                     <div class="text">{{hero.quantity}}</div>
                   </div>
             </div>
         </div>
         <div class="profile__info">
-        <h4> {{ hero.foodName }}</h4>
+            <h4> {{ hero.foodName }}</h4>
+          <div *ngIf="hero.priority==0">
+          <span ng-style="myStyle={'background-color':'blue'}">
+             
+               <div class="okpref">Acceptable</div>
+          </span>
+      </div> 
+      <div *ngIf="hero.priority==1">
+          <span ng-style="myStyle={'background-color':'blue'}">
+             
+               <div class="pref">Recommended</div>
+          </span>
+      </div> 
+      <div *ngIf="hero.priority==-1">
+          <span ng-style="myStyle={'background-color':'blue'}">
+             
+               <div class="notpref">Not Recommended</div>
+          </span>
+      </div> 
         </div>
         <div class="profile__cta">
-                <a class="button">Order Now</a>
+               <a class="button"   (click)="addToCart(hero)">Add to card</a>
+                
         </div>
         </div>
+      
         </section>
-        
-        </div>
+       &nbsp;&nbsp;
+        </td>
+        </tr>
+        </table>
 </ul>
 
 <!--        
