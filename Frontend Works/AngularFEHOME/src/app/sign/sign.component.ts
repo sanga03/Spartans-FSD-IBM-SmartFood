@@ -19,6 +19,7 @@ export class SignComponent implements OnInit {
 
   ngOnInit() {
     this.openModal.nativeElement.click();
+   
   }
 
   validate()
@@ -59,6 +60,13 @@ export class SignComponent implements OnInit {
 
 
    
+  }
+
+  closeAndRedirectToHome()
+  {  
+    this.openModal.nativeElement.click();
+    this.router.navigate(['home'])
+  
   }
 
 
