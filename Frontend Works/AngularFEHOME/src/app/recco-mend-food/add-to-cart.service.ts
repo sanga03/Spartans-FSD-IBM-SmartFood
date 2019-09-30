@@ -31,11 +31,13 @@ export class AddToCartService {
     date:String(new Date().getTime()),
     restId:"temp"
   }
-        sessionStorage.setItem("cart",JSON.stringify(foodOrds));
+        sessionStorage.setItem('cart',JSON.stringify(foodOrds));
+        console.log(sessionStorage.getItem('cart'));
     }
 
   else{
-  let  foodOrds:foodOrderInterface= JSON.parse(sessionStorage.getItem('cart'));
+    console.log(sessionStorage.getItem('cart'));
+  let  foodOrds:foodOrderInterface=JSON.parse(sessionStorage.getItem('cart'));
   let tempOrder:foodInterface ={
     customFoodId:food.customFoodId,
  customFoodImageLink:food.customFoodImageLink,
@@ -44,18 +46,25 @@ export class AddToCartService {
  }
 // let  foodo:foodInterface[]=
 let foodo:foodOrderInterface =JSON.parse(sessionStorage.getItem('cart'));
-console.log("0-------------------------") 
+// console.log("0-------------------------") 
 let foodInts:foodInterface[]=new Array();
-foodInts.push(JSON.parse(foodo.foodorderid));
+let foodIntsFromSession:foodInterface[]=JSON.parse(String(foodo.foodorderid));
+let flag:boolean=true;
+// foodInts.push(JSON.parse(foodo.foodorderid));
+for(let temfoo of foodIntsFromSession){
+    if(temfoo.customFoodId==tempOrder.customFoodId){
+      flag=false;
+    }
+foodInts.push(temfoo);
+}
+if(flag)
 foodInts.push(tempOrder);
-console.log(foodInts)
-console.log("0-------------------------") 
-console.log(JSON.parse(foodo.foodorderid));
+// console.log(JSON.parse(foodo.foodorderid));
 foodo.foodorderid=JSON.stringify(foodInts);
-
-sessionStorage.setItem("cart",foodo);
-console.log(sessionStorage.getItem("cart"));
-  
+console.log(foodInts);
+sessionStorage.setItem("cart",JSON.stringify(foodo));
+// console.log(sessionStorage.getItem("cart"));
+  // console.log(foodo);
 
   }
     
