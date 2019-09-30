@@ -29,6 +29,7 @@
     "ghpages": "0.0.10",
     "jquery": "^3.4.1",
     "mat-select-autocomplete": "^1.2.5",
+    "moment": "^2.24.0",
     "popper": "^1.0.1",
     "rxjs": "~6.4.0",
     "select-autocomplete": "0.0.1",

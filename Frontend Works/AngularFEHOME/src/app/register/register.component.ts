@@ -65,11 +65,11 @@ this.errMsg="Not Same Password";
              .then(data=>{
                console.log(data);
                if(data == 0){
-this.optSentSuccess=true;
-sessionStorage.setItem("demail",email);
-this.router.navigate(["optVerify"])
-               }else{
-this.emailExists=true;
+                    this.optSentSuccess=true;
+                    sessionStorage.setItem("demail",email);
+                    this.router.navigate(["optVerify"])
+                                  }else{
+                    this.emailExists=true;
                }
              })
 }
@@ -93,9 +93,7 @@ this.emailExists=true;
   }
 
 validateRepass(control: AbstractControl) {
-  // if (!control.value==this.regForm.get('password').value) {
-  //   return { validRepass: true };
-//  }
+  
   return null;
 }
 
