@@ -88,6 +88,9 @@ redirectToHome()
     this.router.navigate(['home']);
  }
 
+ directToCart(){
+  this.router.navigate(['cart']);
+ }
 
  setPhysicalDetail()
  {   var d:Date = this.physicalDetailForm.get('dob').value;
