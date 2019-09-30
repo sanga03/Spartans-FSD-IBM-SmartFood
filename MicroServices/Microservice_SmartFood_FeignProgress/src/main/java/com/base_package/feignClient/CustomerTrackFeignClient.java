@@ -1,5 +1,7 @@
 package com.base_package.feignClient;
 
+import java.util.List;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,5 +13,5 @@ import com.base_package.model.CustomerTrackResponseModel;
 public interface CustomerTrackFeignClient {
 
 	@RequestMapping(value = "/customerTrack/byCustomer/{uuid}", method = RequestMethod.GET)
-	public CustomerTrackResponseModel readCustomerTrackByCustomerAccountUuid(@PathVariable("uuid") String uuid);
+	public List<CustomerTrackResponseModel> readCustomerTrackByCustomerAccountUuid(@PathVariable("uuid") String uuid);
 }
