@@ -155,6 +155,8 @@ body:JSON.stringify({
   "targetDate":objs.targetDate,
 "cusines":objs.cusines
 })
+  }).then(d=>{
+    document.location.reload();
   })
   }
 

@@ -9,6 +9,9 @@
     font-family:'myFont1';
     src: url("/assets/font/Sweet.ttf") format("truetype");
 }
+section{
+  margin: 10px;
+}
 .contrain:hover .image {
   opacity: 0.3;
 }
@@ -32,6 +35,14 @@ h5{
 .pref{
   font-family: 'myFont';
   color: green;
+}
+.okpref{
+  font-family: 'myFont';
+  color: yellow;
+}
+.notpref{
+  font-family: 'myFont';
+  color: red;
 }
 .text {
   font-size: 40px;
@@ -85,13 +96,25 @@ h5{
             </div>
         </div>
         <div class="profile__info">
-          <div ng-if="hero.priority==1">
+            <h4> {{ hero.foodName }}</h4>
+          <div *ngIf="hero.priority==0">
           <span ng-style="myStyle={'background-color':'blue'}">
-              <h4> {{ hero.foodName }}</h4>
-               <div class="pref">Preffered</div>
+             
+               <div class="okpref">Acceptable</div>
           </span>
       </div> 
-         
+      <div *ngIf="hero.priority==1">
+          <span ng-style="myStyle={'background-color':'blue'}">
+             
+               <div class="pref">Recommended</div>
+          </span>
+      </div> 
+      <div *ngIf="hero.priority==-1">
+          <span ng-style="myStyle={'background-color':'blue'}">
+             
+               <div class="notpref">Not Recommended</div>
+          </span>
+      </div> 
         </div>
         <div class="profile__cta">
                 <a class="button">Order Now</a>
