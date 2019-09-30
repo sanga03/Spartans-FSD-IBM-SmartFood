@@ -51,7 +51,7 @@ export class CustomerProfileComponent implements OnInit {
        {  
          this.customerObj=data;
          this.userName=data.name;
-         
+         sessionStorage.setItem("CustomerId",this.customerObj.uid);
        }).then(() => {
 
          var phyUrl = "http://b4ibm29.iiht.tech:1234/physicalDetails/byCustomer/"+this.customerObj.uid;

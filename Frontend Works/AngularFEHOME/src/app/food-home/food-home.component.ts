@@ -9,7 +9,7 @@ export class FoodHomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
+    
 }
 
 }
