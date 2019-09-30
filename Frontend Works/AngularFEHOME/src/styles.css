@@ -71,15 +71,18 @@ font-family: monospace;
 
    body {
     /* https://libbyhealth.com/wp-content/uploads/2017/02/OH71GZ01-1024x541.jpg */
+
     /*  background-image: url(https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg */
     /* https://burst.shopifycdn.com/photos/breakfast-from-above.jpg?width=1200&format=pjpg&exif=0&iptc=0 */
-    background-image: url( https://backgrounddownload.com/wp-content/uploads/2018/09/background-for-food-website-3.jpg);
+   /* https://backgrounddownload.com/wp-content/uploads/2018/09/background-for-food-website-3.jpg */
+   /* https://dimg04.c-ctrip.com/images/220u0g000000819ni1834_R_1136_750_R5_D.jpg */
+   /* https://theeventsmill.com/wp-content/uploads/2015/12/mille-feuille-dessert.jpg */
+    background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7fbd8469696215.5b8a22fe3425c.jpg);
+    
      /* background-image: url("https://burst.shopifycdn.com/photos/breakfast-from-above.jpg?width=1200&format=pjpg&exif=0&iptc=0"); */
      
      /* background-repeat: no-repeat; */
      background-size: 100%;
-
-
     }
     .container {
       color: "white";
@@ -158,6 +161,11 @@ font-family: monospace;
     }
     .bg-img{
       background-image: url(https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg);
+    
+    }
+
+    .res-bg-img{
+      background-image: url(https://images-na.ssl-images-amazon.com/images/I/61Uc77z2pIL._SL1500_.jpg);
     
     }
   

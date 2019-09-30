@@ -14,11 +14,14 @@ export class RestaurantComponent implements OnInit {
   restaurantList: restaurantResponse[][]=new Array();
   criteria:string;
   resList:restaurantResponse[]=new Array();
-  customFoodList:customFoodResponse[]=new Array();
+  customFoodList:customFoodResponse[][]=new Array();
+  cfList:customFoodResponse[]=new Array();
   constructor(private router:Router,public dialog: MatDialog) { }
 
   ngOnInit() {   
+    
     document.location.reload
+    document.body.classList.add('res-bg-img');
     this.criteria = sessionStorage.getItem("criteria");
     if(this.criteria===null || this.criteria===undefined)
     {
@@ -93,26 +96,30 @@ export class RestaurantComponent implements OnInit {
       {  console.log(data)
           let tempCustomFoodList:customFoodResponse[];
           tempCustomFoodList = data;
+          this.cfList=[];
+          this.customFoodList=[];
           let i = 0;
           tempCustomFoodList.forEach(customFood=>
-            {
+            {   console.log(customFood.restaurantUuid);
               if(resUuid==customFood.restaurantUuid)
-              {
-                this.customFoodList[i]=customFood;
+              {  console.log(resUuid)
+                this.cfList[i]=customFood;
                 i++;
               }
+            }) 
 
-              // let tempRestaurantList:restaurantResponse[]=new Array();
-              // for(let i=0;i<Math.ceil(resList.length/4);i++)
-              //   {
-              //     for(let k=0;k<4 && k<resList.length-(i*4);k++)
-              //         {
-              //           tempRestaurantList[k]=resList[(i*4)+k];
-              //         }
-              //     this.restaurantList[i]=tempRestaurantList;
-              //     tempRestaurantList=[];
-              //   }
-            })
+              let tempCFList:customFoodResponse[]=new Array();
+              for(let i=0;i<Math.ceil(this.cfList.length/2)-1;i++)
+                {
+                  for(let k=0;k<4 && k<this.cfList.length-(i*2);k++)
+                      {
+                        tempCFList[k]=this.cfList[(i*2)+k];
+                      }
+                  this.customFoodList[i]=tempCFList;
+                  tempCFList=[];
+                }
+                console.log(this.customFoodList);
+          
           console.log(this.customFoodList);
           this.dialog.open(DialogDataExampleDialog, {
             data: 

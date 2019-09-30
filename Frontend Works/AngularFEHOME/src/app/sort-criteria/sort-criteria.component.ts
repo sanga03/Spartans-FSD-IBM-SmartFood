@@ -22,5 +22,4 @@ export class SortCriteriaComponent implements OnInit {
     .then(()=>{this.router.navigate(['restaurant'])})
  
 }
- 
 }

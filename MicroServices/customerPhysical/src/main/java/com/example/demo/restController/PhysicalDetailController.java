@@ -73,9 +73,9 @@ public class PhysicalDetailController {
    @GetMapping("/physicalDetails/byCustomer/{cId}")
    public ResponseEntity<ResponseModel> findPhysicalDetailByCustomer(@PathVariable("cId") String s)
    {
-	   int cId = Integer.parseInt(s);
-	   Optional<CustomerAccount> tempCustomerAccount = customerRepository.findById(cId);
-	   Optional<PhysicalDetail> pDetail = physicalDetailRepository.findByCustomerAccount(tempCustomerAccount.get());
+//	   int cId = Integer.parseInt(s);
+	   CustomerAccount tempCustomerAccount = customerRepository.findByUid(s);
+	   Optional<PhysicalDetail> pDetail = physicalDetailRepository.findByCustomerAccount(tempCustomerAccount);
 	   ResponseModel responseModel = mapper.map(pDetail.get(), ResponseModel.class);
 	   return ResponseEntity.ok(responseModel);
 	   
