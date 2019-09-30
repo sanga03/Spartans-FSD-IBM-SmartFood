@@ -17,7 +17,8 @@ optSentSuccess:boolean=false;
 
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() {  
+    document.body.classList.add('reg-bg-img');
    
    this.regForm = new FormGroup({
       name: new FormControl('name'),

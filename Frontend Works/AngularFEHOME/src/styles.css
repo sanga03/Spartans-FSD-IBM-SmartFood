@@ -167,7 +167,13 @@ font-family: monospace;
     .res-bg-img{
       background-image: url(https://images-na.ssl-images-amazon.com/images/I/61Uc77z2pIL._SL1500_.jpg);
     
+    } 
+    .reg-bg-img{
+      background-image: url(https://backgrounddownload.com/wp-content/uploads/2018/09/background-for-food-website-3.jpg);
+    
     }
+
+
   
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
