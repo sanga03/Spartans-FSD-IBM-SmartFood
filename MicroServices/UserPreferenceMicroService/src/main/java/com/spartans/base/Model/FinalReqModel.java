@@ -12,6 +12,7 @@ public class FinalReqModel {
 	String uprUuid;
 	int category;
 	Float targetWeight;
+	Long startDate;
 	Long targetDate;
 	List<String> cusines;
 	public FinalReqModel() {

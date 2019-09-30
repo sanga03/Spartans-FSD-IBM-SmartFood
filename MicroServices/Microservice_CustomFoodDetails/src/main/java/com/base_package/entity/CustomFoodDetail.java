@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import com.base_package.DTO.CustomFoodDetailDTO;
 
@@ -27,12 +26,12 @@ public class CustomFoodDetail {
 	private String quantity;
 	private String imageLink;
 	private Double price;
-	private Integer rating;
+	private Float rating;
 	
 	private String foodUuid;
 	private String restaurantUuid;
 	
-	public CustomFoodDetail(String quantity, String imageLink, Double price, Integer rating) {
+	public CustomFoodDetail(String quantity, String imageLink, Double price, Float rating) {
 		super();
 		this.quantity = quantity;
 		this.imageLink = imageLink;
