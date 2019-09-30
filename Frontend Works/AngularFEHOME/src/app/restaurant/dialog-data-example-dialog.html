@@ -1,7 +1,49 @@
-<h1 mat-dialog-title>food</h1>
+<style>
+  img {
+    height: 100px;
+    width: 200px;
+}
+/* height: 320px;
+    width: 300px; */
+.card
+{
+    height: 250px;
+    width: 200px;
+}
+@media (min-width: 0px) {
+    .card-deck .card {
+    display: flex;
+    /* flex: 1 0 0%; */
+    /* flex-direction: column; */
+    /* margin-right: 15px; */
+     margin-bottom: 10px; 
+    margin-left: 15px;
+    opacity: 1;
+} 
+}
+
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 0px;
+    text-align: center;
+    text-decoration: none;
+} 
+</style>
+<h4 mat-dialog-title>Menu  <a mat-dialog-close  class="close">X</a></h4> 
+
+<h1 class="display-4 bg-dark" ></h1>
 <div mat-dialog-content>
-   Foods are
-  <ul>
-    {{data|json}}
-  </ul>
+ 
+  <div class="card-deck" *ngFor="let customFoods of data; even as e;index as i" > 
+    <div class="card border-primary " *ngFor="let customFood of customFoods; even as e;index as i">
+            <img [src]="customFood.imageLink" alt="Random first slide">
+             <div class="card-body text-right">
+             <!-- <h5 class="card-title"> {{restaurant.name.toUpperCase()}} </h5> -->
+             <p class="card-text">Price: {{customFood.price}}<i class="fa fa-inr" aria-hidden="true"></i> <br> Rating: {{customFood.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
+              <button (click)="addToCart(customFood)" class="btn-md btn-dark">Add to Cart</button>
+            </div>
+    </div>   
+
+</div>
 </div>
