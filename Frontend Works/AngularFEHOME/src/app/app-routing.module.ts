@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { FoodHomeComponent } from './food-home/food-home.component';
+import { FoodCartComponent } from './food-cart/food-cart.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:" ",
     component: HomePageComponent
+  },
+  {
+    path:'cart',
+    component:FoodCartComponent
   },
     {
       path:"login",

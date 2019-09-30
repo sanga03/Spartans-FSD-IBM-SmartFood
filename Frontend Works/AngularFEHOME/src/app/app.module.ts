@@ -29,6 +29,7 @@ import { PrefModelComponent } from './pref-model/pref-model.component';
 import { FoodHomeComponent } from './food-home/food-home.component';
 import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
 import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.component';
+import { FoodCartComponent } from './food-cart/food-cart.component';
 
  
 
@@ -55,7 +56,8 @@ import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.compon
     PrefModelComponent,
     FoodHomeComponent,
     FoodRecomendComponent,
-    ReccoMendFoodComponent
+    ReccoMendFoodComponent,
+    FoodCartComponent
 
 
   ],
