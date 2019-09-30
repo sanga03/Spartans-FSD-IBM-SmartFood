@@ -34,8 +34,8 @@ import com.base_package.model.RestaurantResponseModel;
 import com.base_package.service.ListFoodsService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-@RestController
 @CrossOrigin
+@RestController
 @RequestMapping("/")
 public class ProgressFeignController {
 

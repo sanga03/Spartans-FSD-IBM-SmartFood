@@ -37,3 +37,6 @@ zuul:
     feign-register:
       path: /register/**
       service-id: feign-register
+    food-service:
+      path: /food/**
+      service-id: food-service
