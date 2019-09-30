@@ -2,7 +2,15 @@ body {
     background-color: #100e17;
     font-family: 'Open Sans', sans-serif;
   }
-  
+  @font-face{
+    font-family:'myFont';
+    src: url("/assets/font/Tahu.ttf") format("truetype");
+}
+
+@font-face{
+    font-family:'myFont1';
+    src: url("/assets/font/Sweet.ttf") format("truetype");
+}
   .container {
     position: absolute;
     height: 300px;
@@ -72,7 +80,9 @@ body {
     background: linear-gradient(90deg, rgba(0,154,217,1) 0%, rgba(217,147,0,1) 65%, rgba(255,186,0,1) 100%);
     transition: 0.6s ease-out;
   }
-  
+  .med{
+    color :white;
+  }
   .card:hover .filledbar {
     width: 120px;
     transition: 0.4s ease-out;
@@ -99,4 +109,8 @@ body {
   .card:hover .stroke {
     stroke-dashoffset: 100;
     transition: 0.6s ease-out;
+  }
+  text{
+    color: white;
+    font-family: 'myFont'
   }
