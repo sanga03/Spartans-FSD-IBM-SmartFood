@@ -15,14 +15,14 @@ img {
 <table class="table">
     <thead>
             <tr>
-                   
+                    <th scope='col'>Name</th>
                     <th scope="col">Food</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
             </tr>
     </thead>
         <tr *ngFor="let foods of foodOrderList">
-    
+    <td>{{foods.name}}</td>
     <td> <img [src]="foods.customFoodImageLink"></td>
     <td> {{foods.price}}</td>
     <td>{{foods.quantity}}</td>

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { foodDetail, foodOrderInterface,foodInterface } from '../structures';
-import { JsonPipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +15,13 @@ export class AddToCartService {
       
    let   foodOrds:foodOrderInterface ;
     let oop:foodInterface[]=[]
+    console.log(food.foodName);
     let tempOrder:foodInterface ={
        customFoodId:food.customFoodId,
     customFoodImageLink:food.customFoodImageLink,
     price:food.price,
-    quantity:1
+    quantity:1,
+    name:food.foodName,
     }
     oop.push(tempOrder)
     console.log(sessionStorage.getItem('CustomerId'));
@@ -42,7 +43,8 @@ export class AddToCartService {
     customFoodId:food.customFoodId,
  customFoodImageLink:food.customFoodImageLink,
  price:food.price,
- quantity:1
+ quantity:1,
+ name:food.foodName,
  }
 // let  foodo:foodInterface[]=
 let foodo:foodOrderInterface =JSON.parse(sessionStorage.getItem('cart'));
@@ -50,7 +52,6 @@ let foodo:foodOrderInterface =JSON.parse(sessionStorage.getItem('cart'));
 let foodInts:foodInterface[]=new Array();
 let foodIntsFromSession:foodInterface[]=JSON.parse(String(foodo.foodorderid));
 let flag:boolean=true;
-// foodInts.push(JSON.parse(foodo.foodorderid));
 for(let temfoo of foodIntsFromSession){
     if(temfoo.customFoodId==tempOrder.customFoodId){
       flag=false;
@@ -59,12 +60,9 @@ foodInts.push(temfoo);
 }
 if(flag)
 foodInts.push(tempOrder);
-// console.log(JSON.parse(foodo.foodorderid));
 foodo.foodorderid=JSON.stringify(foodInts);
 console.log(foodInts);
 sessionStorage.setItem("cart",JSON.stringify(foodo));
-// console.log(sessionStorage.getItem("cart"));
-  // console.log(foodo);
 
   }
     
