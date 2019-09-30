@@ -50,7 +50,7 @@ import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.compon
     RestaurantComponent,
     SortCriteriaComponent,
 
-    DialogDataExampleDialog
+    DialogDataExampleDialog,
 
     PrefModelComponent,
     FoodHomeComponent,

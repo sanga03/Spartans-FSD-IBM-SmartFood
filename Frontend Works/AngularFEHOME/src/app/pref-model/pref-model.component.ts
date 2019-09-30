@@ -68,6 +68,9 @@ export class PrefModelComponent implements OnInit {
     targetWeight:0,
     cusines:[]
     }
+
+
+
     preferenceModel=new FormGroup({
       selected: new FormControl(JSON.parse(sessionStorage.getItem("prcusines"))),
       targetW:new FormControl(sessionStorage.getItem("prtargetWeight")),
