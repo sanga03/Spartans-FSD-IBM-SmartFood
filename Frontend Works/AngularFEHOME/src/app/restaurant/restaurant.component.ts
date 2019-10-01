@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, NgModule } from '@angular/core';
+import { Component, OnInit, Inject, NgModule, SystemJsNgModuleLoader } from '@angular/core';
 import { Router } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -93,20 +93,28 @@ export class RestaurantComponent implements OnInit {
     fetch(url)
     .then(res=>res.json())
     .then(data => 
-      {  console.log(data)
+      {  
           let tempCustomFoodList:customFoodResponse[];
           tempCustomFoodList = data;
           this.cfList=[];
           this.customFoodList=[];
           let i = 0;
           tempCustomFoodList.forEach(customFood=>
-            {   console.log(customFood.restaurantUuid);
+            {  
               if(resUuid==customFood.restaurantUuid)
-              {  console.log(resUuid)
+              {  
                 this.cfList[i]=customFood;
+                console.log(customFood);
                 i++;
               }
             }) 
+            // fetch("http://b4ibm02.iiht.tech:8762/food/food/id/"+this.cfList[i].foodUuid).then(res=>res.json()).then(data=>{
+            //          console.log(data);
+            //     this.cfList[i].name = data.name;
+            //     }).then(()=>
+            //     {
+                  
+            //     })
 
               let tempCFList:customFoodResponse[]=new Array();
               for(let i=0;i<Math.ceil(this.cfList.length/2)-1;i++)
@@ -119,11 +127,12 @@ export class RestaurantComponent implements OnInit {
                   tempCFList=[];
                 }
                 console.log(this.customFoodList);
-          
+
+         
           console.log(this.customFoodList);
           this.dialog.open(DialogDataExampleDialog, {
             data: 
-             this.customFoodList
+            this.customFoodList
             
           });
       })
@@ -138,6 +147,46 @@ export class RestaurantComponent implements OnInit {
 })
 export class DialogDataExampleDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: customFoodResponse) {}
+
+  addToCart(customFood:customFoodResponse)
+  {    
+       if(localStorage.getItem("cart")==undefined || localStorage.getItem("cart")==null)
+       {
+         localStorage.setItem("cart",JSON.stringify([customFood]));
+       }
+       else
+       {
+         let customFoodList:customFoodResponse[] = JSON.parse(localStorage.getItem("cart"));
+         customFoodList.push(customFood);
+         localStorage.setItem("cart",JSON.stringify(customFoodList));
+       }
+       console.log(document.getElementById("showProduct").nodeValue);
+       document.getElementById("showProduct").innerText=  String(Number(document.getElementById("showProduct").innerText) + 1);
+  } 
+  directToCart()
+  {
+      let cartSummary:customFoodResponse[];
+      let cartItems = localStorage.getItem("cart")
+      if(cartItems==null || cartItems == undefined)
+      {
+        console.log("do nothing")
+      }
+      else
+      { let i=0;
+        JSON.parse(localStorage.getItem("cart")).forEach(cartItem => { 
+            if(cartSummary==null || cartSummary == undefined)
+            {
+              cartSummary[0]=cartItem;
+            }
+           cartSummary.forEach(cart=>{
+             if(cartItem.uuid==cart.uuid)
+             {
+                 
+             }
+           })
+        });
+      }
+  }
 }
 export interface restauratRequest
 {
@@ -162,7 +211,7 @@ export interface restaurantResponse
 
 export interface customFoodResponse
 {
-  
+   name:String;
     uuid: String,
     quantity: String,
     imageLink: String,
@@ -172,6 +221,8 @@ export interface customFoodResponse
     restaurantUuid: string
 
 }
+
+
 
 // let foodList = [0,1,2,3,4,5,6,7,8,9,10]
 // let restaurantList:number[][];

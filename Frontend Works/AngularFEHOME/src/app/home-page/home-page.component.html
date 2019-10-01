@@ -24,9 +24,10 @@
     margin-top: 480px;
     opacity: 0.9;
 }
-.agm-map
+agm-map
 {
-    height: 300px;
+    height: 200px;
+    width: 200px;
 }
 </style>
 
@@ -43,24 +44,30 @@
                         <h5 class="display-5" >At Nutritium we provide meal of your diet and cuisine preference</h5>
                         <hr class="my-4">
                         <h1 class="display-4"></h1>
-                        <hr class="my-4">
-
+                        
+                           
                 </div>
-                <agm-map [latitude]="lat" [longitude]="long">
-                        <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
-                    </agm-map>
+                
             </div> 
         </div>  
-       
-                <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
-                    
-                        <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
-                        <div (click)="redirectToRestaurant()"  class="search"> </div>
-                </form>  
+             <div class="row">
+                   
+                    <hr class="my-4">
+                    <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
+                            <agm-map [latitude]="lat" [longitude]="long"> 
+                                   
+                                    <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
+                            </agm-map>
+                            <button class="btn-sm"><i class="fa fa-map-marker" aria-hidden="true"></i></button>
+                            <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
+                            <div (click)="redirectToRestaurant()"  class="search"> </div>
+                    </form>  
+             </div>
+               
 
    <div id="foot">       
             <app-footer></app-footer>
-        </div>
+    </div>
 
    
      

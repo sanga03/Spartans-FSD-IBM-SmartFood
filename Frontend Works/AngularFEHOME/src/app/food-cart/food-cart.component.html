@@ -25,7 +25,7 @@ img {
     <td>{{foods.name}}</td>
     <td> <img [src]="foods.customFoodImageLink"></td>
     <td> {{foods.price}}</td>
-    <td>{{foods.quantity}}</td>
+    <td> <button (click)="changeCartSummary(foods.customFoodId,0)" class="btn-sm btn-primary">-</button> <span id="foods.customFoodId" >{{foods.quantity}}</span>  <button (click)="changeCartSummary(foods.customFoodId,1)" class="btn-sm btn-primary"></button></td>
     </tr>
 
 
