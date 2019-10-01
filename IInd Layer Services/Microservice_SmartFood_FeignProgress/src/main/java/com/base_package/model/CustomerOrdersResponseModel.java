@@ -1,5 +1,7 @@
 package com.base_package.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +16,5 @@ public class CustomerOrdersResponseModel {
 	private String date;
 	private String uorderId;
 	private String cust;
-	private String [] foodorderid;
+	private List<String> foodorderid;
 }

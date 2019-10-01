@@ -11,5 +11,5 @@ public class CustomerTrackResponseModel {
 	private String utUuid;
 	private String tackingDate;
 	private String mealTime;
-	private int calories;
+	private Float calories;
 }

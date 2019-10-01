@@ -101,11 +101,10 @@ public class ListFoodsService {
 				currentBMR);
 		Integer timeOfDay = 3;
 		Float caloriesToConsumeNow = personalCaloriesPerDay / timeOfDay;
-		
-		caloriesToConsumeNow = updateCaloriesBasedOnPreviousRecords(caloriesToConsumeNow,customerOrdersResponseModelList,customerTrackResponseModelList);
-		
-		// take care of orders and track using current-time, change the
-		// caloriesToConsumeNow
+
+		caloriesToConsumeNow = updateCaloriesBasedOnPreviousRecords(caloriesToConsumeNow,
+				customerOrdersResponseModelList, customerTrackResponseModelList, customFoodList, customIngredientList,
+				basicIngredientList);
 
 		PersonalFoodResponseModel personalFoodResponseModel;
 		List<PersonalFoodResponseModel> list = new ArrayList<PersonalFoodResponseModel>();
@@ -140,6 +139,13 @@ public class ListFoodsService {
 					personalFoodResponseModel.setQuantity(customFoodDetailsResponseModel.getQuantity()); // calculate?
 					personalFoodResponseModel.setRating(customFoodDetailsResponseModel.getRating());
 					personalFoodResponseModel.setCustomFoodId(customFoodDetailsResponseModel.getUuid());
+					
+					for(RestaurantResponseModel restaurantResponseModel : restaurantList) {
+						if(customFoodDetailsResponseModel.getRestaurantUuid().equals(restaurantResponseModel.getResId())) {
+							personalFoodResponseModel.setRestaurantId(customFoodDetailsResponseModel.getRestaurantUuid());
+							personalFoodResponseModel.setRestaurantName(restaurantResponseModel.getName());
+						}
+					}
 
 					if ((currentBMR - personalCaloriesPerDay) > 0) {
 						if (calories < (caloriesToConsumeNow - 100)) {
@@ -171,8 +177,71 @@ public class ListFoodsService {
 
 	private Float updateCaloriesBasedOnPreviousRecords(Float caloriesToConsumeNow,
 			List<CustomerOrdersResponseModel> customerOrdersResponseModelList,
-			List<CustomerTrackResponseModel> customerTrackResponseModelList) {
+			List<CustomerTrackResponseModel> customerTrackResponseModelList,
+			List<CustomFoodDetailsResponseModel> customFoodList,
+			List<CustomIngredientResponseModel> customIngredientList,
+			List<BasicIngredientResponseModel> basicIngredientList) {
 		
+		System.out.println("Calories before updation: "+caloriesToConsumeNow);
+		
+		if (!customerOrdersResponseModelList.isEmpty()) {
+			Double caloriesConsumedHistoryPerOrder = 0.0;
+			Float tempCalories = caloriesToConsumeNow;
+			for (CustomerOrdersResponseModel customerOrdersResponseModel : customerOrdersResponseModelList) {
+				caloriesConsumedHistoryPerOrder = 0.0;
+				for(String customFoodId: customerOrdersResponseModel.getFoodorderid()) {
+					for(CustomFoodDetailsResponseModel customFoodDetailsResponseModel:customFoodList) {
+						if(customFoodId.equals(customFoodDetailsResponseModel.getUuid())) {
+							for(CustomIngredientResponseModel customIngredientResponseModel:customIngredientList) {
+								if(customIngredientResponseModel.getCustomFoodDetailId().equals(customFoodDetailsResponseModel.getUuid())) {
+									for(BasicIngredientResponseModel basicIngredientResponseModel:basicIngredientList) {
+										if(customIngredientResponseModel.getBasicIngredientId().equals(basicIngredientResponseModel.getBUuid())) {
+											caloriesConsumedHistoryPerOrder +=  calculateFoodCalories(basicIngredientResponseModel.getCalPerGram(), customIngredientResponseModel.getAmount());
+											System.out.println("CALORIES CONSUMED HISTORY PER ORDER: "+caloriesConsumedHistoryPerOrder);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				tempCalories = caloriesToConsumeNow;
+				if(caloriesConsumedHistoryPerOrder > caloriesToConsumeNow) {
+					System.out.println("BEFORE IF : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"+caloriesConsumedHistoryPerOrder+","+caloriesToConsumeNow);
+					Float difference = (float) (caloriesConsumedHistoryPerOrder-caloriesToConsumeNow);
+					tempCalories -= difference;
+					System.out.println("AFTER IF : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"+caloriesConsumedHistoryPerOrder+","+caloriesToConsumeNow);
+				}
+				else if (caloriesConsumedHistoryPerOrder < caloriesToConsumeNow && caloriesConsumedHistoryPerOrder > 0) {
+					System.out.println("BEFORE ELSE: caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"+caloriesConsumedHistoryPerOrder+","+caloriesToConsumeNow);
+					Float difference = (float) (caloriesToConsumeNow - caloriesConsumedHistoryPerOrder);
+					tempCalories += difference;
+					System.out.println("BEFORE ELSE : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"+caloriesConsumedHistoryPerOrder+","+caloriesToConsumeNow);
+				}
+			}
+			
+			caloriesToConsumeNow = tempCalories;
+		}
+
+		if (!customerTrackResponseModelList.isEmpty()) {
+			Float tempCalories = caloriesToConsumeNow;
+			for (CustomerTrackResponseModel customerTrackResponseModel : customerTrackResponseModelList) {
+				
+				if(customerTrackResponseModel.getCalories() < caloriesToConsumeNow) {
+					System.out.println("Consumed Less than recommended");
+					Float difference = caloriesToConsumeNow - customerTrackResponseModel.getCalories();
+					tempCalories += difference;
+				}
+				else if(customerTrackResponseModel.getCalories() > caloriesToConsumeNow) {
+					System.out.println("Consumed More than recommended, caloriesToconsume = "+caloriesToConsumeNow);
+					Float difference = customerTrackResponseModel.getCalories() - caloriesToConsumeNow ;
+					System.out.println("difference: "+difference);
+					tempCalories -= difference;
+				}
+			}
+			caloriesToConsumeNow = tempCalories;
+		}
+		System.out.println("Updated calories: "+caloriesToConsumeNow);
 		return caloriesToConsumeNow;
 	}
 
@@ -204,9 +273,6 @@ public class ListFoodsService {
 
 		distanceInKms = calculateDistanceInKilometer(customerLattitude, customerLongitude, restaurantLattitude,
 				restaurantLongitude);
-		// distanceInKms = (float)
-		// Math.sqrt(Math.pow((restaurantLattitude-customerLattitude),
-		// 2)+Math.pow((restaurantLongitude-customerLongitude), 2));
 
 		return distanceInKms;
 	}
