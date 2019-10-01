@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PersonalFoodResponseModel {
 	private String customFoodId;
+	private String restaurantName;
+	private String restaurantId;
 	private String customFoodImageLink;
 	private Double price;
 	private String quantity;

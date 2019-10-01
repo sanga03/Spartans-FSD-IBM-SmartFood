@@ -121,18 +121,22 @@ public class ProgressFeignController {
 		List<CustomerOrdersResponseModel> customerOrdersResponseModelList;
 		try {
 			customerOrdersResponseModelList = getCustomerOrdersResponseModel(uuid);
+			System.out.println("Got the orders: "+customerOrdersResponseModelList.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			customerOrdersResponseModelList = new ArrayList<CustomerOrdersResponseModel>();
+			System.out.println("Caught Exception in Orders");
 		}
 		List<CustomerTrackResponseModel> customerTrackResponseModelList;
 		try {
 			customerTrackResponseModelList = getCustomerTrackResponseModel(uuid);
+			System.out.println("Got the tracks: "+customerTrackResponseModelList.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			customerTrackResponseModelList = new ArrayList<CustomerTrackResponseModel>();
+			System.out.println("Caught Exception in Track");
 		}
 
 		List<PersonalFoodResponseModel> list = listFoodsService.getPersonalFoods(foodList, customFoodList,
@@ -179,45 +183,4 @@ public class ProgressFeignController {
 
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
-
-	/*
-	 * @GetMapping("/testTrack/{uuid}") public CustomerTrackResponseModel
-	 * testTrack(@PathVariable("uuid") String uuid) { return
-	 * customerTrackFeignClient.readCustomerTrackByCustomerAccountUuid(uuid); }
-	 * 
-	 * @GetMapping("/testPhysical/{uuid}") public CustomerPhysicalResponseModel
-	 * testPhysical(@PathVariable("uuid") String uuid) { return
-	 * customerPhysicalFeignClient.readCustomerPhysicalByUuid(uuid);
-	 * 
-	 * }@GetMapping("/testPreferences/{uuid}") public
-	 * CustomerPreferencesResponseModel testPreferences(@PathVariable("uuid") String
-	 * uuid) { return customerPreferencesFeignClient.getPreferencesOfCustomer(uuid);
-	 * }
-	 * 
-	 * @GetMapping("/testOrders/{uuid}") public CustomerOrdersResponseModel
-	 * testOrders(@PathVariable("uuid") String uuid) { return
-	 * customerOrdersFeignClient.findOrderByUuid(uuid); }
-	 * 
-	 * @GetMapping("/testRestaurant/{uuid}") public RestaurantResponseModel
-	 * testRestaurant(@PathVariable("uuid") String uuid) { return
-	 * restaurantFeignClient.getRestaurantByUuid(uuid); }
-	 * 
-	 * @GetMapping("/testFood/{uuid}") public FoodResponseModel
-	 * testFood(@PathVariable("uuid") String uuid) { return
-	 * foodFeignClient.getFoodByUuid(uuid); }
-	 * 
-	 * @GetMapping("/testCustomFood/{uuid}") public CustomFoodDetailsResponseModel
-	 * testCustomFood(@PathVariable("uuid") String uuid) { return
-	 * customFoodFeignClient.getCustomFoodDetailsByUuid(uuid); }
-	 * 
-	 * @GetMapping("/testCustomIngredient/{uuid}") public
-	 * CustomIngredientResponseModel testCustomIngredient(@PathVariable("uuid")
-	 * String uuid) { return
-	 * customIngredientFeignClient.getCustomIngredientByUuid(uuid); }
-	 * 
-	 * @GetMapping("/testBasicIngredient/{uuid}") public
-	 * BasicIngredientResponseModel testBasicIngredient(@PathVariable("uuid") String
-	 * uuid) { return basicIngredientFeignClient.readBasicIngredientByUuid(uuid); }
-	 */
-
 }

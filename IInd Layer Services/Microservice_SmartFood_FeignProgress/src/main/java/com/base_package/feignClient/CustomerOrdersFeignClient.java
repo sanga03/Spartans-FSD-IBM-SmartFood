@@ -12,6 +12,6 @@ import com.base_package.model.CustomerOrdersResponseModel;
 @FeignClient(name = "customer-order-service")
 public interface CustomerOrdersFeignClient {
 	
-	@RequestMapping(value = "/findByUid/{uuid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/listId/{uuid}", method = RequestMethod.GET)
 	public List<CustomerOrdersResponseModel> findOrderByUuid(@PathVariable("uuid") String uuid);
 }
