@@ -84,7 +84,7 @@ console.log(JSON.stringify(this.foodOrdered));
           "restId":this.foodOrdered.restId,
                  "date": this.foodOrdered.date,
                  "uorderId":"",
-                 "cust": this.foodOrdered.customerId,
+                 "customerId": this.foodOrdered.customerId,
                  "foodorderid": customFoodIds
                 }
        )
@@ -94,6 +94,11 @@ console.log(JSON.stringify(this.foodOrdered));
       console.log(data)
 
   })
+
+  sessionStorage.setItem('cart','first');
+
 }
+
+
 
 }
