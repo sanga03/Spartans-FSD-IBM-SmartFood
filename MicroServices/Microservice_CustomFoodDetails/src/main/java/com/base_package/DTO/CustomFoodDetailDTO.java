@@ -1,12 +1,11 @@
 package com.base_package.DTO;
 
-import com.base_package.entity.Food;
-import com.base_package.entity.Restaurant;
-
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-@Data
+import lombok.Setter;
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class CustomFoodDetailDTO {
@@ -14,7 +13,7 @@ public class CustomFoodDetailDTO {
 	private String quantity;
 	private String imageLink;
 	private Double price;
-	private Integer rating;
-	private Food food;
-	private Restaurant restaurant;
+	private Float rating;
+	private String foodUuid;
+	private String restaurantUuid;
 }

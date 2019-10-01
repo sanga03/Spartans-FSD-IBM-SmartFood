@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+.form-controlz{
+  border: transparent;
+
+color: white;
+
+font-size: large;
+
+font-style: unset;
+
+font-weight: normal;
+}
+
 label.error{
     color: red;
 size: 5px;
@@ -21,11 +34,11 @@ font-family: monospace;
       
    }
 
-   img {
+   /* img {
      height: 400px;
      width: 700px;
      
-   }
+   } */
    .carousel-slide {
      display: flex;
    }
@@ -58,11 +71,18 @@ font-family: monospace;
 
    body {
     /* https://libbyhealth.com/wp-content/uploads/2017/02/OH71GZ01-1024x541.jpg */
-     background-image: url("https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg");
+
+    /*  background-image: url(https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg */
+    /* https://burst.shopifycdn.com/photos/breakfast-from-above.jpg?width=1200&format=pjpg&exif=0&iptc=0 */
+   /* https://backgrounddownload.com/wp-content/uploads/2018/09/background-for-food-website-3.jpg */
+   /* https://dimg04.c-ctrip.com/images/220u0g000000819ni1834_R_1136_750_R5_D.jpg */
+   /* https://theeventsmill.com/wp-content/uploads/2015/12/mille-feuille-dessert.jpg */
+    background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/7fbd8469696215.5b8a22fe3425c.jpg);
+    
+     /* background-image: url("https://burst.shopifycdn.com/photos/breakfast-from-above.jpg?width=1200&format=pjpg&exif=0&iptc=0"); */
+     
      /* background-repeat: no-repeat; */
      background-size: 100%;
-
-
     }
     .container {
       color: "white";
@@ -89,7 +109,7 @@ font-family: monospace;
       float:right;
     } 
     #reg-field{
-      margin-right: 15%;
+      margin-right: 40%;
       float:right;
     }
     #Restaurant { 
@@ -107,12 +127,12 @@ font-family: monospace;
       text-align: center;
       font: normal 13px/15px proxima-nova,sans-serif;
     }
-    #subEmail { 
+    /* #subEmail { 
       margin-left: 44%;
       align-self: center;
       align-content: center;
 
-    }
+    } */
 
     .fa {
       padding: 20px;
@@ -127,5 +147,33 @@ font-family: monospace;
     #RestaurantName {
       margin-left: 43%;
     }
+
+    .jumbotrons
+    {
+      width: 200px;
+      height: 15px;
+      margin-bottom: 2rem;
+    border-radius: .3rem;
+    font-style: italic;
+    width: 200px;
+    height: 5px;
+
+    }
+    .bg-img{
+      background-image: url(https://d39l2hkdp2esp1.cloudfront.net/img/photo/140991/140991_00_2x.jpg);
     
+    }
+
+    .res-bg-img{
+      background-image: url(https://images-na.ssl-images-amazon.com/images/I/61Uc77z2pIL._SL1500_.jpg);
+    
+    } 
+    .reg-bg-img{
+      background-image: url(https://backgrounddownload.com/wp-content/uploads/2018/09/background-for-food-website-3.jpg);
+    
+    }
+
+
   
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -23,7 +23,7 @@ public class RestaurantService {
 		this.restaurantRepository = restaurantRepository;
 	}
 
-	// Create
+	// Create restaurant
 	public RestaurantDto createRestaurant(RestaurantDto restaurantDetail) {
 		ModelMapper mapper = new ModelMapper();
 		Restaurant restaurant = mapper.map(restaurantDetail, Restaurant.class);
@@ -31,31 +31,6 @@ public class RestaurantService {
 		restaurantRepository.save(restaurant);
 		RestaurantDto restaurantdto = mapper.map(restaurant, RestaurantDto.class);
 		return restaurantdto;
-	}
-
-	// Display all
-	public List<Restaurant> getAllRestaurants() {
-		List<Restaurant> restaurants = (List<Restaurant>) restaurantRepository.findAll();
-		return restaurants;
-
-	}
-
-	// Display by ID
-	public Restaurant findRestaurant(String resId) {
-		Optional<Restaurant> restaurant = restaurantRepository.findByResId(resId);
-		if (restaurant.isPresent()) {
-			return restaurant.get();
-		}
-		return null;
-	}
-
-	// Delete by ID
-	public Restaurant deleteRestaurant(String resId) {
-		Optional<Restaurant> restaurant = restaurantRepository.findByResId(resId);
-		if (restaurant.isPresent()) {
-			restaurantRepository.delete(restaurant.get());
-		}
-		return null;
 	}
 
 	// Update by ID
@@ -75,4 +50,61 @@ public class RestaurantService {
 		return null;
 
 	}
+
+	// Display all restaurants
+	public List<Restaurant> getAllRestaurants() {
+		List<Restaurant> restaurants = restaurantRepository.findAll();
+		return restaurants;
+
+	}
+
+	// Find by ID
+	public Restaurant findRestaurant(String resId) {
+		Optional<Restaurant> restaurant = restaurantRepository.findByResId(resId);
+		if (restaurant.isPresent()) {
+			return restaurant.get();
+		}
+		return null;
+	}
+
+	// Delete by ID
+	public Restaurant deleteRestaurant(String resId) {
+		Optional<Restaurant> restaurant = restaurantRepository.findByResId(resId);
+		if (restaurant.isPresent()) {
+			restaurantRepository.delete(restaurant.get());
+		}
+		return null;
+	}
+
+	
+
+	// Find all by name
+	public List<Restaurant> findAllResByName(String name) {
+		List<Restaurant> restaurants = (List<Restaurant>) restaurantRepository.findAllByName(name);
+		return restaurants;
+	}
+
+	// Find all by rating
+	public List<Restaurant> findAllResByRating(double rating) {
+		List<Restaurant> restaurants = (List<Restaurant>) restaurantRepository.findAllByRating(rating);
+		return restaurants;
+	}
+
+	// Find all by location
+	public List<Restaurant> findResByLocation(String location) {
+		List<Restaurant> restaurants = (List<Restaurant>) restaurantRepository.findAllByLocation(location);
+//			if (restaurants.isPresent()) {
+//				return restaurants.get();
+//			}
+		return restaurants;
+	}
+	
+	// Display by name
+		public Restaurant findResByName(String name) {
+			Optional<Restaurant> restaurant = restaurantRepository.findByName(name);
+			if (restaurant.isPresent()) {
+				return restaurant.get();
+			}
+			return null;
+		}
 }

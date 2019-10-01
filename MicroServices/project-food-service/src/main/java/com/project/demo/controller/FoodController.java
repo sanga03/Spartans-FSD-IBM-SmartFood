@@ -37,6 +37,7 @@ public class FoodController {
     @PostMapping("/newFood")
 	public ResponseEntity<FoodResponseModel> createNewFood(@RequestBody FoodRequestModel foodRequestModel) {
     	mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
 		FoodDTO dto = mapper.map(foodRequestModel, FoodDTO.class);
 		dto = foodService.createFood(dto);
 		FoodResponseModel foodResponseModel = mapper.map(dto, FoodResponseModel.class);

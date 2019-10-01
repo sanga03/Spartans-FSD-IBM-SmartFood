@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.Customer;
+
+import com.example.demo.entity.CustomerAccount;
+import com.example.demo.entity.Gender;
 import com.example.demo.entity.PhysicalDetail;
 import com.example.demo.entity.PhysicalDetailsDto;
 import com.example.demo.repo.CustomerRepository;
@@ -22,7 +25,7 @@ import com.example.demo.repo.PhysicalDetailRepository;
 import com.example.demo.requestAndResponseModel.RequestModel;
 import com.example.demo.requestAndResponseModel.ResponseModel;
 import com.example.demo.service.PhysicalDetailService;
-
+@CrossOrigin
 @RestController
 public class PhysicalDetailController {
 	@Autowired
@@ -40,14 +43,17 @@ public class PhysicalDetailController {
 		
 	}
    
-   @PostMapping("/physicalDetails")
-   public ResponseEntity<ResponseModel> insertPhysicalDetail(@RequestBody RequestModel requestModel)
-   {    Customer cust = new Customer(4,"cHIRAG");
-       customerRepository.save(cust);
+   @PostMapping("/physicalDetails/{cUuid}")
+   public ResponseEntity<ResponseModel> insertPhysicalDetail(@RequestBody RequestModel requestModel,@PathVariable("cUuid") String cUuid)
+   {  
+	   System.out.println(cUuid);
+       CustomerAccount customerAccount = customerRepository.findByUid(cUuid);
+       System.out.println(customerAccount);
 	   PhysicalDetailsDto physicalDetailsDto = new PhysicalDetailsDto(requestModel.getHeight(), requestModel.getWeight(),requestModel.getDob() ,requestModel.getCaloriesBurn(), requestModel.getGender());
-	   physicalDetailsDto.setCustomer(cust);
+	   physicalDetailsDto.setCustomerAccount(customerAccount);
 	   physicalDetailsDto=physicalDetailService.insertPhysicalDto(physicalDetailsDto);
 	   ResponseModel responseModel = mapper.map(physicalDetailsDto, ResponseModel.class);
+	   
 	   return ResponseEntity.ok(responseModel);
    }
    @GetMapping("/physicalDetails/{uuid}")
@@ -67,9 +73,9 @@ public class PhysicalDetailController {
    @GetMapping("/physicalDetails/byCustomer/{cId}")
    public ResponseEntity<ResponseModel> findPhysicalDetailByCustomer(@PathVariable("cId") String s)
    {
-	   int cId = Integer.parseInt(s);
-	   Optional<Customer> tempCustomer = customerRepository.findById(cId);
-	   Optional<PhysicalDetail> pDetail = physicalDetailRepository.findByCustomer(tempCustomer.get());
+//	   int cId = Integer.parseInt(s);
+	   CustomerAccount tempCustomerAccount = customerRepository.findByUid(s);
+	   Optional<PhysicalDetail> pDetail = physicalDetailRepository.findByCustomerAccount(tempCustomerAccount);
 	   ResponseModel responseModel = mapper.map(pDetail.get(), ResponseModel.class);
 	   return ResponseEntity.ok(responseModel);
 	   

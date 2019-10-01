@@ -1,94 +1,82 @@
 package com.mycompany.entity;
 
-
-import java.util.UUID;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+import lombok.Data;
 
-
-@Entity 
+@Entity
+@Data
+@Table(name = "Customer_order_food")
 public class Food {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long f_id;
-	private Long r_id;
-	private String f_name;
-	UUID f_uuid = UUID.randomUUID();
-	
+	@Column(name = "id")
+	private Long id;
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn
-	private UserOrder order;
-	
-	public Long getF_id() {
-		return f_id;
-	}
-	public void setF_id(Long f_id) {
-		this.f_id = f_id;
-	}
-	public Long getR_id() {
-		return r_id;
-	}
-	public void setR_id(Long r_id) {
-		this.r_id = r_id;
-	}
-	public String getF_name() {
-		return f_name;
-	}
-	public void setF_name(String f_name) {
-		this.f_name = f_name;
-	}
-	public UUID getF_uuid() {
-		return f_uuid;
-	}
-	public void setF_uuid(UUID f_uuid) {
-		this.f_uuid = f_uuid;
-	}
-	
-	public void setOrder(UserOrder order) {
-		this.order = order;
-	}
-	public Food() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Food(Long r_id, String f_name) {
-		super();
-		this.r_id = r_id;
-		this.f_name = f_name;
-	}
-	
-	public Food(Long r_id, String f_name, UserOrder order) {
-		super();
-		this.r_id = r_id;
-		this.f_name = f_name;
-		this.order = order;
-	}
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return f_id != null ? f_id.hashCode() : 0;
-	}
-	@Override
-	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+	@JoinColumn(name = "userorderid")
+	private UserOrder UserOrder;
+	@Column(name = "fuid")
+	private String fUid;
 
-        Food food = (Food) o;
+	@Column(name = "uorder_id")
+	private String uorderId;
 
-        return f_id != null ? f_id.equals(food.f_id) : food.f_id == null;
+	@Column(name = "custfoodid")
+	private String custFoodId;
+
+	public Long getId() {
+		return id;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public UserOrder getUserOrder() {
+		return UserOrder;
+	}
+
+	public void setUserOrder(UserOrder userOrder) {
+		UserOrder = userOrder;
+	}
+
+	public String getfUid() {
+		return fUid;
+	}
+
+	public void setfUid(String fUid) {
+		this.fUid = fUid;
+	}
+
+	public String getUorderId() {
+		return uorderId;
+	}
+
+	public void setUorderId(String uorderId) {
+		this.uorderId = uorderId;
+	}
+
+	public String getCustFoodId() {
+		return custFoodId;
+	}
+
+	public void setCustFoodId(String custFoodId) {
+		this.custFoodId = custFoodId;
+	}
+
 	@Override
 	public String toString() {
-		return "Food [f_id=" + f_id + ", r_id=" + r_id + ", f_name=" + f_name + ", f_uuid=" + f_uuid + "]";
+		return "Food [UserOrder=" + UserOrder + ", fUid=" + fUid + ", uorderId=" + uorderId + ", custFoodId="
+				+ custFoodId + "]";
 	}
 	
 }

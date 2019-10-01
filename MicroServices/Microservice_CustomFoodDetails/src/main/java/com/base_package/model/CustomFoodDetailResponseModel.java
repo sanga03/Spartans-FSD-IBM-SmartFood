@@ -12,7 +12,7 @@ public class CustomFoodDetailResponseModel {
 	private String quantity;
 	private String imageLink;
 	private Double price;
-	private Integer rating;
+	private Float rating;
 	private String foodUuid;
 	private String restaurantUuid;
 }

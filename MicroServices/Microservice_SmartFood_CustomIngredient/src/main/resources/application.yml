@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: custom-ingredient-service
+  datasource:
+    url: jdbc:mysql://172.18.4.177:3306/spartans
+    username: chirag
+    password: root
+  #jpa:
+    #hibernate:
+      #ddl-auto: update
+server:
+  port: 9001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://172.18.3.44:8761/eureka/

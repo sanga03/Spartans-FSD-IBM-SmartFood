@@ -1,0 +1,31 @@
+
+         <style>
+            .form-controlz{
+                .form-control;
+                background: transparent;
+            
+            color: white;
+            
+            font-size: large;
+            
+            font-style: unset;
+            
+            font-weight: normal;
+            }
+            .err-msg{
+                color: red;
+            }
+            
+            </style>
+
+<app-header></app-header>
+<fieldset id="reg-field">      
+       <form [formGroup]="otpForm" (ngSubmit)="validOtp()" class="frm" method="post" >
+             
+            <div class="form-group">
+              <!-- <label for="exampleInputPassword1">Re-enter Password</label> -->
+              <input type="text" class="form-control form-controlz" formControlName="otp" id="otpz" placeholder=" Enter otp" value="">  
+            <input type="button"class="form-control form-controlz" (click)="validOtp()" value="varify otp"/>  
+            </div>
+            </form>
+        </fieldset>

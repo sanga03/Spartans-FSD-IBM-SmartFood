@@ -1,0 +1,62 @@
+
+<style>
+input[type=checkbox]
+{
+    text-decoration-color: blueviolet;
+}
+.form-check 
+{
+    margin-left: 10px;
+}
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 0px;
+    text-align: center;
+    text-decoration: none;
+} 
+</style>
+<div class="card" style="width: 12rem;">
+        <div class="card-header bg-light btn-outline-info">
+          <b> Filters </b>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"> <b>Rating Above </b> <br><br>
+         
+                  <div class="form-check">
+                    <button class="btn-sm btn-info" (click)="sortRestaurantByRating(4)" type="radio" name="exampleRadios" id="rating" > 4 <i class="fa fa-star" aria-hidden="true"></i> </button>
+            
+                  </div>
+                  <div class="form-check">
+                      <button class="btn-sm btn-info" (click)="sortRestaurantByRating(3)" type="radio" name="exampleRadios" id="rating" > 3 <i class="fa fa-star" aria-hidden="true"></i></button>
+              
+                  </div>
+                  <div class="form-check">
+                      <button class="btn-sm btn-info" (click)="sortRestaurantByRating(2)" type="radio" name="exampleRadios" id="rating" > 2 <i class="fa fa-star" aria-hidden="true"></i></button>
+            
+                  </div>
+                  <div class="form-check">
+                      <button class="btn-sm btn-info" (click)="sortRestaurantByRating(1)" type="radio" name="exampleRadios" id="rating" > 1 <i class="fa fa-star" aria-hidden="true"></i></button>
+            
+                 </div>
+        </li>
+          <!-- <li class="list-group-item"> <b> Cuisine </b> 
+            <div class="form-check">
+                    <input class="form-check-input position-static" type="checkbox" id="Italian" value="option1" aria-label="...">
+                    <label for="Italian"> Italian </label>
+              </div>
+              <div class="form-check">
+                    <input class="form-check-input position-static" type="checkbox" id="Mexican" value="option1" aria-label="...">
+                    <label for="Mexican"> Mexican </label>
+              </div>
+              <div class="form-check">
+                    <input class="form-check-input position-static" type="checkbox" id="Indian" value="option1" aria-label="...">
+                    <label for="Indian"> Indian </label>
+              </div>
+        </li>  -->
+        <!-- <li class="list-group-item">
+              <button class="btn btn-info" (click)="sortRestaurantByRating()">Apply Filter</button>
+        </li>
+      -->
+      </ul>
+ </div>

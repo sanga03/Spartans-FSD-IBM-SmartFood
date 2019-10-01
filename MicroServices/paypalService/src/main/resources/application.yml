@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: paypal-service
+    
+          
+      
+server:
+  port: 8090
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.18.3.44:8761/eureka
+      
+     
+paypal:
+  mode: sandbox
+  client:
+    id: AT1PF0-bg87XL14yXFOQNhY71ExSEipPrEj4-4BAIscQeuEBG3errPyfReDjWGADXYBqo390PRl6SZpG
+    secret: ENetCL8qurozZV8CLQNkz3iWQElmVAN_QIylcGLILt9A84faJ1dTqks_VwuXBE6Rlg_iJF1wM5cQ0Kpt
+      
+ 

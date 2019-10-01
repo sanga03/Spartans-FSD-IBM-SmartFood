@@ -1,0 +1,148 @@
+
+<style>
+ @font-face{
+    font-family:'myFont';
+    src: url("/assets/font/Tahu.ttf") format("truetype");
+}
+
+@font-face{
+    font-family:'myFont1';
+    src: url("/assets/font/Sweet.ttf") format("truetype");
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+section{
+  margin: 10px;
+}
+.contrain:hover .image {
+  opacity: 0.3;
+}
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.contrain:hover .middle {
+  opacity: 1;
+}
+h5{
+  font-family: 'myFont1';
+  font-size: 40px;
+  font-weight: bolder;
+}
+.pref{
+  font-family: 'myFont';
+  color: green;
+}
+.okpref{
+  font-family: 'myFont';
+  color: yellow;
+}
+.notpref{
+  font-family: 'myFont';
+  color: red;
+}
+.text {
+  font-size: 40px;
+  font-weight: bolder;
+  color: rgb(68, 58, 58);
+     font-weight: bolder;
+    /*font-family: 'Roboto', sans-serif; */
+  /* padding: 16px 32px; */
+  font-family: 'myFont';
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  
+  
+}
+
+</style>
+
+
+<ul>
+  <table>
+    <tr *ngFor="let ooFoodDetails of arrayFoodDetail">
+        <td *ngFor="let hero of ooFoodDetails">
+               
+              
+<section>
+        <div class="profile profile-imgonly">
+        <div class="profile__image">
+                <div class="contrain">
+            <img [src]= "hero.customFoodImageLink" class="image" alt="Doggo" />  
+            <div class="middle">
+                    <h5> {{ hero.foodName }}</h5>
+                    <div class="text">{{hero.calories}} cals</div>
+                   <table>
+                     <tr>
+                    <td *ngFor="let start of hero.favRating">
+                    <span class="fa fa-star"></span>
+                    </td>
+                    </tr>
+                   </table>
+                    <div class="text">{{hero.cuisine}}</div>
+                    <div class="text">{{hero.quantity}}</div>
+                  </div>
+            </div>
+        </div>
+        <div class="profile__info">
+            <h4> {{ hero.foodName }}</h4>
+          <div *ngIf="hero.priority==0">
+          <span ng-style="myStyle={'background-color':'blue'}">
+             
+               <div class="okpref">Acceptable</div>
+          </span>
+      </div> 
+      <div *ngIf="hero.priority==1">
+          <span ng-style="myStyle={'background-color':'blue'}">
+             
+               <div class="pref">Recommended</div>
+          </span>
+      </div> 
+      <div *ngIf="hero.priority==-1">
+          <span ng-style="myStyle={'background-color':'blue'}">
+             
+               <div class="notpref">Not Recommended</div>
+          </span>
+      </div> 
+        </div>
+        <div class="profile__cta">
+               <a class="button"   (click)="addToCart(hero)">Add to card</a>
+        </div>
+        </div>
+      
+        </section>
+       &nbsp;&nbsp;
+        </td>
+        </tr>
+        </table>
+</ul>
+
+<!--        
+
+        <div class="card " style="width: 18rem;">
+                <div class="contrain">
+                <img class="card-img-top" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/567707/dog.png" alt="Card image cap">
+                <div class="middle">
+                        <div class="text">John Doe</div>
+                      </div>
+            
+                  </div>
+                <div class="card-body">
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+               -->

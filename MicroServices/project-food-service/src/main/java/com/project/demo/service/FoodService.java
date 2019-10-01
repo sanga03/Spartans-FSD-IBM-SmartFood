@@ -95,6 +95,7 @@ public class FoodService {
 		for(Food food:foods)
 		{
 			if(food.getrUid().equals(rUid))
+
 				selectedFoods.add(food);
 		}
 		

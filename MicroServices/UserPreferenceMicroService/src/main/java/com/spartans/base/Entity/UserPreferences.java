@@ -1,5 +1,6 @@
 package com.spartans.base.Entity;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -42,6 +43,10 @@ public class UserPreferences {
 	//if he wants to reduce weight
 	@Column(name="target_weight")
 	Float targetWeight;
+	@Column(name ="start_date")
+	Date startDate;
+	@Column(name ="target_date")
+	Date targetDate;
 	@SuppressWarnings("deprecation")
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "userPreferences")
@@ -51,8 +56,9 @@ public class UserPreferences {
 	@Override
 	public String toString() {
 		return "UserPreferences [id=" + id + ", uUuid=" + uUuid + ", uprUuid=" + uprUuid + ", category=" + category
-				+ ", targetWeight=" + targetWeight + ", cuisines=" + cuisines + "]";
+				+ ", targetWeight=" + targetWeight + ", startDate=" + startDate + ", targetDate=" + targetDate + "]";
 	}
+	
 	
 	
 }

@@ -1,8 +1,6 @@
 package com.project.demo.model;
 
 
-
-
 public class FoodRequestModel {
 	
    private String image;//stores link of the image
@@ -69,4 +67,11 @@ public void setrUid(String rUid) {
 }
    
      
+
+
+   private Boolean category;
+   
+   private String cuisine;
+   
+
 }

@@ -1,0 +1,40 @@
+<style>
+img {
+    height: 200px;
+    width: 350px;
+}
+.container 
+{
+    padding-top: 100px;
+}
+
+</style>
+<app-header></app-header>
+<div class="container">
+<div class="card-deck"> 
+        <div class="card border-primary " style="width: 50rem;">
+                <img [src]="images[0]" alt="Random first slide">
+                 <div class="card-body text-right">
+                <h5 class="card-title">Have Great a Collection </h5>
+                <p class="card-text">wide variety of food (South,North,chinese ...)</p>
+                <a href="https://letterboxd.com/film/pulp-fiction/" class="btn btn-dark">Letterboxd Page</a>
+                </div>
+        </div>   
+        <div class="card border-primary mb-3" style="width: 50rem;">
+                <img [src]="images[1]" alt="Random second slide">
+                 <div class="card-body text-right">
+                <h5 class="card-title">Your favourite </h5>
+                <p class="card-text">Choose your dearest food</p>
+                <a href="https://letterboxd.com/film/pulp-fiction/" class="btn btn-dark">Letterboxd Page</a>
+                </div>
+        </div> 
+        <div class="card border-primary mb-3" style="width: 50rem; ">
+                <img [src]="images[2]" alt="Random third slide">
+                 <div class="card-body text-right">
+                <h5 class="card-title"> We keep count</h5>
+                <p class="card-text">Dont worry we got the rest</p>
+                <a href="https://letterboxd.com/film/pulp-fiction/" class="btn btn-dark">Letterboxd Page</a>
+                </div>
+        </div>    
+</div>
+</div>

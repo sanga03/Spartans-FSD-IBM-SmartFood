@@ -1,111 +1,92 @@
 package com.mycompany.entity;
 
-//import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-
+import lombok.Data;
 
 @Entity
+@Data
+@Table(name = "customer_orders")
 public class UserOrder {
 	
+	@Override
+	public String toString() {
+		return "UserOrder [id=" + id + ", restId=" + restId + ", date=" + date + ", uorderId=" + uorderId
+				+ ", customerId=" + customerId + ", foodId=" + foodId + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long u_id;
-	private Long r_id;
+	@Column(name = "id")
+	private int id;
+	@Column(name = "rest_id")
+	private String restId;
+	@Column(name = "date")
 	private String date;
-	UUID uuid = UUID.randomUUID();
+	@Column(name = "uorder_id")
+	private String uorderId ;
+	@Column(name = "cust_id")
+	private String customerId;
 	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private List<Food> food;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn
-	private Customer customer;
-	
-	
-	
-	
-	public UserOrder(Long r_id, String date, List<Food> food, Customer customer) {
-		super();
-		this.r_id = r_id;
-		this.date = date;
-		this.food = food;
-		this.customer = customer;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Food> foodId;
+
+	public int getId() {
+		return id;
 	}
-	public Long getU_id() {
-		return u_id;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setU_id(Long u_id) {
-		this.u_id = u_id;
+
+	public String getRestId() {
+		return restId;
 	}
-	public Long getR_id() {
-		return r_id;
+
+	public void setRestId(String restId) {
+		this.restId = restId;
 	}
-	public void setR_id(Long r_id) {
-		this.r_id = r_id;
-	}
+
 	public String getDate() {
 		return date;
 	}
+
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public UUID getUuid() {
-		return uuid;
-	}
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-	public List<Food> getFood() {
-		return food;
-	}
-	public void setFood(List<Food> food) {
-		this.food = food;
-	}
-	
-	public Customer getCustomer() {
-		return customer;
-	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	public UserOrder() {
-		super();
-		// TODO Auto-generated constructor stub
+
+	public String getUorderId() {
+		return uorderId;
 	}
 
-
-
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return u_id != null ? u_id.hashCode() : 0;
+	public void setUorderId(String uorderId) {
+		this.uorderId = uorderId;
 	}
-	@Override
-	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        UserOrder order = (UserOrder) o;
+	public String getCustomerId() {
+		return customerId;
+	}
 
-        return u_id != null ? u_id.equals(order.u_id) : order.u_id == null;
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
 	}
-	@Override
-	public String toString() {
-		return "UserOrder [u_id=" + u_id + ", r_id=" + r_id + ", date=" + date + ", uuid=" + uuid + ", food=" + food
-				+ ", customer=" + customer + "]";
+
+	public List<Food> getFoodId() {
+		return foodId;
 	}
-	
+
+	public void setFoodId(List<Food> foodId) {
+		this.foodId = foodId;
+	}
 	
 	
 	

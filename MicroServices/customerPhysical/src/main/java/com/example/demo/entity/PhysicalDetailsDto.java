@@ -8,7 +8,7 @@ import java.util.UUID;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import org.joda.time.Years;
+
 
 
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class PhysicalDetailsDto {
     private float bmi;
     private float bmr;
     private int caloriesBurn;
-    private Customer customer;
+    private CustomerAccount customerAccount;
 	public PhysicalDetailsDto(float height, float weight, long dob,int caloriesBurn,int gender) {
 		super();
 		this.height = height;
@@ -44,18 +44,16 @@ public class PhysicalDetailsDto {
 		}
 		this.bmi = (weight/(height * height)) * 10000;
 		this.uPuuid = "UP"+UUID.randomUUID().toString();
-        LocalDate today = LocalDate.now();
-        LocalDate birthDay = LocalDate.of(this.dob.getYear(), this.dob.getMonth(), this.dob.getDate());
-
-			Period age = Period.between(birthDay, today);
+		Date d = new Date();
+        int age = (int) ((d.getTime()-this.dob.getTime())/(31556952000l));
 		 
 		if(this.gender.getGender()==Gender.MALE.getGender())
 		{
-			this.bmr = (float) ((10 * this.weight) + (6.25 * this.height) - (5 * age.getYears()) + 5);
+			this.bmr = (float) ((10 * this.weight) + (6.25 * this.height) - (5 * age) + 5);
 		}
 		else
-		{  this.bmr = age.getYears();
-			//this.bmr = (float) ((10 * this.weight) + (6.25 * this.height) - (5 * age.getYears()) - 161);
+		{  
+			this.bmr = (float) ((10 * this.weight) + (6.25 * this.height) - (5 * age) - 161);
 		}
 		
 	

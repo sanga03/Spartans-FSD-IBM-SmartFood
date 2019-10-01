@@ -1,0 +1,78 @@
+<style>
+img {
+    height: 150px;
+    width: 250px;
+}
+/* height: 320px;
+    width: 300px; */
+.card
+{
+    height: 320px;
+    width: 300px;
+}
+@media (min-width: 0px) {
+    .card-deck .card {
+    display: flex;
+    /* flex: 1 0 0%; */
+    /* flex-direction: column; */
+    /* margin-right: 15px; */
+     margin-bottom: 25px; 
+    margin-left: 15px;
+    opacity: 1;
+} 
+}
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 0px;
+    text-align: center;
+    text-decoration: none;
+} 
+div 
+{
+    float: left;
+    
+}
+.container 
+{
+    margin-top: 20px;
+}
+
+</style>
+
+<app-header></app-header>
+
+    <div class="row">
+        <div class="col-12 col-md-3 col-xl-2 bd-sidebar">  
+            <div class="container">
+                 <app-sort-criteria></app-sort-criteria>
+            </div>
+            
+         </div> 
+         <div col="1">
+
+         </div>
+         <div class="col-10">
+               <div class="container">
+                <div class="card-deck" *ngFor="let restaurants of restaurantList; even as e;index as i" > 
+                        <div class="card border-primary " *ngFor="let restaurant of restaurants; even as e;index as i">
+                                <img [src]="restaurant.image" alt="Random first slide">
+                                 <div class="card-body text-right">
+                                 <h5 class="card-title"> {{restaurant.name.toUpperCase()}} </h5>
+                                 <p class="card-text">Location: {{restaurant.location.toUpperCase()}}<i class="fa fa-map-marker" aria-hidden="true"></i>  <br> Rating: {{restaurant.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
+                                  <button (click)="showRestauratMenu(restaurant.resId)" class="btn-md btn-dark">See Menu</button>
+                                </div>
+                        </div>   
+               
+                </div>
+            </div>
+         </div>
+        
+
+    </div>
+
+<!-- <div >
+        <div *ngIf="e; else elseBlock"> Even restaurant</div>
+          <ng-template #elseBlock> {{restaurant | json }} </ng-template>
+    
+</div> -->

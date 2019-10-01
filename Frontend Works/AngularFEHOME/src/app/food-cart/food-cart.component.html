@@ -1,0 +1,63 @@
+<style>
+img {
+    height: 100px;
+    width: 100px;
+}
+
+@font-face{
+    font-family:'myFont3';
+    src: url("/assets/font/Sansation.ttf") format("truetype");
+}
+.fos{
+    font-family: 'myFont3';
+}
+.bos{
+    font-weight: bold;
+}
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 0px;
+    text-align: center;
+    text-decoration: none;
+} 
+
+</style>
+<app-customer-profile></app-customer-profile>
+<div class="fos">
+<div class="container">
+
+<div class="row">
+
+<div class="col-8">
+
+<table class="table">
+    <thead>
+            <tr>
+                    <th scope='col'>Name</th>
+                    <th scope="col">Food</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"> Quantity </th>
+            </tr>
+    </thead>
+        <tr *ngFor="let foods of foodOrderList">
+    <td>{{foods.name}}</td>
+    <td> <img [src]="foods.customFoodImageLink"></td>
+    <td> {{foods.price}} &nbsp;&nbsp; <span class="bos">x</span></td>
+    <td> <button (click)="changeCartSummary(foods.customFoodId,0)" class="btn-sm btn-outline-success  ">-</button> <span class="bos"> {{foods.quantity}} </span> <button (click)="changeCartSummary(foods.customFoodId,1)" class="btn-sm btn-outline-success">+</button></td>
+    </tr>
+
+<tr>
+    <td></td>
+    <td> <span class="bos">total Price:</span></td>
+    <td> <span class="bos">{{tp}}</span><i class="fa fa-inr" aria-hidden="true"></i></td>
+    <td></td>
+</tr>
+
+</table>  
+<button class="btn btn-success" (click)=proceedCheckout()> Checkout </button>
+
+</div>
+</div>
+</div>
+</div>

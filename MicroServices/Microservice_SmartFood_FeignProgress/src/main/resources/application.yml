@@ -1,0 +1,14 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: feign-progress-service
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://172.18.3.44:8761/eureka/
+management: 
+  endpoints: 
+    web: 
+      exposure: 
+        include: 'hystrix.stream'

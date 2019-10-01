@@ -1,17 +1,16 @@
 spring:
-  cloud:
-    config:
-      uri: http://172.18.3.44:8762
   application:
     name: custom-food-details-service
-  h2:
-    console:
-      enabled: true
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password: null
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    url: jdbc:mysql://172.18.4.177:3306/spartans
+    username: chirag
+    password: root
+  #jpa:
+    #hibernate:
+      #ddl-auto: update
 server:
   port: 9000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://172.18.3.44:8761/eureka/
