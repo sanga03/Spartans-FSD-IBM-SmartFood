@@ -43,5 +43,5 @@ export interface foodDetail{
     date:String;
     uorderId :String;
     customerId:String;
-    foodorderid:String;
+    foodorderid:String; //[array of customFood Id]
 }
