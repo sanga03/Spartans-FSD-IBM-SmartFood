@@ -1,47 +1,116 @@
 package com.project.demo.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Entity
+@Table(name = "food")
 public class Food {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@Column(name = "id")
+	private Long id;
 	
-	private String fUid;//generated randomly 
+	@Column(name = "fuid")
+	private String fUid;
 	
+	@Column(name = "imageLink")
 	private String image;//stores link of the image
 	
+	@Column(name = "name")
 	private String name;
-	
+
+	@Column(name = "category")
 	private Boolean category;
 	
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "fUid",referencedColumnName = "id")
-	@JoinTable(name = "food_cuisine")
-	private List<Cuisine> cuisine = new ArrayList<Cuisine>();
- 	
+	@Column(name = "cuisine")
+	private String cuisine;
+	
+	@Column(name = "rUid")
 	private String rUid;//dummy restaurant id	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getfUid() {
+		return fUid;
+	}
+
+	public void setfUid(String fUid) {
+		this.fUid = fUid;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Boolean getCategory() {
+		return category;
+	}
+
+	public void setCategory(Boolean category) {
+		this.category = category;
+	}
+
+	public String getCuisine() {
+		return cuisine;
+	}
+
+	public void setCuisine(String cuisine) {
+		this.cuisine = cuisine;
+	}
+
+	public String getrUid() {
+		return rUid;
+	}
+
+	public void setrUid(String rUid) {
+		this.rUid = rUid;
+	}
+
+	public Food(String image, String name, Boolean category, String cuisine, String rUid) {
+		super();
+		this.image = image;
+		this.name = name;
+		this.category = category;
+		this.cuisine = cuisine;
+		this.rUid = rUid;
+	}
+
+	public Food() {
+		super();
+	}
+	
+	
 }

@@ -1,5 +1,6 @@
 package com.project.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ public class FoodService {
 	
 	@Autowired
 	private FoodRepository foodRepository;
-	
+			
 	@Autowired
 	private ModelMapper modelMapper;
 	
@@ -31,20 +32,73 @@ public class FoodService {
 		return foods;
 	}
 	
-	public String deleteFoodByFUid(String foodId)
+	public Food deleteFoodByFUid(String foodId)
 	{
 		Food food = foodRepository.findByFUid(foodId);
 		foodRepository.delete(food);
-		return "food with uniquie id "+foodId+"has been deleted";
+		return food;
 	}
 	
 	public FoodDTO createFood(FoodDTO foodDTO)
 	{
 		Food food = modelMapper.map(foodDTO, Food.class);
-		food.setFUid(UUID.randomUUID().toString());
+		food.setfUid(UUID.randomUUID().toString());
 		foodRepository.save(food);
 		foodDTO = modelMapper.map(food,FoodDTO.class);
 		return foodDTO;
 	}
-
+	
+	public List<Food> findFoodByCuisine(String cuisine)
+	{
+		List<Food> foods = foodRepository.findAll();
+		List<Food> selectedFoods = new ArrayList<Food>();
+		for(Food food:foods)
+		{
+			if(food.getCuisine() == cuisine)
+				selectedFoods.add(food);
+		}
+		
+		return selectedFoods;
+	}
+	
+	
+	public List<Food> findFoodByCategory(Boolean category)
+	{
+		List<Food> foods = foodRepository.findAll();
+		List<Food> selectedFoods = new ArrayList<Food>();
+		for(Food food:foods)
+		{
+			if(food.getCategory() == category)
+				selectedFoods.add(food);
+		}
+		
+		return selectedFoods;
+	}
+	
+	public List<Food> findFoodByName(String name)
+	{
+		List<Food> foods = foodRepository.findAll();
+		List<Food> selectedFoods = new ArrayList<Food>();
+		for(Food food:foods)
+		{
+			if(food.getName().equals(name))
+				selectedFoods.add(food);
+		}
+		
+		return selectedFoods;
+		
+	}
+	public List<Food> findFoodByRuid(String rUid)
+	{
+		List<Food> foods = foodRepository.findAll();
+		List<Food> selectedFoods = new ArrayList<Food>();
+		for(Food food:foods)
+		{
+			if(food.getrUid().equals(rUid))
+				selectedFoods.add(food);
+		}
+		
+		return selectedFoods;
+		
+	}
 }

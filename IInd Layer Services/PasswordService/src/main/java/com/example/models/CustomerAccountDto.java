@@ -1,38 +1,41 @@
-package com.example.shared;
-
+package com.example.models;
 
 
 public class CustomerAccountDto {
 
-	private String uid;
+	private String uuid;
 	private String name;
 	private String email;
 	private String phone;
 	private String password;
+	private String passwordBcrypt;
 
-	public CustomerAccountDto(String uid, String password, String name, String email,
+	public CustomerAccountDto(String uuid, String passwordBcrypt, String password, String name, String email,
 			String phone) {
 		super();
-		this.uid = uid;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
+		this.passwordBcrypt = passwordBcrypt;
+		this.uuid = uuid;
 	}
 
-	public String getuid() {
-		return uid;
-	}
-
-	public void setuid(String uid) {
-		this.uid = uid;
-	}
-
-
-
+	
 	public CustomerAccountDto() {
 		super();
 	}
+	
+
+	public String getUuid() {
+		return uuid;
+	}
+
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
 
 	public String getName() {
 		return name;
@@ -66,5 +69,11 @@ public class CustomerAccountDto {
 		this.password = password;
 	}
 
+	public String getPasswordBcrypt() {
+		return passwordBcrypt;
+	}
 
+	public void setPasswordBcrypt(String passwordBcrypt) {
+		this.passwordBcrypt = passwordBcrypt;
+	}
 }

@@ -28,4 +28,16 @@ public class EmailServiceImpl {
 	        sender.send(message);
 	        return str;
 	    }
+	    
+	    public String sendEmailPassword(@RequestParam String email) throws Exception{
+	    	String str=String.valueOf(Math.round(Math.random()*1000000));
+	    	String body="<html><body>Dear user, <br/> This email is a verifictaion step to change your password. Kindly enter this otp to successfully update your password~ <br/><b>"+str+"</b><br/><br/>With love,<br/>SmartFood Team :)</body></html>";
+	    	MimeMessage message = sender.createMimeMessage();
+	        message.setText(body,"UTF-8", "html");
+	        MimeMessageHelper helper = new MimeMessageHelper(message);
+	        helper.setTo(email);
+	        helper.setSubject("Password change - SmartFood"); 
+	        sender.send(message);
+	        return str;
+	    }
 }
