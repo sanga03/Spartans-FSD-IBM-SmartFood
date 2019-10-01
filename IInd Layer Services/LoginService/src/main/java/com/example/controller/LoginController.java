@@ -35,22 +35,25 @@ public class LoginController {
     @PostMapping("/userLogin")
 	public Integer getCredentials(@RequestBody LoginModel model,HttpServletRequest request) {
 		Integer str = 0;
+		System.out.println(model.getEmail()+model.getPassword());
 		CustomerAccountDto dto= cai.findByEmail(model.getEmail());
-		if(dto != null) {
-			if(bcrypt.matches(model.getPassword(),dto.getPassword() ))
-				{
-				str = 0;	
-				HttpSession session = request.getSession();
-				session.setAttribute("uuid",dto.getUuid());
-				}
-			else
-				str = 1;
+		if(dto != null) 
+		{
+			System.out.println(bcrypt.matches(model.getPassword(),dto.getPassword()));
+			if(bcrypt.matches(model.getPassword(),dto.getPassword()))
+			{
+			str = 0;	
+			HttpSession session = request.getSession();
+			session.setAttribute("uuid",dto.getUuid());
+			}
+				else
+					str = 1;
 		}
 		else
 		{
 			str = 2;
 		}
-		
+		System.out.println(str);
 		return str;
 	}
     

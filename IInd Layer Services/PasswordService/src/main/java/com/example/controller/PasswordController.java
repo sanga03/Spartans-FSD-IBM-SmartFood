@@ -17,20 +17,21 @@ import com.example.models.RequestModel;
 
 @RestController
 @RequestMapping("/")
-public class RegisterController {
+public class PasswordController {
 	
 	private String otp;
 	private RequestModel modelUser;
 	private CustomerAccountIntf cai;
+	private String email;
 	
 	@Autowired
-	public RegisterController(CustomerAccountIntf cai) {
+	public PasswordController(CustomerAccountIntf cai) {
 		super();
 		this.cai = cai;
 	}
 	
 	
-	public RegisterController() {
+	public PasswordController() {
 		super();
 	}
 
@@ -40,28 +41,23 @@ public class RegisterController {
 	    return x;
 	}
 	
-	@PostMapping("/registerUser")
-	public Integer registerUser(@RequestBody RequestModel model,HttpServletRequest request) {
+	@PostMapping("/changePassword")
+	public Integer registerUser(@RequestParam String email,HttpServletRequest request) {
 		Integer str1 = 0;
-		this.setModel(model);
-		CustomerAccountDto dto = cai.findByEmail(model.getEmail());
-		if(dto == null) {
-		//String str = cai.sendEmail(model.getEmail());
-		this.otp = cai.sendEmail(model.getEmail());
-//		HttpSession session = request.getSession();
-//		session.setAttribute("userData", model);
-//		session.setAttribute("otp",str);
-//		str1 = 0;
-		System.out.println(model.getEmail()+model.getPassword());
-		System.out.println("email sent"+getOtp());
+		this.setEmail(email);
+		CustomerAccountDto dto = cai.findByEmail(email);
+		if(dto == null) 
+		{
+			this.otp = cai.sendEmail(email);
+			System.out.println("email sent for password"+getOtp());
 		}
 		else
 			str1 = 1;
 		return str1;
 	}
 	
-	@GetMapping("/userOtp")
-	public boolean confirmUser(@RequestParam String otpU,HttpServletRequest request) {
+	@GetMapping("/verifyOtp")
+	public boolean confirmUser(@RequestParam String otpU,@RequestParam String password, HttpServletRequest request) {
 		boolean a=true;
 		HttpSession session = request.getSession();
 		String str = (String) session.getAttribute("otp");
@@ -71,9 +67,8 @@ public class RegisterController {
 		RequestModel req = (RequestModel) session.getAttribute("userData");
 		if(this.getOtp().equalsIgnoreCase(otpU))
 		{
-			CustomerAccountDto dto = cai.addCustomer(getModel());
+			CustomerAccountDto dto = cai.changePassword(this.getEmail(), password);
 			session.setAttribute("uuid", dto.getUuid());
-			
 			a=true;
 		}
 		else
@@ -99,7 +94,17 @@ public class RegisterController {
 	public void setModel(RequestModel model) {
 		this.modelUser = model;
 	}
-	
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 
+	
 }

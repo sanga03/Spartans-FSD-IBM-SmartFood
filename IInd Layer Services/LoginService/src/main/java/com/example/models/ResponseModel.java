@@ -1,8 +1,6 @@
-package com.example.model;
+package com.example.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 
 public class ResponseModel {

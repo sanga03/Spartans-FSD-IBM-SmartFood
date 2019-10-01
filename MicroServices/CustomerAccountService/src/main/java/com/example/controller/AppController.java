@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +32,17 @@ public class AppController {
 	private EmailServiceImpl email;
 	private PasswordServiceImpl pass;
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private EmailServiceImpl esi;
+	private String str;
+
 	@Autowired
-	public AppController(BCryptPasswordEncoder bCryptPasswordEncoder,PasswordServiceImpl pass,CustomerAccountServiceImpl service,CustomerAccountRepository  cr,EmailServiceImpl email) {
+	public AppController(EmailServiceImpl esi, BCryptPasswordEncoder bCryptPasswordEncoder,PasswordServiceImpl pass,CustomerAccountServiceImpl service,CustomerAccountRepository  cr,EmailServiceImpl email) {
 		super();
 		this.service = service;
 		this.email = email;
 		this.pass = pass;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.esi = esi;
 	}
 	
 	@PostMapping("/email")
@@ -65,7 +70,7 @@ public class AppController {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		CustomerAccountDto dto = mapper.map(req,CustomerAccountDto.class);
-		dto.setPasswordBcrypt(bCryptPasswordEncoder.encode(req.getPassword()));
+		dto.setPassword(bCryptPasswordEncoder.encode(req.getPassword()));
 		CustomerAccountDto dt = service.createCustomer(dto);
 		return dt;
 	}
@@ -101,9 +106,11 @@ public class AppController {
 	}
 	
 	@PostMapping("/changePassword")
-	public String changePassword(@RequestParam String uid,@RequestParam String password) {
-		pass.updatePassword(password, uid);
-		return "Password changed!";
+	public CustomerAccountDto changePassword(@RequestParam String email,@RequestParam String password) throws Exception{
+		return pass.updatePassword(password, email);
+		
 	}
+	
+
 }
 

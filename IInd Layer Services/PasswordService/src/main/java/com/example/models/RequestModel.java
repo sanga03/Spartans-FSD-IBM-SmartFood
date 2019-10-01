@@ -1,22 +1,19 @@
-package com.example.model;
+package com.example.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+public class RequestModel {
 
-
-public class ResponseModel {
-	private String uid;
 	private String name;
 	private String email;
+	private String password;
 	private String phone;
-	public ResponseModel(String name, String email, String phone,String uid) {
+	public RequestModel(String name, String email, String password, String phone) {
 		super();
 		this.name = name;
 		this.email = email;
+		this.password = password;
 		this.phone = phone;
 	}
-	public ResponseModel() {
+	public RequestModel() {
 		super();
 	}
 	public String getName() {
@@ -31,19 +28,18 @@ public class ResponseModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getUid() {
-		return uid;
-	}
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
-	
 	
 	
 }

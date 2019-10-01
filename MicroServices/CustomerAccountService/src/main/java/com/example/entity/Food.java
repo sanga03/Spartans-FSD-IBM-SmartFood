@@ -1,31 +1,42 @@
-package com.project.demo.dto;
+package com.example.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+@Entity
+public class Food {
 
-public class FoodDTO {
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Long id;
 	
-	private String fUid;//generated randomly 
+	@Column(name = "fuid")
+	private String fUid;
 	
+	@Column(name = "imageLink")
 	private String image;//stores link of the image
 	
+	@Column(name = "name")
 	private String name;
-	
+
+	@Column(name = "category")
 	private Boolean category;
 	
-	private String cuisine; 
+	@Column(name = "cuisine")
+	private String cuisine;
 	
+	@Column(name = "rUid")
 	private String rUid;//dummy restaurant id
-
-	public FoodDTO(int id, String fUid, String image, String name, Boolean category, String cuisine, String rUid) {
+	public Food() {
 		super();
-		this.id = id;
-		this.fUid = fUid;
+	}
+
+	public Food(String image, String name, Boolean category, String cuisine, String rUid) {
+		super();
 		this.image = image;
 		this.name = name;
 		this.category = category;
@@ -33,11 +44,11 @@ public class FoodDTO {
 		this.rUid = rUid;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -88,10 +99,9 @@ public class FoodDTO {
 	public void setrUid(String rUid) {
 		this.rUid = rUid;
 	}
-
-	public FoodDTO() {
-		super();
-	}
 	
+	//sorting classes
+	
+
 	
 }
