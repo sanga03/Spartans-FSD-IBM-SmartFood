@@ -13,7 +13,7 @@ import com.mycompany.entity.Food;
 @Repository
 public interface FoodRepository  extends JpaRepository<Food, Integer> {
 	
-	public Optional<Food> deleteByFUid(String foodId);
-@Query("from Food where fUid=:uorderIds")
-	public List<Food> findAllByUorderId(@Param("uorderIds") String fUid);
+//	public Optional<Food> deleteByFUid(String foodId);
+@Query("from Food where uorderId=:uorderIds")
+	public List<Food> findAllByUorderId(@Param("uorderIds") String uorderId);
 }

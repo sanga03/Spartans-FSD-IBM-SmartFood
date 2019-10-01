@@ -28,7 +28,7 @@ public class UserOrderService {
 	
 	//add order
 	public UserOrder createOrder(UserOrder order) {
-		order.setUorderId("UO"+order.getCustomerId()+order.getDate());
+//		order.setUorderId("UO"+order.getCustomerId()+order.getDate());
 		
 		System.out.println(order.getUorderId());
 		orderRepo.save(order);
@@ -37,7 +37,15 @@ public class UserOrderService {
 		return order;
 	}
 	
-	
+	public void deleteAll(String customerId) {
+		List<UserOrder> orders = orderRepo.findAllByCustomerId(customerId);
+		
+	for(UserOrder userOrder:orders) {
+		
+		orderRepo.delete(userOrder);
+	}
+		
+	}
 	public void creteFood(List<Food> foods) {
 		for(Food f:foods) {
 			System.out.println(f);
@@ -45,7 +53,7 @@ public class UserOrderService {
 		}
 	}
 	
-	public List<ResponseModel> getAll(){
+	public List<ResponseModel> getAllbyID(){
 		List<UserOrder> orders = orderRepo.findAll();
 		List<ResponseModel> models =new ArrayList<ResponseModel>();
 		for(UserOrder order:orders) 
@@ -72,6 +80,9 @@ public class UserOrderService {
 	}
 
 	public ResponseModel getById(String uOrder) {
+		if(orderRepo.findByUorderId(uOrder).isEmpty()) {
+			return new ResponseModel();
+		}
 		UserOrder order = orderRepo.findByUorderId(uOrder).get(0);
 		
 		ResponseModel model = new ResponseModel();
