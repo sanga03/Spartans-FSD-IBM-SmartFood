@@ -48,7 +48,7 @@
     <div class="card border-primary " *ngFor="let customFood of customFoods; even as e;index as i">
             <img [src]="customFood.imageLink" alt="Random first slide">
              <div class="card-body text-right">
-    
+             <h5 class="card-title" >{{customFood.name}}</h5>
              <p class="card-text">Price: {{customFood.price}}<i class="fa fa-inr" aria-hidden="true"></i> <br> Rating: {{customFood.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
               <button (click)="addToCart(customFood)" class="btn-md btn-success">Add to Cart <i class="fa fa-plus" aria-hidden="true"></i></button>
             </div> 

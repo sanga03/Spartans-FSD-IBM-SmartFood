@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { NgModel } from '@angular/forms';
+import { async } from 'q';
+import { foodOrderInterface, foodInterface } from '../structures';
 
 
 @Component({
@@ -86,7 +88,7 @@ export class RestaurantComponent implements OnInit {
     
   }
   
-  showRestauratMenu(resUuid)
+ async showRestauratMenu(resUuid)
   {
     console.log(resUuid);
     var url = "http://b4ibm02.iiht.tech:8762/CFD/customFoodDetails"
@@ -116,28 +118,60 @@ export class RestaurantComponent implements OnInit {
                   
             //     })
 
-              let tempCFList:customFoodResponse[]=new Array();
-              for(let i=0;i<Math.ceil(this.cfList.length/2)-1;i++)
-                {
-                  for(let k=0;k<4 && k<this.cfList.length-(i*2);k++)
-                      {
-                        tempCFList[k]=this.cfList[(i*2)+k];
-                      }
-                  this.customFoodList[i]=tempCFList;
-                  tempCFList=[];
-                }
-                console.log(this.customFoodList);
+          //     let tempCFList:customFoodResponse[]=new Array();
+          //     for(let i=0;i<Math.ceil(this.cfList.length/2)-1;i++)
+          //       {
+          //         for(let k=0;k<4 && k<this.cfList.length-(i*2);k++)
+          //             {
+          //               tempCFList[k]=this.cfList[(i*2)+k];
+          //             }
+          //         this.customFoodList[i]=tempCFList;
+          //         tempCFList=[];
+          //       }
+          //       console.log(this.customFoodList);
 
          
+          // console.log(this.customFoodList);
+          // this.dialog.open(DialogDataExampleDialog, {
+          //   data: 
+          //   this.customFoodList
+            
+          }).then(()=>{  
+
+            this.cfList.forEach((customFood)=>{  
+
+               fetch("http://b4ibm02.iiht.tech:8762/food/food/id/"+customFood.foodUuid)
+               .then(res=>res.json())
+               .then(data=>{
+                     console.log(data);
+                customFood.name = data.name;
+                })
+                   
+            })
+
+          }).then(()=>{
+            let tempCFList:customFoodResponse[]=new Array();
+            for(let i=0;i<Math.ceil(this.cfList.length/2)-1;i++)
+              {
+                for(let k=0;k<4 && k<this.cfList.length-(i*2);k++)
+                    {
+                      tempCFList[k]=this.cfList[(i*2)+k];
+                    }
+                this.customFoodList[i]=tempCFList;
+                tempCFList=[];
+              }
+              console.log(this.customFoodList);
+
+       
           console.log(this.customFoodList);
-          this.dialog.open(DialogDataExampleDialog, {
+           this.dialog.open(DialogDataExampleDialog, {
             data: 
             this.customFoodList
-            
-          });
-      })
-  }
+          })
+      
+       })
 
+  }
 }
 
 
@@ -146,47 +180,95 @@ export class RestaurantComponent implements OnInit {
   templateUrl: 'dialog-data-example-dialog.html',
 })
 export class DialogDataExampleDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: customFoodResponse) {}
+  flag:number=0;
+  cartOrder:foodOrderInterface = {
+    restId:"",
+    date: JSON.stringify(new Date()),
+    uorderId :"",
+    customerId:"",
+    foodorderid:"",
+  }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: customFoodResponse,private router:Router) {}
 
   addToCart(customFood:customFoodResponse)
-  {    
-       if(localStorage.getItem("cart")==undefined || localStorage.getItem("cart")==null)
+  {    let food:foodInterface={
+              customFoodId:customFood.uuid,
+              customFoodImageLink:customFood.imageLink,
+              price:customFood.price,
+              quantity:1,
+              name:customFood.name
+            
+            }
+        this.cartOrder.restId=customFood.restaurantUuid;
+       if(sessionStorage.getItem("cart")==undefined || sessionStorage.getItem("cart")==null)
        {
-         localStorage.setItem("cart",JSON.stringify([customFood]));
+        sessionStorage.setItem("cart",JSON.stringify([food]));
        }
        else
-       {
-         let customFoodList:customFoodResponse[] = JSON.parse(localStorage.getItem("cart"));
-         customFoodList.push(customFood);
-         localStorage.setItem("cart",JSON.stringify(customFoodList));
+       { 
+         let foodList:foodInterface[] = JSON.parse(sessionStorage.getItem("cart"));
+         foodList.forEach((foodItem)=>{
+            if(foodItem.customFoodId==food.customFoodId)
+            {
+                this.flag=1;
+                console.log("flag set")
+            }  
+         })
+         if(this.flag==0)
+         { console.log("pushed")
+           foodList.push(food);
+         }
+         
+         sessionStorage.setItem("cart",JSON.stringify(foodList));
+         this.flag=0;
        }
-       console.log(document.getElementById("showProduct").nodeValue);
-       document.getElementById("showProduct").innerText=  String(Number(document.getElementById("showProduct").innerText) + 1);
+   
+       document.getElementById("showProduct").innerText = String(Number(document.getElementById("showProduct").innerText) + 1);
   } 
   directToCart()
-  {
-      let cartSummary:customFoodResponse[];
-      let cartItems = localStorage.getItem("cart")
-      if(cartItems==null || cartItems == undefined)
-      {
-        console.log("do nothing")
-      }
-      else
-      { let i=0;
-        JSON.parse(localStorage.getItem("cart")).forEach(cartItem => { 
-            if(cartSummary==null || cartSummary == undefined)
+  {   if(sessionStorage.getItem("email")==null || sessionStorage.getItem("email")==undefined)
+        {
+        
+              let cartSummary:foodInterface[];
+              let cartItems = sessionStorage.getItem("cart")
+             
+            if(cartItems==null || cartItems == undefined)
             {
-              cartSummary[0]=cartItem;
+              console.log("do nothing")
             }
-           cartSummary.forEach(cart=>{
-             if(cartItem.uuid==cart.uuid)
-             {
-                 
-             }
-           })
-        });
-      }
-  }
+            else
+            { let i=0;
+              JSON.parse(sessionStorage.getItem("cart")).forEach(cartItem => { 
+                  if(cartSummary==null || cartSummary == undefined)
+                  { 
+                   // cartOrder.restId=cartItem.
+                    cartSummary=[cartItem];
+                    i++;
+
+                  }
+                  else
+                  {
+                    cartSummary[i]=cartItem;
+                    i++;
+                  }
+                })
+              };
+              this.cartOrder.foodorderid=JSON.stringify(cartSummary);
+              sessionStorage.setItem("cart",JSON.stringify(this.cartOrder));
+              this.router.navigate(['login'])
+         }
+         else{ 
+           this.cartOrder = JSON.parse(sessionStorage.getItem("cart"));
+           console.log(this.cartOrder);
+           this.cartOrder.customerId = sessionStorage.getItem("CustomerId");
+           sessionStorage.setItem("cart",JSON.stringify(this.cartOrder));
+           this.router.navigate(['cart'])
+         }
+          
+            
+   } 
+          
+    
 }
 export interface restauratRequest
 {
@@ -222,7 +304,27 @@ export interface customFoodResponse
 
 }
 
+export interface foodInterface{
+  customFoodId:String;
+  customFoodImageLink:String;
+  price:number;
+  quantity:number;
+  name:String;
 
+//   restId:String;
+//   date:String;
+//   uorderId :String;
+//   customerId:String;
+//   foodorderid:String[];
+
+}
+export interface foodOrderInterface{
+  restId:String;
+  date:String;
+  uorderId :String;
+  customerId:String;
+  foodorderid:String;
+}
 
 // let foodList = [0,1,2,3,4,5,6,7,8,9,10]
 // let restaurantList:number[][];
