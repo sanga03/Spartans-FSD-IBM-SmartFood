@@ -17,6 +17,9 @@ export class HomePageComponent implements OnInit {
   constructor(private router:Router,private map:MapsService) { }
 
   ngOnInit() { 
+    if(sessionStorage.getItem('email')!=null&&sessionStorage.getItem('email')!=undefined){
+      this.router.navigate(['foodHome']);
+    }
     this.searchRestaurantForm= new FormGroup(
       {
         searchCriteria: new FormControl()

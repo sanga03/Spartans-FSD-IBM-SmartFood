@@ -19,6 +19,7 @@ export class SignComponent implements OnInit {
 
   ngOnInit() {
     this.openModal.nativeElement.click();
+   
   }
 
   validate()
@@ -45,7 +46,11 @@ export class SignComponent implements OnInit {
                      sessionStorage.setItem("email",email);
                      this.router.navigate(['foodHome']);
                      sessionStorage.setItem('prcusines',JSON.stringify(["a"]))
-                     sessionStorage.setItem("cart","first");
+                     if(sessionStorage.getItem("cart")==null || sessionStorage.getItem("cart")==undefined)
+                     {
+                      sessionStorage.setItem("cart","first");
+                     }
+                     
                 }else if(data==1)
                 {
                   this.status=1;
@@ -59,6 +64,13 @@ export class SignComponent implements OnInit {
 
 
    
+  }
+
+  closeAndRedirectToHome()
+  {  
+    this.openModal.nativeElement.click();
+    this.router.navigate(['home'])
+  
   }
 
 

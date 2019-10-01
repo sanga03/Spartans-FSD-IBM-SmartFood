@@ -17,7 +17,8 @@ optSentSuccess:boolean=false;
 
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() {  
+    document.body.classList.add('reg-bg-img');
    
    this.regForm = new FormGroup({
       name: new FormControl('name'),
@@ -31,16 +32,16 @@ optSentSuccess:boolean=false;
       Validators.required,
       this.ValidatePass
     ]),
-  repassword:new FormControl('Sa@123',[
+    repassword:new FormControl('Sa@123',[
     Validators.required,
   this.validateRepass
   ]) });
   }
   validate(){
     console.log("hey");
-if(this.regForm.get('password').value!=this.regForm.get('repassword').value){
-this.errMsg="Not Same Password";
-}else{
+  if(this.regForm.get('password').value!=this.regForm.get('repassword').value){
+   this.errMsg="Not Same Password";
+  }else{
 
   
   let name=this.regForm.get('name').value;

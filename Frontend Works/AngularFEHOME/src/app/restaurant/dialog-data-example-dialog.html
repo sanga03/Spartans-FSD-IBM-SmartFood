@@ -10,6 +10,15 @@
     height: 250px;
     width: 200px;
 }
+#showProduct {
+          background: url('https://cdn.dribbble.com/users/1180825/screenshots/2965077/daily-ui-058.gif') no-repeat top left;
+          background-position: inherit;
+          background-size: cover;
+          border: none;
+          padding: 2px 3px;
+          length: 300px;
+          width: 90px;
+      }
 @media (min-width: 0px) {
     .card-deck .card {
     display: flex;
@@ -39,11 +48,32 @@
     <div class="card border-primary " *ngFor="let customFood of customFoods; even as e;index as i">
             <img [src]="customFood.imageLink" alt="Random first slide">
              <div class="card-body text-right">
-             <!-- <h5 class="card-title"> {{restaurant.name.toUpperCase()}} </h5> -->
+             <h5 class="card-title" >{{customFood.name}}</h5>
              <p class="card-text">Price: {{customFood.price}}<i class="fa fa-inr" aria-hidden="true"></i> <br> Rating: {{customFood.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
-              <button (click)="addToCart(customFood)" class="btn-md btn-dark">Add to Cart</button>
-            </div>
-    </div>   
+              <button (click)="addToCart(customFood)" class="btn-md btn-success">Add to Cart <i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div> 
+           
 
-</div>
+    </div>   
+  </div>
+  <div id="showCart">
+      <button id="showProduct" (click)="directToCart()" class="btn btn-primary btn-lg"  style="color: black" >0</button>
+ </div>
+    <!-- <div class="card mb-3"  *ngFor="let customFood of data" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img [src]="customFood.imageLink" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Price: {{customFood.price}}<i class="fa fa-inr" aria-hidden="true"></i> <br> Rating: {{customFood.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
+              <button (click)="addToCart(customFood)" class="btn-md btn-success">Add to Cart <i class="fa fa-plus" aria-hidden="true"></i></button>
+            
+              </div>
+          </div>
+        </div>
+      </div> -->
+
+
 </div>

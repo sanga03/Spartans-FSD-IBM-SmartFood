@@ -29,7 +29,7 @@ export interface foodDetail{
     customFoodImageLink:String;
     price:number;
     quantity:number;
-  
+    name:String;
   
   //   restId:String;
   //   date:String;
@@ -43,5 +43,5 @@ export interface foodDetail{
     date:String;
     uorderId :String;
     customerId:String;
-    foodorderid:String;
+    foodorderid:String; //[array of customFood Id]
 }
