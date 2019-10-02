@@ -85,6 +85,7 @@ export class CustomerProfileComponent implements OnInit {
 redirectToHome()   
  { 
     sessionStorage.removeItem('email');
+    sessionStorage.removeItem('cart');
     this.router.navigate(['home']);
  }
 

@@ -96,6 +96,7 @@ console.log(JSON.stringify(this.foodOrdered));
   })
 
   sessionStorage.setItem('cart','first');
+  this.router.navigate(['payment'])
 
 }
 

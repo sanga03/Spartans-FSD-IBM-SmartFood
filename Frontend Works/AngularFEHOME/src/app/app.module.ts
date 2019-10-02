@@ -15,7 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker} from '@angular/material';
+import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule} from '@angular/material';
 
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
@@ -30,6 +30,7 @@ import { FoodHomeComponent } from './food-home/food-home.component';
 import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
 import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.component';
 import { FoodCartComponent } from './food-cart/food-cart.component';
+import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
 
  
 
@@ -46,20 +47,16 @@ import { FoodCartComponent } from './food-cart/food-cart.component';
     AboutUsComponent,
     RegisterComponent,
     VerifyOtpComponent,
-   
-
+  
     RestaurantComponent,
     SortCriteriaComponent,
-
     DialogDataExampleDialog,
-
     PrefModelComponent,
     FoodHomeComponent,
     FoodRecomendComponent,
     ReccoMendFoodComponent,
-    FoodCartComponent
-
-
+    FoodCartComponent,
+    PaymentGatewayComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +76,10 @@ import { FoodCartComponent } from './food-cart/food-cart.component';
     MatIconModule,
     SelectAutocompleteModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatTreeModule,
+    
+    
    
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyBpF7XNgiejLB4qxKJOnMKUNQEVtK6ke0Q'

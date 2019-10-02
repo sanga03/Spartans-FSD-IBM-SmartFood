@@ -1,11 +1,8 @@
-import { Component , OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
-import {FlatTreeControl} from '@angular/cdk/tree';
-
+import { Component, OnInit } from '@angular/core';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+import { FlatTreeControl } from '@angular/cdk/tree';
 
 interface FoodNode {
   name: string;
@@ -56,23 +53,17 @@ interface ExampleFlatNode {
   form5 : any
 }
 
-
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-payment-gateway',
+  templateUrl: './payment-gateway.component.html',
+  styleUrls: ['./payment-gateway.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'payment-page';
-  submitted = false;
+export class PaymentGatewayComponent implements OnInit {
 
   
-
   ngOnInit() {
-    
   }
-
- 
+  
 
   public show = {
     paytm : false,
@@ -183,4 +174,5 @@ export class AppComponent implements OnInit{
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   
+
 }
