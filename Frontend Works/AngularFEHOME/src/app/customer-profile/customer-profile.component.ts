@@ -6,6 +6,7 @@ import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 // import {MomentDateAdapter} from '@angular/material-moment-adapter';
 // import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { fetchUrls } from 'src/utils';
 @Component({
   selector: 'app-customer-profile',
   templateUrl: './customer-profile.component.html',
@@ -95,7 +96,9 @@ export class CustomerProfileComponent implements OnInit {
 saveCustomerTrack() 
 {  
    var meal = (<HTMLInputElement>document.getElementById("inputMeal")).value;
-   var calories = (<HTMLInputElement>document.getElementById("inputCalories")).value
+  //  var calories = (<HTMLInputElement>document.getElementById("inputCalories")).value
+   console.log(fetchUrls.customerTrack+"/"+this.customerObj.uid)
+  //  fetch(fetchUrls.customerTrack+"/"+this.customerObj.uid)
    
 }
 redirectToHome()   
