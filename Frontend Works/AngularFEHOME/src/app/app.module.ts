@@ -13,13 +13,14 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
+import { NgXCreditCardsModule } from 'ngx-credit-cards';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule, MatStepperModule} from '@angular/material';
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 import { HttpClientModule } from '@angular/common/http';
 import {AgmCoreModule} from '@agm/core';
 import { MapsService } from './maps.service';
@@ -71,7 +72,7 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    
+   NgXCreditCardsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
@@ -80,7 +81,7 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     HttpClientModule,
     BrowserAnimationsModule,
     MatTreeModule,
-    
+    NgxPayPalModule,
     
    
     AgmCoreModule.forRoot({
