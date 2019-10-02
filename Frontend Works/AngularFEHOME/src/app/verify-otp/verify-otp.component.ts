@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { otpVerifyUrl, findEmailUrl, pushPrefUrl, fetchUrls } from 'src/utils';
 
 @Component({
   selector: 'app-verify-otp',
@@ -24,7 +25,7 @@ export class VerifyOtpComponent implements OnInit {
   validOtp(){
     console.log(this.otpForm.get('otp').value)
   let otp=this.otpForm.get('otp').value;
-  let urlOtp='http://b4ibm26.iiht.tech:1020/userOtp?otpU='+otp;
+  let urlOtp=otpVerifyUrl+otp;
   console.log(urlOtp); 
   fetch(urlOtp)
   .then(res=>res.json())
@@ -33,7 +34,7 @@ export class VerifyOtpComponent implements OnInit {
     if(data == true){
       this.otpVarified=0;
 let email = sessionStorage.getItem("demail");
-      var url = "http://b4ibm02.iiht.tech:8762/account/findEmail?email="+email;
+      var url = findEmailUrl+email;
       console.log(url);
       fetch(url).then(res=>res.json())
         .then(data=>
@@ -58,7 +59,7 @@ this.router.navigate(["login"])
 
 
   setPrefDetail(objs){
-    var url = "http://localhost:8041/pushPref";
+    var url = pushPrefUrl;
     fetch(url,{method:'POST',headers:{
       'content-type':'application/json'
     },
@@ -76,7 +77,7 @@ body:JSON.stringify({
   }
 
   setPhysicalDetail(uid)
-  {   var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+uid;
+  {   var url = fetchUrls.physicalDetail+"/"+uid;
      console.log(url);
     let date = new Date().getTime();
       fetch(

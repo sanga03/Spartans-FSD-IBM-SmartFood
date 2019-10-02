@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { foodOrderInterface, foodInterface } from '../structures';
 import { Router } from '@angular/router';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { orderUrl } from 'src/utils';
 
 @Component({
   selector: 'app-food-cart',
@@ -73,30 +74,30 @@ console.log(JSON.stringify(customFoodIds));
     // console.log(this.foodOrdered);
 console.log(JSON.stringify(this.foodOrdered));
 
-    let orderUrl="http://b4ibm08.iiht.tech:8099/push";
-    fetch(orderUrl,{
-      method: 'POST',
-      headers:{
-          'content-type':'application/json'
-      },
-      body: JSON.stringify( {
+    
+    // fetch(orderUrl,{
+  //     method: 'POST',
+  //     headers:{
+  //         'content-type':'application/json'
+  //     },
+  //     body: JSON.stringify( {
         
-          "restId":this.foodOrdered.restId,
-                 "date": this.foodOrdered.date,
-                 "uorderId":"",
-                 "customerId": this.foodOrdered.customerId,
-                 "foodorderid": customFoodIds
-                }
-       )
-  })
-  .then(res=>res.json())
-  .then(data=>{
-      console.log(data)
+  //         "restId":this.foodOrdered.restId,
+  //                "date": this.foodOrdered.date,
+  //                "uorderId":"",
+  //                "customerId": this.foodOrdered.customerId,
+  //                "foodorderid": customFoodIds
+  //               }
+  //      )
+  // })
+  // .then(res=>res.json())
+  // .then(data=>{
+  //     console.log(data)
 
-  })
+  // })
 
   sessionStorage.setItem('cart','first');
-  this.router.navigate(['payment'])
+  this.router.navigate(['new-payment'])
 
 }
 

@@ -14,16 +14,16 @@
       </div>
       </mat-tree-node>
       <!-- This is the tree node template for expandable nodes -->
-      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+      <mat-tree-node *matTreeNodeDef="let node;when: hasChild"  matTreeNodePadding>
           
         <button matTreeNodeToggle class="learn-more">  
           <mat-icon class="mat-icon-rtl-mirror">
             {{treeControl.isExpanded(node) ? '' : ''}}
           </mat-icon> 
-          <label for="div">{{node.name}}</label> 
-          <div id="div" class="circle">
+         {{node.name}} 
+          <span id="div" class="circle">
             <span class="icon arrow"></span>
-          </div>
+          </span>
       </button>
         
       </mat-tree-node>
@@ -32,7 +32,7 @@
   
   <fieldset class="field1">
     <div *ngIf="show.paytm" class="col-8" class="tree-node">
-      <h3>Paytm</h3><br>
+      <h3>Paytm</h3>
       <img src="../assets/images/Paytm.png" height="100" width="150"><br>
       <form class="form-group" #loginForm1="ngForm" ngNativeValidate (submit)="onSubmit1(loginForm1.value)">
         enter number:<input type="text" maxlength="10" minlength="10" required ngModel class="form-control"><br>

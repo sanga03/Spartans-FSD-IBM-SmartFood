@@ -2,6 +2,7 @@
 
 .field {
 	float: left;
+	margin-left: 40%;
 }
 
 .field1 {
@@ -23,8 +24,7 @@
 }
 
 .mat-tree {
-	background-color: #49630b;
-	border-block-end-color: aquamarine;
+	background: center;
 }
 
 .mat-button {

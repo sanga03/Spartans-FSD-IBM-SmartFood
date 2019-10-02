@@ -80,6 +80,9 @@ export class PaymentGatewayComponent implements OnInit {
   private router:Router;
 
   clicker(name:String){
+
+// document.location.reload();
+
     this.show.paytm = false;
     this.show.phonepe = false;
     this.show.paytmUpi = false;
