@@ -46,20 +46,14 @@ import { FoodCartComponent } from './food-cart/food-cart.component';
     AboutUsComponent,
     RegisterComponent,
     VerifyOtpComponent,
-   
-
     RestaurantComponent,
     SortCriteriaComponent,
-
     DialogDataExampleDialog,
-
     PrefModelComponent,
     FoodHomeComponent,
     FoodRecomendComponent,
     ReccoMendFoodComponent,
     FoodCartComponent
-
-
   ],
   imports: [
     BrowserModule,
@@ -80,11 +74,10 @@ import { FoodCartComponent } from './food-cart/food-cart.component';
     MatStepperModule,
     SelectAutocompleteModule,
     HttpClientModule,
-   
+    MatIconModule,
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyBpF7XNgiejLB4qxKJOnMKUNQEVtK6ke0Q'
-    })
-    
+    })    
   ],
  
   providers: [],
