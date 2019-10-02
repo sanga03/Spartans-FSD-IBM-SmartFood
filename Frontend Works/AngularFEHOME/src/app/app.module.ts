@@ -16,7 +16,6 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule} from '@angular/material';
-
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
@@ -74,6 +73,7 @@ import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    MatStepperModule,
     SelectAutocompleteModule,
     HttpClientModule,
     BrowserAnimationsModule,

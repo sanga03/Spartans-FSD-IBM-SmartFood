@@ -2,6 +2,8 @@ package com.example.service;
 
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.entity.CustomerAccount;
 import com.example.entity.CustomerAccountRepository;
+import com.example.shared.CustomerAccountDto;
 
 @Service
 public class PasswordServiceImpl {
@@ -24,13 +27,19 @@ public class PasswordServiceImpl {
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
 	
-	public void updatePassword(String password,String uid) {
+	public CustomerAccountDto updatePassword(String password,String email){
+		ModelMapper mapper = new ModelMapper();
+		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		
+		CustomerAccountDto dto = null;
 		CustomerAccount ca=null;
-		Optional<CustomerAccount> op= service.findByUid(uid);
+		
+		Optional<CustomerAccount> op= service.findByEmail(email);
 		if(op.isPresent())
 			ca = op.get();
 		ca.setPassword(bCryptPasswordEncoder.encode(password));
-		service.save(ca);
 		
+		mapper.map(dto,service.save(ca));
+		return dto;
 	}
 }

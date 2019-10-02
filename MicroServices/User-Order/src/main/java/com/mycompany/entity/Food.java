@@ -24,9 +24,7 @@ public class Food {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "userorderid")
 	private UserOrder UserOrder;
-	@Column(name = "fuid")
-	private String fUid;
-
+	
 	@Column(name = "uorder_id")
 	private String uorderId;
 
@@ -49,13 +47,7 @@ public class Food {
 		UserOrder = userOrder;
 	}
 
-	public String getfUid() {
-		return fUid;
-	}
-
-	public void setfUid(String fUid) {
-		this.fUid = fUid;
-	}
+	
 
 	public String getUorderId() {
 		return uorderId;
@@ -75,7 +67,7 @@ public class Food {
 
 	@Override
 	public String toString() {
-		return "Food [UserOrder=" + UserOrder + ", fUid=" + fUid + ", uorderId=" + uorderId + ", custFoodId="
+		return "Food [UserOrder=" + UserOrder +  ", uorderId=" + uorderId + ", custFoodId="
 				+ custFoodId + "]";
 	}
 	

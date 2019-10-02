@@ -42,7 +42,7 @@ public class FoodService {
 	public FoodDTO createFood(FoodDTO foodDTO)
 	{
 		Food food = modelMapper.map(foodDTO, Food.class);
-		food.setFUid(UUID.randomUUID().toString());
+		food.setfUid(UUID.randomUUID().toString());
 		foodRepository.save(food);
 		foodDTO = modelMapper.map(food,FoodDTO.class);
 		return foodDTO;
@@ -94,7 +94,8 @@ public class FoodService {
 		List<Food> selectedFoods = new ArrayList<Food>();
 		for(Food food:foods)
 		{
-			if(food.getRUid().equals(rUid))
+			if(food.getrUid().equals(rUid))
+
 				selectedFoods.add(food);
 		}
 		

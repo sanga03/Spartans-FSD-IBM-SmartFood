@@ -1,0 +1,73 @@
+[{
+	"amount":48.18,
+   	"customFoodDetailId": "CFD_fa62af7d-8ee3-4f60-baa3-8d371262f662",
+    	"basicIngredientId": "BICauliflower(boiled)1"
+},
+{
+	"amount":54.36,
+   	"customFoodDetailId": "CFD_fa62af7d-8ee3-4f60-baa3-8d371262f662",
+    	"basicIngredientId": "BIPotatoes**(roast)33"
+},
+
+{
+	"amount":19.79 ,
+   	"customFoodDetailId": "CFD_ce10439a-735f-4b18-8420-65620a4505b2",
+    	"basicIngredientId": "BISweets(boiled)49"
+},
+{
+	"amount":58.14,
+   	"customFoodDetailId": "CFD_e6972c96-b0dc-454b-941a-8d1ddd708f2b",
+    	"basicIngredientId": "BISardinesintomatosauce27"
+},
+{
+	"amount":77,
+   	"customFoodDetailId": "CFD_e6972c96-b0dc-454b-941a-8d1ddd708f2b",
+    	"basicIngredientId": "BIChicken26"
+},
+{
+	"amount":56.5,
+   	"customFoodDetailId": "CFD_e6972c96-b0dc-454b-941a-8d1ddd708f2b",
+    	"basicIngredientId": "BIButter33"
+},
+{
+	"amount":,
+   	"customFoodDetailId": "",
+    	"basicIngredientId": ""
+},
+{
+	"amount":,
+   	"customFoodDetailId": "",
+    	"basicIngredientId": ""
+},
+{
+	"amount":,
+   	"customFoodDetailId": "",
+    	"basicIngredientId": ""
+},
+{
+	"amount":,
+   	"customFoodDetailId": "",
+    	"basicIngredientId": ""
+},
+{
+	"amount":,
+   	"customFoodDetailId": "",
+    	"basicIngredientId": ""
+},
+{
+	"amount":,
+   	"customFoodDetailId": "",
+    	"basicIngredientId": ""
+},
+{
+	"amount":,
+   	"customFoodDetailId": "",
+    	"basicIngredientId": ""
+},
+{
+	"amount":,
+   	"customFoodDetailId": "",
+    	"basicIngredientId": ""
+},
+
+]

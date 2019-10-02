@@ -18,8 +18,9 @@ import com.example.models.RequestModel;
 @RestController
 @RequestMapping("/")
 public class RegisterController {
+	
 	private String otp;
-	private RequestModel model;
+	private RequestModel modelUser;
 	private CustomerAccountIntf cai;
 	
 	@Autowired
@@ -42,13 +43,17 @@ public class RegisterController {
 	@PostMapping("/registerUser")
 	public Integer registerUser(@RequestBody RequestModel model,HttpServletRequest request) {
 		Integer str1 = 0;
+		this.setModel(model);
 		CustomerAccountDto dto = cai.findByEmail(model.getEmail());
 		if(dto == null) {
-		String str = cai.sendEmail(model.getEmail());
-		HttpSession session = request.getSession();
-		session.setAttribute("userData", model);
-		session.setAttribute("otp",str);
-		str1 = 0;
+		//String str = cai.sendEmail(model.getEmail());
+		this.otp = cai.sendEmail(model.getEmail());
+//		HttpSession session = request.getSession();
+//		session.setAttribute("userData", model);
+//		session.setAttribute("otp",str);
+//		str1 = 0;
+		System.out.println(model.getEmail()+model.getPassword());
+		System.out.println("email sent"+getOtp());
 		}
 		else
 			str1 = 1;
@@ -60,10 +65,13 @@ public class RegisterController {
 		boolean a=true;
 		HttpSession session = request.getSession();
 		String str = (String) session.getAttribute("otp");
+		
+		System.out.println(this.otp+" "+otpU+" "+str);
+		
 		RequestModel req = (RequestModel) session.getAttribute("userData");
-		if(otpU.equalsIgnoreCase(str))
+		if(this.getOtp().equalsIgnoreCase(otpU))
 		{
-			CustomerAccountDto dto = cai.addCustomer(req);
+			CustomerAccountDto dto = cai.addCustomer(getModel());
 			session.setAttribute("uuid", dto.getUuid());
 			
 			a=true;
@@ -85,11 +93,11 @@ public class RegisterController {
 	}
 
 	public RequestModel getModel() {
-		return model;
+		return modelUser;
 	}
 
 	public void setModel(RequestModel model) {
-		this.model = model;
+		this.modelUser = model;
 	}
 	
 	
