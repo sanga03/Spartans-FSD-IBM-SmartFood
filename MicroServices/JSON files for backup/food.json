@@ -1,0 +1,101 @@
+[{
+	
+	"image":"https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/foodImages/alu-gobi.jpg",
+	
+	"name":"Alu Gobi",
+	
+	"category":true,
+	
+	"cuisine":"North Indian",
+
+	"rUid":"21f5eff4-f91f-4a51-9a24-3a05d729b362"
+
+},
+{
+	
+	"image":"https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/foodImages/barfi.jpg",
+	
+	"name":"Barfi",
+	
+	"category":true,
+	
+	"cuisine":"Indian Sweets",
+
+	"rUid":"35c7f898-0b30-4d7f-a109-b0ec867149f0"
+
+},
+{
+	
+	"image":"https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/foodImages/butterchicken.jpg",
+	
+	"name":"Butter Chicken",
+	
+	"category":false,
+	
+	"cuisine":"North Indian",
+
+	"rUid":"21f5eff4-f91f-4a51-9a24-3a05d729b362"
+},
+{
+	
+	"image":"https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/foodImages/carrot-halva.jpg",
+	
+	"name":"Carrot Halwa",
+	
+	"category":true,
+	
+	"cuisine":"Indian Sweet",
+
+	"rUid":"35c7f898-0b30-4d7f-a109-b0ec867149f0"
+},
+{
+	
+	"image":"https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/foodImages/chana-masala.jpg",
+	
+	"name":"Channa Masala",
+	
+	"category":true,
+	
+	"cuisine":"North Indian",
+
+	"rUid":"93e88825-43f7-4c98-856d-460ca95aa63d"
+},
+{
+	
+	"image":"https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/foodImages/eggFriedRice.jpg",
+	
+	"name":"Egg Fried Rice",
+	
+	"category":false,
+	
+	"cuisine":"Hyderabadi",
+
+	"rUid":"21f5eff4-f91f-4a51-9a24-3a05d729b362"
+},
+{
+	
+	"image":"https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/foodImages/masalaDosa.jpg",
+	
+	"name":"Masala Dosa",
+	
+	"category":true,
+	
+	"cuisine":"South Indian",
+
+	"rUid":"578ab9b8-cb38-47d8-ab8f-bb26f0dbf5d0"
+},
+{
+	
+	"image":"https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/foodImages/idly_vada.jpg",
+	
+	"name":"Idly Vada",
+	
+	"category":true,
+	
+	"cuisine":"South Indian",
+
+	"rUid":"578ab9b8-cb38-47d8-ab8f-bb26f0dbf5d0"
+}
+
+
+]	

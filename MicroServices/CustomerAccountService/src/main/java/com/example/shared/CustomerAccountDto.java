@@ -1,25 +1,35 @@
 package com.example.shared;
 
 
+
 public class CustomerAccountDto {
 
+	private String uid;
 	private String name;
 	private String email;
 	private String phone;
 	private String password;
-	private String passwordBcrypt;
 
-	public CustomerAccountDto(String passwordBcrypt, String password, String name, String email,
+	public CustomerAccountDto(String uid, String password, String name, String email,
 			String phone) {
 		super();
+		this.uid = uid;
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
-		this.passwordBcrypt = passwordBcrypt;
 	}
 
-	
+	public String getuid() {
+		return uid;
+	}
+
+	public void setuid(String uid) {
+		this.uid = uid;
+	}
+
+
+
 	public CustomerAccountDto() {
 		super();
 	}
@@ -56,12 +66,5 @@ public class CustomerAccountDto {
 		this.password = password;
 	}
 
-	public String getPasswordBcrypt() {
-		return passwordBcrypt;
-	}
-
-	public void setPasswordBcrypt(String passwordBcrypt) {
-		this.passwordBcrypt = passwordBcrypt;
-	}
 
 }

@@ -6,10 +6,11 @@ import lombok.Setter;
 
 
 public class ResponseModel {
+	private String uid;
 	private String name;
 	private String email;
 	private String phone;
-	public ResponseModel(String name, String email, String phone) {
+	public ResponseModel(String name, String email, String phone,String uid) {
 		super();
 		this.name = name;
 		this.email = email;
@@ -35,6 +36,12 @@ public class ResponseModel {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	
 	

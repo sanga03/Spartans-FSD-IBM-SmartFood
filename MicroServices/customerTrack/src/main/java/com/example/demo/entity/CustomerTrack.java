@@ -32,6 +32,6 @@ public class CustomerTrack {
 	private MealTime mealTime;
 	private int calories;
 	 @OneToOne
-	 @JoinColumn(name = "customer_account_id",unique = true)
+	 @JoinColumn(name = "customer_account_id")
 	private CustomerAccount customerAccount;
 }

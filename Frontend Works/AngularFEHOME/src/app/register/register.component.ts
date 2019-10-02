@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, Validators, ValidatorFn } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { registerUrl } from 'src/utils';
 // import { url } from 'inspector'
 
 @Component({
@@ -17,7 +18,8 @@ optSentSuccess:boolean=false;
 
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() {  
+    document.body.classList.add('reg-bg-img');
    
    this.regForm = new FormGroup({
       name: new FormControl('name'),
@@ -31,16 +33,16 @@ optSentSuccess:boolean=false;
       Validators.required,
       this.ValidatePass
     ]),
-  repassword:new FormControl('Sa@123',[
+    repassword:new FormControl('Sa@123',[
     Validators.required,
   this.validateRepass
   ]) });
   }
   validate(){
     console.log("hey");
-if(this.regForm.get('password').value!=this.regForm.get('repassword').value){
-this.errMsg="Not Same Password";
-}else{
+  if(this.regForm.get('password').value!=this.regForm.get('repassword').value){
+   this.errMsg="Not Same Password";
+  }else{
 
   
   let name=this.regForm.get('name').value;
@@ -49,7 +51,7 @@ this.errMsg="Not Same Password";
   let password=this.regForm.get('password').value;
   // this.optSentSuccess=true;
 
-  fetch('http://b4ibm26.iiht.tech:1020/registerUser',{
+  fetch(registerUrl,{
                  method: 'POST',
                  headers:{
                      'content-type':'application/json'

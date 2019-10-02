@@ -1,14 +1,15 @@
 
 <button id="openModal" #openModal [hidden]="true" 
 data-toggle="modal" data-target="#login-modal"></button>
-<div class="modal" id="login-modal" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+<div class="modal" id="login-modal" role="dialog" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header"> 
       <div *ngIf="status==1"> <div class="jumbotrons"><h4 style="color: red">Invalid Credendial</h4> </div></div>
       <div *ngIf="status==2"> <div class="jumbotrons"><h4 style="color: red">Not yet registered</h4></div></div>
-    <h2 >Log In</h2>
-        </div>  
+       <h2 >Log In  
+        </h2> <button  class="close btn-sm btn-info" (click)="closeAndRedirectToHome()" >X</button>
+        </div>
         <div class="modal-body">
           <!-- <fieldset id="log-in">  -->
         

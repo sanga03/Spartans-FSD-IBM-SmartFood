@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { range } from 'rxjs';
 import { AddToCartService } from './add-to-cart.service';
 import { foodDetail, dfoodDetails } from '../structures';
+import { fetchPersonalUrl } from 'src/utils';
 
 @Component({
   selector: 'app-recco-mend-food',
@@ -25,7 +26,7 @@ export class ReccoMendFoodComponent implements OnInit {
     let cUId=sessionStorage.getItem('CustomerId');
     console.log('asdads');
   let durl="http://b4ibm02.iiht.tech:9002/getDefaultFoods";
-  let orginUrl="http://b4ibm02.iiht.tech:9002/getPersonalFoods/"+cUId+"/fummy";
+  let orginUrl=fetchPersonalUrl+cUId+"/fummy";
 
   // // for dummy foods 
   // fetch(durl).then(res=>res.json()).then(data=>{

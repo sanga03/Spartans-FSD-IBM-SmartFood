@@ -36,11 +36,11 @@ public class CustomerAccountServiceImpl implements CustomerAccountService {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-		dto.setPasswordBcrypt(bCryptPasswordEncoder.encode(dto.getPassword()));
+		//dto.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));
 		CustomerAccount c = mapper.map(dto, CustomerAccount.class);
-		c.setPassword(dto.getPasswordBcrypt());
+		c.setPassword(dto.getPassword());
 		c.setUid("U" + dto.getName().substring(0, 4) + dto.getPhone().substring(4, 5)
-				+ dto.getPasswordBcrypt().substring(3, 7));
+				+ dto.getPassword().substring(8, 12));
 		car.save(c);
 		CustomerAccountDto Dto = mapper.map(c, CustomerAccountDto.class);
 		return Dto;

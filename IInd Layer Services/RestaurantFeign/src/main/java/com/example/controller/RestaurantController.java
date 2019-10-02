@@ -98,19 +98,26 @@ public class RestaurantController {
 	
 	//filter by veg/non veg
 	@PostMapping("/restaurant/category")
-	public List<ResponseModel> filterCategory(@RequestParam int a){
+	public List<ResponseModel> filterCategory(@RequestParam("a") String a){
+		int ab = Integer.parseInt(a);
 		List<ResponseModel> list = setPrice();
 		List<ResponseModel> listnew = new ArrayList<ResponseModel>();
 		List<Category> listC = cr.findAll();
-		for(ResponseModel l:list)
+		List<Category> listCat = new ArrayList<Category>();
+		for(Category c:listC)
 		{
-			for(Category c:listC)
+			if(c.getCategory() == ab)
+				listCat.add(c);
+		}
+		for(Category c:listCat)
+		{
+			for(ResponseModel l:list)
 			{
 				if(l.getResId().equals(c.getResId()))
 				{
-					if(c.getCategory() == a)
-						listnew.add(l);
-						
+					    System.out.println("check");
+						listnew.add(l);	
+						System.out.println(l.getName());
 				}
 			}
 		}
@@ -128,7 +135,6 @@ public class RestaurantController {
 			int count = 0;
 			for(CustomFoodDetailResponseModel c:cfi.readAll())
 			{
-				//System.out.println(c.getRestaurantUuid().equals(l.getResId()));
 				if(c.getRestaurantUuid().equals(l.getResId()))
 				{
 					++count;
@@ -136,7 +142,6 @@ public class RestaurantController {
 				}
 			}
 			l.setPrice(price/count);
-			System.out.println(l.getPrice());
 		}
 		return list;
 	}

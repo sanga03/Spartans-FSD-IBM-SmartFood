@@ -8,10 +8,9 @@ public class CustomerAccountDto {
 	private String email;
 	private String phone;
 	private String password;
-	private String passwordBcrypt;
 	private CustomerPhysical cp;
 
-	public CustomerAccountDto(String uuid,CustomerPhysical cp, String passwordBcrypt, String password, String name, String email,
+	public CustomerAccountDto(String uuid,CustomerPhysical cp, String password, String name, String email,
 			String phone) {
 		super();
 		this.uuid = uuid;
@@ -19,7 +18,6 @@ public class CustomerAccountDto {
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
-		this.passwordBcrypt = passwordBcrypt;
 		this.cp = cp;
 	}
 
@@ -30,14 +28,8 @@ public class CustomerAccountDto {
 	public void setUuid(String uuid) {
 		this.uuid = uuid;
 	}
+	
 
-	public CustomerPhysical getCp() {
-		return cp;
-	}
-
-	public void setCp(CustomerPhysical cp) {
-		this.cp = cp;
-	}
 
 	public CustomerAccountDto() {
 		super();
@@ -73,14 +65,6 @@ public class CustomerAccountDto {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getPasswordBcrypt() {
-		return passwordBcrypt;
-	}
-
-	public void setPasswordBcrypt(String passwordBcrypt) {
-		this.passwordBcrypt = passwordBcrypt;
 	}
 
 }

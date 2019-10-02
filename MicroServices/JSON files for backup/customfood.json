@@ -1,0 +1,116 @@
+[{
+	"quantity": "155g",
+    
+	"imageLink": "https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/customFoodImages/alu-gobi.jpg",
+ 
+	"price": 60,
+   
+	"rating": 4.1,
+    
+	"foodUuid": "21f29b11-5f7f-4b63-b4b4-ce9ed7ce2f86",
+    
+	"restaurantUuid": "21f5eff4-f91f-4a51-9a24-3a05d729b362"
+},
+{
+	"quantity": "19g",
+    
+	"imageLink": "https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/customFoodImages/barfi.jpg",
+ 
+	"price": 10,
+   
+	"rating": 4.3,
+    
+	"foodUuid": "03951f54-18ff-4002-9773-6fe0fe44e064",
+    
+	"restaurantUuid": "35c7f898-0b30-4d7f-a109-b0ec867149f0"
+},
+{
+	"quantity": "240g",
+    
+	"imageLink": "https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/customFoodImages/butterchicken.jpg",
+ 
+	"price": 180,
+   
+	"rating": 4.1,
+    
+	"foodUuid": "9572b04d-c197-48b4-9234-b2961a481b24",
+    
+	"restaurantUuid": "21f5eff4-f91f-4a51-9a24-3a05d729b362"
+},
+{
+	"quantity": "228g",
+    
+	"imageLink": "https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/customFoodImages/carrot-halva.jpg",
+ 
+	"price": 75.00,
+   
+	"rating": 4.8,
+    
+	"foodUuid": "134bbaab-d4f7-41d4-8c03-ea2f1b468039",
+    
+	"restaurantUuid": "35c7f898-0b30-4d7f-a109-b0ec867149f0"
+},
+{
+	"quantity": "320g",
+    
+	"imageLink": "https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/customFoodImages/eggFriedRice.jpg",
+	"rating": 4.0,
+    
+	"foodUuid": "4bdfedeb-a424-426c-ac30-b80f73b7c750",
+    
+	"restaurantUuid": "21f5eff4-f91f-4a51-9a24-3a05d729b362"
+},
+{
+	"quantity": "",
+    
+	"imageLink": "",
+ 
+	"price": 125.00,
+   
+	"rating": 4.1,
+    
+	"foodUuid": "",
+    
+	"restaurantUuid": ""
+},
+{
+	"quantity": "",
+    
+	"imageLink": "",
+ 
+	"price": 125.00,
+   
+	"rating": 4.1,
+    
+	"foodUuid": "",
+    
+	"restaurantUuid": ""
+},
+{
+	"quantity": "",
+    
+	"imageLink": "",
+ 
+	"price": 125.00,
+   
+	"rating": 4.1,
+    
+	"foodUuid": "",
+    
+	"restaurantUuid": ""
+},
+{
+	"quantity": "",
+    
+	"imageLink": "",
+ 
+	"price": 125.00,
+   
+	"rating": 4.1,
+    
+	"foodUuid": "",
+    
+	"restaurantUuid": ""
+},
+
+]
