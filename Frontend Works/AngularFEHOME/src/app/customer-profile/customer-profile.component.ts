@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {MatStepperModule} from '@angular/material/stepper'
 import { SelectAutocompleteComponent } from 'mat-select-autocomplete';
 // import {MomentDateAdapter} from '@angular/material-moment-adapter';
 // import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -15,7 +16,7 @@ export class CustomerProfileComponent implements OnInit {
   
   
   //  myControl = new FormControl();
-  constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
+  constructor(private previousRoute: ActivatedRoute ,private router: Router,private _formBuilder: FormBuilder) { }
   userName:string;
   email:string;
   customerObj:any
@@ -27,16 +28,26 @@ export class CustomerProfileComponent implements OnInit {
     caloriesBurn:134,
     upuuid:"0" 
   }
-
-
   physicalDetailForm =  new FormGroup({
    height: new FormControl(Number(sessionStorage.getItem("height"))),
    weight: new FormControl(Number(sessionStorage.getItem("weight")) ),
    gender: new FormControl(sessionStorage.getItem("gender")),
    dob: new FormControl(new Date(sessionStorage.getItem("dob"))) })
   
+  isLinear = false;
+  mealTimeFormGroup: FormGroup;
+  caloriesFormGroup: FormGroup;
+  mealTime = ["Breakfast","Lunch","Dinner"];
+  calories = ["Light","Medium","Heavy"];
+  
  ngOnInit() { 
    document.body.classList.add('bg-img');
+   this.mealTimeFormGroup = this._formBuilder.group({
+    mealTime: ['', Validators.required]
+    });
+  this.caloriesFormGroup = this._formBuilder.group({
+    calories: ['', Validators.required]
+    });
    this.email = sessionStorage.getItem('email');
    console.log(this.email);
    if(this.email==null)
@@ -81,7 +92,12 @@ export class CustomerProfileComponent implements OnInit {
            )
 
           }
-    
+saveCustomerTrack() 
+{  
+   var meal = (<HTMLInputElement>document.getElementById("inputMeal")).value;
+   var calories = (<HTMLInputElement>document.getElementById("inputCalories")).value
+   
+}
 redirectToHome()   
  { 
     sessionStorage.removeItem('email');
