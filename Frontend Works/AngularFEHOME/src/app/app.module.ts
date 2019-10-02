@@ -15,7 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker} from '@angular/material';
+import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatStepperModule} from '@angular/material';
 
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
@@ -77,6 +77,7 @@ import { FoodCartComponent } from './food-cart/food-cart.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    MatStepperModule,
     SelectAutocompleteModule,
     HttpClientModule,
    

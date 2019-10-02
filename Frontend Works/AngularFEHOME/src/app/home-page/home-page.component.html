@@ -21,13 +21,84 @@
 }
 #foot
 {
-    margin-top: 480px;
+    margin-top: 600px;
     opacity: 0.9;
+}
+
+#rest 
+{
+    margin-top: 380px;
 }
 agm-map
 {
     height: 200px;
     width: 200px;
+}
+/* .card
+{
+    height: 320px;
+    width: 300px;
+}
+@media (min-width: 0px) {
+    .card-deck .card {
+    display: flex;
+    /* flex: 1 0 0%; */
+    /* flex-direction: column; */
+     /* margin-right: 15px; 
+     margin-bottom: 25px; 
+     margin-left: 15px;
+     opacity: 1;
+} 
+} */ 
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 0px;
+    text-align: center;
+    text-decoration: none;
+} 
+.img 
+{
+    height: 150px;
+    width: 250px;
+}
+ 
+#card-follow
+{
+    height: 300px;
+    width: 320px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+/* .card-img-top
+{
+    height: 200px;
+} */
+body {
+  padding: 2rem 0rem;
+}
+
+.card-img {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.card-title {
+  margin-bottom: 0.3rem;
+}
+
+.cat {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.fa-users {
+  margin-left: 1rem;
+}
+
+.card-footer {
+  font-size: 0.8rem;
 }
 </style>
 
@@ -64,7 +135,21 @@ agm-map
                     </form>  
              </div>
                
+   <div id="rest"> 
+        <div class="masthead-followup row m-0 border border-white">
+                <div id="card-follow" class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white" *ngFor="let restaurant of nearbyRestaurant; even as e;index as i">
+                        <img class="img" [src]="restaurant.image" alt="Random first slide">
+                         <div class="card-body text-right">
+                         <h5 class="card-title"> {{restaurant.name.toUpperCase()}} </h5>
+                         <p class="card-text">Location: {{restaurant.location.toUpperCase()}}<i class="fa fa-map-marker" aria-hidden="true"></i>  <br> Rating: {{restaurant.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
+                        <hr class="half-rule"> 
+                         <button (click)="showRestauratMenu(restaurant.resId)" class="btn-md btn-dark">See Menu</button>
+                        </div>
+                </div> 
+        </div>
+           
 
+   </div>
    <div id="foot">       
             <app-footer></app-footer>
     </div>
