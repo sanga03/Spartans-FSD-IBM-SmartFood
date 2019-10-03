@@ -200,7 +200,9 @@ export class DialogDataExampleDialog {
             
             }
         this.cartOrder.restId=customFood.restaurantUuid;
-       if(sessionStorage.getItem("cartItems")==undefined || sessionStorage.getItem("cartItems")==null)
+
+       if(sessionStorage.getItem("cart")==undefined || sessionStorage.getItem("cart")==null||sessionStorage.getItem("cart")=='first')
+
        {
          sessionStorage.setItem("cartItems",JSON.stringify([food]));
          document.getElementById("showProduct").innerText = String(Number(document.getElementById("showProduct").innerText) + 1);
@@ -243,7 +245,9 @@ export class DialogDataExampleDialog {
             }
             else
             { let i=0;
+
               JSON.parse(sessionStorage.getItem("cartItems")).forEach(cartItem => { 
+
                   if(cartSummary==null || cartSummary == undefined)
                   { 
                    // cartOrder.restId=cartItem.

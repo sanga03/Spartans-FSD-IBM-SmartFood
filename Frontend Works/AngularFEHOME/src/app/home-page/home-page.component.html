@@ -125,31 +125,11 @@ body {
                    
                     <hr class="my-4">
                     <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
-                            <!-- <agm-map [latitude]="lat" [longitude]="long"> 
-                                   
-                                    <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
-                            </agm-map> -->
-                            <!-- <button class="btn-sm"><i class="fa fa-map-marker" aria-hidden="true"></i></button> -->
+                            
                             <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
                             <div (click)="redirectToRestaurant()"  class="search"> </div>
                     </form>  
              </div>
-               
-   <!-- <div id="rest"> 
-        <div class="masthead-followup row m-0 border border-white">
-                <div id="card-follow" class="col-12 col-md-4 p-3 p-md-5 bg-light border border-white" *ngFor="let restaurant of nearbyRestaurant; even as e;index as i">
-                        <img class="img" [src]="restaurant.image" alt="Random first slide">
-                         <div class="card-body text-right">
-                         <h5 class="card-title"> {{restaurant.name.toUpperCase()}} </h5>
-                         <p class="card-text">Location: {{restaurant.location.toUpperCase()}}<i class="fa fa-map-marker" aria-hidden="true"></i>  <br> Rating: {{restaurant.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
-                        <hr class="half-rule"> 
-                         <button (click)="showRestauratMenu(restaurant.resId)" class="btn-md btn-dark">See Menu</button>
-                        </div>
-                </div> 
-        </div>
-           
-
-   </div> -->
    <div id="foot">       
             <app-footer></app-footer>
     </div>

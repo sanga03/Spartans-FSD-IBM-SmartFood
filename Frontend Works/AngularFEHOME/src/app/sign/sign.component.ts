@@ -44,7 +44,7 @@ export class SignComponent implements OnInit {
                      this.status=0; 
                      this.openModal.nativeElement.click();
                      sessionStorage.setItem("email",email);
-                     sessionStorage.setItem('prcusines',JSON.stringify(["a"]));
+      sessionStorage.setItem('prcusines',JSON.stringify(["a"]));
                      if(sessionStorage.getItem("cart")==null || sessionStorage.getItem("cart")==undefined)
                      {
                         sessionStorage.setItem("cart","first");

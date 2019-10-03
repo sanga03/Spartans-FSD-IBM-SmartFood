@@ -4,6 +4,12 @@
 .card{
 	width: max-content;
 }
+.imgs{
+	margin-left: 37%
+}
+img{
+	height: 100px;
+}
 
 @font-face{
     font-family:'myFont';
@@ -26,8 +32,6 @@ body{
 
 <div class="row">
     
-    
-<p>Paymetn form</p>
 
 <article class="card">
 <div class="card-body p-5">
@@ -38,7 +42,7 @@ body{
 		<i class="fa fa-credit-card"></i> Credit Card</a></li>
 	<li class="nav-item">
 		<a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
-		<i class="fab fa-paypal"></i>  Paypal</a></li>
+		<i class="fa fa-paypal"></i>  Paypal</a></li>
 	<li class="nav-item">
 		<a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
 		<i class="fa fa-university"></i>  UPI Transfer</a></li>
@@ -47,10 +51,10 @@ body{
 <div class="tab-content">
 <div class="tab-pane fade show active" id="nav-tab-card">
 	
-	<form role="form" [formGroup]="formBuilder">
+	<form role="form" [formGroup]="formBuilder" method="GET">
 	<div class="form-group">
 		<label for="username">Full name (on the card)</label>
-		<input type="text" class="form-control" name="username" placeholder="" required="">
+		<input type="text" class="form-control" name="username" placeholder="" required>
 	</div> <!-- form-group.// -->
 
 	<div class="form-group">
@@ -61,7 +65,7 @@ body{
 					{{cardNumber.errors}}
 					{{formGroup.controls.cardNumber.errors}}
 					{{formBuilder.get('cardNumber').errors}}
-					<input type="tel"  class="form-control" formControlName="cardNumber" autocomplete="cc-number" id="cc-number" ccNum>
+					<input type="tel"  class="form-control" required="true" formControlName="cardNumber" autocomplete="cc-number" id="cc-number" ccNum>
 				  <!-- </div> -->
 			<div class="input-group-append">
 				<span class="input-group-text text-muted">
@@ -77,7 +81,7 @@ body{
 	        <div class="form-group">
 	            <label><span class="hidden-xs">Expiration</span> </label>
 	        	<div class="input-group">
-						<input type="tel" type="tel" formControlName="cardExpDate" class="form-control" autocomplete="cc-exp" id="cc-exp" ccExp>
+						<input type="tel" type="tel" required="true" formControlName="cardExpDate" class="form-control" autocomplete="cc-exp" id="cc-exp" ccExp>
 						
 							</div>
 	        </div>
@@ -87,19 +91,19 @@ body{
 					<label><span class="hidden-xs">CVV</span> </label>
 					<div class="input-group">
 							
-							<input type="tel" type="tel" formControlName="cardCvv" class="form-control" autocomplete="cc-cvc" id="cc-csc" ccCvc>	        
+							<input type="tel" type="tel" required="true" formControlName="cardCvv" class="form-control" autocomplete="cc-cvc" id="cc-csc" ccCvc>	        
 					</div>
 				</div>
 			</div>
 		   
 	</div> <!-- row.// -->
-	<button class="subscribe btn btn-primary btn-block" type="submit"> Confirm  </button>
+	<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#orderModal"(click)="proceedToPay()"type="button"> Confirm  </button>
 	</form>
 </div> <!-- tab-pane.// -->
 <div class="tab-pane fade" id="nav-tab-paypal">
 <p>Pay With Paypal</p>
 <p>
-<button type="button" class="btn btn-primary"> <i class="fab fa-paypal"></i> Log in my Paypal </button>
+<button type="button" class="btn btn-primary"(click)="paypalPay()"> <i class="fab fa-paypal"></i> Log in my Paypal </button>
 </p>
 
 </div>
@@ -110,7 +114,7 @@ body{
 <mat-form-field class="example-full-width">
     <input matInput placeholder="account-name@upi-provider" >
   </mat-form-field> <!-- tab-pane.// -->
-  <button mat-button class="btn primary-btn">Procced to Pay</button>
+  <button mat-button class="btn primary-btn"  data-toggle="modal" data-target="#orderModal" (click)="proceedToPay()">Proceed to Pay</button>
 </div>
 </div> <!-- tab-content .// -->
 </div> <!-- card-body.// -->
@@ -122,3 +126,26 @@ body{
 
 </div> 
 <!--container end.//-->
+<div class="modal fade" id="orderModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title" id="orderModalLabel">Order Recived</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+			<div class="imgs">
+		 <img src="https://i1.wp.com/bettingtips-1x2.com/wp-content/uploads/2018/03/checkmark.gif?fit=257%2C261">
+		
+		</div>
+
+		</div>
+		<div class="modal-footer">
+		  <button type="button" data-dismiss="modal"class="btn btn-primary"(click)="goHome()">Order some more</button>
+		  <button type="button" data-dismiss="modal"class="btn btn-primary"(click)="logout()">Logout</button>
+		</div>
+	  </div>
+	</div>
+  </div>

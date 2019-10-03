@@ -14,15 +14,91 @@
 }
 .jumbotron {
     align-self: center;
-    opacity: 0.6;
+    opacity: 0.8;
     text-align: center;
     font-weight: 500;
     border-radius: 2%
 }
 #foot
 {
-    margin-top: 450px;
-    opacity: 0.7;
+    margin-top: 600px;
+    opacity: 0.9;
+}
+
+#rest 
+{
+    margin-top: 380px;
+}
+agm-map
+{
+    height: 200px;
+    width: 200px;
+}
+/* .card
+{
+    height: 320px;
+    width: 300px;
+}
+@media (min-width: 0px) {
+    .card-deck .card {
+    display: flex;
+    /* flex: 1 0 0%; */
+    /* flex-direction: column; */
+     /* margin-right: 15px; 
+     margin-bottom: 25px; 
+     margin-left: 15px;
+     opacity: 1;
+} 
+} */ 
+.fa {
+    padding: 5px;
+    font-size: 15px;
+    width: 0px;
+    text-align: center;
+    text-decoration: none;
+} 
+.img 
+{
+    height: 150px;
+    width: 250px;
+}
+ 
+#card-follow
+{
+    height: 300px;
+    width: 320px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+/* .card-img-top
+{
+    height: 200px;
+} */
+body {
+  padding: 2rem 0rem;
+}
+
+.card-img {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.card-title {
+  margin-bottom: 0.3rem;
+}
+
+.cat {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.fa-users {
+  margin-left: 1rem;
+}
+
+.card-footer {
+  font-size: 0.8rem;
 }
 </style>
 
@@ -34,36 +110,38 @@
 
             <div class="container" id="jum"> 
                 <div class="jumbotron">
-                        <h1 class="display-4">Welcome to Smart Food</h1>
+                        <h1 class="display-4">Welcome to Nutritium</h1>
                         <hr class="my-4">
-                        <h5 class="display-5" >At Smart Food we provide meal of your diet and cuisine preference</h5>
+                        <h5 class="display-5" >At Nutritium we provide meal of your diet and cuisine preference</h5>
                         <hr class="my-4">
                         <h1 class="display-4"></h1>
-                        <hr class="my-4">
-<<<<<<< HEAD
-
-=======
->>>>>>> 1578bd67bfc2e26f9be1e42e676b3b0df1fa7acf
-
+                        
+                           
                 </div>
+                
             </div> 
         </div>  
-       
-                <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
-            
-                        <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
-                        <div (click)="redirectToRestaurant()"  class="search"> </div>
-                </form>  
-          
-          
+             <div class="row">
+                   
+                    <hr class="my-4">
+                    <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
 <<<<<<< HEAD
-
-                
+                            
+                           <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
 =======
-       
->>>>>>> 1578bd67bfc2e26f9be1e42e676b3b0df1fa7acf
-        <div id="foot">
+                            <!-- <agm-map [latitude]="lat" [longitude]="long"> 
+                                   
+                                    <agm-marker [latitude]="lat" [longitude]="long"></agm-marker>
+                            </agm-map> -->
+                            <!-- <button class="btn-sm"><i class="fa fa-map-marker" aria-hidden="true"></i></button> -->
+                            <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
+>>>>>>> a68c24a67a5b0a851c687cdaacf9b9d09813fa0a
+                            <div (click)="redirectToRestaurant()"  class="search"> </div>
+                    </form>  
+             </div>
+   <div id="foot">       
             <app-footer></app-footer>
-        </div>
+    </div>
+
    
      
