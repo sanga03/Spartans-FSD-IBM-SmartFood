@@ -22,7 +22,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit() { 
     if(sessionStorage.getItem('email')!=null&&sessionStorage.getItem('email')!=undefined){
       this.router.navigate(['foodHome']);
-    }
+      }
     this.searchRestaurantForm= new FormGroup(
       {
         searchCriteria: new FormControl()
@@ -50,12 +50,12 @@ export class HomePageComponent implements OnInit {
               this.nearbyRestaurant[i]=restaurant;
               i++;
              } 
-         });
-     }).then(()=>{
-       console.log(this.nearbyRestaurant);
-     })
+            });
+        }).then(()=>{
+          console.log(this.nearbyRestaurant);
+        })
           
-    })
+      })
 
 
 

@@ -29,6 +29,12 @@
   height: 30px;
   width: 30px;
 }
+/* .md-datepicker-calendar-pane {
+        z-index: 1200;
+    } */
+    ::ng-deep .cdk-overlay-container{
+    z-index: 1200 !important;
+}
 </style>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <img id="img" src="https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/favicon.ico"> 
@@ -68,28 +74,68 @@
           <!-- <fieldset id="log-in">  -->
         
             <form [formGroup]="physicalDetailForm" (ngSubmit)="setPhysicalDetail()" class="frm" method="post" >
+              <div class="form-group"> 
+                  <p>
+                      <mat-form-field appearance="legacy">
+                        <mat-label>Enter Your Height</mat-label>
+                        <input matInput formControlName="height" placeholder="Height">
+                        
+                        <mat-icon matSuffix>height</mat-icon>
+                        <mat-hint>In Centimeters</mat-hint>
+                      </mat-form-field>
+                  </p>
+                <!-- <label for="height">Height </label>
+                <input type="number" class="form-control"   formControlName="height" placeholder="In CMs" value=""> -->
+              </div>
+              <div class="form-group"> 
+                  <p>
+                      <mat-form-field appearance="legacy">
+                        <mat-label>Enter Your Weight</mat-label>
+                        <input matInput formControlName="weight" placeholder="Height">
+                        <mat-icon matSuffix>Weight</mat-icon>
+                        <mat-hint>In KGs</mat-hint>
+                      </mat-form-field>
+                  </p>
+                <!-- <label for="weight">Weight</label>
+                <input type="number" class="form-control" formControlName="weight" placeholder="In Kgs" value=""> -->
+              </div>
+               <div class="form-group">
+                  <label for="gender">Gender</label>
+                  <select formControlName="gender" id="gender" class="form-control col-md-4">
+                    <option selected value="0" >Male</option>
+                    <option value="1">Female</option>
+                  </select>
+               </div>
+               
+          
+              <div class="form-group"> 
+                  <mat-form-field> 
+                      <mat-label>Date of Birth</mat-label>
+                      <input matInput [matDatepicker]="dob"  formControlName="dob"    placeholder="Date of Birth">
+                      <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                      <mat-datepicker #dob></mat-datepicker>
+                  </mat-form-field>
+              
+                  
+                <!-- <label for="">Date of Birth</label>
+                <input type="date" class="form-control"  formControlName="dob"   > -->
+              </div> 
               <div class="form-group">
-                <label for="height">Height </label>
-                <input type="number" class="form-control"   formControlName="height" placeholder="In CMs" value="">
-              </div>
-              <div class="form-group">
-                <label for="weight">Weight</label>
-                <input type="number" class="form-control" formControlName="weight" placeholder="In Kgs" value="">
-              </div>
-             
-              <div class="form-group col-md-4">
-                <label for="gender">Gender</label>
-                <select formControlName="gender" id="gender" class="form-control">
-                  <option selected value="0" >Male</option>
-                  <option value="1">Female</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="">Date of Birth</label>
-                <input type="date" class="form-control" formControlName="dob"  >
-              </div>
+                  <label for="caloriesBurn">Activity Level</label>
+                  <select formControlName="caloriesBurn" id="caloriesBurn" class="form-control col-md-6">
+                    <option  *ngFor="let activity of activityLevel" [value]="activity.value" > {{activity.viewValue}}</option>
+                  </select>
+               </div>
+              <!-- <mat-form-field>
+                  <mat-label>Activity Level</mat-label>
+                  <mat-select formControlName="caloriesBurn" >
+                    <mat-option *ngFor="let activity of activityLevel" [value]="activity.value">
+                      {{activity.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field> -->
               <div class="modal-footer">
-              <button type="submit" class="btn btn-primary btn-md"  >Set Physical Detail <i class="fas fa-running"></i> </button>
+              <button type="submit"  class="btn btn-primary btn-md"  >Set Physical Detail <i class="fas fa-running"></i> </button>
               </div>
           </form>
       
@@ -99,6 +145,7 @@
      <a href="index.html"> New User? Register Now</a>  
     </div>  
 
+    <!-- Customer track form -->
     <div class="modal" id="track-modal" role="dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content"> 
@@ -136,7 +183,7 @@
                       <ng-template matStepLabel>How Was It? </ng-template>
                       <div class="form-group col-md-6">
                           <label for="inputCalorie">Was it?</label>
-                          <select [formControl]="calories" id="inputCalorie" class="form-control">
+                          <select [formControl]="calories" id="inputCalories" class="form-control">
                             <option value="0" selected>Light</option>
                             <option value="1">Medium</option>
                             <option value="2">Heavy</option>
