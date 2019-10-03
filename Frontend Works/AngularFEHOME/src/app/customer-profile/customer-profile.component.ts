@@ -48,7 +48,7 @@ export class CustomerProfileComponent implements OnInit {
   isLinear = false;
   mealTimeFormGroup: FormGroup;
   caloriesFormGroup: FormGroup;
-  dateFromGroup: FormGroup;
+  dateFormGroup: FormGroup;
   mealTime = ["Breakfast","Lunch","Dinner"];
   calories = ["Light","Medium","Heavy"];
   
@@ -60,7 +60,7 @@ export class CustomerProfileComponent implements OnInit {
   this.caloriesFormGroup = this._formBuilder.group({
     calories: ['', Validators.required]
     });
-  this.dateFromGroup = this._formBuilder.group({
+  this.dateFormGroup = this._formBuilder.group({
     date: ['']
     });
    this.email = sessionStorage.getItem('email');
