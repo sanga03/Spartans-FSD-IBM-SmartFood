@@ -48,7 +48,7 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     AboutUsComponent,
     RegisterComponent,
     VerifyOtpComponent,
-  
+
     RestaurantComponent,
     SortCriteriaComponent,
     DialogDataExampleDialog,
@@ -56,9 +56,12 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     FoodHomeComponent,
     FoodRecomendComponent,
     ReccoMendFoodComponent,
+
+   
     FoodCartComponent,
     PaymentGatewayComponent,
     NewPaymentGatewayComponent
+
   ],
   imports: [
     BrowserModule,
@@ -78,16 +81,18 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     MatIconModule,
     MatStepperModule,
     SelectAutocompleteModule,
-    HttpClientModule,
+
+    MatIconModule,
+
     BrowserAnimationsModule,
     MatTreeModule,
     NgxPayPalModule,
     
    
+
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyBpF7XNgiejLB4qxKJOnMKUNQEVtK6ke0Q'
-    })
-    
+    })    
   ],
  
   providers: [],
