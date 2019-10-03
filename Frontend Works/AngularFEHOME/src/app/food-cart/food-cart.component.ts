@@ -76,26 +76,26 @@ console.log(JSON.stringify(customFoodIds));
 console.log(JSON.stringify(this.foodOrdered));
 
     
-    // fetch(orderUrl,{
-  //     method: 'POST',
-  //     headers:{
-  //         'content-type':'application/json'
-  //     },
-  //     body: JSON.stringify( {
+    fetch(orderUrl,{
+      method: 'POST',
+      headers:{
+          'content-type':'application/json'
+      },
+      body: JSON.stringify( {
         
-  //         "restId":this.foodOrdered.restId,
-  //                "date": this.foodOrdered.date,
-  //                "uorderId":"",
-  //                "customerId": this.foodOrdered.customerId,
-  //                "foodorderid": customFoodIds
-  //               }
-  //      )
-  // })
-  // .then(res=>res.json())
-  // .then(data=>{
-  //     console.log(data)
+          "restId":this.foodOrdered.restId,
+                 "date": this.foodOrdered.date,
+                 "uorderId":"",
+                 "customerId": this.foodOrdered.customerId,
+                 "foodorderid": customFoodIds
+                }
+       )
+  })
+  .then(res=>res.json())
+  .then(data=>{
+      console.log(data)
 
-  // })
+  })
 
   sessionStorage.setItem('cart','first');
   this.router.navigate(['new-payment'])

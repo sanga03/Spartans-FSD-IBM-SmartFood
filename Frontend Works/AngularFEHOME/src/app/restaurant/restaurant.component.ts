@@ -201,7 +201,7 @@ export class DialogDataExampleDialog {
             }
         this.cartOrder.restId=customFood.restaurantUuid;
 
-       if(sessionStorage.getItem("cart")==undefined || sessionStorage.getItem("cart")==null||sessionStorage.getItem("cart")=='first')
+       if(sessionStorage.getItem("cartItems")==undefined || sessionStorage.getItem("cartItems")==null)
 
        {
          sessionStorage.setItem("cartItems",JSON.stringify([food]));
