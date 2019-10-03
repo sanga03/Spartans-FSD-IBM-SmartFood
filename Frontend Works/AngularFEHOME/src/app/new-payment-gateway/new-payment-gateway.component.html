@@ -42,7 +42,7 @@ body{
 		<i class="fa fa-credit-card"></i> Credit Card</a></li>
 	<li class="nav-item">
 		<a class="nav-link" data-toggle="pill" href="#nav-tab-paypal">
-		<i class="fab fa-paypal"></i>  Paypal</a></li>
+		<i class="fa fa-paypal"></i>  Paypal</a></li>
 	<li class="nav-item">
 		<a class="nav-link" data-toggle="pill" href="#nav-tab-bank">
 		<i class="fa fa-university"></i>  UPI Transfer</a></li>
@@ -54,7 +54,7 @@ body{
 	<form role="form" [formGroup]="formBuilder" method="GET">
 	<div class="form-group">
 		<label for="username">Full name (on the card)</label>
-		<input type="text" class="form-control" name="username" placeholder="" required="">
+		<input type="text" class="form-control" name="username" placeholder="" required>
 	</div> <!-- form-group.// -->
 
 	<div class="form-group">
@@ -65,7 +65,7 @@ body{
 					{{cardNumber.errors}}
 					{{formGroup.controls.cardNumber.errors}}
 					{{formBuilder.get('cardNumber').errors}}
-					<input type="tel"  class="form-control" formControlName="cardNumber" autocomplete="cc-number" id="cc-number" ccNum>
+					<input type="tel"  class="form-control" required="true" formControlName="cardNumber" autocomplete="cc-number" id="cc-number" ccNum>
 				  <!-- </div> -->
 			<div class="input-group-append">
 				<span class="input-group-text text-muted">
@@ -81,7 +81,7 @@ body{
 	        <div class="form-group">
 	            <label><span class="hidden-xs">Expiration</span> </label>
 	        	<div class="input-group">
-						<input type="tel" type="tel" formControlName="cardExpDate" class="form-control" autocomplete="cc-exp" id="cc-exp" ccExp>
+						<input type="tel" type="tel" required="true" formControlName="cardExpDate" class="form-control" autocomplete="cc-exp" id="cc-exp" ccExp>
 						
 							</div>
 	        </div>
@@ -91,7 +91,7 @@ body{
 					<label><span class="hidden-xs">CVV</span> </label>
 					<div class="input-group">
 							
-							<input type="tel" type="tel" formControlName="cardCvv" class="form-control" autocomplete="cc-cvc" id="cc-csc" ccCvc>	        
+							<input type="tel" type="tel" required="true" formControlName="cardCvv" class="form-control" autocomplete="cc-cvc" id="cc-csc" ccCvc>	        
 					</div>
 				</div>
 			</div>
