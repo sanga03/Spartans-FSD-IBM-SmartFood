@@ -38,7 +38,7 @@ export class NewPaymentGatewayComponent implements OnInit {
 
 
   proceedToPay(){
-
+    // this.router.navigate(['home'])
   }
   paypalPay(){
     //   document.location.href=paypalUrl+"21.9";
