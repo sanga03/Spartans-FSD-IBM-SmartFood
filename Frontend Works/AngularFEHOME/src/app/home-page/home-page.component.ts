@@ -29,33 +29,33 @@ export class HomePageComponent implements OnInit {
       
       }
     )
-    this.map.getLocation().subscribe(data=>{
-      console.log(data);
-      this.location = data;
-      this.lat = data.latitude;
-      this.long = data.longitude;
-      this.url = "http://b4ibm23.iiht.tech:8010/searchNearbyRestaurant/"+String(this.lat)+"/"+String(this.long);
-      fetch(this.url)
-      .then(res=>res.json())
-     .then((data)=>{
-         let i=0;
-         data.forEach(restaurant=> { 
-             if(this.nearbyRestaurant==null || this.nearbyRestaurant==undefined)
-             {
-               this.nearbyRestaurant=[restaurant]
-               i++;
-             }
-             else
-             {
-              this.nearbyRestaurant[i]=restaurant;
-              i++;
-             } 
-            });
-        }).then(()=>{
-          console.log(this.nearbyRestaurant);
-        })
+    // this.map.getLocation().subscribe(data=>{
+    //   console.log(data);
+    //   this.location = data;
+    //   this.lat = data.latitude;
+    //   this.long = data.longitude;
+    //   this.url = "http://b4ibm23.iiht.tech:8010/searchNearbyRestaurant/"+String(this.lat)+"/"+String(this.long);
+    //   fetch(this.url)
+    //   .then(res=>res.json())
+    //  .then((data)=>{
+    //      let i=0;
+    //      data.forEach(restaurant=> { 
+    //          if(this.nearbyRestaurant==null || this.nearbyRestaurant==undefined)
+    //          {
+    //            this.nearbyRestaurant=[restaurant]
+    //            i++;
+    //          }
+    //          else
+    //          {
+    //           this.nearbyRestaurant[i]=restaurant;
+    //           i++;
+    //          } 
+    //         });
+    //     }).then(()=>{
+    //       console.log(this.nearbyRestaurant);
+    //     })
           
-      })
+    //   })
 
 
 

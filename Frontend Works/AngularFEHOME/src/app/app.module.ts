@@ -75,7 +75,7 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
-   NgXCreditCardsModule,
+    NgXCreditCardsModule,
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,

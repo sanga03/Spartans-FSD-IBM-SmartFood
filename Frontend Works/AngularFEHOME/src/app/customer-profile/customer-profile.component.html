@@ -32,7 +32,7 @@
 /* .md-datepicker-calendar-pane {
         z-index: 1200;
     } */
-    ::ng-deep .cdk-overlay-container{
+ ::ng-deep .cdk-overlay-container{
     z-index: 1200 !important;
 }
 </style>
@@ -135,7 +135,7 @@
                   </mat-select>
                 </mat-form-field> -->
               <div class="modal-footer">
-              <button type="submit"  class="btn btn-primary btn-md"  >Set Physical Detail <i class="fas fa-running"></i> </button>
+              <button type="submit"  class="btn btn-primary btn-md"  >Set Physical Detail <i class="fa fa-running"></i> </button>
               </div>
           </form>
       
@@ -181,7 +181,7 @@
                   <mat-step [stepControl]="caloriesFormGroup">
                     <form [formGroup]="caloriesFormGroup">
                       <ng-template matStepLabel>How Was It? </ng-template>
-                      <div class="form-group col-md-6">
+                      <div class="form-group col-md-6"> 
                           <label for="inputCalorie">Was it?</label>
                           <select [formControl]="calories" id="inputCalories" class="form-control">
                             <option value="0" selected>Light</option>
@@ -194,6 +194,24 @@
                         <button mat-button matStepperNext>Next</button>
                       </div>
                     </form>
+                  </mat-step>
+                  <mat-step [stepControl]="dateFormGroup">
+                      <form [formGroup]="dateFormGroup">
+                        <ng-template matStepLabel>When Was It? </ng-template>
+                        <div class="form-group col-md-6">
+                            <label for="inputDate">It Was On</label> 
+                            <mat-form-field> 
+                                <mat-label>Tracking Date</mat-label>
+                                <input matInput [matDatepicker]="date" id="inputDate" formControlName="date"    placeholder="Tracking Date">
+                                <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                                <mat-datepicker #date></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                          <button mat-button matStepperPrevious>Back</button>
+                          <button mat-button matStepperNext>Next</button>
+                        </div>
+                      </form>
                   </mat-step>
                   <mat-step>
                     <ng-template matStepLabel>Done</ng-template>
