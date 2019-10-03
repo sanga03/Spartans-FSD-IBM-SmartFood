@@ -86,6 +86,15 @@ export class RestaurantComponent implements OnInit {
 
   openDialog() {
     
+  } 
+
+  async filterByCategory(category)
+  {  var url = "http://b4ibm26.iiht.tech:1030/restaurant/category?a="
+     fetch(url+category)
+     .then(res=>res.json())
+     .then(data=>{
+       this.restaurantList=data;
+     })
   }
   
  async showRestauratMenu(resUuid)

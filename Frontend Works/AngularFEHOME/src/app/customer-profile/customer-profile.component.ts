@@ -113,7 +113,8 @@ export class CustomerProfileComponent implements OnInit {
 saveCustomerTrack() 
 {  
    var meal = (<HTMLInputElement>document.getElementById("inputMeal")).value;
-
+  var d:Date = this.dateFormGroup.get('date').value;
+   console.log(d.getTime())
    var calories = (<HTMLInputElement>document.getElementById("inputCalories")).value 
    console.log(calories)
    var mealTime = Number(meal);
@@ -140,7 +141,7 @@ saveCustomerTrack()
       },
       body: JSON.stringify( {  
 
-        "tackingDate":new Date().getTime(),
+        "tackingDate":d.getTime(),
          "mealTime":mealTime,
        	"calories":Math.floor(calorieCount)
          

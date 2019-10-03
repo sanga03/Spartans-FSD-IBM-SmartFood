@@ -23,7 +23,7 @@ data-toggle="modal" data-target="#login-modal"></button>
                 <input type="password" class="form-control" formControlName="password" placeholder=" Enter Password" value="">
               </div>
               <div class="modal-footer">
-                  <button  [routerLink]="['/register']" data-dismiss="login-modal" aria-label="Close"> New User? Register Now</button>
+                  <a  [routerLink]="['/register']" data-dismiss="modal" aria-label="Close"> New User? Register Now</a>
               <button type="submit" class="btn btn-primary btn-md"  >Let's Go <i class="fa fa-cutlery" style='font-size:15px;color:#93E0E5'aria-hidden="true"></i></button>
               <!-- <button type="button" class="btn btn-info" id="reg-btn" onclick="callReg()" >Register</button> -->
               </div>
