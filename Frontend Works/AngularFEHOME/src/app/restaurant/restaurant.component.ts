@@ -202,7 +202,8 @@ export class DialogDataExampleDialog {
         this.cartOrder.restId=customFood.restaurantUuid;
        if(sessionStorage.getItem("cart")==undefined || sessionStorage.getItem("cart")==null)
        {
-        sessionStorage.setItem("cart",JSON.stringify([food]));
+         sessionStorage.setItem("cart",JSON.stringify([food]));
+         document.getElementById("showProduct").innerText = String(Number(document.getElementById("showProduct").innerText) + 1);
        }
        else
        { 
@@ -217,13 +218,14 @@ export class DialogDataExampleDialog {
          if(this.flag==0)
          { console.log("pushed")
            foodList.push(food);
+           document.getElementById("showProduct").innerText = String(Number(document.getElementById("showProduct").innerText) + 1);
          }
          
          sessionStorage.setItem("cart",JSON.stringify(foodList));
          this.flag=0;
        }
    
-       document.getElementById("showProduct").innerText = String(Number(document.getElementById("showProduct").innerText) + 1);
+      
   } 
   directToCart()
   {   if(sessionStorage.getItem("email")==null || sessionStorage.getItem("email")==undefined)
