@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,12 +25,12 @@ public class PaypalController {
 	return	"home";
 	}
 
-	@GetMapping("/pay")
-	public ResponseEntity<?> payment() {
+	@GetMapping("/pay/{total}")
+	public ResponseEntity<?> payment(@PathVariable("total") String total) {
 		try { 
 //			service.createPayment(total, currency, method, intent, description, cancelUrl, successUrl)
-			Payment payment = service.createPayment(1.0, "INR", "paypal",
-					"sale", "testing", "http://localhost:9090/" + CANCEL_URL,
+			Payment payment = service.createPayment(Double.parseDouble(total), "INR", "paypal",
+					"sale", "testing", "http://localhost:4200/" + CANCEL_URL,
 					"http://localhost:9090/" + SUCCESS_URL);
 			for(Links link:payment.getLinks()) {
 				if(link.getRel().equals("approval_url")) {

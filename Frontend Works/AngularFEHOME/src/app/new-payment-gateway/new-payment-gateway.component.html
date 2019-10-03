@@ -51,7 +51,7 @@ body{
 <div class="tab-content">
 <div class="tab-pane fade show active" id="nav-tab-card">
 	
-	<form role="form" [formGroup]="formBuilder">
+	<form role="form" [formGroup]="formBuilder" method="GET">
 	<div class="form-group">
 		<label for="username">Full name (on the card)</label>
 		<input type="text" class="form-control" name="username" placeholder="" required="">
@@ -97,7 +97,7 @@ body{
 			</div>
 		   
 	</div> <!-- row.// -->
-	<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModal"(click)="proceedToPay()"type="submit"> Confirm  </button>
+	<button class="subscribe btn btn-primary btn-block" data-toggle="modal" data-target="#orderModal"(click)="proceedToPay()"type="button"> Confirm  </button>
 	</form>
 </div> <!-- tab-pane.// -->
 <div class="tab-pane fade" id="nav-tab-paypal">
@@ -114,7 +114,7 @@ body{
 <mat-form-field class="example-full-width">
     <input matInput placeholder="account-name@upi-provider" >
   </mat-form-field> <!-- tab-pane.// -->
-  <button mat-button class="btn primary-btn"  data-toggle="modal" data-target="#exampleModal" (click)="proceedToPay()">Proceed to Pay</button>
+  <button mat-button class="btn primary-btn"  data-toggle="modal" data-target="#orderModal" (click)="proceedToPay()">Proceed to Pay</button>
 </div>
 </div> <!-- tab-content .// -->
 </div> <!-- card-body.// -->
@@ -126,11 +126,11 @@ body{
 
 </div> 
 <!--container end.//-->
-<div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="orderModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h5 class="modal-title" id="exampleModalLabel">Order Recived</h5>
+		  <h5 class="modal-title" id="orderModalLabel">Order Recived</h5>
 		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		  </button>
@@ -143,8 +143,8 @@ body{
 
 		</div>
 		<div class="modal-footer">
-		  <button type="button" class="btn btn-primary"(click)="goHome()">Order some more</button>
-		  <button type="button" class="btn btn-primary"(click)="logout()">Logout</button>
+		  <button type="button" data-dismiss="modal"class="btn btn-primary"(click)="goHome()">Order some more</button>
+		  <button type="button" data-dismiss="modal"class="btn btn-primary"(click)="logout()">Logout</button>
 		</div>
 	  </div>
 	</div>
