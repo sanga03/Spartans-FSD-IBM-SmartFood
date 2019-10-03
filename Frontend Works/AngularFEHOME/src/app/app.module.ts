@@ -16,7 +16,7 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { NgXCreditCardsModule } from 'ngx-credit-cards';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule, MatStepperModule} from '@angular/material';
+import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule, MatStepperModule, MatDialog, MatDialogModule} from '@angular/material';
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
@@ -81,9 +81,8 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     MatIconModule,
     MatStepperModule,
     SelectAutocompleteModule,
-
+    MatDialogModule,
     MatIconModule,
-
     BrowserAnimationsModule,
     MatTreeModule,
     NgxPayPalModule,
