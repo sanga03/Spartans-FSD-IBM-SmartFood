@@ -10,6 +10,8 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { FoodHomeComponent } from './food-home/food-home.component';
 import { FoodCartComponent } from './food-cart/food-cart.component';
+import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
+import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-gateway.component';
 
 
 const routes: Routes = [
@@ -21,6 +23,12 @@ const routes: Routes = [
   {
     path:'cart',
     component:FoodCartComponent
+  },{
+path:'payment',
+component:PaymentGatewayComponent
+  },{
+    path:'new-payment',
+    component:NewPaymentGatewayComponent
   },
     {
       path:"login",

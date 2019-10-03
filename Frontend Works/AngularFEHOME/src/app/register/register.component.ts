@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl, Validators, ValidatorFn } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { registerUrl } from 'src/utils';
 // import { url } from 'inspector'
 
 @Component({
@@ -50,7 +51,7 @@ optSentSuccess:boolean=false;
   let password=this.regForm.get('password').value;
   // this.optSentSuccess=true;
 
-  fetch('http://b4ibm26.iiht.tech:1020/registerUser',{
+  fetch(registerUrl,{
                  method: 'POST',
                  headers:{
                      'content-type':'application/json'

@@ -26,7 +26,8 @@ public class PaypalController {
 
 	@GetMapping("/pay")
 	public ResponseEntity<?> payment() {
-		try {
+		try { 
+//			service.createPayment(total, currency, method, intent, description, cancelUrl, successUrl)
 			Payment payment = service.createPayment(1.0, "INR", "paypal",
 					"sale", "testing", "http://localhost:9090/" + CANCEL_URL,
 					"http://localhost:9090/" + SUCCESS_URL);
