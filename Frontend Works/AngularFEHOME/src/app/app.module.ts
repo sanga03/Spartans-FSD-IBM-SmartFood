@@ -20,7 +20,7 @@ import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModul
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
-import { NgxPayPalModule } from 'ngx-paypal';
+// import { NgxPayPalModule } from 'ngx-paypal';
 import { HttpClientModule } from '@angular/common/http';
 import {AgmCoreModule} from '@agm/core';
 import { MapsService } from './maps.service';
@@ -81,7 +81,6 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     HttpClientModule,
     BrowserAnimationsModule,
     MatTreeModule,
-    NgxPayPalModule,
     
    
     AgmCoreModule.forRoot({

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 // import { NgXCreditCardsModule } from 'ngx-credit-cards';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CreditCardValidator } from 'ngx-credit-cards';
-import { IPayPalConfig,  ICreateOrderRequest } from 'ngx-paypal';
+import { paypalUrl } from 'src/utils';
+import { Router } from '@angular/router';
+// import { IPayPalConfig,  ICreateOrderRequest } from 'ngx-paypal';
 
 @Component({
   selector: 'app-new-payment-gateway',
@@ -10,7 +12,7 @@ import { IPayPalConfig,  ICreateOrderRequest } from 'ngx-paypal';
   styleUrls: ['./new-payment-gateway.component.css']
 })
 export class NewPaymentGatewayComponent implements OnInit {
-  public payPalConfig ? : IPayPalConfig;
+//   public payPalConfig ? : IPayPalConfig;
 
    formBuilder = new FormBuilder();
   formGroup: any;
@@ -19,82 +21,39 @@ export class NewPaymentGatewayComponent implements OnInit {
   showCancel: boolean;
   showSuccess: boolean;
 
-  constructor() {
+  constructor(private router:Router) {
    
    }
   
   
   ngOnInit() {
-    this.initConfig();
+    // this.initConfig();
   this.formGroup = this.formBuilder.group({
     cardNumber: new FormControl('', [CreditCardValidator.validateCardNumber]),
     cardExpDate:new FormControl('', [CreditCardValidator.validateCardExpiry]),
-    cardCvv: new FormControl('', [CreditCardValidator.validateCardCvc])
-    // cardName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+    cardCvv: new FormControl('', [CreditCardValidator.validateCardCvc]),
+    cardName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
   });
   }
 
 
-  private initConfig(): void {
-    this.payPalConfig = {
-        currency: 'EUR',
-        clientId: 'sb',
-        createOrderOnClient: (data) => < ICreateOrderRequest > {
-            intent: 'CAPTURE',
-            purchase_units: [{
-                amount: {
-                    currency_code: 'EUR',
-                    value: '9.99',
-                    breakdown: {
-                        item_total: {
-                            currency_code: 'EUR',
-                            value: '9.99'
-                        }
-                    }
-                },
-                items: [{
-                    name: 'Enterprise Subscription',
-                    quantity: '1',
-                    category: 'DIGITAL_GOODS',
-                    unit_amount: {
-                        currency_code: 'EUR',
-                        value: '9.99',
-                    },
-                }]
-            }]
-        },
-        advanced: {
-            commit: 'true'
-        },
-        style: {
-            label: 'paypal',
-            layout: 'vertical'
-        },
-        onApprove: (data, actions) => {
-            console.log('onApprove - transaction was approved, but not authorized', data, actions);
-            actions.order.get().then(details => {
-                console.log('onApprove - you can get full order details inside onApprove: ', details);
-            });
+  proceedToPay(){
 
-        },
-        onClientAuthorization: (data) => {
-            console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-            this.showSuccess = true;
-        },
-        onCancel: (data, actions) => {
-            console.log('OnCancel', data, actions);
-            this.showCancel = true;
+  }
+  paypalPay(){
+    //   document.location.href=paypalUrl+"21.9";
+      console.log(paypalUrl+423.2)
+fetch(paypalUrl+"21.9").then(res=>res.json()).then(data=>{
+    console.log(data);
+    document.location.href=String(data.message);
+})
+  }
 
-        },
-        onError: err => {
-            console.log('OnError', err);
-            this.showError = true;
-        },
-        onClick: (data, actions) => {
-            console.log('onClick', data, actions);
-            this.resetStatus();
-        }
-    };
+goHome(){
+    sessionStorage.setItem('cart','first');
+    this.router.navigate(['home'])
 }
-
-}
+logout(){
+    window.sessionStorage.clear();
+    this.router.navigate(['home']);
+}}
