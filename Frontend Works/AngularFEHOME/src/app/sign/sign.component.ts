@@ -44,12 +44,13 @@ export class SignComponent implements OnInit {
                      this.status=0; 
                      this.openModal.nativeElement.click();
                      sessionStorage.setItem("email",email);
-                     this.router.navigate(['foodHome']);
+                     
                      sessionStorage.setItem('prcusines',JSON.stringify(["a"]));
                      if(sessionStorage.getItem("cart")==null || sessionStorage.getItem("cart")==undefined)
                      {
                       sessionStorage.setItem("cart","first");
                      }
+                     this.router.navigate(['foodHome']);
                      
                 }else if(data==1)
                 {
