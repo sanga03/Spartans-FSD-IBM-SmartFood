@@ -200,14 +200,16 @@ export class DialogDataExampleDialog {
             
             }
         this.cartOrder.restId=customFood.restaurantUuid;
+
        if(sessionStorage.getItem("cart")==undefined || sessionStorage.getItem("cart")==null||sessionStorage.getItem("cart")=='first')
+
        {
-         sessionStorage.setItem("cart",JSON.stringify([food]));
+         sessionStorage.setItem("cartItems",JSON.stringify([food]));
          document.getElementById("showProduct").innerText = String(Number(document.getElementById("showProduct").innerText) + 1);
        }
        else
        { 
-         let foodList:foodInterface[] = JSON.parse(sessionStorage.getItem("cart"));
+         let foodList:foodInterface[] = JSON.parse(sessionStorage.getItem("cartItems"));
          foodList.forEach((foodItem)=>{
             if(foodItem.customFoodId==food.customFoodId)
             {
@@ -218,10 +220,13 @@ export class DialogDataExampleDialog {
          if(this.flag==0)
          { console.log("pushed")
            foodList.push(food);
+           console.log(foodList);
+           console.log(document.getElementById("showProduct").innerText)
            document.getElementById("showProduct").innerText = String(Number(document.getElementById("showProduct").innerText) + 1);
+           console.log(document.getElementById("showProduct").innerText)
          }
          
-         sessionStorage.setItem("cart",JSON.stringify(foodList));
+         sessionStorage.setItem("cartItems",JSON.stringify(foodList));
          this.flag=0;
        }
    
@@ -232,7 +237,7 @@ export class DialogDataExampleDialog {
         {
         
               let cartSummary:foodInterface[];
-              let cartItems = sessionStorage.getItem("cart")
+              let cartItems = sessionStorage.getItem("cartItems")
              
             if(cartItems==null || cartItems == undefined)
             {
@@ -240,8 +245,9 @@ export class DialogDataExampleDialog {
             }
             else
             { let i=0;
-              if(sessionStorage.getItem('cart')!='first')
-              JSON.parse(sessionStorage.getItem("cart")).forEach(cartItem => { 
+
+              JSON.parse(sessionStorage.getItem("cartItems")).forEach(cartItem => { 
+
                   if(cartSummary==null || cartSummary == undefined)
                   { 
                    // cartOrder.restId=cartItem.

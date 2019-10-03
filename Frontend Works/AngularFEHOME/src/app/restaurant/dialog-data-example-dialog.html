@@ -39,7 +39,7 @@
     text-decoration: none;
 } 
 </style>
-<h4 mat-dialog-title>Menu  <a mat-dialog-close  class="close">X</a></h4> 
+<h4 mat-dialog-title>Menu  <button mat-button [mat-dialog-close]="true"  class="close">X</button></h4> 
 
 <h1 class="display-4 bg-dark" ></h1>
 <div mat-dialog-content>
@@ -50,14 +50,12 @@
              <div class="card-body text-right">
              <h5 class="card-title" >{{customFood.name}}</h5>
              <p class="card-text">Price: {{customFood.price}}<i class="fa fa-inr" aria-hidden="true"></i> <br> Rating: {{customFood.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
-              <button (click)="addToCart(customFood)" class="btn-md btn-success">Add to Cart <i class="fa fa-plus" aria-hidden="true"></i></button>
+              <button (click)="addToCart(customFood)" class="btn-md btn-success"> Add to Cart <i class="fa fa-plus" aria-hidden="true"></i></button>
             </div> 
-           
-
     </div>   
   </div>
   <div id="showCart">
-      <button id="showProduct" (click)="directToCart()" class="btn btn-primary btn-lg"  style="color: black" >0</button>
+      <button   id="showProduct" (click)="directToCart()" class="btn btn-primary btn-lg"  style="color: black" >0</button>
  </div>
     <!-- <div class="card mb-3"  *ngFor="let customFood of data" style="max-width: 540px;">
         <div class="row no-gutters">
