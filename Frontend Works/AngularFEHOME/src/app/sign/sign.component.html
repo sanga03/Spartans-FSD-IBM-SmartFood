@@ -9,7 +9,9 @@
 }
 </style>
 <button id="openModal" #openModal [hidden]="true" 
-data-toggle="modal" data-target="#login-modal"></button>
+data-toggle="modal" data-target="#login-modal"></button> 
+<button id="closeModal" #closeModal [hidden]="true" 
+data-dismiss="modal" aria-label="Close"></button> 
 <div class="modal" id="login-modal" role="dialog" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -32,8 +34,12 @@ data-toggle="modal" data-target="#login-modal"></button>
                 <input type="password" class="form-control" formControlName="password" placeholder=" Enter Password" value="">
               </div>
               <div class="modal-footer">
-                  <a  [routerLink]="['/register']" data-dismiss="modal" aria-label="Close"> New User? Register Now</a>
+
+        
+                <a (click)="changePass()" data-dismiss="model" data-toggle="model" href="#changePass" role="button" aria-expanded="false" aria-controls="collapseExample" >change password</a> 
+                        <a  [routerLink]="['/register']" data-dismiss="modal" aria-label="Close"> New User? Register Now</a>
               <button type="submit" class="btn btn-primary btn-md"  >Let's Go <i class="fa fa-cutlery" style='color:#93E0E5'aria-hidden="true"></i></button>
+
               <!-- <button type="button" class="btn btn-info" id="reg-btn" onclick="callReg()" >Register</button> -->
               </div>
       
@@ -45,5 +51,24 @@ data-toggle="modal" data-target="#login-modal"></button>
       
     </div>  
 
-
-
+<div class="collapse" id="changePass">
+    <div class="modal"  tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

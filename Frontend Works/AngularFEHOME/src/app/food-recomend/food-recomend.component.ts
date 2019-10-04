@@ -1,12 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { progressUrl } from 'src/utils';
 
+import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { Label } from 'ng2-charts';
 @Component({
   selector: 'app-food-recomend',
   templateUrl: './food-recomend.component.html',
   styleUrls: ['./food-recomend.component.css']
 })
 export class FoodRecomendComponent implements OnInit {
+  
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: { xAxes: [{}], yAxes: [{}] },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartPlugins = [pluginDataLabels];
+  dataCumsume=[]
+  dataIdeal=[]
+  public barChartData: ChartDataSets[] = [
+    { data:this.dataCumsume, label: 'Consumed cals' },
+    { data: this.dataIdeal, label: 'Ideal cals' }
+  ];
   dayCount: number;
   caloriesCunsumed:number;
   todayCaloriesCunsumed: any;
@@ -17,6 +42,7 @@ export class FoodRecomendComponent implements OnInit {
   targetWeight: any;
   startWeight: any;
   onTrack: any;
+   
   constructor() { }
 
   ngOnInit() {
@@ -36,13 +62,25 @@ export class FoodRecomendComponent implements OnInit {
     this.startWeight=data[0].startWeight;
     this.onTrack=data[0].onTrack;
     this.dayCount=Math.floor((curDate-startDate)/86400000);
+   
     console.log(this.dayCount)
      for(var day of data){
         this.caloriesCunsumed+=day.caloriesConsumed;
+        if(this.dayCount>=day.day){
+          this.barChartLabels.push("Day "+(day.day+1));
+          this.dataCumsume.push(day.caloriesConsumed);
+          this.dataIdeal.push(data[0].caloriesSupposedToBeConsumed);
+      }
         if(day.day==this.dayCount){
           this.todayCaloriesCunsumed=day.caloriesConsumed.toFixed(2);
         }
     }
+    this.barChartData = [
+      { data:this.dataCumsume, label: 'Consumed cals' },
+      { data: this.dataIdeal, label: 'Ideal cals' }
+    ];
+
+
   })
   
   }
