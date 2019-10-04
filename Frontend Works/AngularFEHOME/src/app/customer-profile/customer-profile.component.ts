@@ -113,7 +113,7 @@ export class CustomerProfileComponent implements OnInit {
 saveCustomerTrack() 
 {  
    var meal = (<HTMLInputElement>document.getElementById("inputMeal")).value;
-  var d:Date = this.dateFormGroup.get('date').value;
+   var d:Date = this.dateFormGroup.get('date').value;
    console.log(d.getTime())
    var calories = (<HTMLInputElement>document.getElementById("inputCalories")).value 
    console.log(calories)
@@ -156,9 +156,10 @@ saveCustomerTrack()
    
 }
 redirectToHome()   
- { 
+ {  
     sessionStorage.removeItem('email');
     sessionStorage.removeItem('cart');
+    window.sessionStorage.clear();
     this.router.navigate(['home']);
  }
 

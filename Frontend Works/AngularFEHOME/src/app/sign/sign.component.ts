@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SignComponent implements OnInit { 
   @ViewChild('openModal',undefined) openModal:ElementRef;
+  @ViewChild('closeModal',undefined) closeModal:ElementRef;
   status:number = 0
   loginForm = new FormGroup({
     email: new FormControl('spamme017@yandex.com'),
@@ -44,11 +45,12 @@ export class SignComponent implements OnInit {
                      this.status=0; 
                      this.openModal.nativeElement.click();
                      sessionStorage.setItem("email",email);
-      sessionStorage.setItem('prcusines',JSON.stringify(["a"]));
+                   sessionStorage.setItem('prcusines',JSON.stringify(["a"]));
                      if(sessionStorage.getItem("cart")==null || sessionStorage.getItem("cart")==undefined)
                      {
                         sessionStorage.setItem("cart","first");
                      }
+                     this.closeModal.nativeElement.click();
                      this.router.navigate(['foodHome']);
                      
                 }else if(data==1)
