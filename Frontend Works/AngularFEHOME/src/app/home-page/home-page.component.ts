@@ -17,9 +17,11 @@ export class HomePageComponent implements OnInit {
   location:location;
   url:string;
   nearbyRestaurant:restaurantResponse[];
+ 
   constructor(private router:Router,private map:MapsService) { }
 
-  ngOnInit() { 
+  ngOnInit() {  
+   
     if(sessionStorage.getItem('email')!=null&&sessionStorage.getItem('email')!=undefined){
       this.router.navigate(['foodHome']);
       }
