@@ -24,7 +24,7 @@ optSentSuccess:boolean=false;
    this.regForm = new FormGroup({
       name: new FormControl('name'),
       phone:new FormControl('phone'),
-      email:new FormControl("spamme017@yandex.com",[
+      email:new FormControl("email",[
         Validators.required,
         Validators.email,
         

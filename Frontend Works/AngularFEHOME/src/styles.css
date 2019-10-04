@@ -165,9 +165,10 @@ font-family: monospace;
     }
 
     .res-bg-img{
-      background-image: url(https://fineartphotoawards.com/upload/images/1539509437h7j3ha_piece_of_moon.jpg);
-     
-      /* https://images-na.ssl-images-amazon.com/images/I/61Uc77z2pIL._SL1500_.jpg */
+      background-image: url( https://images.squarespace-cdn.com/content/v1/561b6728e4b058853be68c2d/1561436923575-XSEQGD1FO07C7B2RPUTV/ke17ZwdGBToddI8pDm48kA_SSaoz4elkj-HsZd8gX3Z7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UWPwZyNcweDIvdeL5kotwkIXjs9g0WibSO_cU-Ijy4Pwg6poS-6WGGnXqDacZer4yQ/IMG_0877.JPG?format=1500w
+      );
+       /* https://images-na.ssl-images-amazon.com/images/I/61Uc77z2pIL._SL1500_.jpg */
+      /* https://fineartphotoawards.com/upload/images/1539509437h7j3ha_piece_of_moon.jpg) */
     } 
     .reg-bg-img{
       background-image: url(https://backgrounddownload.com/wp-content/uploads/2018/09/background-for-food-website-3.jpg);
