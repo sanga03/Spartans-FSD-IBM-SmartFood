@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { otpVerifyUrl, findEmailUrl, pushPrefUrl, fetchUrls } from 'src/utils';
+import { otpVerifyUrl, findEmailUrl, pushPrefUrl, fetchUrls, externalphysicalDetail } from 'src/utils';
 
 @Component({
   selector: 'app-verify-otp',
@@ -77,7 +77,8 @@ body:JSON.stringify({
   }
 
   setPhysicalDetail(uid)
-  {   var url = fetchUrls.physicalDetail+"/"+uid;
+  {  
+     var url = externalphysicalDetail+uid;
      console.log(url);
     let date = new Date().getTime();
       fetch(

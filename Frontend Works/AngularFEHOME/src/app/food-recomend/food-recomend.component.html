@@ -1,4 +1,5 @@
 
+<h2>Know  Yourself Better !!</h2>
 <div class="container">
     <div class="card">
         <h3 class="title">On Track</h3>
@@ -14,13 +15,26 @@
         <div class="med">
           yes
         </div>
-          <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <text>yes</text>
           
-        </svg>
         </div>
        </div>
+       <div class="card">
+        <h3 class="title">Calories Consumed</h3>
+        <div class="bar">
+          <div class="emptybar"></div>
+          <div class="filledbar"></div>
 
+        
+        </div>
+     
+
+        <div class="circle">
+        <div class="med">
+         {{todayCaloriesCunsumed}} cals
+        </div>
+          
+        </div>
+       </div>
     <div class="card">
       <h3 class="title">Dates</h3>
       <div class="bar">
@@ -29,9 +43,9 @@
       </div>
       <div class="circle">
           <div class="med">
-             Start :30 sep 2019
+             Start :{{startDate}}
               <br>
-             End :25 Oct 2019
+             End :{{endDate}}
             </div>
         <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
         <circle class="stroke" cx="60" cy="60" r="50"/>
@@ -46,15 +60,16 @@
       </div>
       <div class="circle">
           <div class="med">
-              Start : 70 Kg
+              Start : {{startWeight}} Kg
               <br>
-              Target : 67 Kg
+              Target : {{targetWeight}} Kg
             </div>
         <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
         <circle class="stroke" cx="60" cy="60" r="50"/>
       </svg> -->
       </div>
     </div>
+
     <div class="card">
       <h3 class="title">Physical</h3>
       <div class="bar">
@@ -64,9 +79,9 @@
       
       <div class="circle">
           <div class="med">
-              BMI: 21.8
+              BMI:{{BMI}}
               <br>
-              BMR: 1713.7
+              BMR: {{BMR}}
             </div>
         <!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
         <circle class="stroke" cx="60" cy="60" r="50"/>

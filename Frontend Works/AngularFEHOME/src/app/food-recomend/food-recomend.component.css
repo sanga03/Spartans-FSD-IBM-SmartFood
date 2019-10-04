@@ -6,13 +6,23 @@ body {
     font-family:'myFont';
     src: url("/assets/font/Tahu.ttf") format("truetype");
 }
+@font-face{
+  font-family:'myFont4';
+  src: url("/assets/font/Tonight.ttf") format("truetype");
+}
 
+@font-face{
+    font-family:'myFont3';
+    src: url("/assets/font/Sansation.ttf") format("truetype");
+}
+h2{
+  font-family: 'myFont3'
+}
 @font-face{
     font-family:'myFont1';
     src: url("/assets/font/Sweet.ttf") format("truetype");
 }
   .container {
-    position: absolute;
     height: 300px;
     width: 600px;
     top: 60px;
@@ -82,6 +92,7 @@ body {
   }
   .med{
     color :white;
+    font-family: 'myFont3'
   }
   .card:hover .filledbar {
     width: 120px;

@@ -1,10 +1,14 @@
 
-         <fieldset class="field">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#prefCollapse" aria-expanded="false" aria-controls="collapseExample">
+         Set A GOAL
+        </button>
+       
+       
+       <fieldset class="field">
+          <div class="collapse" id="prefCollapse">
             <div class="card">
               <div class="card-header">
-                 Enter Your Preference
               </div>
-            
             <div class="card-body">
                 <form [formGroup]="preferenceModel" (ngSubmit)="setPreferenceDetail()" class="frm" method="post" >
                   <div class="form-group">
@@ -31,31 +35,7 @@
                                ngDefaultControl
                               [formControl]="preferenceModel.controls['selected']">
                   </mat-select-autocomplete> 
-                        
                         </div>
-    <!-- 
-         <mat-form-field class="example-full-width">
-          <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="preferenceModel" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of oops | async" [value]="oops">
-              {{oops}}
-    
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>  -->
-         <!-- <mat-select-autocomplete class="grid-7-11"
-         [placeholder]="'Options Selection'"
-         [errorMsg]="errorMessage"
-         [showErrorMsg]="showError"
-         [options]="options"
-         [display]="'display'"
-         [value]="'value'"
-         [multiple]='true'
-         [labelCount]="2"
-         [selectedOptions]="selectedOptions"
-         (selectionChange)="getSelectedOptions($event)">
-       </mat-select-autocomplete>
-       -->
 
                  <div class="form-group col-md-4">
                     <mat-form-field>
@@ -69,14 +49,15 @@
                 </div>
                 
                   <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary btn-md"  >Set Preference Detail <i class="fas fa-running"></i> </button>
+                  <button type="submit" class="btn btn-primary btn-md"  >Set your Goal <i class="fas fa-running"></i> </button>
                   </div>
               </form>
           
               </div>
-              </div>
-              <!-- </div>
-        
-        </div>   -->
+              </div>    
+        </div>
       </fieldset>
-    
+
+
+
+      
