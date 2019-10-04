@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sort-criteria.component.css']
 })
 export class SortCriteriaComponent implements OnInit {
-
+  filterByCategory:string;
   constructor(private router:Router) { }
 
   ngOnInit() {
@@ -21,5 +21,14 @@ export class SortCriteriaComponent implements OnInit {
   this.router.navigate(['home'])
     .then(()=>{this.router.navigate(['restaurant'])})
  
-}
+}  
+  
+filterRestaurantByCategory(value)
+  {  
+    console.log("sort by category called")
+    sessionStorage.setItem("filterByCategory",value)
+    this.router.navigate(['home'])
+      .then(()=>{this.router.navigate(['restaurant'])})
+  }
+
 }

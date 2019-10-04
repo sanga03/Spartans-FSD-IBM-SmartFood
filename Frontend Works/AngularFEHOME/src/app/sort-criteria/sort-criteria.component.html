@@ -42,11 +42,9 @@ input[type=checkbox]
         </li> 
         <li class="list-group-item"> <b> Category </b> <br><br> 
           <div class="btn-group">
-              <select >             
-               
-                    <option class="dropdown-item" value="0">Veg</option>
-                    <option class="dropdown-item" value="1">Non Veg</option>
-                  
+              <select [ngModel]="filterByCategory" class="form-control col-md-6" (ngModelChange)="filterRestaurantByCategory($event)" name="category">
+                  <option [value]="0" >Veg</option>
+                  <option [value]="1" >Non Veg</option>
               </select>
           </div> 
         </li>
