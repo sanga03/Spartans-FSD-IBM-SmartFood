@@ -80,7 +80,17 @@ export class RestaurantComponent implements OnInit {
      
       
       console.log(this.restaurantList);
-    })
+    }) 
+
+     if( sessionStorage.getItem("filterByCategory")==null || sessionStorage.getItem("filterByCategory")==undefined) 
+     {
+       console.log("do nothing");
+     }
+     else
+     {
+        var c = sessionStorage.getItem("filterByCategory")
+        this.filterByCategory(c)
+     }
   
   }
 
@@ -90,10 +100,21 @@ export class RestaurantComponent implements OnInit {
 
   async filterByCategory(category)
   {  var url = "http://b4ibm26.iiht.tech:1030/restaurant/category?a="
-     fetch(url+category)
+    await fetch(url+category)
      .then(res=>res.json())
      .then(data=>{
-       this.restaurantList=data;
+       console.log(data)
+       this.resList=data;
+       let tempRestaurantList:restaurantResponse[]=new Array();
+       for(let i=0;i<Math.ceil(this.resList.length/4);i++)
+         {
+           for(let k=0;k<4 && k<this.resList.length-(i*4);k++)
+               {
+                 tempRestaurantList[k]=this.resList[(i*4)+k];
+               }
+           this.restaurantList[i]=tempRestaurantList;
+           tempRestaurantList=[];
+         }
      })
   }
   

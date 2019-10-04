@@ -171,7 +171,7 @@ redirectToHome()
         let upuuid=sessionStorage.getItem("upuuid");
         console.log(d);
         // console.log(upuuid);
-        var url = "http://b4ibm29.iiht.tech:1234/physicalDetails/"+upuuid;
+        var url = "http://b4ibm29.iiht.tech:1234/updatePhysicalDetails/"+upuuid;
         console.log(this.physicalDetailForm.get('weight').value);
         
         console.log(this.physicalDetailForm.get('gender').value)
@@ -181,7 +181,7 @@ redirectToHome()
          fetch(
            url,
            {
-             method: 'PUT',
+             method: 'POST',
              headers:{
                  'content-type':'application/json'
              },
