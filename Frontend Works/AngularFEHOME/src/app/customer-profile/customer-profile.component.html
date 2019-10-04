@@ -74,7 +74,6 @@
         
         <div class="modal-body">
           <!-- <fieldset id="log-in">  -->
-        
             <form [formGroup]="physicalDetailForm" (ngSubmit)="setPhysicalDetail()" class="frm" method="post" >
               <div class="form-group"> 
                   <p>
@@ -93,7 +92,7 @@
                   <p>
                       <mat-form-field appearance="legacy">
                         <mat-label>Enter Your Weight</mat-label>
-                        <input matInput formControlName="weight" placeholder="Height">
+                        <input matInput formControlName="weight" placeholder="Weight">
                         <mat-icon matSuffix>Weight</mat-icon>
                         <mat-hint>In KGs</mat-hint>
                       </mat-form-field>
