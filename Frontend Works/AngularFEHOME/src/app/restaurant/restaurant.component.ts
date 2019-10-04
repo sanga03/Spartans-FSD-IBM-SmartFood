@@ -79,7 +79,9 @@ export class RestaurantComponent implements OnInit {
         }
      
       
-      console.log(this.restaurantList);
+      console.log(this.restaurantList)
+      
+      sessionStorage.removeItem("filterByRating");
     }) 
 
      if( sessionStorage.getItem("filterByCategory")==null || sessionStorage.getItem("filterByCategory")==undefined) 
@@ -90,6 +92,7 @@ export class RestaurantComponent implements OnInit {
      {
         var c = sessionStorage.getItem("filterByCategory")
         this.filterByCategory(c)
+        sessionStorage.removeItem("filterByCategory")
      }
   
   }
