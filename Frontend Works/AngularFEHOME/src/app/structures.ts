@@ -48,3 +48,5 @@ export interface foodDetail{
     customerId:String;
     foodorderid:String; //[array of customFood Id]
 }
+
+export var guestUser:number = 0;

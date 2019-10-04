@@ -42,11 +42,13 @@
       <a class="navbar-brand" href="#"> Nutritium </a> 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex"> 
+               
                 <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle btn-outline-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                        <b> {{ userName }} <i class="fa fa-user" aria-hidden="true"></i>  </b>   
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> 
+                           
                           <button class="dropdown-item" data-toggle="modal" data-target="#login-modal">Physical Detail</button>
                           <button class="dropdown-item" data-toggle="modal" data-target="#track-modal">Keep Track</button>
                     
@@ -58,7 +60,7 @@
           </ul>
           <div id="showCart">
               <input type="button" id="showProduct" (click)="directToCart()" class="btn btn-primary btn-lg" value=" " style="color: black" >
-      </div>
+         </div>
         </div>
   </nav>
 
@@ -135,7 +137,7 @@
                   </mat-select>
                 </mat-form-field> -->
               <div class="modal-footer">
-              <button type="submit"  class="btn btn-primary btn-md"  >Set Physical Detail <i class="fa fa-running"></i> </button>
+              <button type="submit"  data-dismiss="modal" aria-label="Close" class="btn btn-primary btn-md"  >Set Physical Detail <i class="fa fa-child" aria-hidden="true"></i> </button>
               </div>
           </form>
       
@@ -174,7 +176,7 @@
                             <!-- <mat-error *ngIf="mealTime.hasError('required')">Please Choose Meal Time</mat-error>                  -->
                       <!-- </mat-form-field> -->
                       <div>
-                        <button mat-button matStepperNext>Next</button>
+                        <button class="btn btn-outline-primary" mat-button matStepperNext>Next</button>
                       </div>
                     </form>
                   </mat-step>
@@ -190,8 +192,8 @@
                           </select>
                       </div>
                       <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
+                        <button class="btn btn-outline-secondary"  mat-button matStepperPrevious>Back</button>
+                        <button class="btn btn-outline-primary"  mat-button matStepperNext>Next</button>
                       </div>
                     </form>
                   </mat-step>
@@ -208,8 +210,8 @@
                             </mat-form-field>
                         </div>
                         <div>
-                          <button mat-button matStepperPrevious>Back</button>
-                          <button mat-button matStepperNext>Next</button>
+                          <button  class="btn btn-outline-secondary" mat-button matStepperPrevious>Back</button>
+                          <button class="btn btn-outline-primary"  mat-button matStepperNext>Next</button>
                         </div>
                       </form>
                   </mat-step>
@@ -217,8 +219,8 @@
                     <ng-template matStepLabel>Done</ng-template>
                        You are now done.
                     <div>
-                      <button mat-button matStepperPrevious>Back</button>
-                      <button mat-button (click)="saveCustomerTrack()">Save</button>
+                      <button class="btn btn-outline-secondary" mat-button matStepperPrevious>Back</button>
+                      <button data-dismiss="modal" aria-label="Close" class="btn btn-outline-success" mat-button (click)="saveCustomerTrack()">Save</button>
                     </div>
                   </mat-step>
                 </mat-vertical-stepper>
