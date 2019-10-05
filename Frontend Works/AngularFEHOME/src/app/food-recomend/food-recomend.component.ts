@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-food-recomend',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FoodRecomendComponent implements OnInit {
 
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
   }

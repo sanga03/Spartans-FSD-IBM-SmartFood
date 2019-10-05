@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-food-home',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./food-home.component.css']
 })
 export class FoodHomeComponent implements OnInit {
-  constructor() { }
+  constructor() {
+    this.spinner.show('sp2')
+   }
 
   ngOnInit() {
     
