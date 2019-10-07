@@ -1,7 +1,6 @@
 package com.base_package.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,14 +92,12 @@ public class ProgressFeignController {
 		// return "Preference fallback";
 	}
 
-	public CustomerOrdersResponseModel fallbackGetOrders() {
-		return null;
-		// return "Orders fallback";
+	public ArrayList<CustomerOrdersResponseModel> fallbackGetOrders() {
+		return new ArrayList<CustomerOrdersResponseModel>();
 	}
 
-	public CustomerTrackResponseModel fallbackGetTrack() {
-		return null;
-		// return "Track fallback";
+	public ArrayList<CustomerTrackResponseModel> fallbackGetTrack() {
+		return new ArrayList<CustomerTrackResponseModel>();
 	}
 
 	@GetMapping("/getPersonalFoods/{uuid}/{coordinates}")
@@ -121,7 +118,7 @@ public class ProgressFeignController {
 		List<CustomerOrdersResponseModel> customerOrdersResponseModelList;
 		try {
 			customerOrdersResponseModelList = getCustomerOrdersResponseModel(uuid);
-			System.out.println("Got the orders: "+customerOrdersResponseModelList.toString());
+			System.out.println("Got the orders: " + customerOrdersResponseModelList.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -131,7 +128,7 @@ public class ProgressFeignController {
 		List<CustomerTrackResponseModel> customerTrackResponseModelList;
 		try {
 			customerTrackResponseModelList = getCustomerTrackResponseModel(uuid);
-			System.out.println("Got the tracks: "+customerTrackResponseModelList.toString());
+			System.out.println("Got the tracks: " + customerTrackResponseModelList.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,24 +145,28 @@ public class ProgressFeignController {
 	}
 
 	@GetMapping("/getProgress/{customerId}")
-	public ResponseEntity<ProgressReportResponseModel> getProgress(@PathVariable("customerId") String customerId) {
+	public ResponseEntity<List<ProgressReportResponseModel>> getProgress(
+			@PathVariable("customerId") String customerId) {
 
-		ProgressReportResponseModel progressReportResponseModel = new ProgressReportResponseModel();
-		
-		progressReportResponseModel.setApproximateCurrentWeight(70f);
-		progressReportResponseModel.setCaloriesConsumed(0f);
-		progressReportResponseModel.setCurrentBMI(21.847f);
-		progressReportResponseModel.setCurrentBMR(1713.75f);
-		progressReportResponseModel.setCurrentDate(new Date().getTime());
-		progressReportResponseModel.setNumberOfOrders(0);
-		progressReportResponseModel.setNumberOfTracks(0);
-		progressReportResponseModel.setOnTrack(1);
-		progressReportResponseModel.setStartDate(new Date().getTime()-86400000);
-		progressReportResponseModel.setStartWeight(70f);
-		progressReportResponseModel.setTargetDate(new Date().getTime()+2592000000l);
-		progressReportResponseModel.setTargetWeight(67f);
-		
-		return ResponseEntity.status(HttpStatus.OK).body(progressReportResponseModel);
+		List<CustomerOrdersResponseModel> customerOrdersResponseModelList = getCustomerOrdersResponseModel(customerId);
+		List<CustomerTrackResponseModel> customerTrackResponseModelList = getCustomerTrackResponseModel(customerId);
+		CustomerPreferencesResponseModel customerPreferencesResponseModel = getCustomerPreferencesResponseModel(
+				customerId);
+		CustomerPhysicalResponseModel customerPhysicalResponseModel = getCustomerPhysicalResponseModel(customerId);
+
+		List<CustomFoodDetailsResponseModel> customFoodDetailsResponseModelList = customFoodFeignClient
+				.getAllCustomFoodDetails();
+		List<CustomIngredientResponseModel> customIngredientResponseModelList = customIngredientFeignClient
+				.getAllCustomIngredients();
+		List<BasicIngredientResponseModel> basicIngredientResponseModelList = basicIngredientFeignClient
+				.readAllBasicIngredients();
+
+		listFoodsService = new ListFoodsService();
+		List<ProgressReportResponseModel> progressReportResponseModelList = listFoodsService.getProgress(
+				customerOrdersResponseModelList, customerTrackResponseModelList, customerPreferencesResponseModel,
+				customerPhysicalResponseModel, customFoodDetailsResponseModelList, customIngredientResponseModelList,
+				basicIngredientResponseModelList);
+		return ResponseEntity.status(HttpStatus.OK).body(progressReportResponseModelList);
 	}
 
 	@GetMapping("/getDefaultFoods")

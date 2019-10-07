@@ -11,17 +11,26 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProgressReportResponseModel {
 	
+	//common stuff across the list
 	private Long startDate;
 	private Long targetDate;
-	private Long currentDate;
-	private Float currentBMR;
-	private Float currentBMI;
 	private Float targetWeight;
 	private Float startWeight;
+	private Float currentBMR;
+	private Float currentBMI;
+	
+	//specific to date
+	private Float caloriesSupposedToBeConsumed;
+	private Integer day;
 	private Float approximateCurrentWeight;
 	private Integer numberOfOrders;
 	private Integer numberOfTracks;
-	private Float caloriesConsumed;
+	private Double caloriesConsumed;
+	
 	private Integer onTrack;
+
+	public void addCaloriesConsumed(Double calories) {
+		this.setCaloriesConsumed(this.getCaloriesConsumed()+calories);
+	}
 	
 }
