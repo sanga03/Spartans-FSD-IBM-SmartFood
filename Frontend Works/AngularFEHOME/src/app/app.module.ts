@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { NgXCreditCardsModule } from 'ngx-credit-cards';
 import { ChartsModule } from 'ng2-charts';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule, MatStepperModule, MatDialog, MatDialogModule} from '@angular/material';
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
@@ -86,7 +87,7 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
     BrowserAnimationsModule,
     MatTreeModule,
     ChartsModule,
-    
+    NgxSpinnerModule,
    
 
     AgmCoreModule.forRoot({

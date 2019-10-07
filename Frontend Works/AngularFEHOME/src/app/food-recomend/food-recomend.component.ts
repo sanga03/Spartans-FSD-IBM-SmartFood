@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { progressUrl } from 'src/utils';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -43,13 +44,33 @@ export class FoodRecomendComponent implements OnInit {
   startWeight: any;
   onTrack: any;
    
-  constructor() { }
+  constructor(private spinner: NgxSpinnerService) {
+
+    this.spinner.show('sp2')
+    this.spinner.show('sp')
+   }
 
   ngOnInit() {
-  
-  
+
+  if(sessionStorage.getItem('CustomerId')!=null){
+    this.spinner.hide('sp');
+  }else{
+    // document.location.reload()
+    console.log('-----')
+  }
   fetch(progressUrl+sessionStorage.getItem('CustomerId')).then(res=>res.json()).then(data=>{
+    // if(data!=null|| data!=undefined)
+    // 
     console.log(data);
+  if(data[0].startDate!=null||data[0].startDate!=undefined){  
+    this.spinner.hide('sp2');
+    
+  }else{
+    console.log("----reloading----")
+    document.location.reload()
+    
+  }
+  
     let curDate = new Date().getTime();
     let startDate=data[0].startDate;
     console.log(startDate);
@@ -81,6 +102,9 @@ export class FoodRecomendComponent implements OnInit {
     ];
 
 
+  }).catch(()=>{
+    console.log('error')
+  // document.location.reload()
   })
   
   }

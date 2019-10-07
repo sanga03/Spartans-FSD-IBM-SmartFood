@@ -5,7 +5,10 @@ import { CreditCardValidator } from 'ngx-credit-cards';
 import { paypalUrl } from 'src/utils';
 import { Router } from '@angular/router';
 // import { IPayPalConfig,  ICreateOrderRequest } from 'ngx-paypal';
-
+import * as Payment from 'payment';
+Payment.fns.restrictNumeric = Payment.restrictNumeric;
+Payment.fns.formatCardExpiry = Payment.formatCardExpiry;
+Payment.fns.formatCardCVC = Payment.formatCardCVC;
 @Component({
   selector: 'app-new-payment-gateway',
   templateUrl: './new-payment-gateway.component.html',
