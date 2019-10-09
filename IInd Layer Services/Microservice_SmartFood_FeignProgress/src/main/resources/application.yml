@@ -12,3 +12,11 @@ management:
     web: 
       exposure: 
         include: 'hystrix.stream'
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connect-timeout: 160000000
+        read-timeout: 160000000

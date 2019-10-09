@@ -5,6 +5,8 @@ spring:
     url: jdbc:mysql://172.18.4.177:3306/spartans
     username: chirag
     password: root
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
   #jpa:
     #hibernate:
       #ddl-auto: update
