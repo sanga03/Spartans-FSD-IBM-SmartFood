@@ -81,7 +81,14 @@ export class FoodRecomendComponent implements OnInit {
     this.endDate=new Date(data[0].targetDate).getDate()+"/"+(new Date(data[0].targetDate).getMonth()+1)+"/"+new Date(data[0].targetDate).getFullYear();
     this.targetWeight=data[0].targetWeight;
     this.startWeight=data[0].startWeight;
-    this.onTrack=data[0].onTrack;
+    
+    if(data[0].onTrack==1){
+      this.onTrack="YES";
+    }else if(data[0].onTrack==1){
+      this.onTrack="No";
+    }else{
+      this.onTrack="No";
+    }
     this.dayCount=Math.floor((curDate-startDate)/86400000);
    
     console.log(this.dayCount)
