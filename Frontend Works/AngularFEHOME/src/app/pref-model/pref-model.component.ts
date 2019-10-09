@@ -98,7 +98,7 @@ export class PrefModelComponent implements OnInit {
          this.customerObj=data;
          
        }).then(()=>{
-         let getPrefUrl="http://localhost:8041/pref/"+this.customerObj.uid;
+         let getPrefUrl="http://b4ibm32.iiht.tech:8041/pref/"+this.customerObj.uid;
         fetch(getPrefUrl).then(res=>res.json()).then(prefObj=>{
             this.customerPrefDetail.category=prefObj.category;
             this.customerPrefDetail.targetWeight=prefObj.targetWeight;
