@@ -33,7 +33,7 @@ export class CustomerProfileComponent implements OnInit {
   physicalDetailForm =  new FormGroup({
    height: new FormControl(Number(sessionStorage.getItem("height"))),
    weight: new FormControl(Number(sessionStorage.getItem("weight")) ),
-   gender: new FormControl(sessionStorage.getItem("gender")),
+   gender: new FormControl(Number(sessionStorage.getItem("gender"))),
    dob: new FormControl(new Date(sessionStorage.getItem("dob"))),
    caloriesBurn: new FormControl('') })
 
@@ -87,14 +87,21 @@ export class CustomerProfileComponent implements OnInit {
            this.customerPhysicalDetail.height = data.height;
            this.customerPhysicalDetail.weight=data.weight;
            this.customerPhysicalDetail.caloriesBurn=data.caloriesBurn;
-           this.customerPhysicalDetail.dob=data.dob
+           this.customerPhysicalDetail.dob=new Date(data.dob)
            this.customerPhysicalDetail.gender=data.gender
            this.customerPhysicalDetail.upuuid=data.upuuid;
            this.customerPhysicalDetail.bmr=data.bmr;
            sessionStorage.setItem("height",String(this.customerPhysicalDetail.height));
            sessionStorage.setItem("upuuid",this.customerPhysicalDetail.upuuid);
            sessionStorage.setItem("weight",String(this.customerPhysicalDetail.weight));
-           sessionStorage.setItem("gender",this.customerPhysicalDetail.gender);
+           
+           if(this.customerPhysicalDetail.gender=="MALE")
+           {
+              sessionStorage.setItem("gender",String("0"));
+           }
+           else{
+             sessionStorage.setItem("gender",String("1"));
+           }
            sessionStorage.setItem("dob",String(this.customerPhysicalDetail.dob));
            sessionStorage.setItem("caloriesBurn",String(this.customerPhysicalDetail.caloriesBurn));
            console.log(data);
@@ -104,12 +111,18 @@ export class CustomerProfileComponent implements OnInit {
              gender: new FormControl( this.customerPhysicalDetail.gender),
              dob: new FormControl(this.customerPhysicalDetail.dob),
              caloriesBurn: new FormControl('') })
-           
-         })
-       }
-           )
-
+           let today:Date = new Date();
+          if(today.getFullYear()==this.customerPhysicalDetail.dob.getFullYear()) 
+          {
+            
           }
+          else{
+            (<HTMLInputElement>document.getElementById('dob')).readOnly = true;
+          }
+         })
+      })
+
+   }
 saveCustomerTrack() 
 {  
    var meal = (<HTMLInputElement>document.getElementById("inputMeal")).value;
@@ -192,9 +205,9 @@ redirectToHome()
              body: JSON.stringify( {
                "height": this.physicalDetailForm.get('height').value,
                "weight": this.physicalDetailForm.get('weight').value,
-              "dob": d.getTime() ,
+               "dob": d.getTime() ,
               "caloriesBurn": Number(this.physicalDetailForm.get('caloriesBurn').value),
-              "gender":  this.physicalDetailForm.get('gender').value
+               "gender":  this.physicalDetailForm.get('gender').value
       
              })
          }).then(res=>res.json())
