@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.base_package.comparator.DefaultFoodComparator;
 import com.base_package.comparator.PersonalFoodComparator;
 import com.base_package.model.BasicIngredientResponseModel;
@@ -17,8 +19,10 @@ import com.base_package.model.CustomerTrackResponseModel;
 import com.base_package.model.DefaultFoodResponseModel;
 import com.base_package.model.FoodResponseModel;
 import com.base_package.model.PersonalFoodResponseModel;
+import com.base_package.model.ProgressReportResponseModel;
 import com.base_package.model.RestaurantResponseModel;
 
+@Service
 public class ListFoodsService {
 
 	public List<DefaultFoodResponseModel> getDefaultFoods(List<FoodResponseModel> foodList,
@@ -89,7 +93,6 @@ public class ListFoodsService {
 			List<CustomerTrackResponseModel> customerTrackResponseModelList, String coordinates) {
 
 		Long startDate = customerPreferencesResponseModel.getStartDate();
-		Long currentDate = new Date().getTime();
 		Long targetDate = customerPreferencesResponseModel.getTargetDate();
 		System.out.println("targetDate-startDate " + ((targetDate - startDate) / 86400000));
 
@@ -102,9 +105,19 @@ public class ListFoodsService {
 		Integer timeOfDay = 3;
 		Float caloriesToConsumeNow = personalCaloriesPerDay / timeOfDay;
 
-		caloriesToConsumeNow = updateCaloriesBasedOnPreviousRecords(caloriesToConsumeNow,
-				customerOrdersResponseModelList, customerTrackResponseModelList, customFoodList, customIngredientList,
-				basicIngredientList);
+		try {
+			caloriesToConsumeNow = updateCaloriesBasedOnPreviousRecords(caloriesToConsumeNow,
+					customerOrdersResponseModelList, customerTrackResponseModelList, customerPreferencesResponseModel,
+					customFoodList, customIngredientList, basicIngredientList);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("NFE");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Exception");
+		}
 
 		PersonalFoodResponseModel personalFoodResponseModel;
 		List<PersonalFoodResponseModel> list = new ArrayList<PersonalFoodResponseModel>();
@@ -139,10 +152,12 @@ public class ListFoodsService {
 					personalFoodResponseModel.setQuantity(customFoodDetailsResponseModel.getQuantity()); // calculate?
 					personalFoodResponseModel.setRating(customFoodDetailsResponseModel.getRating());
 					personalFoodResponseModel.setCustomFoodId(customFoodDetailsResponseModel.getUuid());
-					
-					for(RestaurantResponseModel restaurantResponseModel : restaurantList) {
-						if(customFoodDetailsResponseModel.getRestaurantUuid().equals(restaurantResponseModel.getResId())) {
-							personalFoodResponseModel.setRestaurantId(customFoodDetailsResponseModel.getRestaurantUuid());
+
+					for (RestaurantResponseModel restaurantResponseModel : restaurantList) {
+						if (customFoodDetailsResponseModel.getRestaurantUuid()
+								.equals(restaurantResponseModel.getResId())) {
+							personalFoodResponseModel
+									.setRestaurantId(customFoodDetailsResponseModel.getRestaurantUuid());
 							personalFoodResponseModel.setRestaurantName(restaurantResponseModel.getName());
 						}
 					}
@@ -178,26 +193,36 @@ public class ListFoodsService {
 	private Float updateCaloriesBasedOnPreviousRecords(Float caloriesToConsumeNow,
 			List<CustomerOrdersResponseModel> customerOrdersResponseModelList,
 			List<CustomerTrackResponseModel> customerTrackResponseModelList,
+			CustomerPreferencesResponseModel customerPreferencesResponseModel,
 			List<CustomFoodDetailsResponseModel> customFoodList,
 			List<CustomIngredientResponseModel> customIngredientList,
 			List<BasicIngredientResponseModel> basicIngredientList) {
-		
-		System.out.println("Calories before updation: "+caloriesToConsumeNow);
-		
+
+		System.out.println("Calories before updation: " + caloriesToConsumeNow);
+
 		if (!customerOrdersResponseModelList.isEmpty()) {
 			Double caloriesConsumedHistoryPerOrder = 0.0;
 			Float tempCalories = caloriesToConsumeNow;
 			for (CustomerOrdersResponseModel customerOrdersResponseModel : customerOrdersResponseModelList) {
 				caloriesConsumedHistoryPerOrder = 0.0;
-				for(String customFoodId: customerOrdersResponseModel.getFoodorderid()) {
-					for(CustomFoodDetailsResponseModel customFoodDetailsResponseModel:customFoodList) {
-						if(customFoodId.equals(customFoodDetailsResponseModel.getUuid())) {
-							for(CustomIngredientResponseModel customIngredientResponseModel:customIngredientList) {
-								if(customIngredientResponseModel.getCustomFoodDetailId().equals(customFoodDetailsResponseModel.getUuid())) {
-									for(BasicIngredientResponseModel basicIngredientResponseModel:basicIngredientList) {
-										if(customIngredientResponseModel.getBasicIngredientId().equals(basicIngredientResponseModel.getBUuid())) {
-											caloriesConsumedHistoryPerOrder +=  calculateFoodCalories(basicIngredientResponseModel.getCalPerGram(), customIngredientResponseModel.getAmount());
-											System.out.println("CALORIES CONSUMED HISTORY PER ORDER: "+caloriesConsumedHistoryPerOrder);
+				
+				if (Long.parseLong(customerOrdersResponseModel.getDate()) >= customerPreferencesResponseModel
+						.getStartDate()) {
+					for (String customFoodId : customerOrdersResponseModel.getFoodorderid()) {
+						for (CustomFoodDetailsResponseModel customFoodDetailsResponseModel : customFoodList) {
+							if (customFoodId.equals(customFoodDetailsResponseModel.getUuid())) {
+								for (CustomIngredientResponseModel customIngredientResponseModel : customIngredientList) {
+									if (customIngredientResponseModel.getCustomFoodDetailId()
+											.equals(customFoodDetailsResponseModel.getUuid())) {
+										for (BasicIngredientResponseModel basicIngredientResponseModel : basicIngredientList) {
+											if (customIngredientResponseModel.getBasicIngredientId()
+													.equals(basicIngredientResponseModel.getBUuid())) {
+												caloriesConsumedHistoryPerOrder += calculateFoodCalories(
+														basicIngredientResponseModel.getCalPerGram(),
+														customIngredientResponseModel.getAmount());
+												System.out.println("CALORIES CONSUMED HISTORY PER ORDER: "
+														+ caloriesConsumedHistoryPerOrder);
+											}
 										}
 									}
 								}
@@ -206,42 +231,49 @@ public class ListFoodsService {
 					}
 				}
 				tempCalories = caloriesToConsumeNow;
-				if(caloriesConsumedHistoryPerOrder > caloriesToConsumeNow) {
-					System.out.println("BEFORE IF : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"+caloriesConsumedHistoryPerOrder+","+caloriesToConsumeNow);
-					Float difference = (float) (caloriesConsumedHistoryPerOrder-caloriesToConsumeNow);
+				if (caloriesConsumedHistoryPerOrder > caloriesToConsumeNow) {
+					System.out.println("BEFORE IF : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"
+							+ caloriesConsumedHistoryPerOrder + "," + caloriesToConsumeNow);
+					Float difference = (float) (caloriesConsumedHistoryPerOrder - caloriesToConsumeNow);
 					tempCalories -= difference;
-					System.out.println("AFTER IF : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"+caloriesConsumedHistoryPerOrder+","+caloriesToConsumeNow);
-				}
-				else if (caloriesConsumedHistoryPerOrder < caloriesToConsumeNow && caloriesConsumedHistoryPerOrder > 0) {
-					System.out.println("BEFORE ELSE: caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"+caloriesConsumedHistoryPerOrder+","+caloriesToConsumeNow);
+					System.out.println("AFTER IF : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"
+							+ caloriesConsumedHistoryPerOrder + "," + caloriesToConsumeNow);
+				} else if (caloriesConsumedHistoryPerOrder < caloriesToConsumeNow
+						&& caloriesConsumedHistoryPerOrder > 0) {
+					System.out.println("BEFORE ELSE: caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"
+							+ caloriesConsumedHistoryPerOrder + "," + caloriesToConsumeNow);
 					Float difference = (float) (caloriesToConsumeNow - caloriesConsumedHistoryPerOrder);
 					tempCalories += difference;
-					System.out.println("BEFORE ELSE : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"+caloriesConsumedHistoryPerOrder+","+caloriesToConsumeNow);
+					System.out.println("BEFORE ELSE : caloriesConsumedHistoryPerOrder,caloriesToConsumeNow"
+							+ caloriesConsumedHistoryPerOrder + "," + caloriesToConsumeNow);
 				}
 			}
-			
+
 			caloriesToConsumeNow = tempCalories;
 		}
 
 		if (!customerTrackResponseModelList.isEmpty()) {
 			Float tempCalories = caloriesToConsumeNow;
 			for (CustomerTrackResponseModel customerTrackResponseModel : customerTrackResponseModelList) {
-				
-				if(customerTrackResponseModel.getCalories() < caloriesToConsumeNow) {
-					System.out.println("Consumed Less than recommended");
-					Float difference = caloriesToConsumeNow - customerTrackResponseModel.getCalories();
-					tempCalories += difference;
-				}
-				else if(customerTrackResponseModel.getCalories() > caloriesToConsumeNow) {
-					System.out.println("Consumed More than recommended, caloriesToconsume = "+caloriesToConsumeNow);
-					Float difference = customerTrackResponseModel.getCalories() - caloriesToConsumeNow ;
-					System.out.println("difference: "+difference);
-					tempCalories -= difference;
+
+				if (Long.parseLong(customerTrackResponseModel.getTackingDate()) >= customerPreferencesResponseModel
+						.getStartDate()) {
+					if (customerTrackResponseModel.getCalories() < caloriesToConsumeNow) {
+						System.out.println("Consumed Less than recommended");
+						Float difference = caloriesToConsumeNow - customerTrackResponseModel.getCalories();
+						tempCalories += difference;
+					} else if (customerTrackResponseModel.getCalories() > caloriesToConsumeNow) {
+						System.out
+								.println("Consumed More than recommended, caloriesToconsume = " + caloriesToConsumeNow);
+						Float difference = customerTrackResponseModel.getCalories() - caloriesToConsumeNow;
+						System.out.println("difference: " + difference);
+						tempCalories -= difference;
+					}
 				}
 			}
 			caloriesToConsumeNow = tempCalories;
 		}
-		System.out.println("Updated calories: "+caloriesToConsumeNow);
+		System.out.println("Updated calories: " + caloriesToConsumeNow);
 		return caloriesToConsumeNow;
 	}
 
@@ -298,11 +330,193 @@ public class ListFoodsService {
 		Float numberOfDays = (float) ((targetDate - startDate) / 86400000);
 		System.out.println("Number of days: " + numberOfDays);
 		Float weightChange = currentWeight - targetWeight;
+		System.out.println("WEIGHT CHANGE " + weightChange);
 		Float totalCaloriesToConsume = weightChange * 7700;
 		Float caloriesToConsumePerDay = currentBMR - (totalCaloriesToConsume / numberOfDays);
 		System.out.println("CaloriesToConsumePerDay " + caloriesToConsumePerDay);
 		return caloriesToConsumePerDay;
 
+	}
+
+	public List<ProgressReportResponseModel> getProgress(
+			List<CustomerOrdersResponseModel> customerOrdersResponseModelList,
+			List<CustomerTrackResponseModel> customerTrackResponseModelList,
+			CustomerPreferencesResponseModel customerPreferencesResponseModel,
+			CustomerPhysicalResponseModel customerPhysicalResponseModel,
+			List<CustomFoodDetailsResponseModel> customFoodDetailsResponseModelList,
+			List<CustomIngredientResponseModel> customIngredientResponseModelList,
+			List<BasicIngredientResponseModel> basicIngredientResponseModelList) {
+
+		List<ProgressReportResponseModel> progressReportResponseModelList = new ArrayList<ProgressReportResponseModel>();
+		ProgressReportResponseModel progressReportResponseModel;
+
+		Long customerCurrentDate = new Date().getTime();
+		Long customerStartDate = customerPreferencesResponseModel.getStartDate();
+		Long customerTargetDate = customerPreferencesResponseModel.getTargetDate();
+
+		Integer totalNumberOfDays = (int) Math.floor((customerTargetDate - customerStartDate) / 86400000);
+		Float weightChangePerDay = (customerPreferencesResponseModel.getTargetWeight()
+				- customerPhysicalResponseModel.getWeight()) / totalNumberOfDays;
+		System.out.println("WeightChange per day: " + weightChangePerDay);
+
+		for (Integer i = 0; i < (customerTargetDate - customerStartDate) / 86400000; i++) {
+			progressReportResponseModel = new ProgressReportResponseModel();
+			progressReportResponseModel.setStartDate(customerStartDate);
+			progressReportResponseModel.setTargetDate(customerTargetDate);
+			progressReportResponseModel.setStartWeight(customerPhysicalResponseModel.getWeight());
+			progressReportResponseModel.setTargetWeight(customerPreferencesResponseModel.getTargetWeight());
+			progressReportResponseModel.setDay(i);
+			progressReportResponseModel.setCurrentBMI(customerPhysicalResponseModel.getBmi());
+			progressReportResponseModel.setCurrentBMR(customerPhysicalResponseModel.getBmr());
+			progressReportResponseModel.setCaloriesConsumed(0.0);
+			progressReportResponseModel
+					.setApproximateCurrentWeight(customerPhysicalResponseModel.getWeight() + (weightChangePerDay * i));
+
+			progressReportResponseModelList.add(progressReportResponseModel);
+		}
+		Integer totalOrders = 0;
+		if (!customerOrdersResponseModelList.isEmpty()) {
+			System.out.println("ORDERS EXIST");
+			for (CustomerOrdersResponseModel customerOrdersResponseModel : customerOrdersResponseModelList) {
+				Long orderDate = Long.parseLong(customerOrdersResponseModel.getDate());
+				System.out.println("BEFORE ROUNDING: " + orderDate);
+				Integer day = Math.round((orderDate - customerStartDate) / 86400000);
+
+				if (orderDate >= customerStartDate) {
+					totalOrders++;
+				}
+
+				for (ProgressReportResponseModel p : progressReportResponseModelList) {
+					System.out.println("ORDERS EXIST: day,p.getDay() " + day + "," + p.getDay());
+					if (day == p.getDay()) {
+						Double calories = 0.0;
+						for (String customFoodId : customerOrdersResponseModel.getFoodorderid()) {
+							for (CustomFoodDetailsResponseModel customFoodDetailsResponseModel : customFoodDetailsResponseModelList) {
+								if (customFoodDetailsResponseModel.getUuid().equals(customFoodId)) {
+									for (CustomIngredientResponseModel customIngredientResponseModel : customIngredientResponseModelList) {
+										if (customIngredientResponseModel.getCustomFoodDetailId()
+												.equals(customFoodId)) {
+											for (BasicIngredientResponseModel basicIngredientResponseModel : basicIngredientResponseModelList) {
+												if (customIngredientResponseModel.getBasicIngredientId()
+														.equals(basicIngredientResponseModel.getBUuid())) {
+													calories += calculateFoodCalories(
+															basicIngredientResponseModel.getCalPerGram(),
+															customIngredientResponseModel.getAmount());
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						System.out.println("CALORIES ADDING IN ORDERS: " + calories);
+						p.addCaloriesConsumed(calories);
+					}
+				}
+			}
+		} else if (customerOrdersResponseModelList.isEmpty()) {
+			System.out.println("NO ORDERS");
+			Integer day = Math.round((customerCurrentDate - customerStartDate) / 86400000);
+			for (ProgressReportResponseModel p : progressReportResponseModelList) {
+				p.setNumberOfOrders(0);
+				if (p.getDay() < day) {
+					System.out.println("ENTERING DAY in orders :" + day);
+					p.setCaloriesConsumed((double) calculatePersonalCalories(customerStartDate, customerTargetDate,
+							customerPhysicalResponseModel.getWeight(),
+							customerPreferencesResponseModel.getTargetWeight(),
+							customerPhysicalResponseModel.getBmr()));
+					System.out.println("Setting calories in empty orders list");
+				}
+			}
+		}
+		Integer totalTracks = 0;
+		if (!customerTrackResponseModelList.isEmpty()) {
+			System.out.println("SOME TRACKS EXIST APPARENTLY");
+			for (CustomerTrackResponseModel customerTrackResponseModel : customerTrackResponseModelList) {
+				Long trackDate = Long.parseLong(customerTrackResponseModel.getTackingDate());
+				Integer day = Math.round((trackDate - customerStartDate) / 86400000);
+				System.out.println("DAY IN TRACK NOT EMPTY: " + day);
+
+				if (trackDate >= customerStartDate) {
+					totalTracks++;
+				}
+
+				for (ProgressReportResponseModel p : progressReportResponseModelList) {
+					Double calories = 0.0;
+					if (day == p.getDay()) {
+						calories += customerTrackResponseModel.getCalories();
+						System.out.println("CALORIES ADDING IN TRACK: " + calories);
+					}
+					p.addCaloriesConsumed(calories);
+				}
+			}
+		} else if (customerTrackResponseModelList.isEmpty()) {
+			System.out.println("NO TRACKS");
+			Integer day = Math.round((customerCurrentDate - customerStartDate) / 86400000);
+			for (ProgressReportResponseModel p : progressReportResponseModelList) {
+				p.setNumberOfTracks(0);
+				if (p.getDay() < day) {
+					System.out.println("ENTERING DAY in track :" + day);
+					p.setCaloriesConsumed((double) calculatePersonalCalories(customerStartDate, customerTargetDate,
+							customerPhysicalResponseModel.getWeight(),
+							customerPreferencesResponseModel.getTargetWeight(),
+							customerPhysicalResponseModel.getBmr()));
+					System.out.println("Setting calories in empty tracks list");
+				}
+			}
+		}
+
+		System.out.println("Removing zeroes");
+		Integer day = Math.round((customerCurrentDate - customerStartDate) / 86400000);
+
+		for (ProgressReportResponseModel p : progressReportResponseModelList) {
+
+			if (p.getDay() <= day) {
+				p.setNumberOfOrders(totalOrders);
+				p.setNumberOfTracks(totalTracks);
+
+				System.out.println("Calculating correct calories");
+
+				Float correctCalories = calculatePersonalCalories(customerStartDate, customerTargetDate,
+						customerPhysicalResponseModel.getWeight(), customerPreferencesResponseModel.getTargetWeight(),
+						customerPhysicalResponseModel.getBmr());
+				p.setCaloriesSupposedToBeConsumed(correctCalories);
+
+				if (p.getCaloriesConsumed() == 0 && day != p.getDay()) {
+					p.setCaloriesConsumed((double) correctCalories);
+					System.out.println("Setting calories by default");
+				}
+
+				if ((p.getTargetWeight() - p.getStartWeight()) > 0) {
+
+					System.out.println("Weight loss");
+
+					if ((correctCalories - p.getCaloriesConsumed()) > 100) {
+						p.setOnTrack(-1);
+					} else if ((correctCalories - p.getCaloriesConsumed()) >= 0
+							&& (correctCalories - p.getCaloriesConsumed()) <= 25) {
+						p.setOnTrack(0);
+					} else {
+						p.setOnTrack(1);
+					}
+				} else if ((p.getTargetWeight() - p.getStartWeight()) <= 0) {
+
+					System.out.println("Weight Gain");
+
+					if ((correctCalories - p.getCaloriesConsumed()) > 100) {
+						p.setOnTrack(1);
+					} else if ((correctCalories - p.getCaloriesConsumed()) >= 0
+							&& (correctCalories - p.getCaloriesConsumed()) <= 25) {
+						p.setOnTrack(0);
+					} else {
+						p.setOnTrack(-1);
+					}
+				}
+
+			}
+		}
+
+		return progressReportResponseModelList;
 	}
 
 }

@@ -41,10 +41,10 @@ export class AddToCartService {
   let  foodOrds:foodOrderInterface=JSON.parse(sessionStorage.getItem('cart'));
   let tempOrder:foodInterface ={
     customFoodId:food.customFoodId,
- customFoodImageLink:food.customFoodImageLink,
- price:food.price,
- quantity:1,
- name:food.foodName,
+    customFoodImageLink:food.customFoodImageLink,
+    price:food.price,
+    quantity:1,
+    name:food.foodName,
  }
 // let  foodo:foodInterface[]=
 let foodo:foodOrderInterface =JSON.parse(sessionStorage.getItem('cart'));

@@ -147,11 +147,11 @@ saveCustomerTrack()
          
       })
    }).then(res=>res.json())
-   .then(data=>{
+   .then(data=>{  
      console.log(data)
-     this.router.navigate(['customerProfile']).then(()=>{
-      this.router.navigate(['foodHome'])
-     })
+
+     this.router.navigate(['customerProfile'])
+    .then(()=>{this.router.navigate(['foodHome'])})
    })
 
 
@@ -204,7 +204,7 @@ redirectToHome()
                this.customerPhysicalDetail.caloriesBurn=data.caloriesBurn;
                this.customerPhysicalDetail.dob=data.dob
                this.customerPhysicalDetail.gender=data.gender
-           console.log(data);
+           console.log(data); 
          })
     }
 

@@ -30,13 +30,13 @@ public class CustomFoodDetailService {
 	
 	public List<CustomFoodDetailDTO> readAll(){
 		CustomFoodDetailDTO customFoodDetailDTO;
-		List<CustomFoodDetailDTO> DTOList = new ArrayList<CustomFoodDetailDTO>();
+		List<CustomFoodDetailDTO> dTOList = new ArrayList<CustomFoodDetailDTO>();
 		List<CustomFoodDetail> list = customFoodDetailRepository.findAll();
 		for(CustomFoodDetail customFoodDetail: list) {
 			customFoodDetailDTO = modelMapper.map(customFoodDetail, CustomFoodDetailDTO.class);
-			DTOList.add(customFoodDetailDTO);
+			dTOList.add(customFoodDetailDTO);
 		}
-		return DTOList;
+		return dTOList;
 	}
 	
 	public CustomFoodDetailDTO readByUuid(String uuid) {
