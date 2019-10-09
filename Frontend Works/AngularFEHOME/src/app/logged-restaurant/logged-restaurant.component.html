@@ -1,0 +1,158 @@
+<style>
+        img {
+            height: 150px;
+            width: 250px;
+        }
+        /* height: 320px;
+            width: 300px; */
+        .card
+        {
+            height: 320px;
+            width: 300px;
+        }
+        @media (min-width: 0px) {
+            .card-deck .card {
+            display: flex;
+            /* flex: 1 0 0%; */
+            /* flex-direction: column; */
+            /* margin-right: 15px; */
+             margin-bottom: 25px; 
+            margin-left: 15px;
+            opacity: 1;
+        } 
+        }
+        .fa {
+            padding: 5px;
+            font-size: 15px;
+            width: 0px;
+            text-align: center;
+            text-decoration: none;
+        } 
+        div 
+        {
+            float: left;
+            
+        }
+        .container 
+        {
+            margin-top: 20px;
+        }
+        #showProduct {
+          background: url('https://cdn.dribbble.com/users/1180825/screenshots/2965077/daily-ui-058.gif') no-repeat top left;
+          background-position: inherit;
+          background-size: cover;
+          border: none;
+          padding: 2px 3px;
+          length: 300px;
+          width: 90px;
+      }
+
+      .modal-xlg {
+      width: 90%; 
+   }
+#img 
+{
+  height: 30px;
+  width: 30px;
+}    
+.img 
+{
+    height: 150px;
+    width: 150px;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img id="img" src="https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/favicon.ico"> 
+        &nbsp;
+            <a class="navbar-brand" href="#"> Nutritium </a> 
+              <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+                  <ul class="navbar-nav mr-auto"> 
+                      <li class="nav-item active">
+                        <a class="nav-link btn btn-outline-success my-2 my-sm-0" (click)="redirectToProfile()" >Proceed With Preference</a>
+                      </li>
+                     
+                     
+               </ul>
+                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex"> 
+                     
+                      <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle btn-outline-info" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                             <b> {{ userName }} <i class="fa fa-user" aria-hidden="true"></i>  </b>   
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> 
+                                 
+                                <!-- <button class="dropdown-item" data-toggle="modal" data-target="#login-modal">Physical Detail</button>
+                                <button class="dropdown-item" data-toggle="modal" data-target="#track-modal">Keep Track</button>
+                           -->
+                                <div class="dropdown-divider"></div>
+                                <button class="dropdown-item" (click)="redirectToHome()">LogOut</button>
+                              </div>
+                          </li>
+                 
+                </ul>
+              </div>
+</nav>
+      
+
+<div class="row">
+        <div class="col-12 col-md-3 col-xl-2 bd-sidebar">  
+            <div class="container">
+                 <app-sort-criteria></app-sort-criteria>
+            </div>
+            
+         </div> 
+         <div col="2">
+
+         </div>
+         <div class="col-10" >
+               <div class="container">
+                <div class="card-deck" *ngFor="let restaurants of restaurantList; even as e;index as i" > 
+                        <div class="card border-primary " *ngFor="let restaurant of restaurants; even as e;index as i">
+                                <img [src]="restaurant.image" alt="Random first slide">
+                                 <div class="card-body text-right">
+                                 <b> {{restaurant.name.toUpperCase()}} </b>
+                                 <p class="card-text"> {{restaurant.price}}<i class="fa fa-inr" aria-hidden="true"></i> Per Person <br> Location: {{restaurant.location.toUpperCase()}}<i class="fa fa-map-marker" aria-hidden="true"></i>  <br> Rating: {{restaurant.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
+                                  <button (click)="showRestauratMenu(restaurant.resId)" class="btn-md btn-dark">See Menu</button>
+                                </div>
+                        </div>   
+               
+                </div>
+            </div>
+         </div>
+        
+
+    </div>  
+
+<button id="openModal" #openModal [hidden]="true" 
+    data-toggle="modal" data-target="#login-modal"></button> 
+ <button id="closeModal" #closeModal [hidden]="true" 
+    data-dismiss="modal" aria-label="Close"></button>
+
+<div class="modal" id="login-modal" role="dialog" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header"> 
+               <h2 > Menu 
+                </h2> <button  class="close btn-sm btn-info" (click)="closeAndRedirectToHome()" >X</button>
+                </div>
+<div class="modal-body">
+  <h1 class="display-4 bg-dark" ></h1>
+ 
+  <div class="card-deck" *ngFor="let customFoods of customFoodList; even as e;index as i" > 
+    <div class="card border-primary " *ngFor="let customFood of customFoods; even as e;index as i">
+            <img [src]="customFood.imageLink" class="img" alt="Random first slide">
+             <div class="card-body text-right">
+             <h5 class="card-title" >{{customFood.name}}</h5>
+             <p class="card-text">Price: {{customFood.price}}<i class="fa fa-inr" aria-hidden="true"></i> <br> Rating: {{customFood.rating}} <i class="fa fa-star" aria-hidden="true"></i></p>
+              <button (click)="addToCart(customFood)" class="btn-md btn-success"> Add to Cart <i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div> 
+    </div>   
+  </div>
+</div>
+  <div id="showCart">
+      <button   id="showProduct" (click)="directToCart()" class="btn btn-primary btn-lg"  style="color: black" >0</button>
+ </div>
+</div>
+</div>
+</div>

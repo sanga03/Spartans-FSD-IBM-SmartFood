@@ -33,6 +33,7 @@ import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.compon
 import { FoodCartComponent } from './food-cart/food-cart.component';
 import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
 import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-gateway.component';
+import { LoggedRestaurantComponent } from './logged-restaurant/logged-restaurant.component';
 
  
 
@@ -61,7 +62,8 @@ import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-ga
    
     FoodCartComponent,
     PaymentGatewayComponent,
-    NewPaymentGatewayComponent
+    NewPaymentGatewayComponent,
+    LoggedRestaurantComponent
 
   ],
   imports: [

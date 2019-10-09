@@ -27,8 +27,8 @@ export class SortCriteriaComponent implements OnInit {
  {  
     this.max = Number(sessionStorage.getItem("price"));
     sessionStorage.setItem("priceRange",String(this.max))
-    this.router.navigate(['home'])
-    .then(()=>{this.router.navigate(['restaurant'])})
+    this.router.navigate(['foodHome'])
+    .then(()=>{this.router.navigate(['lgRestaurant'])})
  }
  sortRestaurantByRating(num)
 { 

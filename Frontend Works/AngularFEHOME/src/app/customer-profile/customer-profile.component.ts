@@ -123,6 +123,11 @@ export class CustomerProfileComponent implements OnInit {
       })
 
    }
+
+   redirect()
+   {
+     this.router.navigate(['lgRestaurant']);
+   }
 saveCustomerTrack() 
 {  
    var meal = (<HTMLInputElement>document.getElementById("inputMeal")).value;
