@@ -22,18 +22,18 @@ optSentSuccess:boolean=false;
     document.body.classList.add('reg-bg-img');
    
    this.regForm = new FormGroup({
-      name: new FormControl('name'),
-      phone:new FormControl('phone'),
-      email:new FormControl("email",[
+      name: new FormControl(''),
+      phone:new FormControl(''),
+      email:new FormControl("",[
         Validators.required,
         Validators.email,
         
       ]),
-    password: new FormControl('Sa@123',[
+    password: new FormControl('',[
       Validators.required,
       this.ValidatePass
     ]),
-    repassword:new FormControl('Sa@123',[
+    repassword:new FormControl('',[
     Validators.required,
   this.validateRepass
   ]) });

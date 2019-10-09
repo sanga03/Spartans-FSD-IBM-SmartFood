@@ -119,7 +119,7 @@ if(customFoodIds.length<1)
   })
 
   sessionStorage.setItem('cart','first');
-  // this.router.navigate(['new-payment'])
+   this.router.navigate(['new-payment'])
 
       }
   

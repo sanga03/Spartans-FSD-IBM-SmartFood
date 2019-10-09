@@ -149,6 +149,9 @@ saveCustomerTrack()
    }).then(res=>res.json())
    .then(data=>{
      console.log(data)
+     this.router.navigate(['customerProfile']).then(()=>{
+      this.router.navigate(['foodHome'])
+     })
    })
 
 
