@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.base_package.comparator.DefaultFoodComparator;
 import com.base_package.comparator.PersonalFoodComparator;
 import com.base_package.model.BasicIngredientResponseModel;
@@ -20,6 +22,7 @@ import com.base_package.model.PersonalFoodResponseModel;
 import com.base_package.model.ProgressReportResponseModel;
 import com.base_package.model.RestaurantResponseModel;
 
+@Service
 public class ListFoodsService {
 
 	public List<DefaultFoodResponseModel> getDefaultFoods(List<FoodResponseModel> foodList,
@@ -102,9 +105,19 @@ public class ListFoodsService {
 		Integer timeOfDay = 3;
 		Float caloriesToConsumeNow = personalCaloriesPerDay / timeOfDay;
 
-		caloriesToConsumeNow = updateCaloriesBasedOnPreviousRecords(caloriesToConsumeNow,
-				customerOrdersResponseModelList, customerTrackResponseModelList, customerPreferencesResponseModel,
-				customFoodList, customIngredientList, basicIngredientList);
+		try {
+			caloriesToConsumeNow = updateCaloriesBasedOnPreviousRecords(caloriesToConsumeNow,
+					customerOrdersResponseModelList, customerTrackResponseModelList, customerPreferencesResponseModel,
+					customFoodList, customIngredientList, basicIngredientList);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("NFE");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Exception");
+		}
 
 		PersonalFoodResponseModel personalFoodResponseModel;
 		List<PersonalFoodResponseModel> list = new ArrayList<PersonalFoodResponseModel>();
@@ -192,7 +205,7 @@ public class ListFoodsService {
 			Float tempCalories = caloriesToConsumeNow;
 			for (CustomerOrdersResponseModel customerOrdersResponseModel : customerOrdersResponseModelList) {
 				caloriesConsumedHistoryPerOrder = 0.0;
-
+				
 				if (Long.parseLong(customerOrdersResponseModel.getDate()) >= customerPreferencesResponseModel
 						.getStartDate()) {
 					for (String customFoodId : customerOrdersResponseModel.getFoodorderid()) {
@@ -463,13 +476,13 @@ public class ListFoodsService {
 				p.setNumberOfTracks(totalTracks);
 
 				System.out.println("Calculating correct calories");
-				
+
 				Float correctCalories = calculatePersonalCalories(customerStartDate, customerTargetDate,
 						customerPhysicalResponseModel.getWeight(), customerPreferencesResponseModel.getTargetWeight(),
 						customerPhysicalResponseModel.getBmr());
 				p.setCaloriesSupposedToBeConsumed(correctCalories);
 
-				if (p.getCaloriesConsumed() == 0 && day !=p.getDay()) {
+				if (p.getCaloriesConsumed() == 0 && day != p.getDay()) {
 					p.setCaloriesConsumed((double) correctCalories);
 					System.out.println("Setting calories by default");
 				}

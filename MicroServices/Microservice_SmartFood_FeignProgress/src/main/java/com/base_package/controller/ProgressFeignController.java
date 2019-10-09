@@ -60,11 +60,15 @@ public class ProgressFeignController {
 	@Autowired
 	private BasicIngredientFeignClient basicIngredientFeignClient;
 
+	@Autowired
 	private ListFoodsService listFoodsService;
 
 	@HystrixCommand(fallbackMethod = "fallbackGetPhysical")
 	private CustomerPhysicalResponseModel getCustomerPhysicalResponseModel(String uuid) {
-		return customerPhysicalFeignClient.readCustomerPhysicalByUuid(uuid);
+		CustomerPhysicalResponseModel customerPhysicalResponseModel = customerPhysicalFeignClient
+				.readCustomerPhysicalByUuid(uuid);
+		System.out.println("Physical working");
+		return customerPhysicalResponseModel;
 	}
 
 	@HystrixCommand(fallbackMethod = "fallbackGetPreference")
@@ -79,24 +83,28 @@ public class ProgressFeignController {
 
 	@HystrixCommand(fallbackMethod = "fallbackGetTrack")
 	private List<CustomerTrackResponseModel> getCustomerTrackResponseModel(String uuid) {
-		return customerTrackFeignClient.readCustomerTrackByCustomerAccountUuid(uuid);
+		List<CustomerTrackResponseModel> list = customerTrackFeignClient.readCustomerTrackByCustomerAccountUuid(uuid);
+		System.out.println("TRACK WORKING");
+		return list;
 	}
 
-	public CustomerPhysicalResponseModel fallbackGetPhysical() {
+	public CustomerPhysicalResponseModel fallbackGetPreference() {
+		System.out.println("CUSTOMER PHYSICAL NOT RUNNING");
 		return null;
-		// return "Physical detail fallback";
 	}
 
-	public CustomerPreferencesResponseModel fallbackGetPreference() {
+	public CustomerPreferencesResponseModel fallbackGetPhysical() {
+		System.out.println("CUSTOMER PREFERENCES NOT RUNNING");
 		return null;
-		// return "Preference fallback";
 	}
 
 	public ArrayList<CustomerOrdersResponseModel> fallbackGetOrders() {
+		System.out.println("CUSTOMER ORDERS NOT RUNNING");
 		return new ArrayList<CustomerOrdersResponseModel>();
 	}
 
 	public ArrayList<CustomerTrackResponseModel> fallbackGetTrack() {
+		System.out.println("CUSTOMER TRACK NOT RUNNING");
 		return new ArrayList<CustomerTrackResponseModel>();
 	}
 
@@ -104,7 +112,7 @@ public class ProgressFeignController {
 	public ResponseEntity<List<PersonalFoodResponseModel>> getPersonalFoods(@PathVariable("uuid") String uuid,
 			@PathVariable("coordinates") String coordinates) {
 
-		listFoodsService = new ListFoodsService();
+		// listFoodsService = new ListFoodsService();
 
 		List<FoodResponseModel> foodList = foodFeignClient.getAllFoods();
 		List<CustomFoodDetailsResponseModel> customFoodList = customFoodFeignClient.getAllCustomFoodDetails();
@@ -161,7 +169,7 @@ public class ProgressFeignController {
 		List<BasicIngredientResponseModel> basicIngredientResponseModelList = basicIngredientFeignClient
 				.readAllBasicIngredients();
 
-		listFoodsService = new ListFoodsService();
+		// listFoodsService = new ListFoodsService();
 		List<ProgressReportResponseModel> progressReportResponseModelList = listFoodsService.getProgress(
 				customerOrdersResponseModelList, customerTrackResponseModelList, customerPreferencesResponseModel,
 				customerPhysicalResponseModel, customFoodDetailsResponseModelList, customIngredientResponseModelList,
@@ -172,7 +180,7 @@ public class ProgressFeignController {
 	@GetMapping("/getDefaultFoods")
 	public ResponseEntity<List<DefaultFoodResponseModel>> getDefaultFoods() {
 
-		listFoodsService = new ListFoodsService();
+		// listFoodsService = new ListFoodsService();
 
 		List<FoodResponseModel> foodList = foodFeignClient.getAllFoods();
 		List<CustomFoodDetailsResponseModel> customFoodList = customFoodFeignClient.getAllCustomFoodDetails();
