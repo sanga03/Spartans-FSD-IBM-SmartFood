@@ -216,7 +216,7 @@ export class DialogDataExampleDialog {
   flag:number=0;
   cartOrder:foodOrderInterface = {
     restId:"",
-    date: JSON.stringify(new Date()),
+    date: String(new Date().getTime()),
     uorderId :"",
     customerId:"",
     foodorderid:"",
