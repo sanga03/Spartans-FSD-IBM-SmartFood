@@ -94,6 +94,19 @@ export class RestaurantComponent implements OnInit {
         this.filterByCategory(c)
         sessionStorage.removeItem("filterByCategory")
      }
+     if( sessionStorage.getItem("priceRange")==null || sessionStorage.getItem("priceRange")==undefined) 
+     {
+       console.log("do nothing in price ranfe");
+     }
+     else
+     { console.log("inside price range function")
+    
+        var max = sessionStorage.getItem("priceRange")
+        console.log(max)
+        this.filterByRange(max)
+        sessionStorage.removeItem("priceRange")
+     }
+     
   
   }
 
@@ -120,12 +133,43 @@ export class RestaurantComponent implements OnInit {
          }
      })
   }
-  
+  async filterByRange(max)
+  {
+    var url = "http://b4ibm26.iiht.tech:1030/restaurant/price"
+    await fetch(url,
+      {
+        method: 'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body: JSON.stringify({
+         "min": 0      ,
+         "max": Number(max)
+        })
+       })
+     .then(res=>res.json())
+     .then(data=>{
+       console.log(data)
+       this.resList=data;
+       let tempRestaurantList:restaurantResponse[]=new Array();
+       for(let i=0;i<Math.ceil(this.resList.length/4);i++)
+         {
+           for(let k=0;k<4 && k<this.resList.length-(i*4);k++)
+               {
+                 tempRestaurantList[k]=this.resList[(i*4)+k];
+               }
+           this.restaurantList[i]=tempRestaurantList;
+           tempRestaurantList=[];
+         }
+
+         console.log(this.restaurantList);
+     })
+  }  
  async showRestauratMenu(resUuid)
   {
     console.log(resUuid);
     var url = "http://b4ibm02.iiht.tech:8762/CFD/customFoodDetails"
-    fetch(url)
+   await  fetch(url)
     .then(res=>res.json())
     .then(data => 
       {  
