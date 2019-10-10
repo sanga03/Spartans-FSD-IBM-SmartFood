@@ -19,7 +19,7 @@ export class ChangePasswordComponent implements OnInit {
 emailz:any="sangu4403@gmail.com"
 otpz:String
 verifyOtpCheck:number=2
-checkOtp=2
+checkOtp=3
   ngOnInit() {
 
     let el: HTMLElement = this.openModal.nativeElement;
@@ -63,12 +63,14 @@ else{
 console.log(otp);
 fetch(changePassVerifyOtp+"otp="+otp+"&password="+password).then(res=>res.json()).then(data=>{
   console.log(data);
-if(data==true){
+if(data==0){
   this.verifyOtpCheck=0;
   alert('password reset successfull')
 this.router.navigate(['login'])
-}else{
+}else if(data==1){
   this.verifyOtpCheck=1;
+}else{
+  
 }
 })
   
