@@ -26,7 +26,7 @@ export class ReccoMendFoodComponent implements OnInit {
     let cUId=sessionStorage.getItem('CustomerId');
     console.log('asdads');
   let durl="http://b4ibm02.iiht.tech:9002/getDefaultFoods";
-  let orginUrl=fetchPersonalUrl+cUId+"/fummy";
+  let orginUrl=fetchPersonalUrl+cUId+"/13.0448,77.6221";
 
   // // for dummy foods 
   // fetch(durl).then(res=>res.json()).then(data=>{

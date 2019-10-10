@@ -168,9 +168,9 @@ saveCustomerTrack()
    }).then(res=>res.json())
    .then(data=>{  
      console.log(data)
-
-     this.router.navigate(['customerProfile'])
-    .then(()=>{this.router.navigate(['foodHome'])})
+      document.location.reload();
+    //  this.router.navigate(['customerProfile'])
+    // .then(()=>{this.router.navigate(['foodHome'])})
    })
 
 
@@ -199,7 +199,16 @@ redirectToHome()
         
         console.log(this.physicalDetailForm.get('gender').value)
         console.log(this.physicalDetailForm.get('caloriesBurn').value)
-        
+        let g:number=0;
+        if(this.physicalDetailForm.get('gender').value=="MALE")
+        {
+          g=0;
+        }
+        else
+        {
+          g=1;
+        }
+        console.log(g)
         console.log(d.getTime());
          fetch(
            url,
@@ -213,7 +222,7 @@ redirectToHome()
                "weight": this.physicalDetailForm.get('weight').value,
                "dob": d.getTime() ,
               "caloriesBurn": Number(this.physicalDetailForm.get('caloriesBurn').value),
-               "gender":  this.physicalDetailForm.get('gender').value
+               "gender": g
       
              })
          }).then(res=>res.json())

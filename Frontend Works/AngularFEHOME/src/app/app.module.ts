@@ -67,7 +67,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     FoodCartComponent,
     NewPaymentGatewayComponent,
     LoggedInRestaurantComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
 
     LoggedRestaurantComponent,
 

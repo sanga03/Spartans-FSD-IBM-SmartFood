@@ -61,7 +61,7 @@ export class LoggedRestaurantComponent implements OnInit {
 
   ngOnInit() {   
     
-    document.location.reload
+    // document.location.reload
    
     document.body.classList.add('res-bg-img');
     this.mealTimeFormGroup = this._formBuilder.group({

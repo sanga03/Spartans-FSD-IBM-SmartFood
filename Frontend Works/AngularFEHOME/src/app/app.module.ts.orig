@@ -13,18 +13,15 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { AboutUsComponent } from './about-us/about-us.component';
 import { RegisterComponent } from './register/register.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
-
+import { NgXCreditCardsModule } from 'ngx-credit-cards';
+import { ChartsModule } from 'ng2-charts';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-<<<<<<< HEAD
-import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule} from '@angular/material';
-=======
-import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatStepperModule} from '@angular/material';
->>>>>>> fa76fb04def57371cd085b40cc4de37078c3c484
-
+import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule, MatStepperModule, MatDialog, MatDialogModule, MatSlideToggleModule, MatSliderModule} from '@angular/material';
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
-
+// import { NgxPayPalModule } from 'ngx-paypal';
 import { HttpClientModule } from '@angular/common/http';
 import {AgmCoreModule} from '@agm/core';
 import { MapsService } from './maps.service';
@@ -34,7 +31,13 @@ import { FoodHomeComponent } from './food-home/food-home.component';
 import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
 import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.component';
 import { FoodCartComponent } from './food-cart/food-cart.component';
-import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
+import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-gateway.component';
+
+import { LoggedRestaurantComponent } from './logged-restaurant/logged-restaurant.component';
+
+import { LoggedInRestaurantComponent } from './logged-in-restaurant/logged-in-restaurant.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+
 
  
 
@@ -51,7 +54,7 @@ import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.compo
     AboutUsComponent,
     RegisterComponent,
     VerifyOtpComponent,
-  
+
     RestaurantComponent,
     SortCriteriaComponent,
     DialogDataExampleDialog,
@@ -59,8 +62,21 @@ import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.compo
     FoodHomeComponent,
     FoodRecomendComponent,
     ReccoMendFoodComponent,
+
+   
     FoodCartComponent,
-    PaymentGatewayComponent
+    NewPaymentGatewayComponent,
+<<<<<<< HEAD
+    LoggedInRestaurantComponent,
+    ChangePasswordComponent
+=======
+
+    LoggedRestaurantComponent,
+
+    LoggedInRestaurantComponent
+>>>>>>> 4d1f2d77a242803f3c34e7b0ba153b22d128c7f0
+
+
   ],
   imports: [
     BrowserModule,
@@ -74,22 +90,24 @@ import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.compo
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatSelectModule,
+   
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
     MatStepperModule,
     SelectAutocompleteModule,
-    HttpClientModule,
+    MatDialogModule,
+    MatIconModule,
     BrowserAnimationsModule,
     MatTreeModule,
-    
-    
+    ChartsModule,
+    MatSliderModule,
+    NgxSpinnerModule,
    
+
     AgmCoreModule.forRoot({
       apiKey:'AIzaSyBpF7XNgiejLB4qxKJOnMKUNQEVtK6ke0Q'
-    })
-    
+    })    
   ],
  
   providers: [],
