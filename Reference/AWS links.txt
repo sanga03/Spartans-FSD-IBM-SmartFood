@@ -1,0 +1,8 @@
+1) CustomIngredients on AWS
+
+GET 
+http://ec2-52-221-200-37.ap-southeast-1.compute.amazonaws.com:9001/customIngredients
+
+2) Eureka :
+
+http://ec2-52-221-200-37.ap-southeast-1.compute.amazonaws.com:8761/

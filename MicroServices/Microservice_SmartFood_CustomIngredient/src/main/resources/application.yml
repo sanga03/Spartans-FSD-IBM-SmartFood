@@ -3,10 +3,13 @@ spring:
     name: custom-ingredient-service
   datasource:
     url: jdbc:mysql://172.18.4.177:3306/spartans
+    #url: jdbc:mysql://ibm-fsd.cqkzmkdrxmt7.ap-southeast-1.rds.amazonaws.com:3306/spartans
     username: chirag
     password: root
-  jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
+    #username: admin
+    #password: admin123
+  #jpa:
+    #database-platform: org.hibernate.dialect.MySQLDialect
   #jpa:
     #hibernate:
       #ddl-auto: update
@@ -16,3 +19,4 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://172.18.3.44:8761/eureka/
+      #defaultZone: http://127.0.0.1:8761/eureka/

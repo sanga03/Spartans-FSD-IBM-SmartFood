@@ -1,4 +1,4 @@
-Customer :
+Customer :- 
 
 	(C1)-CRUD on Customer Account [] -- Neeraja
 		(C2)-CRUD on Customer Physical (takes ca_uuid) [OneToOne CustomerAccount] -- Vivek
@@ -15,18 +15,19 @@ Restaurant:-
 	
 	(R5)-CRUD on BasicIngredient (takes ci_uuid) - [] (only admin) (req) -- Sangamesh
 
-Payment:
+Payment:-
 
 	(P1)-CRUD on PaymentRecords [id,p_uuid,r_uuid,ca_uuid,money] -- Vivek
 
-Common servers :
+Common servers :-
 	
 	(E)-eureka : all the above services are discoverable clients
 	(Z)-zuul : routes all of the above with appropriate names, uses eureka(E)
-	(F)-feign client : uses zuul(Z) to access microservices, either from within or outside discovery
+	(F)-feign clients : uses zuul(Z) to access microservices, either from within or outside discovery
 
 
-MAIN SERVICES
+MAIN SERVICES:-
+
 
 M0) Admin Page 
 	-consumes C1,C2,C3,C4 and C5 for maintenance

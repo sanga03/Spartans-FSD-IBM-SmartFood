@@ -10,28 +10,38 @@ public class ResponseModel{
 	private String resId;
 	private String location;
 	private String co_ordinates;
-	private double price=0.0;
+	private int price=0;
+	private String image;
 
 	public ResponseModel() {
 		super();
 	}
 
-	public ResponseModel(double price,String name, Long contact, double rating, String resId, String location, String co_ordinates) {
+	public ResponseModel(String image,double price,String name, Long contact, double rating, String resId, String location, String co_ordinates) {
 		super();
+		this.image = image;
 		this.name = name;
 		this.contact = contact;
 		this.rating = rating;
 		this.resId = resId;
 		this.location = location;
-		this.price = price;
+		this.price = (int)price;
 		this.co_ordinates = co_ordinates;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public double getPrice() {
 		return price;
 	}
 	public void setPrice(double price) {
-		this.price = price;
+		this.price = (int)price;
 	}
 
 	public String getName() {

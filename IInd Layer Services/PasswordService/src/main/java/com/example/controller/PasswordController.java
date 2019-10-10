@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,11 +24,15 @@ public class PasswordController {
 	private RequestModel modelUser;
 	private CustomerAccountIntf cai;
 	private String email;
+	private CustomerAccountDto model;
+	private BCryptPasswordEncoder bcrypt;
 	
 	@Autowired
-	public PasswordController(CustomerAccountIntf cai) {
+	public PasswordController(BCryptPasswordEncoder bcrypt, CustomerAccountIntf cai) {
 		super();
 		this.cai = cai;
+		this.bcrypt = bcrypt;
+		
 	}
 	
 	
@@ -41,12 +46,13 @@ public class PasswordController {
 	    return x;
 	}
 	
-	@PostMapping("/changePassword")
+	@GetMapping("/userPassword")
 	public Integer registerUser(@RequestParam String email,HttpServletRequest request) {
 		Integer str1 = 0;
 		this.setEmail(email);
 		CustomerAccountDto dto = cai.findByEmail(email);
-		if(dto == null) 
+		model = dto;
+		if(dto != null) 
 		{
 			this.otp = cai.sendEmail(email);
 			System.out.println("email sent for password"+getOtp());
@@ -57,23 +63,28 @@ public class PasswordController {
 	}
 	
 	@GetMapping("/verifyOtp")
-	public boolean confirmUser(@RequestParam String otpU,@RequestParam String password, HttpServletRequest request) {
-		boolean a=true;
+	public int confirmUser(@RequestParam String otp,@RequestParam String password, HttpServletRequest request) {
+		int a=1;
 		HttpSession session = request.getSession();
 		String str = (String) session.getAttribute("otp");
 		
-		System.out.println(this.otp+" "+otpU+" "+str);
+		System.out.println(this.otp+" "+otp+" "+str);
 		
-		RequestModel req = (RequestModel) session.getAttribute("userData");
-		if(this.getOtp().equalsIgnoreCase(otpU))
+		
+		if(this.getOtp().equalsIgnoreCase(otp))
 		{
 			CustomerAccountDto dto = cai.changePassword(this.getEmail(), password);
 			session.setAttribute("uuid", dto.getUuid());
-			a=true;
+			System.out.println(model.getPassword()+password);
+			if(bcrypt.matches(password,model.getPassword()))
+					a=2;
+			else
+				a=0;
+				
 		}
 		else
 		{
-			a=false;
+			a=1;
 		}
 		return a;
 		
