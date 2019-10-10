@@ -44,8 +44,16 @@ filterRestaurantByCategory(value)
   {  
     console.log("sort by category called")
     sessionStorage.setItem("filterByCategory",value)
-    this.router.navigate(['home'])
+    if(sessionStorage.getItem("email")==null || sessionStorage.getItem("email")==undefined )
+    {
+      this.router.navigate(['home'])
       .then(()=>{this.router.navigate(['restaurant'])})
+    }
+    else{
+      this.router.navigate(['customerProfile'])
+      .then(()=>{this.router.navigate(['lgRestaurant'])})
+    }
+    
   }
 
 }
