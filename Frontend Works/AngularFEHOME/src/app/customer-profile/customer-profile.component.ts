@@ -233,6 +233,7 @@ redirectToHome()
                this.customerPhysicalDetail.dob=data.dob
                this.customerPhysicalDetail.gender=data.gender
            console.log(data); 
+           document.location.reload();
          })
     }
 

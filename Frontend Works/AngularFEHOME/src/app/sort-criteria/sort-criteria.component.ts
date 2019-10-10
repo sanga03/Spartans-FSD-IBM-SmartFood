@@ -26,17 +26,37 @@ export class SortCriteriaComponent implements OnInit {
  sortByPrice()
  {  
     this.max = Number(sessionStorage.getItem("price"));
-    sessionStorage.setItem("priceRange",String(this.max))
-    this.router.navigate(['foodHome'])
-    .then(()=>{this.router.navigate(['lgRestaurant'])})
+    sessionStorage.setItem("priceRange",String(this.max)) 
+    console.log(this.max);
+    if(sessionStorage.getItem("email")==null || sessionStorage.getItem("email")==undefined )
+    {
+      this.router.navigate(['home'])
+      .then(()=>{this.router.navigate(['restaurant'])})
+    }
+    else{
+      this.router.navigate(['customerProfile'])
+      .then(()=>{this.router.navigate(['lgRestaurant'])})
+    }
+    // this.router.navigate(['foodHome'])
+    // .then(()=>{this.router.navigate(['lgRestaurant'])})
  }
  sortRestaurantByRating(num)
 { 
   
   console.log("sort function called")
   sessionStorage.setItem("filterByRating",num);
-  this.router.navigate(['home'])
-    .then(()=>{this.router.navigate(['restaurant'])})
+  if(sessionStorage.getItem("email")==null || sessionStorage.getItem("email")==undefined )
+    {
+      this.router.navigate(['home'])
+      .then(()=>{this.router.navigate(['restaurant'])})
+    }
+    else{
+      this.router.navigate(['customerProfile'])
+      .then(()=>{this.router.navigate(['lgRestaurant'])})
+    }
+    
+  // this.router.navigate(['home'])
+  //   .then(()=>{this.router.navigate(['restaurant'])})
  
 }  
   
