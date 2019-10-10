@@ -68,7 +68,7 @@ import { LoggedInRestaurantComponent } from './logged-in-restaurant/logged-in-re
     PaymentGatewayComponent,
     NewPaymentGatewayComponent,
 
-    LoggedRestaurantComponent
+    LoggedRestaurantComponent,
 
     LoggedInRestaurantComponent
 
