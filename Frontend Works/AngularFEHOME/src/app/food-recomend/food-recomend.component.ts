@@ -106,7 +106,7 @@ export class FoodRecomendComponent implements OnInit {
     ];
 }).catch(()=>{
     console.log('error')
-  // document.location.reload()
+  document.location.reload()
   })
   
   }
