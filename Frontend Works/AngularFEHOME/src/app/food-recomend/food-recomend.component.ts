@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { progressUrl } from 'src/utils';
 import { NgxSpinnerService } from 'ngx-spinner';
-
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { Label } from 'ng2-charts';
@@ -26,7 +25,8 @@ export class FoodRecomendComponent implements OnInit {
   public barChartLabels: Label[] = [];
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
-  public barChartPlugins = [pluginDataLabels];
+  public barChartPlugins = [];
+  
   dataCumsume=[]
   dataIdeal=[]
   public barChartData: ChartDataSets[] = [
@@ -55,7 +55,6 @@ export class FoodRecomendComponent implements OnInit {
   if(sessionStorage.getItem('CustomerId')!=null){
     this.spinner.hide('sp');
   }else{
-    // document.location.reload()
     console.log('-----')
   }
   fetch(progressUrl+sessionStorage.getItem('CustomerId')).then(res=>res.json()).then(data=>{
@@ -68,7 +67,6 @@ export class FoodRecomendComponent implements OnInit {
   }else{
     console.log("----reloading----")
     document.location.reload()
-    
   }
   
     let curDate = new Date().getTime();
@@ -76,7 +74,6 @@ export class FoodRecomendComponent implements OnInit {
     console.log(startDate);
     this.BMI=data[0].currentBMI
     this.BMR=data[0].currentBMR.toFixed(2)
-    // console.log(curDate-startDate)
     this.startDate=new Date(data[0].startDate).getDate()+"/"+(new Date(data[0].startDate).getMonth()+1)+"/"+new Date(data[0].startDate).getFullYear();
     this.endDate=new Date(data[0].targetDate).getDate()+"/"+(new Date(data[0].targetDate).getMonth()+1)+"/"+new Date(data[0].targetDate).getFullYear();
     this.targetWeight=data[0].targetWeight;
@@ -96,8 +93,8 @@ export class FoodRecomendComponent implements OnInit {
         this.caloriesCunsumed+=day.caloriesConsumed;
         if(this.dayCount>=day.day){
           this.barChartLabels.push("Day "+(day.day+1));
-          this.dataCumsume.push(day.caloriesConsumed);
-          this.dataIdeal.push(data[0].caloriesSupposedToBeConsumed);
+          this.dataCumsume.push(Math.floor(day.caloriesConsumed));
+          this.dataIdeal.push(Math.floor(data[0].caloriesSupposedToBeConsumed));
       }
         if(day.day==this.dayCount){
           this.todayCaloriesCunsumed=day.caloriesConsumed.toFixed(2);
@@ -107,9 +104,7 @@ export class FoodRecomendComponent implements OnInit {
       { data:this.dataCumsume, label: 'Consumed cals' },
       { data: this.dataIdeal, label: 'Ideal cals' }
     ];
-
-
-  }).catch(()=>{
+}).catch(()=>{
     console.log('error')
   // document.location.reload()
   })

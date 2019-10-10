@@ -31,9 +31,9 @@ import { FoodHomeComponent } from './food-home/food-home.component';
 import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
 import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.component';
 import { FoodCartComponent } from './food-cart/food-cart.component';
-import { PaymentGatewayComponent } from './payment-gateway/payment-gateway.component';
 import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-gateway.component';
 import { LoggedInRestaurantComponent } from './logged-in-restaurant/logged-in-restaurant.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
  
 
@@ -61,9 +61,9 @@ import { LoggedInRestaurantComponent } from './logged-in-restaurant/logged-in-re
 
    
     FoodCartComponent,
-    PaymentGatewayComponent,
     NewPaymentGatewayComponent,
-    LoggedInRestaurantComponent
+    LoggedInRestaurantComponent,
+    ChangePasswordComponent
 
   ],
   imports: [
@@ -78,7 +78,7 @@ import { LoggedInRestaurantComponent } from './logged-in-restaurant/logged-in-re
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    NgXCreditCardsModule,
+   
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,

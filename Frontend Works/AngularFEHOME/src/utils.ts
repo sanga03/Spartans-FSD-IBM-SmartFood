@@ -17,4 +17,6 @@ export var findEmailUrl="http://b4ibm02.iiht.tech:8762/account/findEmail?email="
 export let orderUrl="http://b4ibm26.iiht.tech:8099/push";
 export var pushPrefUrl="http://b4ibm32.iiht.tech:8041/pushPref";
 export let paypalUrl="http://b4ibm32.iiht.tech:8090/pay/"
+export let changePass="http://b4ibm26.iiht.tech:1040/userPassword?"
+export let changePassVerifyOtp="http://b4ibm26.iiht.tech:1040/verifyOtp?"
 

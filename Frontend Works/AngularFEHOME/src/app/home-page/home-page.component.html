@@ -3,6 +3,9 @@
     padding-top: 80px;
     padding-left: 370px;
 }
+.searchBar{
+    margin-top: 300px;
+}
 .display-4 {
     
     
@@ -114,23 +117,23 @@ body {
                 <div class="jumbotron">
                         <h1 class="display-4">Welcome to Nutritium</h1>
                         <hr class="my-4">
-                        <h5 class="display-5" >At Nutritium we provide meal of your diet and cuisine preference</h5>
+                        <h5 class="display-5" >At Nutritium, we provide you a meal that caters to your health as well as your taste buds!<br/>Let's get started! </h5>
                         <hr class="my-4">
                         <h1 class="display-4"></h1>
-                        
+                       
                            
                 </div>
                 
             </div> 
         </div>  
              <div class="row">
-                   
                     <hr class="my-4">
                     <form [formGroup]="searchRestaurantForm" (ngSubmit)="redirectToRestaurant()" class="frm" method="post" >
-                            
+                          <div class="searchBar"  >
                             <input formControlName="searchCriteria" type="text" placeholder="Search Restaurant...">
                             <div (click)="redirectToRestaurant()"  class="search"> </div>
-                    </form>  
+                        </div>
+                        </form>  
              </div>
    <div id="foot">       
             <app-footer></app-footer>

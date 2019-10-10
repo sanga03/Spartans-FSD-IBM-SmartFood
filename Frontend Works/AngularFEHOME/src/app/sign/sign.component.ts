@@ -75,5 +75,6 @@ export class SignComponent implements OnInit {
   
   }
 
-
+changePass(){
+}
 }

@@ -36,8 +36,8 @@ data-dismiss="modal" aria-label="Close"></button>
               <div class="modal-footer">
 
         
-                <a (click)="changePass()" data-dismiss="model" data-toggle="model" href="#changePass" role="button" aria-expanded="false" aria-controls="collapseExample" >change password</a> 
-                        <a  [routerLink]="['/register']" data-dismiss="modal" aria-label="Close"> New User? Register Now</a>
+                <a (click)="changePass()" data-dismiss="model" data-toggle="model"  [routerLink]="['/changePass']"   aria-label="Close" >Forgot password?</a> 
+                        <a  [routerLink]="['/register']" data-dismiss="modal" aria-label="Close"> New User? Register here</a>
               <button type="submit" class="btn btn-primary btn-md"  >Let's Go <i class="fa fa-cutlery" style='color:#93E0E5'aria-hidden="true"></i></button>
 
               <!-- <button type="button" class="btn btn-info" id="reg-btn" onclick="callReg()" >Register</button> -->
@@ -50,25 +50,3 @@ data-dismiss="modal" aria-label="Close"></button>
           </div>
       
     </div>  
-
-<div class="collapse" id="changePass">
-    <div class="modal"  tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>

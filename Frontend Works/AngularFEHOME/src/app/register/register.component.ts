@@ -43,8 +43,6 @@ optSentSuccess:boolean=false;
   if(this.regForm.get('password').value!=this.regForm.get('repassword').value){
    this.errMsg="Not Same Password";
   }else{
-
-  
   let name=this.regForm.get('name').value;
   let email=this.regForm.get('email').value;
   let phone:String=this.regForm.get('phone').value;
