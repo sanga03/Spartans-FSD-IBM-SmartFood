@@ -40,7 +40,14 @@
   <img id="img" src="https://raw.githubusercontent.com/sanga03/Spartans-FSD-IBM-SmartFood/master/favicon.ico"> 
   &nbsp;
       <a class="navbar-brand" href="#"> Nutritium </a> 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"> 
+            <ul class="navbar-nav mr-auto"> 
+                <li class="nav-item active">
+                  <a class="nav-link btn btn-outline-info my-2 my-sm-0" (click)="redirect()" >Proceed Witout Preference</a>
+                </li>
+               
+               
+         </ul>
           <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex"> 
                
                 <li class="nav-item dropdown">
@@ -99,7 +106,8 @@
                   </p>
                 <!-- <label for="weight">Weight</label>
                 <input type="number" class="form-control" formControlName="weight" placeholder="In Kgs" value=""> -->
-              </div>
+              </div> 
+              <div id="secureProperty">
                <div class="form-group">
                   <label for="gender">Gender</label>
                   <select formControlName="gender" id="gender" class="form-control col-md-4">
@@ -110,11 +118,11 @@
               <div class="form-group"> 
                   <mat-form-field> 
                       <mat-label>Date of Birth</mat-label>
-                      <input matInput [matDatepicker]="dob"  formControlName="dob"    placeholder="Date of Birth">
+                      <input matInput [matDatepicker]="dob"  formControlName="dob"  id="dob"  placeholder="Date of Birth">
                       <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
                       <mat-datepicker #dob></mat-datepicker>
                   </mat-form-field>
-              
+                </div>
                   
                 <!-- <label for="">Date of Birth</label>
                 <input type="date" class="form-control"  formControlName="dob"   > -->

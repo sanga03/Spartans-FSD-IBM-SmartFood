@@ -12,6 +12,7 @@ import { FoodHomeComponent } from './food-home/food-home.component';
 import { FoodCartComponent } from './food-cart/food-cart.component';
 import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-gateway.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { LoggedRestaurantComponent } from './logged-restaurant/logged-restaurant.component';
 
 
 const routes: Routes = [
@@ -32,9 +33,15 @@ const routes: Routes = [
     component:NewPaymentGatewayComponent
   },
     {
-      path:"login",
+      path:"login", 
       component: SignComponent
-    },{
+    }, 
+    {
+      path:"lgRestaurant",
+      component: LoggedRestaurantComponent
+    },
+    
+    {
       path:"register",
       component:RegisterComponent
     },{

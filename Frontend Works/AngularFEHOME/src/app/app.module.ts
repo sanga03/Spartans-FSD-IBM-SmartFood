@@ -17,7 +17,7 @@ import { NgXCreditCardsModule } from 'ngx-credit-cards';
 import { ChartsModule } from 'ng2-charts';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule, MatStepperModule, MatDialog, MatDialogModule} from '@angular/material';
+import {MatAutocompleteModule,MatNativeDateModule,MatInputModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatSelectModule, MatIconModule,MatDatepickerModule, MatDatepicker, MatTreeModule, MatStepperModule, MatDialog, MatDialogModule, MatSlideToggleModule, MatSliderModule} from '@angular/material';
 import { RestaurantComponent, DialogDataExampleDialog } from './restaurant/restaurant.component';
 import { SortCriteriaComponent } from './sort-criteria/sort-criteria.component';
 import { SelectAutocompleteModule } from 'mat-select-autocomplete';
@@ -32,8 +32,12 @@ import { FoodRecomendComponent } from './food-recomend/food-recomend.component';
 import { ReccoMendFoodComponent } from './recco-mend-food/recco-mend-food.component';
 import { FoodCartComponent } from './food-cart/food-cart.component';
 import { NewPaymentGatewayComponent } from './new-payment-gateway/new-payment-gateway.component';
+
+import { LoggedRestaurantComponent } from './logged-restaurant/logged-restaurant.component';
+
 import { LoggedInRestaurantComponent } from './logged-in-restaurant/logged-in-restaurant.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+
 
  
 
@@ -65,6 +69,10 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     LoggedInRestaurantComponent,
     ChangePasswordComponent
 
+    LoggedRestaurantComponent,
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -89,6 +97,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     BrowserAnimationsModule,
     MatTreeModule,
     ChartsModule,
+    MatSliderModule,
     NgxSpinnerModule,
    
 
