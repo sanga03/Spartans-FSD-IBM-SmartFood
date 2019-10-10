@@ -31,15 +31,14 @@ public class PasswordServiceImpl {
 		ModelMapper mapper = new ModelMapper();
 		mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
-		CustomerAccountDto dto = null;
 		CustomerAccount ca=null;
 		
 		Optional<CustomerAccount> op= service.findByEmail(email);
 		if(op.isPresent())
 			ca = op.get();
 		ca.setPassword(bCryptPasswordEncoder.encode(password));
-		
-		mapper.map(dto,service.save(ca));
+		System.out.println(ca.getEmail()+ca.getPassword());
+		CustomerAccountDto dto = mapper.map(service.save(ca),CustomerAccountDto.class);
 		return dto;
 	}
 }
