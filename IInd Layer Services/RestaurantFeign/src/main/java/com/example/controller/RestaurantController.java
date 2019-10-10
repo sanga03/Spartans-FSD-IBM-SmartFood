@@ -97,7 +97,7 @@ public class RestaurantController {
 	}
 	
 	//filter by veg/non veg
-	@PostMapping("/restaurant/category")
+	@GetMapping("/restaurant/category")
 	public List<ResponseModel> filterCategory(@RequestParam("a") String a){
 		int ab = Integer.parseInt(a);
 		List<ResponseModel> list = setPrice();
