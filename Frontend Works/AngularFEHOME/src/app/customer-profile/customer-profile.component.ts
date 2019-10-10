@@ -117,7 +117,8 @@ export class CustomerProfileComponent implements OnInit {
             
           }
           else{
-            (<HTMLInputElement>document.getElementById('dob')).readOnly = true;
+            (<HTMLInputElement>document.getElementById('dob')).readOnly = true; 
+            (<HTMLInputElement>document.getElementById('secureProperty')).style.display = "none";
           }
          })
       })

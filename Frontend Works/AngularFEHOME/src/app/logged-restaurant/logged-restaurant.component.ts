@@ -168,6 +168,16 @@ export class LoggedRestaurantComponent implements OnInit {
         console.log(max)
         this.filterByRange(max)
         sessionStorage.removeItem("priceRange")
+     } 
+     if( sessionStorage.getItem("filterByCategory")==null || sessionStorage.getItem("filterByCategory")==undefined) 
+     {
+       console.log("do nothing");
+     }
+     else
+     {
+        var c = sessionStorage.getItem("filterByCategory")
+        this.filterByCategory(c)
+        sessionStorage.removeItem("filterByCategory")
      }
      
       
