@@ -18,8 +18,8 @@ export class ChangePasswordComponent implements OnInit {
     constructor(private router:Router) { }
 emailz:any="sangu4403@gmail.com"
 otpz:String
-verifyOtpCheck:number=2
-checkOtp=3
+verifyOtpCheck:number=3
+checkOtp=2
   ngOnInit() {
 
     let el: HTMLElement = this.openModal.nativeElement;
@@ -59,6 +59,7 @@ if(password!=repassword){
   this.errMsg="Not Same Password"
 }
 else{
+  this.errMsg=""
   console.log(password)
 console.log(otp);
 fetch(changePassVerifyOtp+"otp="+otp+"&password="+password).then(res=>res.json()).then(data=>{
@@ -67,10 +68,8 @@ if(data==0){
   this.verifyOtpCheck=0;
   alert('password reset successfull')
 this.router.navigate(['login'])
-}else if(data==1){
-  this.verifyOtpCheck=1;
-}else{
-  
+}else {
+  this.verifyOtpCheck=data;
 }
 })
   

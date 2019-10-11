@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module'
+;
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HeaderComponent } from './header/header.component';
@@ -78,6 +79,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     BrowserModule,
     NgbModule,
     AppRoutingModule,
+    NgXCreditCardsModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

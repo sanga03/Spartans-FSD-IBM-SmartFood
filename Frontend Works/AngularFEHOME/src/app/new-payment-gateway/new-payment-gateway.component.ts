@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { NgXCreditCardsModule } from 'ngx-credit-cards';
+import { NgXCreditCardsModule } from 'ngx-credit-cards';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { CreditCardValidator } from 'ngx-credit-cards';
 import { paypalUrl } from 'src/utils';

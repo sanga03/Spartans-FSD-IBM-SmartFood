@@ -51,7 +51,17 @@ export class SignComponent implements OnInit {
                         sessionStorage.setItem("cart","first");
                      }
                      this.closeModal.nativeElement.click();
-                     this.router.navigate(['foodHome']);
+                     var url = "http://b4ibm02.iiht.tech:8762/account/findEmail?email="+email;
+   
+                     console.log(url);
+                     fetch(url).then(res=>res.json())
+                       .then(data=>
+                         {  
+                       
+                           sessionStorage.setItem("CustomerId",data.uid);
+                           this.router.navigate(['foodHome']);
+                         })
+                   
                      
                 }else if(data==1)
                 {
