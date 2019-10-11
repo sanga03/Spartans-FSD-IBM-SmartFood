@@ -156,7 +156,18 @@ export class LoggedRestaurantComponent implements OnInit {
           this.restaurantList[i]=tempRestaurantList;
           tempRestaurantList=[];
         }
-
+        if( sessionStorage.getItem("filterByRating")==null || sessionStorage.getItem("filterByRating")==undefined) 
+        {
+          console.log("do nothing in price range");
+        }
+        else
+        { console.log("inside price range function")
+       
+           var min = sessionStorage.getItem("filterByRating")
+           console.log(min)
+           this.filterByRating(min)
+           sessionStorage.removeItem("filterByRating")
+       } 
       if( sessionStorage.getItem("priceRange")==null || sessionStorage.getItem("priceRange")==undefined) 
      {
        console.log("do nothing in price ranfe");
@@ -220,6 +231,39 @@ export class LoggedRestaurantComponent implements OnInit {
         body: JSON.stringify({
          "min": 0      ,
          "max": Number(max)
+        })
+       })
+     .then(res=>res.json())
+     .then(data=>{ 
+       console.log(data)
+       this.resList=data;
+       let tempRestaurantList:restaurantResponse[]=new Array();
+       for(let i=0;i<Math.ceil(this.resList.length/4);i++)
+         {
+           for(let k=0;k<4 && k<this.resList.length-(i*4);k++)
+               {
+                 
+                 tempRestaurantList[k]=this.resList[(i*4)+k];
+               }
+           this.restaurantList[i]=tempRestaurantList;
+           tempRestaurantList=[];
+         }
+
+         console.log(this.restaurantList);
+     })
+  }  
+  async filterByRating(min)
+  {
+    var url = "http://b4ibm26.iiht.tech:1030/restaurant/rating"
+    await fetch(url,
+      {
+        method: 'POST',
+        headers:{
+            'content-type':'application/json'
+        },
+        body: JSON.stringify({
+         "min": Number(min)     ,
+         "max": 5
         })
        })
      .then(res=>res.json())
@@ -376,6 +420,7 @@ export class LoggedRestaurantComponent implements OnInit {
            console.log(this.cartOrder);
            this.cartOrder.customerId = sessionStorage.getItem("CustomerId");
            sessionStorage.setItem("cart",JSON.stringify(this.cartOrder));
+           this.openModal.nativeElement.click();
            this.router.navigate(['cart'])
          
           }
@@ -392,6 +437,13 @@ export class LoggedRestaurantComponent implements OnInit {
   {
     this.router.navigate(['foodHome'])
   }
+  redirectToHome()   
+ {  
+    sessionStorage.removeItem('email');
+    sessionStorage.removeItem('cart');
+    window.sessionStorage.clear();
+    this.router.navigate(['home']);
+ }
 }
 
 export interface restauratRequest

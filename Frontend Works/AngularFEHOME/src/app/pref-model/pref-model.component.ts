@@ -146,7 +146,7 @@ this.setPrefDetail(prefObj);
 
 }
   setPrefDetail(objs:prefModel){
-    var url = "http://localhost:8041/updatePref/"+objs.uuuid;
+    var url = "http://b4ibm32.iiht.tech:8041/updatePref/"+objs.uuuid;
     console.log(url);
     fetch(url,{method:'POST',headers:{
       'content-type':'application/json'

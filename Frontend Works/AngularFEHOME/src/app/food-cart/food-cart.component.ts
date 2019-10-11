@@ -19,7 +19,8 @@ export class FoodCartComponent implements OnInit {
   foodOrdered:foodOrderInterface;
   foodOrderList:foodInterface[];
   tp:number=0;
-  ngOnInit() {
+  ngOnInit() { 
+    
     document.body.classList.add('bg-img');
 
     if(sessionStorage.getItem('cart')!='first'){
