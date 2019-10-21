@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgXCreditCardsModule } from 'ngx-credit-cards';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, FormGroup } from '@angular/forms';
 import { CreditCardValidator } from 'ngx-credit-cards';
 import { paypalUrl } from 'src/utils';
 import { Router } from '@angular/router';
@@ -18,7 +18,12 @@ export class NewPaymentGatewayComponent implements OnInit {
 //   public payPalConfig ? : IPayPalConfig;
 
    formBuilder = new FormBuilder();
-  formGroup: any;
+   formGroup = new FormGroup({
+    cardNumber: new FormControl('', [CreditCardValidator.validateCardNumber]),
+    cardExpDate:new FormControl('', [CreditCardValidator.validateCardExpiry]),
+    cardCvv: new FormControl('', [CreditCardValidator.validateCardCvc]),
+    cardName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
+  });
   resetStatus: any;
   showError: boolean;
   showCancel: boolean;
@@ -31,12 +36,7 @@ export class NewPaymentGatewayComponent implements OnInit {
   
   ngOnInit() {
     // this.initConfig();
-  this.formGroup = this.formBuilder.group({
-    cardNumber: new FormControl('', [CreditCardValidator.validateCardNumber]),
-    cardExpDate:new FormControl('', [CreditCardValidator.validateCardExpiry]),
-    cardCvv: new FormControl('', [CreditCardValidator.validateCardCvc]),
-    cardName: new FormControl('', Validators.compose([Validators.required, Validators.minLength(2)])),
-  });
+  
   }
 
 
@@ -44,12 +44,28 @@ export class NewPaymentGatewayComponent implements OnInit {
     // this.router.navigate(['home'])
   }
   paypalPay(){
+   let url=""
     //   document.location.href=paypalUrl+"21.9";
       console.log(paypalUrl+423.2)
-fetch(paypalUrl+"21.9").then(res=>res.json()).then(data=>{
-    console.log(data);
-    document.location.href=String(data.message);
-})
+
+      fetch(paypalUrl+"21.9").then(data=>{
+        console.log(data);
+        console.log(data.body)
+        // if(data=="error"){}
+        // document.location.href=String(data.message);
+    })
+ 
+      fetch(paypalUrl+"21.9").then(res=>res.json()).then(data=>{
+        console.log(data);
+        document.location.href=String(data.message);
+        url=String(data.message);
+    })
+
+
+  .catch(error => {
+   alert("Invalid Paypal token")
+    // fetch(url).then(data=>{console.log(data)}).catch(error=>console.log(error.message))
+  })
   }
 
 goHome(){

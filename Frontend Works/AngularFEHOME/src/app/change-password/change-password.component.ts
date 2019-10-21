@@ -75,4 +75,12 @@ this.router.navigate(['login'])
   
 }
 }
+closeAndRedirectToHome()
+  {  
+    // this.openModal.nativeElement.click();
+    this.closeModal.nativeElement.click();
+    
+    this.router.navigate(['home'])
+  
+  }
 }

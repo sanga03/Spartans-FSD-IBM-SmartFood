@@ -13,8 +13,8 @@ export class SignComponent implements OnInit {
   @ViewChild('closeModal',undefined) closeModal:ElementRef;
   status:number = 0
   loginForm = new FormGroup({
-    email: new FormControl('spamme017@yandex.com'),
-    password: new FormControl('Sa@123'),
+    email: new FormControl(''),
+    password: new FormControl(''),
   });
   constructor(private previousRoute: ActivatedRoute ,private router: Router) { }
 
@@ -86,5 +86,8 @@ export class SignComponent implements OnInit {
   }
 
 changePass(){
+  this.closeModal.nativeElement.click();
+ // this.router.navigate(['changePass'])
+  
 }
 }
